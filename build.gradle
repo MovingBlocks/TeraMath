@@ -1,0 +1,43 @@
+/*
+ * This is a Gradle build file:
+ * - Gradle Homepage: http://gradle.org/
+ * - Gradle Documentation: http://gradle.org/documentation
+ * - View tasks for this project: $ gradlew tasks
+ */
+
+apply plugin: 'java'
+apply plugin: 'project-report'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+//apply plugin: 'checkstyle'
+//apply plugin: 'pmd'
+//apply plugin: 'findbugs'
+
+// Test for right version of Java in use for running this script
+assert org.gradle.api.JavaVersion.current().isJava7Compatible()
+
+// gradle wrapper version
+wrapper {
+    gradleVersion '1.10'
+}
+
+// Declare remote repositories we're interested in - library files will be fetched from here
+repositories {
+    // Main Maven repo
+    mavenCentral()
+}
+
+// Primary dependencies definition
+dependencies {
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.5'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.0.13'
+    compile group: 'com.google.guava', name: 'guava', version: '15.0'
+
+    // These dependencies are only needed for running tests
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+// Set the expected module Java level (can use a higher Java to run, but should not use features from a higher Java)
+sourceCompatibility = 1.7
+
