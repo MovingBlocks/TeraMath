@@ -19,6 +19,7 @@ package org.terasology.math.geom;
 
 /**
  * A mutable point in 2D space
+ *
  * @author Martin Steiger
  */
 public class Vector2d extends Tuple2d {
@@ -37,6 +38,7 @@ public class Vector2d extends Tuple2d {
 
     /**
      * Copy constructor
+     *
      * @param other The other point
      */
     public Vector2d(Tuple2d other) {
@@ -45,7 +47,7 @@ public class Vector2d extends Tuple2d {
     }
 
     /**
-     * Default constructor for (0 / 0)
+     * Default constructor for (0, 0)
      */
     public Vector2d() {
         this(0.0, 0.0);
@@ -102,6 +104,7 @@ public class Vector2d extends Tuple2d {
 
     /**
      * Adds to the x value
+     *
      * @param ax the added x value
      * @return this
      */
@@ -112,6 +115,7 @@ public class Vector2d extends Tuple2d {
 
     /**
      * Adds to the y value
+     *
      * @param ay the added y value
      * @return this
      */
@@ -122,6 +126,7 @@ public class Vector2d extends Tuple2d {
 
     /**
      * Subtracts from the x value
+     *
      * @param sx the subtracted x value
      * @return this
      */
@@ -132,6 +137,7 @@ public class Vector2d extends Tuple2d {
 
     /**
      * Subtracts from the y value
+     *
      * @param sy the subtracted y value
      * @return this
      */
@@ -142,6 +148,7 @@ public class Vector2d extends Tuple2d {
 
     /**
      * Multiplies the x value
+     *
      * @param s the scale value
      * @return this
      */
@@ -152,6 +159,7 @@ public class Vector2d extends Tuple2d {
 
     /**
      * Multiplies the y value
+     *
      * @param s the scale value
      * @return this
      */
@@ -162,6 +170,7 @@ public class Vector2d extends Tuple2d {
 
     /**
      * Adds a point to this point
+     *
      * @param ax the added x value
      * @param ay the added y value
      * @return this
@@ -174,6 +183,7 @@ public class Vector2d extends Tuple2d {
 
     /**
      * Adds a point to this point
+     *
      * @param other the point
      * @return this
      */
@@ -185,6 +195,7 @@ public class Vector2d extends Tuple2d {
 
     /**
      * Subtracts a point from this point
+     *
      * @param sx the subtracted x value
      * @param sy the subtracted y value
      * @return this
@@ -197,6 +208,7 @@ public class Vector2d extends Tuple2d {
 
     /**
      * Subtracts a point from this point
+     *
      * @param other the point
      * @return this
      */
@@ -208,6 +220,7 @@ public class Vector2d extends Tuple2d {
 
     /**
      * Multiplies this with a scalar value
+     *
      * @param val a scalar value
      * @return this
      */
@@ -219,6 +232,7 @@ public class Vector2d extends Tuple2d {
 
     /**
      * Sets the point coords. to (-x, -y)
+     *
      * @return this
      */
     public Vector2d invert() {
@@ -229,6 +243,7 @@ public class Vector2d extends Tuple2d {
 
     /**
      * set the length to one
+     *
      * @return this
      */
     public Vector2d normalize() {
