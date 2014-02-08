@@ -17,15 +17,15 @@
 package org.terasology.math.geom;
 
 /**
- * A constant point in 2D space
+ * A constant point in 2D space. Package private - construct with Tuple2d.createConstant()
  * @author Martin Steiger
  */
-public final class ConstVector2d extends Tuple2d {
+public final class ImmutableVector2d extends Tuple2d {
 
     /**
      * Point(0, 0)
      */
-    public static final ConstVector2d ZERO = new ConstVector2d(0, 0);
+    public static final ImmutableVector2d ZERO = new ImmutableVector2d(0, 0);
 
     private final double x;
     private final double y;
@@ -34,7 +34,7 @@ public final class ConstVector2d extends Tuple2d {
      * @param x the x coordinate
      * @param y the y coordinate
      */
-    public ConstVector2d(double x, double y) {
+    public ImmutableVector2d(double x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -43,7 +43,7 @@ public final class ConstVector2d extends Tuple2d {
      * Copy constructor
      * @param other The other point
      */
-    public ConstVector2d(Tuple2d other) {
+    public ImmutableVector2d(Tuple2d other) {
         this.x = other.getX();
         this.y = other.getY();
     }
@@ -61,14 +61,14 @@ public final class ConstVector2d extends Tuple2d {
 //    /**
 //     * @return the point at (-x, -y)
 //     */
-//    public ConstVector2d invert() {
-//        return new ConstVector2d(-getX(), -getY());
+//    public ImmutableVector2d invert() {
+//        return new ImmutableVector2d(-getX(), -getY());
 //    }
 //
 //    /**
 //     * @return a normalized point (length == 1)
 //     */
-//    public ConstVector2d normalize() {
+//    public ImmutableVector2d normalize() {
 //        return mul(1.0 / length());
 //    }
 //
@@ -77,15 +77,15 @@ public final class ConstVector2d extends Tuple2d {
 //     * @param dy the y offset
 //     * @return this + offset
 //     */
-//    public ConstVector2d add(double dx, double dy) {
-//        return new ConstVector2d(getX() + dx, getY() + dy);
+//    public ImmutableVector2d add(double dx, double dy) {
+//        return new ImmutableVector2d(getX() + dx, getY() + dy);
 //    }
 //
 //    /**
 //     * @param other the other point
 //     * @return this + other
 //     */
-//    public final ConstVector2d add(BaseVector2d other) {
+//    public final ImmutableVector2d add(BaseVector2d other) {
 //        return add(other.getX(), other.getY());
 //    }
 //
@@ -94,15 +94,15 @@ public final class ConstVector2d extends Tuple2d {
 //     * @param dy the y offset
 //     * @return this - offset
 //     */
-//    public ConstVector2d sub(double dx, double dy) {
-//        return new ConstVector2d(getX() - dx, getY() - dy);
+//    public ImmutableVector2d sub(double dx, double dy) {
+//        return new ImmutableVector2d(getX() - dx, getY() - dy);
 //    }
 //
 //    /**
 //     * @param other the point to subtract
 //     * @return this - other
 //     */
-//    public final ConstVector2d sub(BaseVector2d other) {
+//    public final ImmutableVector2d sub(BaseVector2d other) {
 //        return sub(other.getX(), other.getY());
 //    }
 //
@@ -110,8 +110,8 @@ public final class ConstVector2d extends Tuple2d {
 //     * @param val the scale factor
 //     * @return this * val
 //     */
-//    public ConstVector2d mul(double val) {
-//        return new ConstVector2d(this.getX() * val, this.getY() * val);
+//    public ImmutableVector2d mul(double val) {
+//        return new ImmutableVector2d(this.getX() * val, this.getY() * val);
 //    }
 
 }

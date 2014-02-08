@@ -16,35 +16,42 @@
 
 package org.terasology.math.geom.test;
 
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 import org.terasology.math.geom.ArrayBasedVector2d;
+import org.terasology.math.geom.ImmutableVector2d;
 import org.terasology.math.geom.Tuple2d;
-import org.terasology.math.geom.ConstVector2d;
 import org.terasology.math.geom.Vector2d;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Some Point2D related tests
+ *
  * @author Martin Steiger
  */
-public class Vector2dTest {
+public class Vector2dTest extends BaseTuple2dTest {
 
     @Test
     public void testUsability() {
-        double [] data = { 1, 2, 3, 4 };
-        Tuple2d zero = ConstVector2d.ZERO;
+        double[] data = {1, 2, 3, 4};
+        Tuple2d zero = Tuple2d.ZERO;
         Tuple2d p1 = new ArrayBasedVector2d(data, 1);
         Vector2d l = Tuple2d.lerp(zero, p1, 0.5);
         Vector2d v = l.add(p1).addX(0.5).mulY(2.0).invert();
         System.out.println(v);
     }
-    
+
     @Test
     public void testEquals() {
-        assertTrue(new ConstVector2d(2, 2).equals(new ConstVector2d(2, 2)));
-        
+        assertEquals(new ImmutableVector2d(2, 2), new ImmutableVector2d(2, 2));
+
         // TODO: this is actually up for discussion
-        assertTrue(new ConstVector2d(2, 2).equals(new Vector2d(2, 2)));
+        assertEquals(new ImmutableVector2d(2, 2), new Vector2d(2, 2));
+    }
+
+    @Override
+    protected Tuple2d createTuple2d(double x, double y) {
+        return new Vector2d(x, y);
     }
 }
