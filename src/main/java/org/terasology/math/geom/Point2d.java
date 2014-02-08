@@ -76,6 +76,47 @@ public abstract class Point2d {
         return Math.sqrt(getX() * getX() + getY() * getY());
     }
 
+    /**
+     * All point implementations with the same coordinate have the same hashcode
+     */
+    @Override
+    public final int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        long temp;
+        temp = Double.doubleToLongBits(getX());
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(getY());
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
+    /**
+     * All point implementations with the same coordinate are equal
+     */
+    @Override
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        
+        if (!(obj instanceof Point2d)) {
+            return false;
+        }
+        
+        Point2d other = (Point2d) obj;
+        
+        if (Double.doubleToLongBits(getX()) != Double.doubleToLongBits(other.getX())) {
+            return false;
+        }
+        
+        if (Double.doubleToLongBits(getY()) != Double.doubleToLongBits(other.getY())) {
+            return false;
+        }
+        
+        return true;
+    }
+    
     @Override
     public String toString() {
         return "Point2d(" + getX() + "," + getY() + ")";

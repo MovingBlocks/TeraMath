@@ -16,7 +16,6 @@
 
 package org.terasology.math.geom.test;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -34,6 +33,6 @@ public class Point2dTest {
         assertTrue(new Point2cd(2, 2).equals(new Point2cd(2, 2)));
         
         // TODO: this is actually up for discussion
-        assertFalse(new Point2cd(2, 2).equals(new Point2md(2, 2)));
+        assertTrue(new Point2cd(2, 2).equals(new Point2md(2, 2)));
     }
 }
