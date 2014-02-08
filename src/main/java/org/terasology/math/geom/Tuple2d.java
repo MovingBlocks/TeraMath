@@ -1,4 +1,3 @@
-package org.terasology.math.geom;
 /*
  * Copyright 2014 MovingBlocks
  *
@@ -15,36 +14,54 @@ package org.terasology.math.geom;
  * limitations under the License.
  */
 
+package org.terasology.math.geom;
 
 
 import com.google.common.base.Preconditions;
 
 /**
- * A point in 2D space
+ * A vector/point in 2D space
  * @author Martin Steiger
  */
-public abstract class Point2d {
+public abstract class Tuple2d {
     /**
      * @param a the first point
      * @param b the second point
      * @param ipol the interpolation value in the range [0..1]
      * @return the interpolated point
      */
-    public static Point2md ipol(Point2d a, Point2d b, double ipol) {
+    public static Vector2d lerp(Tuple2d a, Tuple2d b, double ipol) {
         Preconditions.checkArgument(ipol >= 0 && ipol <= 1, "ipol must be in [0..1]");
 
         double x = a.getX() * (1.0 - ipol) + b.getX() * ipol;
         double y = a.getY() * (1.0 - ipol) + b.getY() * ipol;
-        return new Point2md(x, y);
+        return new Vector2d(x, y);
     }
 
     /**
-     * @return x
+     * @param a the tuple
+     * @return a constant version
+     */
+    public static ConstVector2d constant(Tuple2d a) {
+        return new ConstVector2d(a);
+    }
+
+    /**
+     * @param array the backing double array
+     * @param index the index in the array (in vectors)
+     * @return a vector backed by the array
+     */
+    public static ArrayBasedVector2d fromArray(double[] array, int index) {
+        return new ArrayBasedVector2d(array, index);
+    }
+
+    /**
+     * @return x the x coordinate
      */
     public abstract double getX();
 
     /**
-     * @return y
+     * @return y the y coordinate
      */
     public abstract double getY();
 
@@ -52,11 +69,19 @@ public abstract class Point2d {
      * @param other the other point
      * @return the distance in between
      */
-    public double dist(Point2d other) {
+    public double dist(Tuple2d other) {
+        return Math.sqrt(distSq(other));
+    }
+    
+    /**
+     * @param other the other point
+     * @return the distance in between
+     */
+    public double distSq(Tuple2d other) {
         double dx = other.getX() - this.getX();
         double dy = other.getY() - this.getY();
 
-        return Math.sqrt(dx * dx + dy * dy);
+        return dx * dx + dy * dy;
     }
 
     /**
@@ -65,15 +90,22 @@ public abstract class Point2d {
      * @param p2 the second point
      * @return the distance between the two points
      */
-    public static double dist(Point2d p1, Point2d p2) {
+    public static double dist(Tuple2d p1, Tuple2d p2) {
         return p1.dist(p2);
     }
 
     /**
      * @return the distance to the origin
      */
+    public double lengthSq() {
+        return getX() * getX() + getY() * getY();
+    }
+    
+    /**
+     * @return the distance to the origin
+     */
     public double length() {
-        return Math.sqrt(getX() * getX() + getY() * getY());
+        return Math.sqrt(lengthSq());
     }
 
     /**
@@ -100,11 +132,11 @@ public abstract class Point2d {
             return true;
         }
         
-        if (!(obj instanceof Point2d)) {
+        if (!(obj instanceof Tuple2d)) {
             return false;
         }
         
-        Point2d other = (Point2d) obj;
+        Tuple2d other = (Tuple2d) obj;
         
         if (Double.doubleToLongBits(getX()) != Double.doubleToLongBits(other.getX())) {
             return false;

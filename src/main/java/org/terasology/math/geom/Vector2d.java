@@ -1,4 +1,3 @@
-package org.terasology.math.geom;
 /*
  * Copyright 2014 MovingBlocks
  *
@@ -15,13 +14,14 @@ package org.terasology.math.geom;
  * limitations under the License.
  */
 
+package org.terasology.math.geom;
 
 
 /**
  * A mutable point in 2D space
  * @author Martin Steiger
  */
-public class Point2md extends Point2d {
+public class Vector2d extends Tuple2d {
 
     private double x;
     private double y;
@@ -30,7 +30,7 @@ public class Point2md extends Point2d {
      * @param x the x coordinate
      * @param y the y coordinate
      */
-    public Point2md(double x, double y) {
+    public Vector2d(double x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -39,7 +39,7 @@ public class Point2md extends Point2d {
      * Copy constructor
      * @param other The other point
      */
-    public Point2md(Point2d other) {
+    public Vector2d(Tuple2d other) {
         this.x = other.getX();
         this.y = other.getY();
     }
@@ -47,7 +47,7 @@ public class Point2md extends Point2d {
     /**
      * Default constructor for (0 / 0)
      */
-    public Point2md() {
+    public Vector2d() {
         this(0.0, 0.0);
     }
 
@@ -63,145 +63,179 @@ public class Point2md extends Point2d {
 
     /**
      * @param x the x coordinate
+     * @return this
      */
-    public void setX(double x) {
+    public Vector2d setX(double x) {
         this.x = x;
+        return this;
     }
 
     /**
      * @param y the y coordinate
+     * @return this
      */
-    public void setY(double y) {
+    public Vector2d setY(double y) {
         this.y = y;
+        return this;
     }
 
     /**
      * @param pt the point to set
+     * @return this
      */
-    public void set(Point2d pt) {
+    public Vector2d set(Tuple2d pt) {
         this.x = pt.getX();
         this.y = pt.getY();
+        return this;
     }
 
     /**
      * @param nx the new x
      * @param ny the new y
+     * @return this
      */
-    public void set(double nx, double ny) {
+    public Vector2d set(double nx, double ny) {
         this.x = nx;
-        this.x = ny;
+        this.y = ny;
+        return this;
     }
 
     /**
      * Adds to the x value
      * @param ax the added x value
+     * @return this
      */
-    public void addX(double ax) {
+    public Vector2d addX(double ax) {
         this.x += x;
+        return this;
     }
 
     /**
      * Adds to the y value
      * @param ay the added y value
+     * @return this
      */
-    public void addY(double ay) {
+    public Vector2d addY(double ay) {
         this.y += y;
+        return this;
     }
 
     /**
      * Subtracts from the x value
      * @param sx the subtracted x value
+     * @return this
      */
-    public void subX(double sx) {
+    public Vector2d subX(double sx) {
         this.x -= sx;
+        return this;
     }
 
     /**
      * Subtracts from the y value
      * @param sy the subtracted y value
+     * @return this
      */
-    public void subY(double sy) {
+    public Vector2d subY(double sy) {
         this.y -= sy;
+        return this;
     }
 
     /**
      * Multiplies the x value
      * @param s the scale value
+     * @return this
      */
-    public void mulX(double s) {
+    public Vector2d mulX(double s) {
         this.x *= s;
+        return this;
     }
 
     /**
      * Multiplies the y value
      * @param s the scale value
+     * @return this
      */
-    public void mulY(double s) {
+    public Vector2d mulY(double s) {
         this.y *= s;
+        return this;
     }
 
     /**
      * Adds a point to this point
      * @param ax the added x value
      * @param ay the added y value
+     * @return this
      */
-    public void add(double ax, double ay) {
+    public Vector2d add(double ax, double ay) {
         this.x += ax;
         this.y += ay;
+        return this;
     }
 
     /**
      * Adds a point to this point
      * @param other the point
+     * @return this
      */
-    public void add(Point2d other) {
+    public Vector2d add(Tuple2d other) {
         this.x += other.getX();
         this.y += other.getY();
+        return this;
     }
 
     /**
      * Subtracts a point from this point
      * @param sx the subtracted x value
      * @param sy the subtracted y value
-     *
-    public void sub(double sx, double sy) {
+     * @return this
+     */
+    public Vector2d sub(double sx, double sy) {
         x -= sx;
         y -= sy;
+        return this;
     }
 
     /**
      * Subtracts a point from this point
      * @param other the point
+     * @return this
      */
-    public void sub(Point2d other) {
+    public Vector2d sub(Tuple2d other) {
         x -= other.getX();
         y -= other.getY();
+        return this;
     }
 
     /**
      * Multiplies this with a scalar value
      * @param val a scalar value
+     * @return this
      */
-    public void mul(double val) {
+    public Vector2d mul(double val) {
         x *= val;
         y *= val;
+        return this;
     }
 
     /**
      * Sets the point coords. to (-x, -y)
+     * @return this
      */
-    public void invert() {
+    public Vector2d invert() {
         x = -x;
         y = -y;
+        return this;
     }
 
     /**
      * set the length to one
+     * @return this
      */
-    public void normalize() {
+    public Vector2d normalize() {
         double ooLength = 1.0 / length();
         x *= ooLength;
         y *= ooLength;
+        return this;
     }
 
 }
