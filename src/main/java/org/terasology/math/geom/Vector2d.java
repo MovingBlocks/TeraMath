@@ -16,9 +16,9 @@
 
 package org.terasology.math.geom;
 
-
 /**
- * A mutable point in 2D space
+ * Vector2d is the mutable implementation of Tuple2d, for representing points or vectors in 2 dimensional space of type
+ * double.
  *
  * @author Martin Steiger
  */
@@ -39,7 +39,7 @@ public class Vector2d extends Tuple2d {
     /**
      * Copy constructor
      *
-     * @param other The other point
+     * @param other The Tuple2d to copy
      */
     public Vector2d(Tuple2d other) {
         this.x = other.getX();
@@ -47,10 +47,9 @@ public class Vector2d extends Tuple2d {
     }
 
     /**
-     * Default constructor for (0, 0)
+     * Default constructor, for a zero vector
      */
     public Vector2d() {
-        this(0.0, 0.0);
     }
 
     @Override
@@ -64,8 +63,8 @@ public class Vector2d extends Tuple2d {
     }
 
     /**
-     * @param x the x coordinate
-     * @return this
+     * @param x the new x coordinate
+     * @return This vector2d
      */
     public Vector2d setX(double x) {
         this.x = x;
@@ -82,102 +81,112 @@ public class Vector2d extends Tuple2d {
     }
 
     /**
-     * @param pt the point to set
+     * @param other the point to set
      * @return this
      */
-    public Vector2d set(Tuple2d pt) {
-        this.x = pt.getX();
-        this.y = pt.getY();
+    public Vector2d set(Tuple2d other) {
+        this.x = other.getX();
+        this.y = other.getY();
         return this;
     }
 
     /**
-     * @param nx the new x
-     * @param ny the new y
+     * @param newX the new x
+     * @param newY the new y
      * @return this
      */
-    public Vector2d set(double nx, double ny) {
-        this.x = nx;
-        this.y = ny;
+    public Vector2d set(double newX, double newY) {
+        this.x = newX;
+        this.y = newY;
         return this;
     }
 
     /**
      * Adds to the x value
      *
-     * @param ax the added x value
+     * @param value the added x value
      * @return this
      */
-    public Vector2d addX(double ax) {
-        this.x += x;
+    public Vector2d addX(double value) {
+        this.x += value;
         return this;
     }
 
     /**
      * Adds to the y value
      *
-     * @param ay the added y value
+     * @param value the added y value
      * @return this
      */
-    public Vector2d addY(double ay) {
-        this.y += y;
+    public Vector2d addY(double value) {
+        this.y += value;
         return this;
     }
 
     /**
      * Subtracts from the x value
      *
-     * @param sx the subtracted x value
+     * @param value the subtracted x value
      * @return this
      */
-    public Vector2d subX(double sx) {
-        this.x -= sx;
+    public Vector2d subX(double value) {
+        this.x -= value;
         return this;
     }
 
     /**
      * Subtracts from the y value
      *
-     * @param sy the subtracted y value
+     * @param value the subtracted y value
      * @return this
      */
-    public Vector2d subY(double sy) {
-        this.y -= sy;
+    public Vector2d subY(double value) {
+        this.y -= value;
         return this;
     }
 
     /**
      * Multiplies the x value
      *
-     * @param s the scale value
+     * @param value the scale value
      * @return this
      */
-    public Vector2d mulX(double s) {
-        this.x *= s;
+    public Vector2d mulX(double value) {
+        this.x *= value;
         return this;
     }
 
     /**
      * Multiplies the y value
      *
-     * @param s the scale value
+     * @param value the scale value
      * @return this
      */
-    public Vector2d mulY(double s) {
-        this.y *= s;
+    public Vector2d mulY(double value) {
+        this.y *= value;
+        return this;
+    }
+
+    public Vector2d divX(double value) {
+        this.x /= value;
+        return this;
+    }
+
+    public Vector2d divY(double value) {
+        this.y /= value;
         return this;
     }
 
     /**
      * Adds a point to this point
      *
-     * @param ax the added x value
-     * @param ay the added y value
+     * @param valueX the added x value
+     * @param valueY the added y value
      * @return this
      */
-    public Vector2d add(double ax, double ay) {
-        this.x += ax;
-        this.y += ay;
+    public Vector2d add(double valueX, double valueY) {
+        this.x += valueX;
+        this.y += valueY;
         return this;
     }
 
@@ -196,13 +205,13 @@ public class Vector2d extends Tuple2d {
     /**
      * Subtracts a point from this point
      *
-     * @param sx the subtracted x value
-     * @param sy the subtracted y value
+     * @param valueX the subtracted x value
+     * @param valueY the subtracted y value
      * @return this
      */
-    public Vector2d sub(double sx, double sy) {
-        x -= sx;
-        y -= sy;
+    public Vector2d sub(double valueX, double valueY) {
+        x -= valueX;
+        y -= valueY;
         return this;
     }
 
@@ -221,12 +230,12 @@ public class Vector2d extends Tuple2d {
     /**
      * Multiplies this with a scalar value
      *
-     * @param val a scalar value
+     * @param value a scalar value
      * @return this
      */
-    public Vector2d mul(double val) {
-        x *= val;
-        y *= val;
+    public Vector2d scale(double value) {
+        x *= value;
+        y *= value;
         return this;
     }
 

@@ -17,22 +17,19 @@
 package org.terasology.math.geom;
 
 /**
- * A constant point in 2D space. Package private - construct with Tuple2d.createConstant()
+ * An immutable Tuple2d, which is a point or vector in 2D space with double components.
+ * This type is intended for use for constants, or any time you want a Tuple2d that is guaranteed immutable.
+ *
  * @author Martin Steiger
  */
 public final class ImmutableVector2d extends Tuple2d {
-
-    /**
-     * Point(0, 0)
-     */
-    public static final ImmutableVector2d ZERO = new ImmutableVector2d(0, 0);
 
     private final double x;
     private final double y;
 
     /**
-     * @param x the x coordinate
-     * @param y the y coordinate
+     * @param x the x component
+     * @param y the y component
      */
     public ImmutableVector2d(double x, double y) {
         this.x = x;
@@ -41,11 +38,10 @@ public final class ImmutableVector2d extends Tuple2d {
 
     /**
      * Copy constructor
-     * @param other The other point
+     * @param other The Tuple2d to copy.
      */
     public ImmutableVector2d(Tuple2d other) {
-        this.x = other.getX();
-        this.y = other.getY();
+        this(other.getX(), other.getY());
     }
 
     @Override
@@ -69,7 +65,7 @@ public final class ImmutableVector2d extends Tuple2d {
 //     * @return a normalized point (length == 1)
 //     */
 //    public ImmutableVector2d normalize() {
-//        return mul(1.0 / length());
+//        return scale(1.0 / length());
 //    }
 //
 //    /**
@@ -110,7 +106,7 @@ public final class ImmutableVector2d extends Tuple2d {
 //     * @param val the scale factor
 //     * @return this * val
 //     */
-//    public ImmutableVector2d mul(double val) {
+//    public ImmutableVector2d scale(double val) {
 //        return new ImmutableVector2d(this.getX() * val, this.getY() * val);
 //    }
 
