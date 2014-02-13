@@ -31,25 +31,9 @@ public class Vector2d extends Tuple2d {
      * @param x the x coordinate
      * @param y the y coordinate
      */
-    public Vector2d(double x, double y) {
+    Vector2d(double x, double y) {
         this.x = x;
         this.y = y;
-    }
-
-    /**
-     * Copy constructor
-     *
-     * @param other The Tuple2d to copy
-     */
-    public Vector2d(Tuple2d other) {
-        this.x = other.getX();
-        this.y = other.getY();
-    }
-
-    /**
-     * Default constructor, for a zero vector
-     */
-    public Vector2d() {
     }
 
     @Override
