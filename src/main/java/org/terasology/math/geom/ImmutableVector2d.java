@@ -31,17 +31,9 @@ public final class ImmutableVector2d extends Tuple2d {
      * @param x the x component
      * @param y the y component
      */
-    public ImmutableVector2d(double x, double y) {
+    ImmutableVector2d(double x, double y) {
         this.x = x;
         this.y = y;
-    }
-
-    /**
-     * Copy constructor
-     * @param other The Tuple2d to copy.
-     */
-    public ImmutableVector2d(Tuple2d other) {
-        this(other.getX(), other.getY());
     }
 
     @Override

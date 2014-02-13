@@ -54,6 +54,47 @@ public abstract class Tuple2d {
     public abstract double getY();
 
     /**
+     * @return a mutable vector (0, 0)
+     */
+    public static Vector2d create() {
+        return new Vector2d(0, 0);
+    }
+
+    /**
+     * @param x the x component
+     * @param y the y component
+     * @return a mutable vector (x, y)
+     */
+    public static Vector2d create(double x, double y) {
+        return new Vector2d(x, y);
+    }
+    
+    /**
+     * @param t the original tuple
+     * @return a mutable copy of t
+     */
+    public static Vector2d create(Tuple2d t) {
+        return new Vector2d(t.getX(), t.getY());
+    }
+    
+    /**
+     * @param x the x component
+     * @param y the y component
+     * @return an immutable vector
+     */
+    public static ImmutableVector2d createImmutable(double x, double y) {
+        return new ImmutableVector2d(x, y);
+    }
+
+    /**
+     * @param t the tuple
+     * @return an immutable vector (a copy of t)
+     */
+    public static ImmutableVector2d createImmutable(Tuple2d t) {
+        return new ImmutableVector2d(t.getX(), t.getY());
+    }
+
+    /**
      * Calculates the linear interpolation between two Tuple2ds.
      * @param a the starting value
      * @param b the ending value

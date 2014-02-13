@@ -16,11 +16,10 @@
 
 package org.terasology.math.geom;
 
-import org.junit.Test;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 
 /**
  * Some Point2D related tests
@@ -29,7 +28,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class Vector2dTest extends BaseTuple2dTest {
 
-    private Vector2d v = new Vector2d();
+    private Vector2d v = Tuple2d.create();
 
     @Test
     public void testEquals() {
@@ -44,7 +43,7 @@ public class Vector2dTest extends BaseTuple2dTest {
 
     @Test
     public void emptyConstructorIsIdentityVector() {
-        assertEquals(new Vector2d(0, 0), new Vector2d());
+        assertEquals(new Vector2d(0, 0), Tuple2d.create());
     }
 
     @Test
