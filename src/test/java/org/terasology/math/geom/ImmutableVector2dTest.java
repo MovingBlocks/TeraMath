@@ -1,7 +1,4 @@
-package org.terasology.math.geom.test;
-
-import org.terasology.math.geom.ImmutableVector2d;
-import org.terasology.math.geom.Tuple2d;
+package org.terasology.math.geom;
 
 /**
  * @author Immortius

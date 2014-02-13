@@ -20,38 +20,45 @@ package org.terasology.math.geom;
 import com.google.common.base.Preconditions;
 
 /**
- * A vector/point in 2D space
+ * Tuple2d is the base for 2-dimensional points or vectors, with components of type double.
+ * Tuple2d only describes the methods that cause no changes to the Tuple2d's internal representation - getters
+ * and calculations returning new values. It is intended for use as:
+ * <ul>
+ *     <li>The parameter of methods that will not alter the parameter</li>
+ *     <li>The return type of methods that expose an internal field of a class,
+ *     but which do not want it to be changed</li>
+ * </ul>
+ * For a mutable implementation, see Vector2d.
+ * For an immutable implementation suitable for constants, see ImmutableVector2d.
  * @author Martin Steiger
  */
 public abstract class Tuple2d {
 
+    /**
+     * Tuple2d with components all 0.
+     */
     public static final ImmutableVector2d ZERO = new ImmutableVector2d(0, 0);
+    /**
+     * Tuple2d with components all 1.
+     */
     public static final ImmutableVector2d ONE = new ImmutableVector2d(1, 1);
 
     /**
-     * @param array the backing double array
-     * @param index the index in the array (in vectors)
-     * @return a vector backed by the array
-     */
-    public static ArrayBasedVector2d fromArray(double[] array, int index) {
-        return new ArrayBasedVector2d(array, index);
-    }
-
-    /**
-     * @return x the x coordinate
+     * @return x The x component of the Tuple2d
      */
     public abstract double getX();
 
     /**
-     * @return y the y coordinate
+     * @return y The y component of the Tuple2d
      */
     public abstract double getY();
 
     /**
-     * @param a the first point
-     * @param b the second point
-     * @param t the interpolation value in the range [0..1]
-     * @return the interpolated point
+     * Calculates the linear interpolation between two Tuple2ds.
+     * @param a the starting value
+     * @param b the ending value
+     * @param t the ratio of b to a, in the range [0..1]
+     * @return the interpolated result
      */
     public static Vector2d lerp(Tuple2d a, Tuple2d b, double t) {
         Preconditions.checkArgument(t >= 0 && t <= 1, "t must be in range [0..1]");
@@ -62,14 +69,18 @@ public abstract class Tuple2d {
     }
 
     /**
-     * @return the distance to the origin
+     * The squared length of the Tuple2d - this is equivalent to the squared distance of this Tuple2d from the origin.
+     * lengthSquared() is less expensive than length(), and should be used where
+     * possible. A typical use case is finding the shortest Tuple2d.
+     * @return The squared length (squared distance from origin)
      */
     public double lengthSquared() {
         return getX() * getX() + getY() * getY();
     }
     
     /**
-     * @return the distance to the origin
+     * The length of the Tuple2d - this is equivalent to the distance of this Tuple2d from the origin.
+     * @return the length (distance from origin)
      */
     public double length() {
         return Math.sqrt(lengthSquared());
@@ -77,7 +88,7 @@ public abstract class Tuple2d {
 
     /**
      * @param other the other point
-     * @return the distance in between
+     * @return the squared distance between this and other
      */
     public double distanceSquared(Tuple2d other) {
         double dx = other.getX() - this.getX();
@@ -88,7 +99,7 @@ public abstract class Tuple2d {
 
     /**
      * @param other the other point
-     * @return the distance in between
+     * @return the distance between this and other
      */
     public double distance(Tuple2d other) {
         return Math.sqrt(distanceSquared(other));
@@ -98,14 +109,14 @@ public abstract class Tuple2d {
      * Computes the distance between two points
      * @param p1 the first point
      * @param p2 the second point
-     * @return the distance between the two points
+     * @return the distance between points
      */
     public static double distance(Tuple2d p1, Tuple2d p2) {
         return p1.distance(p2);
     }
 
     /**
-     * All point implementations with the same coordinate are equal
+     * All Tuple2d implementations with the same coordinates are equal
      */
     @Override
     public final boolean equals(Object obj) {
@@ -121,7 +132,7 @@ public abstract class Tuple2d {
     }
 
     /**
-     * All point implementations with the same coordinate have the same hashcode
+     * All Tuple2d implementations with the same coordinate have the same hashCode
      */
     @Override
     public final int hashCode() {
@@ -137,6 +148,6 @@ public abstract class Tuple2d {
     
     @Override
     public String toString() {
-        return "Point2d(" + getX() + "," + getY() + ")";
+        return "(" + getX() + "," + getY() + ")";
     }
 }
