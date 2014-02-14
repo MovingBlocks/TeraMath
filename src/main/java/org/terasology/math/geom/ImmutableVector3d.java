@@ -17,31 +17,34 @@
 package org.terasology.math.geom;
 
 /**
- * An immutable Tuple2d, which is a point or vector in 2D space with double components.
- * This type is intended for use for constants, or any time you want a Tuple2d that is guaranteed immutable.
+ * An immutable Tuple3d, which is a point or vector in 3d space with double components.
+ * This type is intended for use for constants, or any time you want a Tuple3d that is guaranteed immutable.
  *
  * @author Martin Steiger
  */
-public final class ImmutableVector2d extends Tuple2d {
+public final class ImmutableVector3d extends Tuple3d {
 
     private final double x;
     private final double y;
+    private final double z;
 
     /**
      * @param x the x component
      * @param y the y component
+     * @param z the z component
      */
-    public ImmutableVector2d(double x, double y) {
+    public ImmutableVector3d(double x, double y, double z) {
         this.x = x;
         this.y = y;
+        this.z = z;
     }
 
     /**
      * Copy constructor
-     * @param other The Tuple2d to copy.
+     * @param other The Tuple3d to copy.
      */
-    public ImmutableVector2d(Tuple2d other) {
-        this(other.getX(), other.getY());
+    public ImmutableVector3d(Tuple3d other) {
+        this(other.getX(), other.getY(), other.getZ());
     }
 
     @Override
@@ -52,6 +55,11 @@ public final class ImmutableVector2d extends Tuple2d {
     @Override
     public double getY() {
         return y;
+    }
+
+    @Override
+    public double getZ() {
+        return z;
     }
 
 }

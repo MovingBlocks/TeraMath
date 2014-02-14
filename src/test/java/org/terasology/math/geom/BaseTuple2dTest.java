@@ -1,17 +1,15 @@
 package org.terasology.math.geom;
 
-import org.junit.Test;
-import org.terasology.math.geom.Tuple2d;
-import org.terasology.math.geom.Vector2d;
-
 import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 
 /**
  * @author Immortius
  */
 public abstract class BaseTuple2dTest {
 
-    public static double EPSILON = 0.0000001;
+    protected static double EPSILON = 0.0000001;
 
     /**
      * Used to generate tuples of the type to test
