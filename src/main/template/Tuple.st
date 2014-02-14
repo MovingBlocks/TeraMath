@@ -25,19 +25,16 @@ import com.google.common.base.Preconditions;
  */
 public abstract class $names/tupleType()$ {
 
-    public static final $names/immutableType()$ ZERO = new $names/immutableType()$(0, 0);
-    public static final $names/immutableType()$ ONE = new $names/immutableType()$(1, 1);
+    public static final $names/immutableType()$ ZERO = new $names/immutableType()$($params/valueList(components, "0")$);
+    public static final $names/immutableType()$ ONE = new $names/immutableType()$($params/valueList(components, "1")$);
 
+$components:{x|
     /**
-     * @return x the x coordinate
-     */
-    public abstract $componentType$ getX();
+      * @return $x$ the $x$ coordinate
+      */
+    public abstract $componentType$ get$x.proper$(); };separator="\n"$
 
-    /**
-     * @return y the y coordinate
-     */
-    public abstract $componentType$ getY();
-
+$if(!discrete)$
     /**
      * @param a the first point
      * @param b the second point
@@ -47,16 +44,16 @@ public abstract class $names/tupleType()$ {
     public static $names/vectorType()$ lerp($names/tupleType()$ a, $names/tupleType()$ b, $componentType$ t) {
         Preconditions.checkArgument(t >= 0 && t <= 1, "t must be in range [0..1]");
 
-        $componentType$ x = a.getX() * (1.0 - t) + b.getX() * t;
-        $componentType$ y = a.getY() * (1.0 - t) + b.getY() * t;
-        return new $names/vectorType()$(x, y);
+        $components:{x| $componentType$ $x$ = a.get$x.proper$() * (1.0 - t) + b.get$x.proper$() * t; }; separator = "\n"$
+        return new $names/vectorType()$($components;separator=", "$);
     }
+$endif$
 
     /**
      * @return the distance to the origin
      */
     public $componentType$ lengthSquared() {
-        return getX() * getX() + getY() * getY();
+        return $components:{x| get$x.proper$() * get$x.proper$()};separator = " + "$;
     }
     
     /**
@@ -70,18 +67,17 @@ public abstract class $names/tupleType()$ {
      * @param other the other point
      * @return the distance in between
      */
-    public double distanceSquared(Tuple2d other) {
-        double dx = other.getX() - this.getX();
-        double dy = other.getY() - this.getY();
+    public $componentType$ distanceSquared($names/tupleType()$ other) {
+        $components:{x|$componentType$ d$x$ = other.get$x.proper$() - this.get$x.proper$();}; separator = "\n"$
 
-        return dx * dx + dy * dy;
+        return $components:{x| d$x$ * d$x$}; separator = " + "$;
     }
 
     /**
      * @param other the other point
      * @return the distance in between
      */
-    public double distance(Tuple2d other) {
+    public $componentType$ distance($names/tupleType()$ other) {
         return Math.sqrt(distanceSquared(other));
     }
 
@@ -91,7 +87,7 @@ public abstract class $names/tupleType()$ {
      * @param p2 the second point
      * @return the distance between the two points
      */
-    public static double distance(Tuple2d p1, Tuple2d p2) {
+    public static $componentType$ distance($names/tupleType()$ p1, $names/tupleType()$ p2) {
         return p1.distance(p2);
     }
 
@@ -103,10 +99,13 @@ public abstract class $names/tupleType()$ {
         if (this == obj) {
             return true;
         }
-        if (obj instanceof Tuple2d) {
-            Tuple2d other = (Tuple2d) obj;
-            return Double.doubleToLongBits(getX()) == Double.doubleToLongBits(other.getX())
-                    && Double.doubleToLongBits(getY()) == Double.doubleToLongBits(other.getY());
+        if (obj instanceof $names/tupleType()$) {
+            $names/tupleType()$ other = ($names/tupleType()$) obj;
+$if(componentType.toIntegralFunc)$
+            return $components:{x | $componentType.toIntegralFunc$(get$x.proper$()) == $componentType.toIntegralFunc$(other.get$x.proper$())}; separator = " && "$;
+$else$
+            return $components:{x | get$x.proper$() == other.get$x.proper$()};separator = " && "$;
+$endif$
         }
         return false;
     }
@@ -118,16 +117,19 @@ public abstract class $names/tupleType()$ {
     public final int hashCode() {
         final int prime = 31;
         int result = 1;
+$if(componentType.toIntegralFunc)$
         long temp;
-        temp = Double.doubleToLongBits(getX());
-        result = prime * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(getY());
-        result = prime * result + (int) (temp ^ (temp >>> 32));
+$components:{x |
+        temp = $componentType.toIntegralFunc$(get$x.proper$());
+        result = prime * result + (int) (temp ^ (temp >>> 32));}$
+$else$
+        $components:{x |result = prime * result + (int) (get$x.proper$() ^ (get$x.proper$() >>> 32));}; separator = "\n"$
+$endif$
         return result;
     }
     
     @Override
     public String toString() {
-        return "Point2d(" + getX() + "," + getY() + ")";
+        return "(" + $components:{x | get$x.proper$()}; separator = " + \", \" + "$ + ")";
     }
 }

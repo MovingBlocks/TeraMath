@@ -1,0 +1,4 @@
+valueList(params, value) ::= <<
+    <params:replaceWith(value);separator=", ">
+>>
+replaceWith(item, value) ::= "<value>"
