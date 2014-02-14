@@ -22,17 +22,42 @@ wrapper {
     gradleVersion '1.10'
 }
 
+ext {
+	generatorClassName = 'org.terasology.math.generator.MathGenerator'
+	generatedSrcDir = 'src/generated/java'
+}
+
 // Declare remote repositories we're interested in - library files will be fetched from here
 repositories {
     // Main Maven repo
     mavenCentral()
 }
 
+sourceSets {
+	main {
+		java {
+			srcDir generatedSrcDir
+		}
+	}
+    generator {
+        java {
+		    srcDir 'src/generator/java'
+        }
+		resources {
+		    srcDir 'src/generator/resources'
+		}
+    }
+}
+
 // Primary dependencies definition
 dependencies {
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.6'
     compile group: 'com.google.guava', name: 'guava', version: '15.0'
-    compile group: 'org.antlr', name: 'ST4', version: '4.0.7'
+	compile group: 'org.antlr', name: 'ST4', version: '4.0.7'
+	
+	generatorCompile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.6'
+    generatorCompile group: 'com.google.guava', name: 'guava', version: '15.0'
+	generatorCompile group: 'org.antlr', name: 'ST4', version: '4.0.7'
 
     // These dependencies are only needed for running tests
     testCompile group: 'junit', name: 'junit', version: '4.11'
@@ -41,6 +66,22 @@ dependencies {
 
 // Set the expected module Java level (can use a higher Java to run, but should not use features from a higher Java)
 sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+task generateSources(type:JavaExec) {
+    dependsOn compileGeneratorJava
+	outputs.dir file(generatedSrcDir)
+	
+	main = generatorClassName
+    workingDir = rootDir
+    String[] runArgs = []
+    args runArgs
+
+    classpath sourceSets.generator.output.classesDir
+	classpath sourceSets.generator.runtimeClasspath
+}
+
+compileJava.dependsOn generateSources
 
 checkstyle {
     ignoreFailures = true
@@ -62,8 +103,8 @@ findbugs {
 // Setup IntelliJ-IDEA
 idea {
     project {
-        jdkName = '1.7'
-        languageLevel = 'JDK_1_7'
+        jdkName = '1.6'
+        languageLevel = 'JDK_1_6'
 
         ipr {
             withXml { xmlProvider ->

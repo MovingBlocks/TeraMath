@@ -34,7 +34,7 @@ $components:{x|
       */
     public abstract $componentType$ get$x.proper$(); };separator="\n"$
 
-$if(!discrete)$
+$if(!componentType.discrete)$
     /**
      * @param a the first point
      * @param b the second point
