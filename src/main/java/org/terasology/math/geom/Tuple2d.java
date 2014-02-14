@@ -44,12 +44,12 @@ public abstract class Tuple2d {
     public static final ImmutableVector2d ONE = new ImmutableVector2d(1, 1);
 
     /**
-     * @return x The x component of the Tuple2d
+     * @return The x component of the Tuple2d
      */
     public abstract double getX();
 
     /**
-     * @return y The y component of the Tuple2d
+     * @return The y component of the Tuple2d
      */
     public abstract double getY();
 
@@ -75,7 +75,9 @@ public abstract class Tuple2d {
      * @return The squared length (squared distance from origin)
      */
     public double lengthSquared() {
-        return getX() * getX() + getY() * getY();
+        double x = getX();
+        double y = getY();
+        return x * x + y * y;
     }
     
     /**
@@ -126,7 +128,7 @@ public abstract class Tuple2d {
         if (obj instanceof Tuple2d) {
             Tuple2d other = (Tuple2d) obj;
             return Double.doubleToLongBits(getX()) == Double.doubleToLongBits(other.getX())
-                    && Double.doubleToLongBits(getY()) == Double.doubleToLongBits(other.getY());
+                && Double.doubleToLongBits(getY()) == Double.doubleToLongBits(other.getY());
         }
         return false;
     }

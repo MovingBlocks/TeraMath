@@ -42,8 +42,7 @@ public class Vector2d extends Tuple2d {
      * @param other The Tuple2d to copy
      */
     public Vector2d(Tuple2d other) {
-        this.x = other.getX();
-        this.y = other.getY();
+        this(other.getX(), other.getY());
     }
 
     /**
@@ -167,11 +166,23 @@ public class Vector2d extends Tuple2d {
         return this;
     }
 
+    /**
+     * Divides the x value
+     * 
+     * @param value the denominator
+     * @return this
+     */
     public Vector2d divX(double value) {
         this.x /= value;
         return this;
     }
 
+    /**
+     * Divides the y value
+     * 
+     * @param value the denominator
+     * @return this
+     */
     public Vector2d divY(double value) {
         this.y /= value;
         return this;
