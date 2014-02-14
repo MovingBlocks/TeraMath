@@ -38,7 +38,6 @@ public class Vector2dTest extends BaseTuple2dTest {
 
     @Test
     public void testEqualsAgainstImmutable() {
-        // TODO: this is actually up for discussion
         assertEquals(new ImmutableVector2d(2, 2), new Vector2d(2, 2));
     }
 
