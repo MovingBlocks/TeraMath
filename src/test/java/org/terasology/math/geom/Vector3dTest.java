@@ -23,116 +23,151 @@ import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Some Point2D related tests
+ * Some vector related tests
  *
  * @author Martin Steiger
  */
-public class Vector2dTest extends BaseTuple2dTest {
+public class Vector3dTest extends BaseTuple3dTest {
 
-    private Vector2d v = new Vector2d();
+    private Vector3d v = new Vector3d();
 
     @Test
     public void testEquals() {
-        assertEquals(new Vector2d(2, 2), new Vector2d(2, 2));
+        assertEquals(new Vector3d(2, 2, 2), new Vector3d(2, 2, 2));
     }
 
     @Test
     public void testEqualsAgainstImmutable() {
-        assertEquals(new ImmutableVector2d(2, 2), new Vector2d(2, 2));
+        assertEquals(new ImmutableVector3d(2, 2, 2), new Vector3d(2, 2, 2));
     }
 
     @Test
     public void emptyConstructorIsIdentityVector() {
-        assertEquals(new Vector2d(0, 0), new Vector2d());
+        assertEquals(new Vector3d(0, 0, 0), new Vector3d());
     }
 
     @Test
     public void setVector() {
-        Vector2d result = v.set(12, 34);
+        Vector3d result = v.set(12, 34, 56);
         assertSame(v, result);
-        assertEquals(new Vector2d(12, 34), v);
+        assertEquals(new Vector3d(12, 34, 56), v);
     }
 
     @Test
     public void setVectorToTuple() {
-        Vector2d result = v.set(new ImmutableVector2d(12, 34));
+        Vector3d result = v.set(new ImmutableVector3d(12, 34, 56));
         assertSame(v, result);
-        assertEquals(new Vector2d(12, 34), v);
+        assertEquals(new Vector3d(12, 34, 56), v);
     }
 
     @Test
     public void setXComponent() {
-        Vector2d result = v.setX(12.43);
+        Vector3d result = v.setX(12.43);
         assertSame(v, result);
         assertEquals(12.43, v.getX(), EPSILON);
     }
 
     @Test
     public void setYComponent() {
-        Vector2d result = v.setY(12.43);
+        Vector3d result = v.setY(12.43);
         assertSame(v, result);
         assertEquals(12.43, v.getY(), EPSILON);
     }
 
     @Test
+    public void setZComponent() {
+        Vector3d result = v.setZ(12.43);
+        assertSame(v, result);
+        assertEquals(12.43, v.getZ(), EPSILON);
+    }
+    
+    @Test
     public void addToXComponent() {
-        Vector2d result = v.setX(2.3).addX(1.4);
+        Vector3d result = v.setX(2.3).addX(1.4);
         assertSame(v, result);
         assertEquals(3.7, v.getX(), EPSILON);
     }
 
     @Test
     public void addToYComponent() {
-        Vector2d result = v.setY(2.3).addY(1.4);
+        Vector3d result = v.setY(2.3).addY(1.4);
         assertSame(v, result);
         assertEquals(3.7, v.getY(), EPSILON);
     }
 
     @Test
+    public void addToZComponent() {
+        Vector3d result = v.setZ(2.3).addZ(1.4);
+        assertSame(v, result);
+        assertEquals(3.7, v.getZ(), EPSILON);
+    }
+    
+    @Test
      public void subtractFromXComponent() {
-        Vector2d result = v.setX(2.3).subX(1.4);
+        Vector3d result = v.setX(2.3).subX(1.4);
         assertSame(v, result);
         assertEquals(0.9, v.getX(), EPSILON);
     }
 
     @Test
     public void subtractFromYComponent() {
-        Vector2d result = v.setY(2.3).subY(1.4);
+        Vector3d result = v.setY(2.3).subY(1.4);
         assertSame(v, result);
         assertEquals(0.9, v.getY(), EPSILON);
     }
 
     @Test
+    public void subtractFromZComponent() {
+        Vector3d result = v.setZ(2.3).subZ(1.4);
+        assertSame(v, result);
+        assertEquals(0.9, v.getZ(), EPSILON);
+    }
+    
+    @Test
     public void multiplyXComponent() {
-        Vector2d result = v.setX(1.2).mulX(2);
+        Vector3d result = v.setX(1.2).mulX(2);
         assertSame(v, result);
         assertEquals(2.4, v.getX(), EPSILON);
     }
 
     @Test
     public void multiplyYComponent() {
-        Vector2d result = v.setY(1.2).mulY(2);
+        Vector3d result = v.setY(1.2).mulY(2);
         assertSame(v, result);
         assertEquals(2.4, v.getY(), EPSILON);
     }
 
     @Test
+    public void multiplyZComponent() {
+        Vector3d result = v.setZ(1.2).mulZ(2);
+        assertSame(v, result);
+        assertEquals(2.4, v.getZ(), EPSILON);
+    }
+    
+    @Test
     public void divideXComponent() {
-        Vector2d result = v.setX(1.2).divX(2);
+        Vector3d result = v.setX(1.2).divX(2);
         assertSame(v, result);
         assertEquals(0.6, v.getX(), EPSILON);
     }
 
     @Test
     public void divideYComponent() {
-        Vector2d result = v.setY(1.2).divY(2);
+        Vector3d result = v.setY(1.2).divY(2);
         assertSame(v, result);
         assertEquals(0.6, v.getY(), EPSILON);
     }
 
+    @Test
+    public void divideZComponent() {
+        Vector3d result = v.setZ(1.2).divZ(2);
+        assertSame(v, result);
+        assertEquals(0.6, v.getZ(), EPSILON);
+    }
+    
     @Override
-    protected Tuple2d createTuple2d(double x, double y) {
-        return new Vector2d(x, y);
+    protected Tuple3d createTuple3d(double x, double y, double z) {
+        return new Vector3d(x, y, z);
     }
 
 
