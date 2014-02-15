@@ -1,25 +1,14 @@
 package org.terasology.math.generator;
 
-import com.google.common.base.Charsets;
 import com.google.common.collect.Lists;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.stringtemplate.v4.ST;
 import org.stringtemplate.v4.STErrorListener;
 import org.stringtemplate.v4.STGroupDir;
 import org.stringtemplate.v4.STRawGroupDir;
 import org.stringtemplate.v4.misc.STMessage;
 
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.OpenOption;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.List;
 
 /**
@@ -42,12 +31,12 @@ public class MathGenerator {
     public void run() throws IOException {
         setupTemplateDir();
 
-        generate("Tuple", components2D, floatType);
-        generate("Tuple", components2D, doubleType);
-        generate("Tuple", components3D, floatType);
-        generate("Tuple", components3D, doubleType);
-        generate("Tuple", components4D, floatType);
-        generate("Tuple", components4D, doubleType);
+        generateTuple(components2D, floatType);
+        generateTuple(components2D, doubleType);
+        generateTuple(components3D, floatType);
+        generateTuple(components3D, doubleType);
+        generateTuple(components4D, floatType);
+        generateTuple(components4D, doubleType);
     }
 
     private void setupTemplateDir() {
@@ -58,11 +47,16 @@ public class MathGenerator {
 
         outputDir = new File("src/generated/java/org/terasology/math/geom");
         outputDir.mkdirs();
+    }
 
+    private void generateTuple(List<Component> components, ComponentType type) throws IOException {
+        generate("Tuple", components, type);
+        generate("ImmutableVector", components, type);
+        generate("Vector", components, type);
     }
 
     private void generate(String template, List<Component> components, ComponentType type) throws IOException {
-        ST st = templateDir.getInstanceOf("Tuple");
+        ST st = templateDir.getInstanceOf(template);
         st.add("componentType", type);
         st.add("dimensions", components.size());
         st.add("components", components);

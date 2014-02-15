@@ -1,3 +1,3 @@
 tupleType() ::= "Tuple<dimensions><componentType.abbrev>"
 vectorType() ::= "Vector<dimensions><componentType.abbrev>"
-immutableType() ::= "ImmutableTuple<dimensions><componentType.abbrev>"
+immutableVectorType() ::= "ImmutableVector<dimensions><componentType.abbrev>"

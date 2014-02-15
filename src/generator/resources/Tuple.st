@@ -25,8 +25,8 @@ import com.google.common.base.Preconditions;
  */
 public abstract class $names/tupleType()$ {
 
-    public static final $names/immutableType()$ ZERO = new $names/immutableType()$($params/valueList(components, "0")$);
-    public static final $names/immutableType()$ ONE = new $names/immutableType()$($params/valueList(components, "1")$);
+    public static final $names/immutableVectorType()$ ZERO = new $names/immutableVectorType()$($params/valueList(components, "0")$);
+    public static final $names/immutableVectorType()$ ONE = new $names/immutableVectorType()$($params/valueList(components, "1")$);
 
 $components:{x|
     /**
@@ -44,7 +44,7 @@ $if(!componentType.discrete)$
     public static $names/vectorType()$ lerp($names/tupleType()$ a, $names/tupleType()$ b, $componentType$ t) {
         Preconditions.checkArgument(t >= 0 && t <= 1, "t must be in range [0..1]");
 
-        $components:{x| $componentType$ $x$ = a.get$x.proper$() * (1.0 - t) + b.get$x.proper$() * t; }; separator = "\n"$
+        $components:{x| $componentType$ $x$ = a.get$x.proper$() * (1 - t) + b.get$x.proper$() * t; }; separator = "\n"$
         return new $names/vectorType()$($components;separator=", "$);
     }
 $endif$
@@ -60,7 +60,7 @@ $endif$
      * @return the distance to the origin
      */
     public $componentType$ length() {
-        return Math.sqrt(lengthSquared());
+        return $if(!componentType.doubleType)$(float) $endif$Math.sqrt(lengthSquared());
     }
 
     /**
@@ -78,7 +78,7 @@ $endif$
      * @return the distance in between
      */
     public $componentType$ distance($names/tupleType()$ other) {
-        return Math.sqrt(distanceSquared(other));
+        return $if(!componentType.doubleType)$(float) $endif$Math.sqrt(distanceSquared(other));
     }
 
     /**
