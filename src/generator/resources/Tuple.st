@@ -21,18 +21,25 @@ import com.google.common.base.Preconditions;
 
 /**
  * A vector/point in $dimensions$D space
- * @author Martin Steiger
+ * @author auto-generated
  */
 public abstract class $names/tupleType()$ {
 
+    /**
+     * An immutable instance with all components set to 0
+     */
     public static final $names/immutableVectorType()$ ZERO = new $names/immutableVectorType()$($params/valueList(components, "0")$);
+    
+    /**
+     * An immutable instance with all components set to 1
+     */
     public static final $names/immutableVectorType()$ ONE = new $names/immutableVectorType()$($params/valueList(components, "1")$);
 
 $components:{x|
     /**
       * @return $x$ the $x$ coordinate
       */
-    public abstract $componentType$ get$x.proper$(); };separator="\n"$
+    public abstract $componentType$ get$x.proper$(); };separator="\n\n"$
 
 $if(!componentType.discrete)$
     /**

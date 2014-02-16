@@ -20,7 +20,7 @@ package org.terasology.math.geom;
  * An immutable implementation of $names/tupleType()$, which is a point or vector in $dimensions$D space with $componentType$ components.
  * This type is intended for use for constants, or any time you want a $names/tupleType()$ that is guaranteed immutable.
  *
- * @author Martin Steiger
+ * @author auto-generated
  */
 public final class $names/immutableVectorType()$ extends $names/tupleType()$ {
 

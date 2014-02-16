@@ -17,15 +17,18 @@
 package org.terasology.math.geom;
 
 /**
- * Vector2d is the mutable implementation of $names/tupleType()$, for representing points or vectors in $dimensions$ dimensional space of type
+ * $names/vectorType()$ is the mutable implementation of $names/tupleType()$, for representing points or vectors in $dimensions$ dimensional space of type
  * $componentType$.
  *
- * @author Martin Steiger
+ * @author auto-generated
  */
 public class $names/vectorType()$ extends $names/tupleType()$ {
 
     $components:{x| private $componentType$ $x$;}; separator = "\n"$
 
+    /**
+     * Default constructor - all components are set to 0
+     */
     public $names/vectorType()$() {
     }
 
