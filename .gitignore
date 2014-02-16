@@ -8,6 +8,7 @@
 # Ignore Gradle
 /.gradle/
 build/
+/src/generated
 
 # Ignore IntelliJ - could use "/**/*.iml" to catch all .iml files, but that requires a somewhat recent Git version
 /out/
@@ -26,8 +27,7 @@ bin/
 *.directory
 
 #Ignore OSX
-Icon
-#Ignore Windows
+Icon#Ignore Windows
 ehthumbs.db
 Thumbs.db
 

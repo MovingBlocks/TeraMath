@@ -1,0 +1,3 @@
+valueList(params, value) ::= "<params:{x|<value>};separator=\", \">"
+componentParams() ::= "<components:{x|<componentType> <x>}; separator = \", \">"
+componentParamsPrefix(prefix) ::= "<components:{x|<componentType> <prefix><x.proper>}; separator = \", \">"
