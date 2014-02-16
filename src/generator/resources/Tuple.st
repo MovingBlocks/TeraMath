@@ -109,9 +109,9 @@ $endif$
         if (obj instanceof $names/tupleType()$) {
             $names/tupleType()$ other = ($names/tupleType()$) obj;
 $if(componentType.toIntegralFunc)$
-            return $components:{x | $componentType.toIntegralFunc$(get$x.proper$()) == $componentType.toIntegralFunc$(other.get$x.proper$())}; separator = " && "$;
+            return $components:{x | $componentType.toIntegralFunc$(get$x.proper$()) == $componentType.toIntegralFunc$(other.get$x.proper$())}; separator = "\n                && "$;
 $else$
-            return $components:{x | get$x.proper$() == other.get$x.proper$()};separator = " && "$;
+            return $components:{x | get$x.proper$() == other.get$x.proper$()};separator = "\n                && "$;
 $endif$
         }
         return false;
@@ -128,7 +128,8 @@ $if(componentType.toIntegralFunc)$
         long temp;
 $components:{x |
         temp = $componentType.toIntegralFunc$(get$x.proper$());
-        result = prime * result + (int) (temp ^ (temp >>> 32));}$
+        result = prime * result + (int) (temp ^ (temp >>> 32));
+        }$
 $else$
         $components:{x |result = prime * result + (int) (get$x.proper$() ^ (get$x.proper$() >>> 32));}; separator = "\n"$
 $endif$
