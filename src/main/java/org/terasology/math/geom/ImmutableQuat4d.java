@@ -17,10 +17,10 @@
 package org.terasology.math.geom;
 
 /**
- * An immutable implementation of {@link Quat4d}
+ * An immutable implementation of {@link BaseQuat4d}
  * @author Martin Steiger
  */
-public class ImmutableQuat4d extends Quat4d {
+public class ImmutableQuat4d extends BaseQuat4d {
 
     private final double x;
     private final double y;

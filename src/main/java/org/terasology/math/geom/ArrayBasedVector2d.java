@@ -19,10 +19,10 @@ package org.terasology.math.geom;
 import com.google.common.base.Preconditions;
 
 /**
- * An implementation of {@link Tuple2d}, based on a double array
+ * An implementation of {@link BaseVector2d}, based on a double array
  * @author Martin Steiger
  */
-public class ArrayBasedVector2d extends Tuple2d {
+public class ArrayBasedVector2d extends BaseVector2d {
 
     private final double[] array;
     private int ind;

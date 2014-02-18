@@ -23,7 +23,7 @@ import java.util.Random;
 import org.junit.Test;
 
 /**
- * Tests the {@link Quat4d} class
+ * Tests the {@link BaseQuat4d} class
  * @author Martin Steiger
  */
 public class Quat4dTest {
@@ -32,12 +32,12 @@ public class Quat4dTest {
 
     @Test
     public void testEquals() {
-        assertEquals(new MutableQuat4d(2, 2, 2, 2), new MutableQuat4d(2, 2, 2, 2));
+        assertEquals(new Quat4d(2, 2, 2, 2), new Quat4d(2, 2, 2, 2));
     }
 
     @Test
     public void testEqualsAgainstImmutable() {
-        assertEquals(new ImmutableQuat4d(2, 2, 2, 2), new MutableQuat4d(2, 2, 2, 2));
+        assertEquals(new ImmutableQuat4d(2, 2, 2, 2), new Quat4d(2, 2, 2, 2));
     }
 
     /**
@@ -53,15 +53,15 @@ public class Quat4dTest {
             double z = r.nextDouble() * 100;
             double w = r.nextDouble() * 2d * Math.PI;
             
-            MutableQuat4d q1 = new MutableQuat4d(x, y, z, w);
-            MutableQuat4d q2 = new MutableQuat4d(q1);
+            Quat4d q1 = new Quat4d(x, y, z, w);
+            Quat4d q2 = new Quat4d(q1);
             q2.inverse();
             q1.mul(q2);
-            assertQuat4dEquals(Quat4d.IDENTITY, q1, EPSILON);
+            assertQuat4dEquals(BaseQuat4d.IDENTITY, q1, EPSILON);
         }
     }
     
-    private static void assertQuat4dEquals(Quat4d a, Quat4d b, double epsilon) {
+    private static void assertQuat4dEquals(BaseQuat4d a, BaseQuat4d b, double epsilon) {
         assertEquals("x not equal", a.getX(), b.getX(), epsilon);
         assertEquals("y not equal", a.getY(), b.getY(), epsilon);
         assertEquals("z not equal", a.getZ(), b.getZ(), epsilon);
