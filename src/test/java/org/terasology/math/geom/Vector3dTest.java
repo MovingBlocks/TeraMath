@@ -20,14 +20,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Some vector related tests
  *
  * @author Martin Steiger
  */
-public class Vector3dTest extends BaseTuple3dTest {
+public class Vector3dTest extends BaseVector3dTest {
 
     private Vector3d v = new Vector3d();
 
@@ -166,7 +165,7 @@ public class Vector3dTest extends BaseTuple3dTest {
     }
     
     @Override
-    protected Tuple3d createTuple3d(double x, double y, double z) {
+    protected BaseVector3d createBaseVector3d(double x, double y, double z) {
         return new Vector3d(x, y, z);
     }
 
