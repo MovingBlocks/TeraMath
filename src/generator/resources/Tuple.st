@@ -94,7 +94,7 @@ $if(componentType.discrete)$
      * @param other the other point
      * @return the grid distance in between (aka 1-Norm, Minkowski or Manhattan distance)
      */
-	public int gridDistance($names/tupleType()$ other) {
+    public int gridDistance($names/tupleType()$ other) {
         return $components:{x| Math.abs(other.get$x.proper$() - get$x.proper$())}; separator = " + "$;
     }
 $endif$
@@ -133,16 +133,17 @@ $endif$
      */
     @Override
     public final int hashCode() {
-        final int prime = 31;
         int result = 1;
 $if(componentType.toIntegralFunc)$
+        final int prime = 31;
         long temp;
 $components:{x |
         temp = $componentType.toIntegralFunc$(get$x.proper$());
         result = prime * result + (int) (temp ^ (temp >>> 32));
         }$
 $else$
-        $components:{x |result = prime * result + $if(!componentType.discrete)$(int)$endif$ (get$x.proper$() ^ (get$x.proper$() >>> 32));}; separator = "\n"$
+        final int prime = 1021;
+        $components:{x |result = prime * result + get$x.proper$();}; separator = "\n"$
 $endif$
         return result;
     }
