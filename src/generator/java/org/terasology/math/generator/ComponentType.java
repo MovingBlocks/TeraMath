@@ -25,14 +25,14 @@ public class ComponentType {
     private String typeEqualsFunction;
     private String abbreviation;
     private boolean discrete;
-    private boolean doubleType;
+    private boolean floatType;
 
     public ComponentType(String type, String abbreviation, boolean discrete, String typeEqualsFunction) {
         this.type = type;
         this.typeEqualsFunction = typeEqualsFunction;
         this.abbreviation = abbreviation;
         this.discrete = discrete;
-        this.doubleType = (type.equals("double"));
+        this.floatType = (type.equals("float"));
     }
 
     public String getToIntegralFunc() {
@@ -47,8 +47,8 @@ public class ComponentType {
         return discrete;
     }
 
-    public boolean isDoubleType() {
-        return doubleType;
+    public boolean isFloatType() {
+        return floatType;
     }
 
     @Override
