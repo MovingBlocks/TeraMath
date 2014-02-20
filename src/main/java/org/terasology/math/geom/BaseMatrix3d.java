@@ -21,51 +21,69 @@ package org.terasology.math.geom;
  * @author Martin Steiger
  */
 public abstract class BaseMatrix3d {
-    
+
     /**
      * @return The first matrix element in the first row.
      */
-    public abstract double getM00();
+    public double getM00() {
+        return get(0, 0);
+    }
 
     /**
      * @return The first matrix element in the second row.
      */
-    public abstract double getM10();
+    public double getM10() {
+        return get(1, 0);
+    }
 
     /**
      * @return The first matrix element in the third row.
      */
-    public abstract double getM20();
+    public double getM20() {
+        return get(2, 0);
+    }
 
     /**
      * @return The second matrix element in the first row.
      */
-    public abstract double getM01();
+    public double getM01() {
+        return get(0, 1);
+    }
 
     /**
      * @return The second matrix element in the second row.
      */
-    public abstract double getM11();
+    public double getM11() {
+        return get(1, 1);
+    }
 
     /**
      * @return The second matrix element in the third row.
      */
-    public abstract double getM21();
+    public double getM21() {
+        return get(2, 1);
+    }
 
     /**
      * @return The third matrix element in the first row.
      */
-    public abstract double getM02();
+    public double getM02() {
+        return get(0, 2);
+    }
 
     /**
      * @return The third matrix element in the second row.
      */
-    public abstract double getM12();
+    public double getM12() {
+        return get(1, 2);
+    }
 
     /**
      * @return The third matrix element in the third row.
      */
-    public abstract double getM22();
+    public double getM22() {
+        return get(2, 2);
+    }
 
     /**
      * Returns a hash code value based on the data values in this
@@ -76,7 +94,7 @@ public abstract class BaseMatrix3d {
      * @return the integer hash code value
      */
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         final int prime = 31;
         int result = 1;
         long temp;
@@ -128,7 +146,7 @@ public abstract class BaseMatrix3d {
      * @return true if equal
      */
     @Override
-    public boolean equals(Object obj) {
+    public final boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
@@ -152,7 +170,7 @@ public abstract class BaseMatrix3d {
       * @param other the matrix with which the comparison is made
       * @return  true or false
       */
-    public boolean equals(BaseMatrix3d other) {
+    public final boolean equals(BaseMatrix3d other) {
         return (Double.doubleToLongBits(getM00()) == Double.doubleToLongBits(other.getM00()))
             && (Double.doubleToLongBits(getM01()) == Double.doubleToLongBits(other.getM01()))
             && (Double.doubleToLongBits(getM02()) == Double.doubleToLongBits(other.getM02()))
@@ -173,7 +191,7 @@ public abstract class BaseMatrix3d {
       * @param epsilon  the threshold value
      * @return true if equals up to epsilon
       */
-    public boolean epsilonEquals(Matrix3d m1, double epsilon) {
+    public final boolean epsilonEquals(Matrix3d m1, double epsilon) {
         double diff;
 
         diff = getM00() - m1.getM00();
@@ -241,52 +259,7 @@ public abstract class BaseMatrix3d {
      * @param column the column number to be retrieved (zero indexed)
      * @return the value at the indexed element.
      */
-    public final double getElement(int row, int column) {
-        switch (row) {
-            case 0:
-                switch (column) {
-                    case 0:
-                        return (this.getM00());
-                    case 1:
-                        return (this.getM01());
-                    case 2:
-                        return (this.getM02());
-                    default:
-                        break;
-                }
-                break;
-            case 1:
-                switch (column) {
-                    case 0:
-                        return (this.getM10());
-                    case 1:
-                        return (this.getM11());
-                    case 2:
-                        return (this.getM12());
-                    default:
-                        break;
-                }
-                break;
-
-            case 2:
-                switch (column) {
-                    case 0:
-                        return (this.getM20());
-                    case 1:
-                        return (this.getM21());
-                    case 2:
-                        return (this.getM22());
-                    default:
-                        break;
-                }
-                break;
-
-            default:
-                break;
-        }
-
-        throw new ArrayIndexOutOfBoundsException("row/col not in [0..2]");
-    }
+    public abstract double get(int row, int column);
 
     /**
      * Copies the matrix values in the specified row into the vector parameter.

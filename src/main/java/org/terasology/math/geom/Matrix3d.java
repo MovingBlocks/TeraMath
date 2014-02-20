@@ -132,14 +132,68 @@ public class Matrix3d extends BaseMatrix3d {
         this.m21 = 0.0;
         this.m22 = 1.0;
     }
+    
+    /**
+     * Retrieves the value at the specified row and column of the specified
+     * matrix.
+     * @param row the row number to be retrieved (zero indexed)
+     * @param column the column number to be retrieved (zero indexed)
+     * @return the value at the indexed element.
+     */
+    public final double get(int row, int column) {
+        switch (row) {
+            case 0:
+                switch (column) {
+                    case 0:
+                        return (this.getM00());
+                    case 1:
+                        return (this.getM01());
+                    case 2:
+                        return (this.getM02());
+                    default:
+                        break;
+                }
+                break;
+            case 1:
+                switch (column) {
+                    case 0:
+                        return (this.getM10());
+                    case 1:
+                        return (this.getM11());
+                    case 2:
+                        return (this.getM12());
+                    default:
+                        break;
+                }
+                break;
 
+            case 2:
+                switch (column) {
+                    case 0:
+                        return (this.getM20());
+                    case 1:
+                        return (this.getM21());
+                    case 2:
+                        return (this.getM22());
+                    default:
+                        break;
+                }
+                break;
+
+            default:
+                break;
+        }
+
+        throw new ArrayIndexOutOfBoundsException("row/col not in [0..2]");
+    }
+    
     /**
      * Sets the specified element of this matrix3f to the value provided.
      * @param row the row number to be modified (zero indexed)
      * @param column the column number to be modified (zero indexed)
      * @param value the new value
      */
-    public final void setElement(int row, int column, double value) {
+    public final void set(int row, int column, double value) {
         switch (row) {
             case 0:
                 switch (column) {

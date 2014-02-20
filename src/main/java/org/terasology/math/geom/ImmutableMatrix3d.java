@@ -159,4 +159,58 @@ public class ImmutableMatrix3d extends BaseMatrix3d {
     public double getM22() {
         return m22;
     }
+    
+    /**
+     * Retrieves the value at the specified row and column of the specified
+     * matrix.
+     * @param row the row number to be retrieved (zero indexed)
+     * @param column the column number to be retrieved (zero indexed)
+     * @return the value at the indexed element.
+     */
+    public final double get(int row, int column) {
+        switch (row) {
+            case 0:
+                switch (column) {
+                    case 0:
+                        return (this.getM00());
+                    case 1:
+                        return (this.getM01());
+                    case 2:
+                        return (this.getM02());
+                    default:
+                        break;
+                }
+                break;
+            case 1:
+                switch (column) {
+                    case 0:
+                        return (this.getM10());
+                    case 1:
+                        return (this.getM11());
+                    case 2:
+                        return (this.getM12());
+                    default:
+                        break;
+                }
+                break;
+
+            case 2:
+                switch (column) {
+                    case 0:
+                        return (this.getM20());
+                    case 1:
+                        return (this.getM21());
+                    case 2:
+                        return (this.getM22());
+                    default:
+                        break;
+                }
+                break;
+
+            default:
+                break;
+        }
+
+        throw new ArrayIndexOutOfBoundsException("row/col not in [0..2]");
+    }
 }
