@@ -23,6 +23,11 @@ package org.terasology.math.geom;
 public abstract class BaseMatrix3d {
 
     /**
+     * The immutable identity matrix
+     */
+    public static final ImmutableMatrix3d IDENTITY = new ImmutableMatrix3d(1, 0, 0, 0, 1, 0, 0, 0, 1);
+
+    /**
      * @return The first matrix element in the first row.
      */
     public double getM00() {
@@ -154,7 +159,7 @@ public abstract class BaseMatrix3d {
             return false;
         }
 
-        if (obj instanceof BaseQuat4d) {
+        if (obj instanceof BaseMatrix3d) {
             BaseMatrix3d other = (BaseMatrix3d) obj;
             return equals(other);
         }
@@ -191,7 +196,7 @@ public abstract class BaseMatrix3d {
       * @param epsilon  the threshold value
      * @return true if equals up to epsilon
       */
-    public final boolean epsilonEquals(Matrix3d m1, double epsilon) {
+    public final boolean epsilonEquals(BaseMatrix3d m1, double epsilon) {
         double diff;
 
         diff = getM00() - m1.getM00();
