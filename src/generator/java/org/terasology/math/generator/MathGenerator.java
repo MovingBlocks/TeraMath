@@ -54,7 +54,7 @@ public class MathGenerator {
     }
 
     private void generateTuple(List<Component> components, ComponentType type) throws IOException {
-        generate("Tuple", components, type);
+        generate("BaseVector", components, type);
         generate("ImmutableVector", components, type);
         generate("Vector", components, type);
     }
