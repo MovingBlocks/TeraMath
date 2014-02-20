@@ -16,8 +16,9 @@
 
 package org.terasology.math.geom;
 
-
+$if(!componentType.discrete)$
 import com.google.common.base.Preconditions;
+$endif$
 
 /**
  * A vector/point in $dimensions$D space
@@ -57,7 +58,7 @@ $if(!componentType.discrete)$
 $endif$
 
     /**
-     * @return the distance to the origin
+     * @return the squared distance to the origin
      */
     public $componentType$ lengthSquared() {
         return $components:{x| get$x.proper$() * get$x.proper$()};separator = " + "$;
@@ -66,8 +67,8 @@ $endif$
     /**
      * @return the distance to the origin
      */
-    public $componentType$ length() {
-        return $if(!componentType.doubleType)$(float) $endif$Math.sqrt(lengthSquared());
+    public $if(componentType.floatType)$float$else$double$endif$ length() {
+        return $if(componentType.floatType)$(float) $endif$Math.sqrt(lengthSquared());
     }
 
     /**
@@ -84,17 +85,27 @@ $endif$
      * @param other the other point
      * @return the distance in between
      */
-    public $componentType$ distance($names/tupleType()$ other) {
-        return $if(!componentType.doubleType)$(float) $endif$Math.sqrt(distanceSquared(other));
+    public $if(componentType.floatType)$float$else$double$endif$ distance($names/tupleType()$ other) {
+        return $if(componentType.floatType)$(float) $endif$Math.sqrt(distanceSquared(other));
     }
 
+$if(componentType.discrete)$
+    /**
+     * @param other the other point
+     * @return the grid distance in between (aka 1-Norm, Minkowski or Manhattan distance)
+     */
+    public int gridDistance($names/tupleType()$ other) {
+        return $components:{x| Math.abs(other.get$x.proper$() - get$x.proper$())}; separator = " + "$;
+    }
+$endif$
+    
     /**
      * Computes the distance between two points
      * @param p1 the first point
      * @param p2 the second point
      * @return the distance between the two points
      */
-    public static $componentType$ distance($names/tupleType()$ p1, $names/tupleType()$ p2) {
+    public static $if(componentType.floatType)$float$else$double$endif$ distance($names/tupleType()$ p1, $names/tupleType()$ p2) {
         return p1.distance(p2);
     }
 
@@ -122,16 +133,17 @@ $endif$
      */
     @Override
     public final int hashCode() {
-        final int prime = 31;
         int result = 1;
 $if(componentType.toIntegralFunc)$
+        final int prime = 31;
         long temp;
 $components:{x |
         temp = $componentType.toIntegralFunc$(get$x.proper$());
         result = prime * result + (int) (temp ^ (temp >>> 32));
         }$
 $else$
-        $components:{x |result = prime * result + (int) (get$x.proper$() ^ (get$x.proper$() >>> 32));}; separator = "\n"$
+        final int prime = 1021;
+        $components:{x |result = prime * result + get$x.proper$();}; separator = "\n"$
 $endif$
         return result;
     }

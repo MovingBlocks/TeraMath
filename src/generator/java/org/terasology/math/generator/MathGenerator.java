@@ -20,6 +20,7 @@ public class MathGenerator {
     private File outputDir;
     private ComponentType doubleType = new ComponentType("double", "d", false, "Double.doubleToLongBits");
     private ComponentType floatType = new ComponentType("float", "f", false, "Float.floatToIntBits");
+    private ComponentType intType = new ComponentType("int", "i", true, null);
     private List<Component> components2D = Lists.newArrayList(new Component("x", "X"), new Component("y", "Y"));
     private List<Component> components3D = Lists.newArrayList(new Component("x", "X"), new Component("y", "Y"), new Component("z", "Z"));
     private List<Component> components4D = Lists.newArrayList(new Component("x", "X"), new Component("y", "Y"), new Component("z", "Z"), new Component("w", "W"));
@@ -37,6 +38,9 @@ public class MathGenerator {
         generateTuple(components3D, doubleType);
         generateTuple(components4D, floatType);
         generateTuple(components4D, doubleType);
+        
+        generateTuple(components2D, intType);
+        generateTuple(components3D, intType);
     }
 
     private void setupTemplateDir() {

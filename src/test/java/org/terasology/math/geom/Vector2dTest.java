@@ -20,14 +20,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Some Point2D related tests
  *
  * @author Martin Steiger
  */
-public class Vector2dTest extends BaseTuple2dTest {
+public class Vector2dTest extends BaseVector2dTest {
 
     private Vector2d v = new Vector2d();
 
@@ -131,7 +130,7 @@ public class Vector2dTest extends BaseTuple2dTest {
     }
 
     @Override
-    protected Tuple2d createTuple2d(double x, double y) {
+    protected BaseVector2d createBaseVector2d(double x, double y) {
         return new Vector2d(x, y);
     }
 
