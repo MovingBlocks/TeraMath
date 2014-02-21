@@ -85,19 +85,19 @@ public class Matrix3d extends BaseMatrix3d {
       *  Matrix3d parameter.
       *  @param m1  the source matrix
       */
-    public Matrix3d(Matrix3d m1) {
-        this.m00 = m1.m00;
-        this.m01 = m1.m01;
-        this.m02 = m1.m02;
-
-        this.m10 = m1.m10;
-        this.m11 = m1.m11;
-        this.m12 = m1.m12;
-
-        this.m20 = m1.m20;
-        this.m21 = m1.m21;
-        this.m22 = m1.m22;
-    }
+    public Matrix3d(BaseMatrix3d m1) {
+        this.m00 = m1.get(0, 0);
+        this.m01 = m1.get(0, 1);
+        this.m02 = m1.get(0, 2);
+ 
+        this.m10 = m1.get(1, 0);
+        this.m11 = m1.get(1, 1);
+        this.m12 = m1.get(1, 2);
+ 
+        this.m20 = m1.get(2, 0);
+        this.m21 = m1.get(2, 1);
+        this.m22 = m1.get(2, 2);
+     }
 
     /**
      * Constructs and initializes a Matrix3d to all zeros.
@@ -140,6 +140,7 @@ public class Matrix3d extends BaseMatrix3d {
      * @param column the column number to be retrieved (zero indexed)
      * @return the value at the indexed element.
      */
+    @Override
     public final double get(int row, int column) {
         switch (row) {
             case 0:
@@ -455,18 +456,18 @@ public class Matrix3d extends BaseMatrix3d {
      * Sets the value of this matrix to the sum of itself and matrix m1.
      * @param m1 the other matrix
      */
-    public final void add(Matrix3d m1) {
-        this.m00 += m1.m00;
-        this.m01 += m1.m01;
-        this.m02 += m1.m02;
+    public final void add(BaseMatrix3d m1) {
+        this.m00 += m1.get(0, 0);
+        this.m01 += m1.get(0, 1);
+        this.m02 += m1.get(0, 2);
 
-        this.m10 += m1.m10;
-        this.m11 += m1.m11;
-        this.m12 += m1.m12;
+        this.m10 += m1.get(1, 0);
+        this.m11 += m1.get(1, 1);
+        this.m12 += m1.get(1, 2);
 
-        this.m20 += m1.m20;
-        this.m21 += m1.m21;
-        this.m22 += m1.m22;
+        this.m20 += m1.get(2, 0);
+        this.m21 += m1.get(2, 1);
+        this.m22 += m1.get(2, 2);
     }
 
     /**
@@ -474,18 +475,18 @@ public class Matrix3d extends BaseMatrix3d {
      * matrix m1 (this = this - m1).
      * @param m1 the other matrix
      */
-    public final void sub(Matrix3d m1) {
-        this.m00 -= m1.m00;
-        this.m01 -= m1.m01;
-        this.m02 -= m1.m02;
+    public final void sub(BaseMatrix3d m1) {
+        this.m00 -= m1.get(0, 0);
+        this.m01 -= m1.get(0, 1);
+        this.m02 -= m1.get(0, 2);
 
-        this.m10 -= m1.m10;
-        this.m11 -= m1.m11;
-        this.m12 -= m1.m12;
+        this.m10 -= m1.get(1, 0);
+        this.m11 -= m1.get(1, 1);
+        this.m12 -= m1.get(1, 2);
 
-        this.m20 -= m1.m20;
-        this.m21 -= m1.m21;
-        this.m22 -= m1.m22;
+        this.m20 -= m1.get(2, 0);
+        this.m21 -= m1.get(2, 1);
+        this.m22 -= m1.get(2, 2);
     }
 
     /**
@@ -511,19 +512,20 @@ public class Matrix3d extends BaseMatrix3d {
      * Sets the value of this matrix to the transpose of the argument matrix.
      * @param m1 the matrix to be transposed
      */
-    public final void transpose(Matrix3d m1) {
-        this.m00 = m1.m00;
-        this.m01 = m1.m10;
-        this.m02 = m1.m20;
+    public final void transpose(BaseMatrix3d m1) {
+        this.m00 = m1.get(0, 0);
+        this.m01 = m1.get(1, 0);
+        this.m02 = m1.get(2, 0);
 
-        this.m10 = m1.m01;
-        this.m11 = m1.m11;
-        this.m12 = m1.m21;
+        this.m10 = m1.get(0, 1);
+        this.m11 = m1.get(1, 1);
+        this.m12 = m1.get(2, 1);
 
-        this.m20 = m1.m02;
-        this.m21 = m1.m12;
-        this.m22 = m1.m22;
+        this.m20 = m1.get(0, 2);
+        this.m21 = m1.get(1, 2);
+        this.m22 = m1.get(2, 2);
     }
+
 
     /**
      * Sets the value of this matrix to the matrix conversion of the
@@ -549,18 +551,18 @@ public class Matrix3d extends BaseMatrix3d {
      * argument.
      * @param m1 the source matrix3d
      */
-    public final void set(Matrix3d m1) {
-        this.m00 = m1.m00;
-        this.m01 = m1.m01;
-        this.m02 = m1.m02;
+    public final void set(BaseMatrix3d m1) {
+        this.m00 = m1.get(0, 0);
+        this.m01 = m1.get(0, 1);
+        this.m02 = m1.get(0, 2);
 
-        this.m10 = m1.m10;
-        this.m11 = m1.m11;
-        this.m12 = m1.m12;
+        this.m10 = m1.get(1, 0);
+        this.m11 = m1.get(1, 1);
+        this.m12 = m1.get(1, 2);
 
-        this.m20 = m1.m20;
-        this.m21 = m1.m21;
-        this.m22 = m1.m22;
+        this.m20 = m1.get(2, 0);
+        this.m21 = m1.get(2, 1);
+        this.m22 = m1.get(2, 2);
     }
 
     /**
@@ -702,7 +704,7 @@ public class Matrix3d extends BaseMatrix3d {
       * with matrix m1.
       * @param m1 the other matrix
       */
-    public final void mul(Matrix3d m1) {
+    public final void mul(BaseMatrix3d m1) {
         double lm00;
         double lm01;
         double lm02;
@@ -713,17 +715,17 @@ public class Matrix3d extends BaseMatrix3d {
         double lm21;
         double lm22;
 
-        lm00 = this.m00 * m1.m00 + this.m01 * m1.m10 + this.m02 * m1.m20;
-        lm01 = this.m00 * m1.m01 + this.m01 * m1.m11 + this.m02 * m1.m21;
-        lm02 = this.m00 * m1.m02 + this.m01 * m1.m12 + this.m02 * m1.m22;
+        lm00 = this.m00 * m1.get(0, 0) + this.m01 * m1.get(1, 0) + this.m02 * m1.get(2, 0);
+        lm01 = this.m00 * m1.get(0, 1) + this.m01 * m1.get(1, 1) + this.m02 * m1.get(2, 1);
+        lm02 = this.m00 * m1.get(0, 2) + this.m01 * m1.get(1, 2) + this.m02 * m1.get(2, 2);
 
-        lm10 = this.m10 * m1.m00 + this.m11 * m1.m10 + this.m12 * m1.m20;
-        lm11 = this.m10 * m1.m01 + this.m11 * m1.m11 + this.m12 * m1.m21;
-        lm12 = this.m10 * m1.m02 + this.m11 * m1.m12 + this.m12 * m1.m22;
+        lm10 = this.m10 * m1.get(0, 0) + this.m11 * m1.get(1, 0) + this.m12 * m1.get(2, 0);
+        lm11 = this.m10 * m1.get(0, 1) + this.m11 * m1.get(1, 1) + this.m12 * m1.get(2, 1);
+        lm12 = this.m10 * m1.get(0, 2) + this.m11 * m1.get(1, 2) + this.m12 * m1.get(2, 2);
 
-        lm20 = this.m20 * m1.m00 + this.m21 * m1.m10 + this.m22 * m1.m20;
-        lm21 = this.m20 * m1.m01 + this.m21 * m1.m11 + this.m22 * m1.m21;
-        lm22 = this.m20 * m1.m02 + this.m21 * m1.m12 + this.m22 * m1.m22;
+        lm20 = this.m20 * m1.get(0, 0) + this.m21 * m1.get(1, 0) + this.m22 * m1.get(2, 0);
+        lm21 = this.m20 * m1.get(0, 1) + this.m21 * m1.get(1, 1) + this.m22 * m1.get(2, 1);
+        lm22 = this.m20 * m1.get(0, 2) + this.m21 * m1.get(1, 2) + this.m22 * m1.get(2, 2);
 
         this.m00 = lm00;
         this.m01 = lm01;
