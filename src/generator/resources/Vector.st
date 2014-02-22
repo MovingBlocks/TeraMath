@@ -17,33 +17,33 @@
 package org.terasology.math.geom;
 
 /**
- * $names/vectorType()$ is the mutable implementation of $names/tupleType()$, for representing points or vectors in $dimensions$ dimensional space of type
+ * $vector/mutableType()$ is the mutable implementation of $vector/baseType()$, for representing points or vectors in $dimensions$ dimensional space of type
  * $componentType$.
  *
  * @author auto-generated
  */
-public class $names/vectorType()$ extends $names/tupleType()$ {
+public class $vector/mutableType()$ extends $vector/baseType()$ {
 
     $components:{x| private $componentType$ $x$;}; separator = "\n"$
 
     /**
      * Default constructor - all components are set to 0
      */
-    public $names/vectorType()$() {
+    public $vector/mutableType()$() {
     }
 
     /**
      $components:{x| * @param $x$ the $x$ component}; separator = "\n"$
      */
-    public $names/vectorType()$($params/componentParams()$) {
+    public $vector/mutableType()$($comp/params()$) {
         $components:{x| this.$x$ = $x$;}; separator = "\n"$
     }
 
     /**
      * Copy constructor
-     * @param other The $names/tupleType()$ to copy.
+     * @param other The $vector/baseType()$ to copy.
      */
-    public $names/vectorType()$($names/tupleType()$ other) {
+    public $vector/mutableType()$($vector/baseType()$ other) {
         this($components:{x| other.get$x.proper$()}; separator = ", "$);
     }
 
@@ -56,9 +56,9 @@ $components:{x|
 $components:{x|
     /**
      * @param new$x.proper$ the new x coordinate
-     * @return this $names/vectorType()$, to allow method chaining
+     * @return this $vector/mutableType()$, to allow method chaining
      */
-    public $names/vectorType()$ set$x.proper$($componentType$ new$x.proper$) {
+    public $vector/mutableType()$ set$x.proper$($componentType$ new$x.proper$) {
         this.$x$ = new$x.proper$;
         return this;
     \}}; separator = "\n"$
@@ -67,7 +67,7 @@ $components:{x|
      * @param other the point to set
      * @return this
      */
-    public $names/vectorType()$ set($names/tupleType()$ other) {
+    public $vector/mutableType()$ set($vector/baseType()$ other) {
         $components:{x| this.$x$ = other.get$x.proper$();}; separator = "\n"$
         return this;
     }
@@ -76,7 +76,7 @@ $components:{x|
      $components:{x| * @param new$x.proper$ the $x$ component}; separator = "\n"$
      * @return this
      */
-    public $names/vectorType()$ set($params/componentParamsPrefix("new")$) {
+    public $vector/mutableType()$ set($comp/paramsPrefix("new")$) {
         $components:{x| this.$x$ = new$x.proper$;}; separator = "\n"$
         return this;
     }
@@ -88,7 +88,7 @@ $components:{x|
      * @param value the value to add to $x$
      * @return this
      */
-    public $names/vectorType()$ add$x.proper$($componentType$ value) {
+    public $vector/mutableType()$ add$x.proper$($componentType$ value) {
         this.$x$ += value;
         return this;
     \}}; separator = "\n"$
@@ -100,7 +100,7 @@ $components:{x|
      * @param value the value to subtract from $x$
      * @return this
      */
-    public $names/vectorType()$ sub$x.proper$($componentType$ value) {
+    public $vector/mutableType()$ sub$x.proper$($componentType$ value) {
         this.$x$ -= value;
         return this;
     \}}; separator = "\n"$
@@ -112,7 +112,7 @@ $components:{x|
      * @param value the value by which to multiply $x$
      * @return this
      */
-    public $names/vectorType()$ mul$x.proper$($componentType$ value) {
+    public $vector/mutableType()$ mul$x.proper$($componentType$ value) {
         this.$x$ *= value;
         return this;
     \}}; separator = "\n"$
@@ -124,7 +124,7 @@ $components:{x|
      * @param value the value by which to divide $x$
      * @return this
      */
-    public $names/vectorType()$ div$x.proper$($componentType$ value) {
+    public $vector/mutableType()$ div$x.proper$($componentType$ value) {
         this.$x$ /= value;
         return this;
     \}}; separator = "\n"$
@@ -135,7 +135,7 @@ $components:{x|
      $components:{x| * @param value$x.proper$ the value to add to the $x$ component}; separator = "\n"$
      * @return this
      */
-    public $names/vectorType()$ add($params/componentParamsPrefix("value")$) {
+    public $vector/mutableType()$ add($comp/paramsPrefix("value")$) {
         $components:{x| this.$x$ += value$x.proper$;}; separator = "\n"$
         return this;
     }
@@ -146,7 +146,7 @@ $components:{x|
      * @param other the point
      * @return this
      */
-    public $names/vectorType()$ add($names/tupleType()$ other) {
+    public $vector/mutableType()$ add($vector/baseType()$ other) {
         $components:{x| this.$x$ += other.get$x.proper$();}; separator = "\n"$
         return this;
     }
@@ -157,7 +157,7 @@ $components:{x|
      $components:{x| * @param value$x.proper$ the value to subtract from the $x$ component}; separator = "\n"$
      * @return this
      */
-    public $names/vectorType()$ sub($params/componentParamsPrefix("value")$) {
+    public $vector/mutableType()$ sub($comp/paramsPrefix("value")$) {
         $components:{x| this.$x$ -= value$x.proper$;}; separator = "\n"$
         return this;
     }
@@ -168,7 +168,7 @@ $components:{x|
      * @param other the point
      * @return this
      */
-    public $names/vectorType()$ sub($names/tupleType()$ other) {
+    public $vector/mutableType()$ sub($vector/baseType()$ other) {
         $components:{x| this.$x$ -= other.get$x.proper$();}; separator = "\n"$
         return this;
     }
@@ -179,7 +179,7 @@ $components:{x|
      * @param value a scalar value
      * @return this
      */
-    public $names/vectorType()$ scale($componentType$ value) {
+    public $vector/mutableType()$ scale($componentType$ value) {
         $components:{x| this.$x$ *= value;}; separator = "\n"$
         return this;
     }
@@ -189,7 +189,7 @@ $components:{x|
      *
      * @return this
      */
-    public $names/vectorType()$ invert() {
+    public $vector/mutableType()$ invert() {
         $components:{x| this.$x$ *= -1;}; separator = "\n"$
         return this;
     }
@@ -200,7 +200,7 @@ $if(!componentType.discrete)$
      *
      * @return this
      */
-    public $names/vectorType()$ normalize() {
+    public $vector/mutableType()$ normalize() {
         return scale(1 / length());
     }
 $endif$

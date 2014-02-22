@@ -1,0 +1,5 @@
+cast(val) ::= "<if(componentType.floatType)>(float) (<val>)<else><val><endif>"
+const(val) ::= "<val><componentType.abbrev>"
+valueList(params, value) ::= "<params:{x|<value>};separator=\", \">"
+params() ::= "<components:{x|<componentType> <x>}; separator = \", \">"
+paramsPrefix(prefix) ::= "<components:{x|<componentType> <prefix><x.proper>}; separator = \", \">"

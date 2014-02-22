@@ -24,17 +24,17 @@ $endif$
  * A vector/point in $dimensions$D space
  * @author auto-generated
  */
-public abstract class $names/tupleType()$ {
+public abstract class $vector/baseType()$ {
 
     /**
      * An immutable instance with all components set to 0
      */
-    public static final $names/immutableVectorType()$ ZERO = new $names/immutableVectorType()$($params/valueList(components, "0")$);
+    public static final $vector/immutableType()$ ZERO = new $vector/immutableType()$($comp/valueList(components, "0")$);
     
     /**
      * An immutable instance with all components set to 1
      */
-    public static final $names/immutableVectorType()$ ONE = new $names/immutableVectorType()$($params/valueList(components, "1")$);
+    public static final $vector/immutableType()$ ONE = new $vector/immutableType()$($comp/valueList(components, "1")$);
 
 $components:{x|
     /**
@@ -49,11 +49,11 @@ $if(!componentType.discrete)$
      * @param t the interpolation value in the range [0..1]
      * @return the interpolated point
      */
-    public static $names/vectorType()$ lerp($names/tupleType()$ a, $names/tupleType()$ b, $componentType$ t) {
+    public static $vector/mutableType()$ lerp($vector/baseType()$ a, $vector/baseType()$ b, $componentType$ t) {
         Preconditions.checkArgument(t >= 0 && t <= 1, "t must be in range [0..1]");
 
         $components:{x| $componentType$ $x$ = a.get$x.proper$() * (1 - t) + b.get$x.proper$() * t; }; separator = "\n"$
-        return new $names/vectorType()$($components;separator=", "$);
+        return new $vector/mutableType()$($components;separator=", "$);
     }
 $endif$
 
@@ -75,7 +75,7 @@ $endif$
      * @param other the other point
      * @return the distance in between
      */
-    public $componentType$ distanceSquared($names/tupleType()$ other) {
+    public $componentType$ distanceSquared($vector/baseType()$ other) {
         $components:{x|$componentType$ d$x$ = other.get$x.proper$() - this.get$x.proper$();}; separator = "\n"$
 
         return $components:{x| d$x$ * d$x$}; separator = " + "$;
@@ -85,7 +85,7 @@ $endif$
      * @param other the other point
      * @return the distance in between
      */
-    public $if(componentType.floatType)$float$else$double$endif$ distance($names/tupleType()$ other) {
+    public $if(componentType.floatType)$float$else$double$endif$ distance($vector/baseType()$ other) {
         return $if(componentType.floatType)$(float) $endif$Math.sqrt(distanceSquared(other));
     }
 
@@ -94,7 +94,7 @@ $if(componentType.discrete)$
      * @param other the other point
      * @return the grid distance in between (aka 1-Norm, Minkowski or Manhattan distance)
      */
-    public int gridDistance($names/tupleType()$ other) {
+    public int gridDistance($vector/baseType()$ other) {
         return $components:{x| Math.abs(other.get$x.proper$() - get$x.proper$())}; separator = " + "$;
     }
 $endif$
@@ -105,7 +105,7 @@ $endif$
      * @param p2 the second point
      * @return the distance between the two points
      */
-    public static $if(componentType.floatType)$float$else$double$endif$ distance($names/tupleType()$ p1, $names/tupleType()$ p2) {
+    public static $if(componentType.floatType)$float$else$double$endif$ distance($vector/baseType()$ p1, $vector/baseType()$ p2) {
         return p1.distance(p2);
     }
 
@@ -117,8 +117,8 @@ $endif$
         if (this == obj) {
             return true;
         }
-        if (obj instanceof $names/tupleType()$) {
-            $names/tupleType()$ other = ($names/tupleType()$) obj;
+        if (obj instanceof $vector/baseType()$) {
+            $vector/baseType()$ other = ($vector/baseType()$) obj;
 $if(componentType.toIntegralFunc)$
             return $components:{x | $componentType.toIntegralFunc$(get$x.proper$()) == $componentType.toIntegralFunc$(other.get$x.proper$())}; separator = "\n                && "$;
 $else$

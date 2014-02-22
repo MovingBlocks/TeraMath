@@ -17,27 +17,27 @@
 package org.terasology.math.geom;
 
 /**
- * An immutable implementation of $names/tupleType()$, which is a point or vector in $dimensions$D space with $componentType$ components.
- * This type is intended for use for constants, or any time you want a $names/tupleType()$ that is guaranteed immutable.
+ * An immutable implementation of $vector/baseType()$, which is a point or vector in $dimensions$D space with $componentType$ components.
+ * This type is intended for use for constants, or any time you want a $vector/baseType()$ that is guaranteed immutable.
  *
  * @author auto-generated
  */
-public final class $names/immutableVectorType()$ extends $names/tupleType()$ {
+public final class $vector/immutableType()$ extends $vector/baseType()$ {
 
     $components:{x|private final $componentType$ $x$;}; separator = "\n"$
 
     /**
     $components:{x| * @param $x$ the $x$ component}; separator = "\n"$
      */
-    public $names/immutableVectorType()$($params/componentParams()$) {
+    public $vector/immutableType()$($comp/params()$) {
         $components:{x| this.$x$ = $x$;}; separator = "\n"$
     }
 
     /**
      * Copy constructor
-     * @param other The $names/tupleType()$ to copy.
+     * @param other The $vector/baseType()$ to copy.
      */
-    public $names/immutableVectorType()$($names/tupleType()$ other) {
+    public $vector/immutableType()$($vector/baseType()$ other) {
         this($components:{x| other.get$x.proper$()}; separator = ", "$);
     }
 

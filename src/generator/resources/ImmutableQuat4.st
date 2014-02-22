@@ -17,15 +17,15 @@
 package org.terasology.math.geom;
 
 /**
- * An immutable implementation of {@link BaseQuat4d}
- * @author Martin Steiger
+ * An immutable implementation of {@link $quat/baseType()$}
+ * @author auto-generated
  */
-public class ImmutableQuat4d extends BaseQuat4d {
+public final class $quat/immutableType()$ extends $quat/baseType()$ {
 
-    private final double x;
-    private final double y;
-    private final double z;
-    private final double w;
+    private final $componentType$ x;
+    private final $componentType$ y;
+    private final $componentType$ z;
+    private final $componentType$ w;
     
     /**
      * Constructs an instance from the specified xyzw coordinates.
@@ -34,8 +34,8 @@ public class ImmutableQuat4d extends BaseQuat4d {
      * @param z the z coordinate
      * @param w the w scalar component
      */
-    public ImmutableQuat4d(double x, double y, double z, double w) {
-        double mag = 1.0 / Math.sqrt(x * x + y * y + z * z + w * w);
+    public $quat/immutableType()$($componentType$ x, $componentType$ y, $componentType$ z, $componentType$ w) {
+        $componentType$ mag = $comp/const("1.0")$ / $comp/cast("Math.sqrt(x * x + y * y + z * z + w * w)")$;
         this.x = x * mag;
         this.y = y * mag;
         this.z = z * mag;
@@ -43,22 +43,22 @@ public class ImmutableQuat4d extends BaseQuat4d {
     }
 
     @Override
-    public double getX() {
+    public $componentType$ getX() {
         return x;
     }
 
     @Override
-    public double getY() {
+    public $componentType$ getY() {
         return y;
     }
 
     @Override
-    public double getZ() {
+    public $componentType$ getZ() {
         return z;
     }
 
     @Override
-    public double getW() {
+    public $componentType$ getW() {
         return w;
     }
 
