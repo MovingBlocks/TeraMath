@@ -23,7 +23,7 @@ wrapper {
 }
 
 ext {
-    generatorClassName = 'org.terasology.math.generator.MathGenerator'
+    generatorClassName = 'org.terasology.math.generator.MathGeneratorRunner'
     generatedSrcDir = 'src/generated/java'
 }
 

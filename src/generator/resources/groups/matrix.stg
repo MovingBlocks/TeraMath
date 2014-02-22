@@ -1,0 +1,8 @@
+baseType() ::= "BaseMatrix<dimensions><componentType.abbrev>"
+mutableType() ::= "Matrix<dimensions><componentType.abbrev>"
+immutableType() ::= "ImmutableMatrix<dimensions><componentType.abbrev>"
+baseVector3Type() ::= "BaseVector3<componentType.abbrev>"
+baseVector4Type() ::= "BaseVector4<componentType.abbrev>"
+vector3Type() ::= "Vector3<componentType.abbrev>"
+vector4Type() ::= "Vector4<componentType.abbrev>"
+baseQuatType() ::= "BaseQuat4<componentType.abbrev>"

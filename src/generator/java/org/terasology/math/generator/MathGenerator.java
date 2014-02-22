@@ -32,8 +32,9 @@ import com.google.common.collect.Lists;
  */
 public class MathGenerator {
 
-    private STRawGroupDir templateDir;
-    private File outputDir;
+    private final STRawGroupDir templateDir;
+    private final File outputDir;
+    
     private ComponentType doubleType = new ComponentType("double", "d", false, "Double.doubleToLongBits");
     private ComponentType floatType = new ComponentType("float", "f", false, "Float.floatToIntBits");
     private ComponentType intType = new ComponentType("int", "i", true, null);
@@ -41,13 +42,17 @@ public class MathGenerator {
     private List<Component> components3D = Lists.newArrayList(new Component("x", "X"), new Component("y", "Y"), new Component("z", "Z"));
     private List<Component> components4D = Lists.newArrayList(new Component("x", "X"), new Component("y", "Y"), new Component("z", "Z"), new Component("w", "W"));
 
-    public static void main(String[] args) throws IOException {
-        new MathGenerator().run();
+    public MathGenerator() {
+        templateDir = new STRawGroupDir("src/generator/resources");
+        templateDir.delimiterStartChar = '$';
+        templateDir.delimiterStopChar = '$';
+        templateDir.importTemplates(new STGroupDir("src/generator/resources/groups"));
+
+        outputDir = new File("src/generated/java/org/terasology/math/geom");
+        outputDir.mkdirs();
     }
-
-    public void run() throws IOException {
-        setupTemplateDir();
-
+    
+    public void createVector() throws IOException {
         generateTuple(components2D, floatType);
         generateTuple(components2D, doubleType);
         generateTuple(components3D, floatType);
@@ -57,19 +62,41 @@ public class MathGenerator {
         
         generateTuple(components2D, intType);
         generateTuple(components3D, intType);
-
+    }
+    
+    public void createQuat() throws IOException {
         generateQuat(floatType);
         generateQuat(doubleType);
     }
+    
+    public void createMatrix(int dims) throws IOException {
+        List<Entry> components = Lists.newArrayList();
+        for (int i = 0; i < dims; i++) {
+            for (int j = 0; j < dims; j++) {
+                Entry comp = new Entry("m", "M", i, j);
+                components.add(comp);       
+            }
+        }
+        
+        generateMatrix(components, dims, floatType);
+        generateMatrix(components, dims, doubleType);
+    }
 
-    private void setupTemplateDir() {
-        templateDir = new STRawGroupDir("src/generator/resources");
-        templateDir.delimiterStartChar = '$';
-        templateDir.delimiterStopChar = '$';
-        templateDir.importTemplates(new STGroupDir("src/generator/resources/groups"));
+    private void generateMatrix(List<Entry> entries, int dims, ComponentType type) throws IOException {
+        generateMatrix("BaseMatrix", dims, entries, type);
+        generateMatrix("ImmutableMatrix", dims, entries, type);
+        generateMatrix("Matrix", dims, entries, type);
+    }
 
-        outputDir = new File("src/generated/java/org/terasology/math/geom");
-        outputDir.mkdirs();
+    private void generateMatrix(String template, int dims, List<Entry> entries, ComponentType type) throws IOException {
+        ST st = templateDir.getInstanceOf(template + dims);
+        st.add("componentType", type);
+        st.add("dimensions", dims);
+        st.add("components", entries);  // using the "components" name allows us to use the same template groups
+
+        String fname = template + dims + type.getAbbrev() + ".java";
+        st.write(new File(outputDir, fname), ErrorManager.DEFAULT_ERROR_LISTENER);
+        System.out.println("Created file " + fname);
     }
 
     private void generateQuat(ComponentType type) throws IOException {
@@ -82,7 +109,9 @@ public class MathGenerator {
         ST st = templateDir.getInstanceOf(template);
         st.add("componentType", type);
         
-        st.write(new File(outputDir, template + type.getAbbrev() + ".java"), ErrorManager.DEFAULT_ERROR_LISTENER);
+        String fname = template + type.getAbbrev() + ".java";
+        st.write(new File(outputDir, fname), ErrorManager.DEFAULT_ERROR_LISTENER);
+        System.out.println("Created file " + fname);
     }
 
     private void generateTuple(List<Component> components, ComponentType type) throws IOException {
@@ -97,7 +126,9 @@ public class MathGenerator {
         st.add("dimensions", components.size());
         st.add("components", components);
 
-        st.write(new File(outputDir, template + components.size() + type.getAbbrev() + ".java"), ErrorManager.DEFAULT_ERROR_LISTENER);
+        String fname = template + components.size() + type.getAbbrev() + ".java";
+        st.write(new File(outputDir, fname), ErrorManager.DEFAULT_ERROR_LISTENER);
+        System.out.println("Created file " + fname);
     }
 
 }
