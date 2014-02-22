@@ -66,8 +66,7 @@ public class MathGenerator {
         templateDir = new STRawGroupDir("src/generator/resources");
         templateDir.delimiterStartChar = '$';
         templateDir.delimiterStopChar = '$';
-        templateDir.importTemplates(new STGroupDir("src/generator/resources/tupleSupport"));
-        templateDir.importTemplates(new STGroupDir("src/generator/resources/quatSupport"));
+        templateDir.importTemplates(new STGroupDir("src/generator/resources/groups"));
 
         outputDir = new File("src/generated/java/org/terasology/math/geom");
         outputDir.mkdirs();
