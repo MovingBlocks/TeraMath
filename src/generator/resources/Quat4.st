@@ -21,18 +21,18 @@ package org.terasology.math.geom;
  * point x,y,z,w coordinates.
  * @author Martin Steiger
  */
-public class Quat4d extends BaseQuat4d {
+public class $quat/mutableType()$ extends $quat/baseType()$ {
 
-    private double x;
-    private double y;
-    private double z;
-    private double w;
+    private $componentType$ x;
+    private $componentType$ y;
+    private $componentType$ z;
+    private $componentType$ w;
 
     /**
-     * Constructs and initializes a Quat4d from the specified Quat4d.
-     * @param other the Quat4d containing the initialization x y z w data
+     * Constructs and initializes a $quat/mutableType()$ from the specified $quat/baseType()$.
+     * @param other the $quat/baseType()$ containing the initialization x y z w data
      */
-    public Quat4d(BaseQuat4d other) {
+    public $quat/mutableType()$($quat/baseType()$ other) {
         this.x = other.getX();
         this.y = other.getY();
         this.z = other.getZ();
@@ -46,8 +46,8 @@ public class Quat4d extends BaseQuat4d {
      * @param z the z coordinate
      * @param w the w scalar component
      */
-    public Quat4d(double x, double y, double z, double w) {
-        double mag = 1.0 / Math.sqrt(x * x + y * y + z * z + w * w);
+    public $quat/mutableType()$($componentType$ x, $componentType$ y, $componentType$ z, $componentType$ w) {
+        $componentType$ mag = $comp/const("1.0")$ / $comp/cast("Math.sqrt(x * x + y * y + z * z + w * w)")$;
         this.x = x * mag;
         this.y = y * mag;
         this.z = z * mag;
@@ -58,15 +58,15 @@ public class Quat4d extends BaseQuat4d {
      * Constructs and initializes a Quat4d from the array of length 4. 
      * @param q the array of length 4 containing xyzw in order
      */
-    public Quat4d(double[] q) {
+    public $quat/mutableType()$($componentType$[] q) {
         this(q[0], q[1], q[2], q[3]);
     }
 
     /** 
-     * Constructs and initializes a Quat4d from the specified Tuple4d.  
-     * @param t the Tuple4d containing the initialization x y z w data 
+     * Constructs and initializes a Quat4d from the specified $quat/vector4Type()$.  
+     * @param t the $quat/vector4Type()$ containing the initialization x y z w data 
      */
-    public Quat4d(BaseVector4d t) {
+    public $quat/mutableType()$($quat/vector4Type()$ t) {
         this(t.getX(), t.getY(), t.getZ(), t.getW());
     }
 
@@ -74,13 +74,13 @@ public class Quat4d extends BaseQuat4d {
      * @param axis the axis. Length must be != 0
      * @param angle the rotation angle in radians
      */
-    public Quat4d(Vector3d axis, double angle) {
+    public $quat/mutableType()$($quat/vector3Type()$ axis, double angle) {
         double d = axis.length();
-        double s = Math.sin(angle * 0.5) / d;
+        $componentType$ s = $comp/cast("Math.sin(angle * 0.5) / d")$;
         x = axis.getX() * s;
         y = axis.getY() * s;
         z = axis.getZ() * s;
-        w = Math.cos(angle * 0.5);
+        w = $comp/cast("Math.cos(angle * 0.5)")$;
     }
 
     /**
@@ -88,7 +88,7 @@ public class Quat4d extends BaseQuat4d {
      * @param pitch the pitch angle (in radians)
      * @param roll the roll angle (in radians)
      */
-    public Quat4d(double yaw, double pitch, double roll) {
+    public $quat/mutableType()$(double yaw, double pitch, double roll) {
         double halfYaw = yaw * 0.5f;
         double halfPitch = pitch * 0.5f;
         double halfRoll = roll * 0.5f;
@@ -98,41 +98,30 @@ public class Quat4d extends BaseQuat4d {
         double sinPitch = Math.sin(halfPitch);
         double cosRoll = Math.cos(halfRoll);
         double sinRoll = Math.sin(halfRoll);
-        x = cosRoll * sinPitch * cosYaw + sinRoll * cosPitch * sinYaw;
-        y = cosRoll * cosPitch * sinYaw - sinRoll * sinPitch * cosYaw;
-        z = sinRoll * cosPitch * cosYaw - cosRoll * sinPitch * sinYaw;
-        w = cosRoll * cosPitch * cosYaw + sinRoll * sinPitch * sinYaw;
+        x = $comp/cast("cosRoll * sinPitch * cosYaw + sinRoll * cosPitch * sinYaw")$;
+        y = $comp/cast("cosRoll * cosPitch * sinYaw - sinRoll * sinPitch * cosYaw")$;
+        z = $comp/cast("sinRoll * cosPitch * cosYaw - cosRoll * sinPitch * sinYaw")$;
+        w = $comp/cast("cosRoll * cosPitch * cosYaw + sinRoll * sinPitch * sinYaw")$;
     }
 
     @Override
-    public double getX() {
+    public $componentType$ getX() {
         return x;
     }
 
     @Override
-    public double getY() {
+    public $componentType$ getY() {
         return y;
     }
 
     @Override
-    public double getZ() {
+    public $componentType$ getZ() {
         return z;
     }
 
     @Override
-    public double getW() {
+    public $componentType$ getW() {
         return w;
-    }
-
-    /**
-     * Sets the value of this quaternion to the conjugate of quaternion q1.
-     * @param q1 the source vector
-     */
-    public final void conjugate(Quat4d q1) {
-        this.x = -q1.x;
-        this.y = -q1.y;
-        this.z = -q1.z;
-        this.w = q1.w;
     }
 
     /**
@@ -147,10 +136,10 @@ public class Quat4d extends BaseQuat4d {
     /**
      * @param v the vector to multiply with
      */
-    public void mul(Vector3f v) {
-        double rx = w * v.getX() + y * v.getZ() - z * v.getY();
-        double ry = w * v.getY() + z * v.getX() - x * v.getZ();
-        double rz = w * v.getZ() + x * v.getY() - y * v.getX();
+    public void mul($quat/vector3Type()$ v) {
+        $componentType$ rx = w * v.getX() + y * v.getZ() - z * v.getY();
+        $componentType$ ry = w * v.getY() + z * v.getX() - x * v.getZ();
+        $componentType$ rz = w * v.getZ() + x * v.getY() - y * v.getX();
         this.w = -x * v.getX() - y * v.getY() - z * v.getZ();
         this.x = rx;
         this.y = ry;
@@ -162,11 +151,11 @@ public class Quat4d extends BaseQuat4d {
       * itself and q1 (this = this * q1).  
       * @param q1 the other quaternion
       */
-    public final void mul(Quat4d q1) {
-        double nw = this.w * q1.w - this.x * q1.x - this.y * q1.y - this.z * q1.z;
-        double nx = this.w * q1.x + q1.w * this.x + this.y * q1.z - this.z * q1.y;
-        double ny = this.w * q1.y + q1.w * this.y - this.x * q1.z + this.z * q1.x;
-        this.z = this.w * q1.z + q1.w * this.z + this.x * q1.y - this.y * q1.x;
+    public final void mul($quat/baseType()$ q1) {
+        $componentType$ nw = this.w * q1.getW() - this.x * q1.getX() - this.y * q1.getY() - this.z * q1.getZ();
+        $componentType$ nx = this.w * q1.getX() + q1.getW() * this.x + this.y * q1.getZ() - this.z * q1.getY();
+        $componentType$ ny = this.w * q1.getY() + q1.getW() * this.y - this.x * q1.getZ() + this.z * q1.getX();
+        this.z = this.w * q1.getZ() + q1.getW() * this.z + this.x * q1.getY() - this.y * q1.getX();
         this.w = nw;
         this.x = nx;
         this.y = ny;
@@ -178,8 +167,8 @@ public class Quat4d extends BaseQuat4d {
       * is preserved (this = this * q^-1).
       * @param q1 the other quaternion
       */
-    public final void mulInverse(Quat4d q1) {
-        Quat4d tempQuat = new Quat4d(q1);
+    public final void mulInverse($quat/baseType()$ q1) {
+        $quat/mutableType()$ tempQuat = new $quat/mutableType()$(q1);
 
         tempQuat.inverse();
         this.mul(tempQuat);
@@ -207,10 +196,10 @@ public class Quat4d extends BaseQuat4d {
             this.z *= norm;
             this.w *= norm;
         } else {
-            this.x = 0.0;
-            this.y = 0.0;
-            this.z = 0.0;
-            this.w = 0.0;
+            this.x = 0;
+            this.y = 0;
+            this.z = 0;
+            this.w = 0;
         }
     }
 

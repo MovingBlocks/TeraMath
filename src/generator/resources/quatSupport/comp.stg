@@ -1,0 +1,2 @@
+cast(val) ::= "<if(componentType.floatType)>(float) (<val>)<else><val><endif>"
+const(val) ::= "<val><componentType.abbrev>"

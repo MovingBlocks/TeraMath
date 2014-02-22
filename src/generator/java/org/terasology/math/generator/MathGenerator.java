@@ -1,15 +1,31 @@
-package org.terasology.math.generator;
+/*
+ * Copyright 2014 MovingBlocks
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-import com.google.common.collect.Lists;
-import org.stringtemplate.v4.ST;
-import org.stringtemplate.v4.STErrorListener;
-import org.stringtemplate.v4.STGroupDir;
-import org.stringtemplate.v4.STRawGroupDir;
-import org.stringtemplate.v4.misc.STMessage;
+package org.terasology.math.generator;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+
+import org.stringtemplate.v4.ST;
+import org.stringtemplate.v4.STGroupDir;
+import org.stringtemplate.v4.STRawGroupDir;
+import org.stringtemplate.v4.misc.ErrorManager;
+
+import com.google.common.collect.Lists;
 
 /**
  * @author Immortius
@@ -41,6 +57,9 @@ public class MathGenerator {
         
         generateTuple(components2D, intType);
         generateTuple(components3D, intType);
+
+        generateQuat(floatType);
+        generateQuat(doubleType);
     }
 
     private void setupTemplateDir() {
@@ -48,45 +67,38 @@ public class MathGenerator {
         templateDir.delimiterStartChar = '$';
         templateDir.delimiterStopChar = '$';
         templateDir.importTemplates(new STGroupDir("src/generator/resources/tupleSupport"));
+        templateDir.importTemplates(new STGroupDir("src/generator/resources/quatSupport"));
 
         outputDir = new File("src/generated/java/org/terasology/math/geom");
         outputDir.mkdirs();
     }
 
-    private void generateTuple(List<Component> components, ComponentType type) throws IOException {
-        generate("BaseVector", components, type);
-        generate("ImmutableVector", components, type);
-        generate("Vector", components, type);
+    private void generateQuat(ComponentType type) throws IOException {
+        generateQuat("BaseQuat4", type);
+        generateQuat("ImmutableQuat4", type);
+        generateQuat("Quat4", type);
     }
 
-    private void generate(String template, List<Component> components, ComponentType type) throws IOException {
+    private void generateQuat(String template, ComponentType type) throws IOException {
+        ST st = templateDir.getInstanceOf(template);
+        st.add("componentType", type);
+        
+        st.write(new File(outputDir, template + type.getAbbrev() + ".java"), ErrorManager.DEFAULT_ERROR_LISTENER);
+    }
+
+    private void generateTuple(List<Component> components, ComponentType type) throws IOException {
+        generateTuple("BaseVector", components, type);
+        generateTuple("ImmutableVector", components, type);
+        generateTuple("Vector", components, type);
+    }
+
+    private void generateTuple(String template, List<Component> components, ComponentType type) throws IOException {
         ST st = templateDir.getInstanceOf(template);
         st.add("componentType", type);
         st.add("dimensions", components.size());
         st.add("components", components);
 
-        st.write(new File(outputDir, template + components.size() + type.getAbbrev() + ".java"), new STErrorListener() {
-
-            @Override
-            public void compileTimeError(STMessage msg) {
-                System.err.println(msg);
-            }
-
-            @Override
-            public void runTimeError(STMessage msg) {
-                System.err.println(msg);
-            }
-
-            @Override
-            public void IOError(STMessage msg) {
-                System.err.println(msg);
-            }
-
-            @Override
-            public void internalError(STMessage msg) {
-                System.err.println(msg);
-            }
-        });
+        st.write(new File(outputDir, template + components.size() + type.getAbbrev() + ".java"), ErrorManager.DEFAULT_ERROR_LISTENER);
     }
 
 }
