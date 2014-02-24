@@ -102,7 +102,7 @@ public class Vector3dTest extends BaseVector3dTest {
     }
     
     @Test
-     public void subtractFromXComponent() {
+    public void subtractFromXComponent() {
         Vector3d result = v.setX(2.3).subX(1.4);
         assertSame(v, result);
         assertEquals(0.9, v.getX(), EPSILON);
