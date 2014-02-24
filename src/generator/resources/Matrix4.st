@@ -626,7 +626,7 @@ $components:{x |
         this.m31 -= m1.get(3, 1);
         this.m32 -= m1.get(3, 2);
         this.m33 -= m1.get(3, 3);
-     }
+    }
 
     /**
      * Sets the value of this matrix to its transpose.
@@ -844,41 +844,41 @@ $components:{x |
         $componentType$ lm32;
         $componentType$ lm33;  // vars for temp result matrix 
 
-        lm00 = m00 * m1.getM00() + m01 * m1.getM10() +
-              m02 * m1.getM20() + m03 * m1.getM30();
-        lm01 = m00 * m1.getM01() + m01 * m1.getM11() +
-              m02 * m1.getM21() + m03 * m1.getM31();
-        lm02 = m00 * m1.getM02() + m01 * m1.getM12() +
-              m02 * m1.getM22() + m03 * m1.getM32();
-        lm03 = m00 * m1.getM03() + m01 * m1.getM13() +
-              m02 * m1.getM23() + m03 * m1.getM33();
+        lm00 = m00 * m1.getM00() + m01 * m1.getM10()
+             + m02 * m1.getM20() + m03 * m1.getM30();
+        lm01 = m00 * m1.getM01() + m01 * m1.getM11()
+             + m02 * m1.getM21() + m03 * m1.getM31();
+        lm02 = m00 * m1.getM02() + m01 * m1.getM12()
+             + m02 * m1.getM22() + m03 * m1.getM32();
+        lm03 = m00 * m1.getM03() + m01 * m1.getM13()
+             + m02 * m1.getM23() + m03 * m1.getM33();
 
-        lm10 = m10 * m1.getM00() + m11 * m1.getM10() +
-              m12 * m1.getM20() + m13 * m1.getM30();
-        lm11 = m10 * m1.getM01() + m11 * m1.getM11() +
-              m12 * m1.getM21() + m13 * m1.getM31();
-        lm12 = m10 * m1.getM02() + m11 * m1.getM12() +
-              m12 * m1.getM22() + m13 * m1.getM32();
-        lm13 = m10 * m1.getM03() + m11 * m1.getM13() +
-              m12 * m1.getM23() + m13 * m1.getM33();
+        lm10 = m10 * m1.getM00() + m11 * m1.getM10()
+             + m12 * m1.getM20() + m13 * m1.getM30();
+        lm11 = m10 * m1.getM01() + m11 * m1.getM11()
+             + m12 * m1.getM21() + m13 * m1.getM31();
+        lm12 = m10 * m1.getM02() + m11 * m1.getM12()
+             + m12 * m1.getM22() + m13 * m1.getM32();
+        lm13 = m10 * m1.getM03() + m11 * m1.getM13()
+             + m12 * m1.getM23() + m13 * m1.getM33();
 
-        lm20 = m20 * m1.getM00() + m21 * m1.getM10() +
-              m22 * m1.getM20() + m23 * m1.getM30();
-        lm21 = m20 * m1.getM01() + m21 * m1.getM11() +
-              m22 * m1.getM21() + m23 * m1.getM31();
-        lm22 = m20 * m1.getM02() + m21 * m1.getM12() +
-              m22 * m1.getM22() + m23 * m1.getM32();
-        lm23 = m20 * m1.getM03() + m21 * m1.getM13() +
-              m22 * m1.getM23() + m23 * m1.getM33();
+        lm20 = m20 * m1.getM00() + m21 * m1.getM10()
+             + m22 * m1.getM20() + m23 * m1.getM30();
+        lm21 = m20 * m1.getM01() + m21 * m1.getM11()
+             + m22 * m1.getM21() + m23 * m1.getM31();
+        lm22 = m20 * m1.getM02() + m21 * m1.getM12()
+             + m22 * m1.getM22() + m23 * m1.getM32();
+        lm23 = m20 * m1.getM03() + m21 * m1.getM13()
+             + m22 * m1.getM23() + m23 * m1.getM33();
 
-        lm30 = m30 * m1.getM00() + m31 * m1.getM10() +
-              m32 * m1.getM20() + m33 * m1.getM30();
-        lm31 = m30 * m1.getM01() + m31 * m1.getM11() +
-              m32 * m1.getM21() + m33 * m1.getM31();
-        lm32 = m30 * m1.getM02() + m31 * m1.getM12() +
-              m32 * m1.getM22() + m33 * m1.getM32();
-        lm33 = m30 * m1.getM03() + m31 * m1.getM13() +
-              m32 * m1.getM23() + m33 * m1.getM33();
+        lm30 = m30 * m1.getM00() + m31 * m1.getM10()
+             + m32 * m1.getM20() + m33 * m1.getM30();
+        lm31 = m30 * m1.getM01() + m31 * m1.getM11()
+             + m32 * m1.getM21() + m33 * m1.getM31();
+        lm32 = m30 * m1.getM02() + m31 * m1.getM12()
+             + m32 * m1.getM22() + m33 * m1.getM32();
+        lm33 = m30 * m1.getM03() + m31 * m1.getM13()
+             + m32 * m1.getM23() + m33 * m1.getM33();
 
         m00 = lm00;
         m01 = lm01;
