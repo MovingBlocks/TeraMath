@@ -14,9 +14,6 @@ apply plugin: 'checkstyle'
 apply plugin: 'pmd'
 apply plugin: 'findbugs'
 
-// Test for right version of Java in use for running this script
-assert org.gradle.api.JavaVersion.current().isJava7Compatible()
-
 // gradle wrapper version
 wrapper {
     gradleVersion '1.10'
@@ -82,6 +79,17 @@ task generateSources(type:JavaExec) {
 }
 
 compileJava.dependsOn generateSources
+
+// Library and distribution config
+group = 'org.terasology'
+description = 'A math / geometry library'
+version = '0.1.0-SNAPSHOT'
+
+distributions {
+    main{
+        baseName = 'TeraMath'
+    }
+}
 
 checkstyle {
     ignoreFailures = true

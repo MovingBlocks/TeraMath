@@ -7,7 +7,7 @@ As the name inclines, TeraMath contains mostly math-related code with a focus on
 
 ### Status
 
-This library is still *experimental* and not indented for productive use.
+This library is still *experimental* and not intended for productive use.
 
 ### Contributing
 
