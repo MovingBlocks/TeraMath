@@ -88,7 +88,7 @@ public class Vector2dTest extends BaseVector2dTest {
     }
 
     @Test
-     public void subtractFromXComponent() {
+    public void subtractFromXComponent() {
         Vector2d result = v.setX(2.3).subX(1.4);
         assertSame(v, result);
         assertEquals(0.9, v.getX(), EPSILON);
