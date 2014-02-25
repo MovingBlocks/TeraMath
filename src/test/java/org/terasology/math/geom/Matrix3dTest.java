@@ -63,6 +63,16 @@ public class Matrix3dTest {
     
     
     /**
+     * det(M) == -65
+     */
+    @Test
+    public void testDeterminant() {
+        Matrix3d m = new Matrix3d(1, 3, 5, -1, 2, 0, 4, 2, -3);
+        assertEquals("det(M) should be -65", -65, m.determinant(), EPSILON);
+    }
+    
+    
+    /**
      * M * M^-1 == 1
      */
     @Test
@@ -93,6 +103,23 @@ public class Matrix3dTest {
         assertTrue("M * 2 should be M + M", m2.epsilonEquals(m3, EPSILON));
     }
 
+    
+    /**
+     * M * 0.5 == M - M * 0.5
+     */
+    @Test
+    public void testSubMul() {
+        Random r = new Random(123984);
+        
+        Matrix3d m = createRandomly(r);
+        Matrix3d m3 = new Matrix3d(m);
+        Matrix3d m2 = new Matrix3d(m);
+        m2.mul(0.5);
+        m3.sub(m2);
+        
+        assertTrue("M * 0.5 should be M - M * 0.5", m2.epsilonEquals(m3, EPSILON));
+    }
+    
     /**
      * M^T^T == M
      */
