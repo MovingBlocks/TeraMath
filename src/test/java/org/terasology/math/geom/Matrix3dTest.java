@@ -16,9 +16,7 @@
 
 package org.terasology.math.geom;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.Random;
 
@@ -94,7 +92,7 @@ public class Matrix3dTest {
         
         assertTrue("M * 2 should be M + M", m2.epsilonEquals(m3, EPSILON));
     }
-    
+
     /**
      * M^T^T == M
      */
@@ -106,10 +104,95 @@ public class Matrix3dTest {
         Matrix3d m2 = new Matrix3d(m);
         m2.transpose();
         m2.transpose();
-
+        
         assertTrue("M^T^T should be M", m.epsilonEquals(m2, EPSILON));
     }
-    
+
+    @Test
+    public void testRowArrayGetters() {
+        Matrix3d m = new Matrix3d(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        double[] v = new double[3];
+
+        m.getRow(0, v);
+        assertArrayEquals(new double[]{1, 2, 3}, v, EPSILON);
+
+        m.getRow(1, v);
+        assertArrayEquals(new double[]{4, 5, 6}, v, EPSILON);
+
+        m.getRow(2, v);
+        assertArrayEquals(new double[]{7, 8, 9}, v, EPSILON);
+    }
+
+    @Test
+    public void testRowVectorGetters() {
+        Matrix3d m = new Matrix3d(1, 2, 3, 4, 5, 6, 7, 8, 9);
+
+        Vector3d v;
+        v = m.getRow(0);
+        assertEquals(new Vector3d(1, 2, 3), v);
+
+        v = m.getRow(1);
+        assertEquals(new Vector3d(4, 5, 6), v);
+
+        v = m.getRow(2);
+        assertEquals(new Vector3d(7, 8, 9), v);
+    }
+
+    @Test
+    public void testColumnVectorGetters() {
+        Matrix3d m = new Matrix3d(1, 2, 3, 4, 5, 6, 7, 8, 9);
+
+        Vector3d v;
+        v = m.getColumn(0);
+        assertEquals(new Vector3d(1, 4, 7), v);
+
+        v = m.getColumn(1);
+        assertEquals(new Vector3d(2, 5, 8), v);
+
+        v = m.getColumn(2);
+        assertEquals(new Vector3d(3, 6, 9), v);
+    }
+
+    @Test
+    public void testColArrayGetters() {
+        Matrix3d m = new Matrix3d(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        double[] v = new double[3];
+
+        m.getColumn(0, v);
+        assertArrayEquals(new double[]{1, 4, 7}, v, EPSILON);
+
+        m.getColumn(1, v);
+        assertArrayEquals(new double[]{2, 5, 8}, v, EPSILON);
+
+        m.getColumn(2, v);
+        assertArrayEquals(new double[]{3, 6, 9}, v, EPSILON);
+    }
+
+    @Test
+    public void testGetters() {
+        Matrix3d m = new Matrix3d(1, 2, 3, 4, 5, 6, 7, 8, 9);
+        assertEquals(1, m.get(0, 0), EPSILON);
+        assertEquals(2, m.get(0, 1), EPSILON);
+        assertEquals(3, m.get(0, 2), EPSILON);
+        assertEquals(4, m.get(1, 0), EPSILON);
+        assertEquals(5, m.get(1, 1), EPSILON);
+        assertEquals(6, m.get(1, 2), EPSILON);
+        assertEquals(7, m.get(2, 0), EPSILON);
+        assertEquals(8, m.get(2, 1), EPSILON);
+        assertEquals(9, m.get(2, 2), EPSILON);
+    }
+
+    @Test
+    public void testSet() {
+        Matrix3d m = createRandomly(new Random(12345));
+
+        double[] data = new double[]{1, 2, 3, 4, 5, 6, 7, 8, 9};
+        m.set(data);
+        double[] data2 = new double[9];
+        m.get(data2);
+        assertArrayEquals(data, data2, EPSILON);
+    }
+
     private Matrix3d createRandomly(Random r) {
         double[] data = new double[9];
         for (int k = 0; k < data.length; k++) {
@@ -117,6 +200,6 @@ public class Matrix3dTest {
         }
         Matrix3d m = new Matrix3d(data);
         return m;
-        
+
     }
 }
