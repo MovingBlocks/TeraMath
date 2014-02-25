@@ -16,6 +16,8 @@
 
 package org.terasology.math.geom;
 
+import java.util.Locale;
+
 /**
  * Defines a $dimensions$x$dimensions$ $componentType$ matrix 
  * @author auto-generated
@@ -124,13 +126,13 @@ $components:{x |
         $componentType$ det;
 
         det = getM00() * (getM11() * getM22() * getM33() + getM12() * getM23() * getM31() + getM13() * getM21() * getM32()
-                          - getM13() * getM22() * getM31() - getM11() * getM23() * getM32() - getM12() * getM21() * getM33());
+                        - getM13() * getM22() * getM31() - getM11() * getM23() * getM32() - getM12() * getM21() * getM33());
         det -= getM01() * (getM10() * getM22() * getM33() + getM12() * getM23() * getM30() + getM13() * getM20() * getM32()
-                           - getM13() * getM22() * getM30() - getM10() * getM23() * getM32() - getM12() * getM20() * getM33());
+                         - getM13() * getM22() * getM30() - getM10() * getM23() * getM32() - getM12() * getM20() * getM33());
         det += getM02() * (getM10() * getM21() * getM33() + getM11() * getM23() * getM30() + getM13() * getM20() * getM31()
-                           - getM13() * getM21() * getM30() - getM10() * getM23() * getM31() - getM11() * getM20() * getM33());
+                         - getM13() * getM21() * getM30() - getM10() * getM23() * getM31() - getM11() * getM20() * getM33());
         det -= getM03() * (getM10() * getM21() * getM32() + getM11() * getM22() * getM30() + getM12() * getM20() * getM31()
-                           - getM12() * getM21() * getM30() - getM10() * getM22() * getM31() - getM11() * getM20() * getM32());
+                         - getM12() * getM21() * getM30() - getM10() * getM22() * getM31() - getM11() * getM20() * getM32());
 
         return det;
     }
@@ -248,13 +250,87 @@ $components:{x |
         }
 
     }
-    
+
+    /**
+     * Copies the matrix values into the array parameter.
+     * @param v the array into which the matrix values will be copied
+     */
+    public final void get($componentType$[] v) {
+        v[0] = getM00();
+        v[1] = getM01();
+        v[2] = getM02();
+        v[3] = getM03();
+        v[4] = getM10();
+        v[5] = getM11();
+        v[6] = getM12();
+        v[7] = getM13();
+        v[8] = getM20();
+        v[9] = getM21();
+        v[10] = getM22();
+        v[11] = getM23();
+        v[12] = getM30();
+        v[13] = getM31();
+        v[14] = getM32();
+        v[15] = getM33();
+    }
+        
     /**
       * Returns a string that contains the values of this Matrix3d.
       * @return the String representation
       */
     @Override
     public String toString() {
-        return "(" + $components:{x | get$x.proper$()}; separator = " + \", \" + "$ + ")";
+        StringBuilder sb = new StringBuilder();
+        Locale locale = Locale.ROOT;
+        String fmt = "%6.2f";
+        String colSep = ", ";
+        String rowStart = "[";
+        String rowEnd = "]";
+        String newLine = "\n";
+
+        sb.append(rowStart);
+        sb.append(String.format(locale, fmt, getM00()));
+        sb.append(colSep);
+        sb.append(String.format(locale, fmt, getM01()));
+        sb.append(colSep);
+        sb.append(String.format(locale, fmt, getM02()));
+        sb.append(colSep);
+        sb.append(String.format(locale, fmt, getM03()));
+        sb.append(rowEnd);
+        sb.append(newLine);
+
+        sb.append(rowStart);
+        sb.append(String.format(locale, fmt, getM10()));
+        sb.append(colSep);
+        sb.append(String.format(locale, fmt, getM11()));
+        sb.append(colSep);
+        sb.append(String.format(locale, fmt, getM12()));
+        sb.append(colSep);
+        sb.append(String.format(locale, fmt, getM13()));
+        sb.append(rowEnd);
+        sb.append(newLine);
+
+        sb.append(rowStart);
+        sb.append(String.format(locale, fmt, getM20()));
+        sb.append(colSep);
+        sb.append(String.format(locale, fmt, getM21()));
+        sb.append(colSep);
+        sb.append(String.format(locale, fmt, getM22()));
+        sb.append(colSep);
+        sb.append(String.format(locale, fmt, getM23()));
+        sb.append(rowEnd);
+        sb.append(newLine);
+
+        sb.append(rowStart);
+        sb.append(String.format(locale, fmt, getM30()));
+        sb.append(colSep);
+        sb.append(String.format(locale, fmt, getM31()));
+        sb.append(colSep);
+        sb.append(String.format(locale, fmt, getM32()));
+        sb.append(colSep);
+        sb.append(String.format(locale, fmt, getM33()));
+        sb.append(rowEnd);
+        
+        return sb.toString();
     }
 }

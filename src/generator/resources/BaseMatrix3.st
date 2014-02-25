@@ -16,6 +16,8 @@
 
 package org.terasology.math.geom;
 
+import java.util.Locale;
+
 /**
  * Defines a $dimensions$x$dimensions$ $componentType$ matrix 
  * @author auto-generated
@@ -241,6 +243,40 @@ $components:{x |
       */
     @Override
     public String toString() {
-        return "(" + $components:{x | get$x.proper$()}; separator = " + \", \" + "$ + ")";
+        StringBuilder sb = new StringBuilder();
+        Locale locale = Locale.ROOT;
+        String fmt = "%6.2f";
+        String colSep = ", ";
+        String rowStart = "[";
+        String rowEnd = "]";
+        String newLine = "\n";
+
+        sb.append(rowStart);
+        sb.append(String.format(locale, fmt, getM00()));
+        sb.append(colSep);
+        sb.append(String.format(locale, fmt, getM01()));
+        sb.append(colSep);
+        sb.append(String.format(locale, fmt, getM02()));
+        sb.append(rowEnd);
+        sb.append(newLine);
+
+        sb.append(rowStart);
+        sb.append(String.format(locale, fmt, getM10()));
+        sb.append(colSep);
+        sb.append(String.format(locale, fmt, getM11()));
+        sb.append(colSep);
+        sb.append(String.format(locale, fmt, getM12()));
+        sb.append(rowEnd);
+        sb.append(newLine);
+
+        sb.append(rowStart);
+        sb.append(String.format(locale, fmt, getM20()));
+        sb.append(colSep);
+        sb.append(String.format(locale, fmt, getM21()));
+        sb.append(colSep);
+        sb.append(String.format(locale, fmt, getM22()));
+        sb.append(rowEnd);
+        
+        return sb.toString();
     }
 }

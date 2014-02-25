@@ -730,7 +730,7 @@ $components:{x |
     }
 
     /**
-     * Invert the source matrix and put the result into the destination matrix
+     * Invert the matrix
      * @throws IllegalStateException if the matrix is not invertible
      */
     public void invert() {
@@ -745,7 +745,7 @@ $components:{x |
              * m10 m11 m12
              * m20 m21 m22
              */
-            double determinantInv = 1f / determinant;
+            double determinantInv = 1 / determinant;
 
             // get the conjugate matrix
             double t00 = this.m11 * this.m22 - this.m12 * this.m21;

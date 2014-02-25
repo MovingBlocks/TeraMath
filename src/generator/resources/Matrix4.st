@@ -595,10 +595,10 @@ $components:{x |
         this.m22 += m1.get(2, 2);
         this.m23 += m1.get(2, 3);
 
-        this.m20 += m1.get(3, 0);
-        this.m21 += m1.get(3, 1);
-        this.m22 += m1.get(3, 2);
-        this.m23 += m1.get(3, 3);
+        this.m30 += m1.get(3, 0);
+        this.m31 += m1.get(3, 1);
+        this.m32 += m1.get(3, 2);
+        this.m33 += m1.get(3, 3);
     }
 
     /**
@@ -966,6 +966,75 @@ $components:{x |
 
         vec.set(x, y, z, w);
     }
+
+    /**
+     * Invert the matrix
+     * @throws IllegalStateException if the matrix is not invertible
+     */
+    public void invert() {
+        $componentType$ determinant = this.determinant();
+
+        if (determinant == 0) {
+            throw new IllegalStateException("matrix is not invertible");
+        }
+
+        $componentType$ invdet = 1 / determinant;
+
+        $componentType$ s0 = m00 * m11 - m10 * m01;
+        $componentType$ s1 = m00 * m12 - m10 * m02;
+        $componentType$ s2 = m00 * m13 - m10 * m03;
+        $componentType$ s3 = m01 * m12 - m11 * m02;
+        $componentType$ s4 = m01 * m13 - m11 * m03;
+        $componentType$ s5 = m02 * m13 - m12 * m03;
+
+        $componentType$ c5 = m22 * m33 - m32 * m23;
+        $componentType$ c4 = m21 * m33 - m31 * m23;
+        $componentType$ c3 = m21 * m32 - m31 * m22;
+        $componentType$ c2 = m20 * m33 - m30 * m23;
+        $componentType$ c1 = m20 * m32 - m30 * m22;
+        $componentType$ c0 = m20 * m31 - m30 * m21;
+
+        $componentType$ lm00 = (m11 * c5 - m12 * c4 + m13 * c3) * invdet;
+        $componentType$ lm01 = (-m01 * c5 + m02 * c4 - m03 * c3) * invdet;
+        $componentType$ lm02 = (m31 * s5 - m32 * s4 + m33 * s3) * invdet;
+        $componentType$ lm03 = (-m21 * s5 + m22 * s4 - m23 * s3) * invdet;
+
+        $componentType$ lm10 = (-m10 * c5 + m12 * c2 - m13 * c1) * invdet;
+        $componentType$ lm11 = (m00 * c5 - m02 * c2 + m03 * c1) * invdet;
+        $componentType$ lm12 = (-m30 * s5 + m32 * s2 - m33 * s1) * invdet;
+        $componentType$ lm13 = (m20 * s5 - m22 * s2 + m23 * s1) * invdet;
+
+        $componentType$ lm20 = (m10 * c4 - m11 * c2 + m13 * c0) * invdet;
+        $componentType$ lm21 = (-m00 * c4 + m01 * c2 - m03 * c0) * invdet;
+        $componentType$ lm22 = (m30 * s4 - m31 * s2 + m33 * s0) * invdet;
+        $componentType$ lm23 = (-m20 * s4 + m21 * s2 - m23 * s0) * invdet;
+
+        $componentType$ lm30 = (-m10 * c3 + m11 * c1 - m12 * c0) * invdet;
+        $componentType$ lm31 = (m00 * c3 - m01 * c1 + m02 * c0) * invdet;
+        $componentType$ lm32 = (-m30 * s3 + m31 * s1 - m32 * s0) * invdet;
+        $componentType$ lm33 = (m20 * s3 - m21 * s1 + m22 * s0) * invdet;
+
+        m00 = lm00;
+        m01 = lm01;
+        m02 = lm02;
+        m03 = lm03;
+
+        m10 = lm10;
+        m11 = lm11;
+        m12 = lm12;
+        m13 = lm13;
+
+        m20 = lm20;
+        m21 = lm21;
+        m22 = lm22;
+        m23 = lm23;
+
+        m30 = lm30;
+        m31 = lm31;
+        m32 = lm32;
+        m33 = lm33;
+    }
+
 
 $components:{x|
     @Override
