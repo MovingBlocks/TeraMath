@@ -51,7 +51,13 @@ $components:{x|
     @Override
     public $componentType$ get$x.proper$() {
         return $x$;
-    \}}; separator = "\n\n"$
+    \}}; separator = "\n"$
+
+$components:{x|
+    @Override
+    public $componentType$ $x$() {
+        return $x$;
+    \}}; separator = "\n"$
 
 $components:{x|
     /**

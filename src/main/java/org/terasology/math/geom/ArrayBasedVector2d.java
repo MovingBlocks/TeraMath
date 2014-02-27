@@ -56,5 +56,15 @@ public class ArrayBasedVector2d extends BaseVector2d {
         return array[ind * 2 + 1];
     }
 
+    @Override
+    public double x() {
+        return getX();
+    }
+
+    @Override
+    public double y() {
+        return getY();
+    }
+
 
 }

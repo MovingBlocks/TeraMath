@@ -47,4 +47,10 @@ $components:{x|
         return $x$;
     \}
 }; separator = "\n"$
+$components:{x|
+    @Override
+    public $componentType$ $x$() {
+        return $x$;
+    \}
+}; separator = "\n"$
 }

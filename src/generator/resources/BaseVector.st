@@ -40,7 +40,13 @@ $components:{x|
     /**
       * @return $x$ the $x$ coordinate
       */
-    public abstract $componentType$ get$x.proper$(); };separator="\n\n"$
+    public abstract $componentType$ get$x.proper$(); };separator="\n"$
+
+$components:{x|
+    /**
+      * @return $x$ the $x$ coordinate
+      */
+    public abstract $componentType$ $x$(); };separator="\n"$
 
 $if(!componentType.discrete)$
     /**
