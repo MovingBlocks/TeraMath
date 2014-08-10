@@ -23,7 +23,7 @@ package org.terasology.math.geom;
  */
 public final class Circle implements Shape {
 
-    private final ImmutableVector2d center;
+    private final Vector2d center;
     private final double radius;
 
     /**
@@ -32,7 +32,17 @@ public final class Circle implements Shape {
      * @param radius the radius
      */
     public Circle(double centerX, double centerY, double radius) {
-        this.center = new ImmutableVector2d(centerX, centerY);
+        this.center = new Vector2d(centerX, centerY);
+        this.radius = radius;
+    }
+
+    /**
+     * @param centerX the center X coord
+     * @param centerY the center Y coord
+     * @param radius the radius
+     */
+    public Circle(Vector2d center, double radius) {
+        this.center = center;
         this.radius = radius;
     }
 
@@ -44,7 +54,7 @@ public final class Circle implements Shape {
     /**
      * @return the center of the cirle
      */
-    public ImmutableVector2d getCenter() {
+    public Vector2d getCenter() {
         return center;
     }
 
