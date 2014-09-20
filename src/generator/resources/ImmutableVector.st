@@ -47,10 +47,67 @@ $components:{x|
         return $x$;
     \}
 }; separator = "\n"$
+
 $components:{x|
     @Override
     public $componentType$ $x$() {
         return $x$;
     \}
 }; separator = "\n"$
+
+    /**
+     * Adds a point to this point
+     *
+     $components:{x| * @param value$x.proper$ the value to add to the $x$ component}; separator = "\n"$
+     * @return a new instance
+     */
+    public $vector/immutableType()$ add($comp/paramsPrefix("value")$) {
+        $components:{x| $componentType$ n$x$ = $x$ + value$x.proper$;}; separator = "\n"$
+        return new $vector/immutableType()$($components:{x|n$x$}; separator = ", "$);
+    }
+
+    /**
+     * Adds a point to this point
+     *
+     * @param other the point
+     * @return a new instance
+     */
+    public $vector/immutableType()$ add($vector/baseType()$ other) {
+        $components:{x| $componentType$ n$x$ = $x$ + other.get$x.proper$();}; separator = "\n"$
+        return new $vector/immutableType()$($components:{x|n$x$}; separator = ", "$);
+    }
+
+    /**
+     * Subtracts a point from this point
+     *
+     $components:{x| * @param value$x.proper$ the value to subtract from the $x$ component}; separator = "\n"$
+     * @return a new instance
+     */
+    public $vector/immutableType()$ sub($comp/paramsPrefix("value")$) {
+        $components:{x| $componentType$ n$x$ = $x$ - value$x.proper$;}; separator = "\n"$
+        return new $vector/immutableType()$($components:{x|n$x$}; separator = ", "$);
+    }
+
+    /**
+     * Subtracts a point from this point
+     *
+     * @param other the point
+     * @return a new instance
+     */
+    public $vector/immutableType()$ sub($vector/baseType()$ other) {
+        $components:{x| $componentType$ n$x$ = $x$ - other.get$x.proper$();}; separator = "\n"$
+        return new $vector/immutableType()$($components:{x|n$x$}; separator = ", "$);
+    }
+
+    /**
+     * Multiplies this with a scalar value
+     *
+     * @param value a scalar value
+     * @return a new instance
+     */
+    public $vector/immutableType()$ scale($componentType$ value) {
+        $components:{x| $componentType$ n$x$ = $x$ * value;}; separator = "\n"$
+        return new $vector/immutableType()$($components:{x|n$x$}; separator = ", "$);
+    }
+
 }
