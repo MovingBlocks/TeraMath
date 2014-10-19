@@ -64,6 +64,16 @@ $if(!componentType.discrete)$
 $endif$
 
     /**
+     * Returns the dot product of this vector and vector other.
+     * @param v1 the other vector
+     * @return the dot product of this and other
+     */
+    public final double dot($vector/baseType()$ other)
+    {
+        return $components:{x|this.get$x.proper$() * other.get$x.proper$()}; separator = " + "$;
+    }
+
+    /**
      * @return the squared distance to the origin
      */
     public $componentType$ lengthSquared() {
