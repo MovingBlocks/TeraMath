@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.math.geom;
+package javax.vecmath;
 
 import com.google.common.base.Preconditions;
 

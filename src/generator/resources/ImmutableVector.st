@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.math.geom;
+package javax.vecmath;
 
 /**
  * An immutable implementation of $vector/baseType()$, which is a point or vector in $dimensions$D space with $componentType$ components.
