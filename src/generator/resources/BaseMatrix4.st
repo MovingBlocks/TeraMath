@@ -146,6 +146,20 @@ $components:{x |
      */
     public abstract $componentType$ get(int row, int column);
 
+
+    /**
+     * Retrieves the translational components of this matrix.
+     * @return a new vector that will receive the translational component
+     */
+    public final $matrix/vector3Type()$ getTranslation()
+    {
+        $matrix/vector3Type()$ trans = new $matrix/vector3Type()$();
+        trans.x = getM03();
+        trans.y = getM13();
+        trans.z = getM23();
+        return trans;
+    }
+
     /**
      * Copies the matrix values in the specified row into the vector parameter.
      * @param row  the matrix row

@@ -180,6 +180,23 @@ $components:{x|
     }
 
     /**
+     *  Sets each component of this tuple to its absolute value.
+     */
+    public final void absolute() {
+        $components:{x| this.$x$ = Math.abs($x$);}; separator = "\n"$
+    }
+
+    /**
+     * Sets the value of this vector to the vector difference
+     * of vector t1 and t2 (this = t1 - t2).
+     * @param t1 the first vector
+     * @param t2 the second vector
+     */
+    public final void sub($vector/baseType()$ t1, $vector/baseType()$ t2) {
+        $components:{x| this.$x$ = t1.get$x.proper$() - t2.get$x.proper$();}; separator = "\n"$
+    }
+
+    /**
      * Multiplies this with a scalar value
      *
      * @param value a scalar value
@@ -199,6 +216,19 @@ $components:{x|
         $components:{x| this.$x$ *= -1;}; separator = "\n"$
         return this;
     }
+
+$if(is3D)$
+    /**
+     * Sets this vector to the vector cross product of vectors v1 and v2.
+     * @param v1 the first vector
+     * @param v2 the second vector
+     */
+    public final void cross($vector/baseType()$ v1, $vector/baseType()$ v2) {
+        this.x = v1.getY() * v2.getZ() - v1.getZ() * v2.getY();
+        this.y = v2.getX() * v1.getZ() - v2.getZ() * v1.getX();
+        this.z = v1.getX() * v2.getY() - v1.getY() * v2.getX();
+    }
+$endif$
 
 $if(!componentType.discrete)$
     /**
