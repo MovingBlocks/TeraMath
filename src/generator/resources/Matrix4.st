@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.math.geom;
+package javax.vecmath;
 
 /**
  * A $componentType$ precision floating point $dimensions$x$dimensions$ $componentType$ matrix.

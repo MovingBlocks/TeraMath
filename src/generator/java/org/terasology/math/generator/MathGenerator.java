@@ -34,7 +34,7 @@ public class MathGenerator {
 
     private final STRawGroupDir templateDir;
     private final File outputDir;
-    
+
     private ComponentType doubleType = new ComponentType("double", "d", false, "Double.doubleToLongBits");
     private ComponentType floatType = new ComponentType("float", "f", false, "Float.floatToIntBits");
     private ComponentType intType = new ComponentType("int", "i", true, null);
@@ -48,10 +48,10 @@ public class MathGenerator {
         templateDir.delimiterStopChar = '$';
         templateDir.importTemplates(new STGroupDir("src/generator/resources/groups"));
 
-        outputDir = new File("src/generated/java/org/terasology/math/geom");
+        outputDir = new File("src/generated/java/javax/vecmath");
         outputDir.mkdirs();
     }
-    
+
     public void createVector() throws IOException {
         generateTuple(components2D, floatType);
         generateTuple(components2D, doubleType);
@@ -59,25 +59,25 @@ public class MathGenerator {
         generateTuple(components3D, doubleType);
         generateTuple(components4D, floatType);
         generateTuple(components4D, doubleType);
-        
+
         generateTuple(components2D, intType);
         generateTuple(components3D, intType);
     }
-    
+
     public void createQuat() throws IOException {
         generateQuat(floatType);
         generateQuat(doubleType);
     }
-    
+
     public void createMatrix(int dims) throws IOException {
         List<Entry> components = Lists.newArrayList();
         for (int i = 0; i < dims; i++) {
             for (int j = 0; j < dims; j++) {
                 Entry comp = new Entry("m", "M", i, j);
-                components.add(comp);       
+                components.add(comp);
             }
         }
-        
+
         generateMatrix(components, dims, floatType);
         generateMatrix(components, dims, doubleType);
     }
@@ -108,7 +108,7 @@ public class MathGenerator {
     private void generateQuat(String template, ComponentType type) throws IOException {
         ST st = templateDir.getInstanceOf(template);
         st.add("componentType", type);
-        
+
         String fname = template + type.getAbbrev() + ".java";
         st.write(new File(outputDir, fname), ErrorManager.DEFAULT_ERROR_LISTENER);
         System.out.println("Created file " + fname);
