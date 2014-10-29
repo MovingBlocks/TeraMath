@@ -23,10 +23,23 @@ package javax.vecmath;
  */
 public class $quat/mutableType()$ extends $quat/baseType()$ {
 
+    // required in set(Matrix4 m)
+    private final static double EPS2 = 1.0e-30;
+
     private $componentType$ x;
     private $componentType$ y;
     private $componentType$ z;
     private $componentType$ w;
+
+    /**
+     * Constructs and initializes a $quat/mutableType()$ with (0 / 0 / 0 / 0)
+     */
+    public $quat/mutableType()$() {
+        this.x = 0;
+        this.y = 0;
+        this.z = 0;
+        this.w = 0;
+    }
 
     /**
      * Constructs and initializes a $quat/mutableType()$ from the specified $quat/baseType()$.
@@ -125,12 +138,156 @@ public class $quat/mutableType()$ extends $quat/baseType()$ {
     }
 
     /**
+     * Sets the value of this $quat/baseType()$ to the value of $quat/mutableType()$ t1.
+     * @param t1 the $quat/mutableType()$ to be copied
+     */
+    public final void set($quat/baseType()$ other) {
+        this.x = other.getX();
+        this.y = other.getY();
+        this.z = other.getZ();
+        this.w = other.getW();
+    }
+
+    /**
+     * Sets the value of this $quat/baseType()$ to the value of $quat/mutableType()$ t1.
+     * @param t1 the $quat/mutableType()$ to be copied
+     */
+    public final void set($componentType$ x, $componentType$ y, $componentType$ z, $componentType$ w) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+    }
+
+    /**
+     * Sets the value of this quaternion to the rotational component of
+     * the passed matrix.
+     * @param m1 the matrix
+     */
+    public final void set(BaseMatrix3$componentType.abbrev$ m1)
+    {
+        $componentType$ ww = 0.25$componentType.abbrev$ * (m1.getM00() + m1.getM11() + m1.getM22() + 1.0$componentType.abbrev$);
+
+        if (ww >= 0) {
+            if (ww >= EPS2) {
+                this.w = $comp/cast("Math.sqrt(ww)")$;
+                ww = 0.25$componentType.abbrev$ / this.w;
+                this.x = (m1.getM21() - m1.getM12()) * ww;
+                this.y = (m1.getM02() - m1.getM20()) * ww;
+                this.z = (m1.getM10() - m1.getM01()) * ww;
+                return;
+            }
+        } else {
+            this.w = 0;
+            this.x = 0;
+            this.y = 0;
+            this.z = 1;
+            return;
+        }
+
+        this.w = 0;
+        ww = -0.5$componentType.abbrev$ * (m1.getM11() + m1.getM22());
+        if (ww >= 0) {
+            if (ww >= EPS2) {
+                this.x = $comp/cast("Math.sqrt(ww)")$;
+                ww = 0.5$componentType.abbrev$ / this.x;
+                this.y = m1.getM10() * ww;
+                this.z = m1.getM20() * ww;
+                return;
+            }
+        } else {
+            this.x = 0;
+            this.y = 0;
+            this.z = 1;
+            return;
+        }
+
+        this.x = 0;
+        ww = 0.5$componentType.abbrev$ * (1.0$componentType.abbrev$ - m1.getM22());
+        if (ww >= EPS2) {
+            this.y = $comp/cast("Math.sqrt(ww)")$;
+            this.z = m1.getM21() / (2.0$componentType.abbrev$ * this.y);
+            return;
+        }
+
+        this.y = 0;
+        this.z = 1;
+    }
+
+
+    /**
+     * Sets the value of this quaternion to the rotational component of
+     * the passed matrix.
+     * @param m1 the matrix
+     */
+    public final void set(BaseMatrix4$componentType.abbrev$ m1)
+    {
+        $componentType$ ww = 0.25$componentType.abbrev$ * (m1.getM00() + m1.getM11() + m1.getM22() + m1.getM33());
+
+        if (ww >= 0) {
+            if (ww >= EPS2) {
+                this.w = $comp/cast("Math.sqrt(ww)")$;
+                ww = 0.25$componentType.abbrev$ / this.w;
+                this.x = (m1.getM21() - m1.getM12()) * ww;
+                this.y = (m1.getM02() - m1.getM20()) * ww;
+                this.z = (m1.getM10() - m1.getM01()) * ww;
+                return;
+            }
+        } else {
+            this.w = 0;
+            this.x = 0;
+            this.y = 0;
+            this.z = 1;
+            return;
+        }
+
+        this.w = 0;
+        ww = -0.5$componentType.abbrev$ * (m1.getM11() + m1.getM22());
+        if (ww >= 0) {
+            if (ww >= EPS2) {
+                this.x = $comp/cast("Math.sqrt(ww)")$;
+                ww = 0.5$componentType.abbrev$ / this.x;
+                this.y = m1.getM10() * ww;
+                this.z = m1.getM20() * ww;
+                return;
+            }
+        } else {
+            this.x = 0;
+            this.y = 0;
+            this.z = 1;
+            return;
+        }
+
+        this.x = 0;
+        ww = 0.5$componentType.abbrev$ * (1.0$componentType.abbrev$ - m1.getM22());
+        if (ww >= EPS2) {
+            this.y = $comp/cast("Math.sqrt(ww)")$;
+            this.z = m1.getM21() / (2.0$componentType.abbrev$ * this.y);
+            return;
+        }
+
+        this.y = 0;
+        this.z = 1;
+    }
+
+    /**
      * Negate the value of of each of this quaternion's x,y,z coordinates in place.
      */
     public final void conjugate() {
         this.x = -this.x;
         this.y = -this.y;
         this.z = -this.z;
+    }
+
+    /**
+     * Sets the value of this quaternion to quaternion inverse of quaternion q1.
+     * @param q1 the quaternion to be inverted
+     */
+    public final void inverse($quat/baseType()$ q1) {
+        this.w =  q1.getW();
+        this.x = -q1.getX();
+        this.y = -q1.getY();
+        this.z = -q1.getZ();
     }
 
     /**
@@ -156,6 +313,23 @@ public class $quat/mutableType()$ extends $quat/baseType()$ {
         $componentType$ nx = this.w * q1.getX() + q1.getW() * this.x + this.y * q1.getZ() - this.z * q1.getY();
         $componentType$ ny = this.w * q1.getY() + q1.getW() * this.y - this.x * q1.getZ() + this.z * q1.getX();
         this.z = this.w * q1.getZ() + q1.getW() * this.z + this.x * q1.getY() - this.y * q1.getX();
+        this.w = nw;
+        this.x = nx;
+        this.y = ny;
+    }
+
+    /**
+     * Sets the value of this quaternion to the quaternion product of
+     * quaternions q1 and q2 (this = q1 * q2).
+     * Note that this is safe for aliasing (e.g. this can be q1 or q2).
+     * @param q1 the first quaternion
+     * @param q2 the second quaternion
+     */
+    public final void mul($quat/baseType()$ q1, $quat/baseType()$ q2) {
+        $componentType$ nw = q1.getW() * q2.getW() - q1.getX() * q2.getX() - q1.getY() * q2.getY() - q1.getZ() * q2.getZ();
+        $componentType$ nx = q1.getW() * q2.getX() + q2.getW() * q1.getX() + q1.getY() * q2.getZ() - q1.getZ() * q2.getY();
+        $componentType$ ny = q1.getW() * q2.getY() + q2.getW() * q1.getY() - q1.getX() * q2.getZ() + q1.getZ() * q2.getX();
+        this.z =  q1.getW() * q2.getZ() + q2.getW() * q1.getZ() + q1.getX() * q2.getY() - q1.getY() * q2.getX();
         this.w = nw;
         this.x = nx;
         this.y = ny;

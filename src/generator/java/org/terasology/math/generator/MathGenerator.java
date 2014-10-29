@@ -125,6 +125,7 @@ public class MathGenerator {
         st.add("componentType", type);
         st.add("dimensions", components.size());
         st.add("components", components);
+        st.add("is3D", components.size() == 3);
 
         String fname = template + components.size() + type.getAbbrev() + ".java";
         st.write(new File(outputDir, fname), ErrorManager.DEFAULT_ERROR_LISTENER);

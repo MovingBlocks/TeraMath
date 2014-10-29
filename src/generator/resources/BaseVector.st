@@ -68,9 +68,9 @@ $endif$
      * @param v1 the other vector
      * @return the dot product of this and other
      */
-    public final double dot($vector/baseType()$ other)
+    public final float dot($vector/baseType()$ other)
     {
-        return $components:{x|this.get$x.proper$() * other.get$x.proper$()}; separator = " + "$;
+        return (float) ($components:{x|this.get$x.proper$() * other.get$x.proper$()}; separator = " + "$);
     }
 
     /**
