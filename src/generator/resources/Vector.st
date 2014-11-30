@@ -24,7 +24,7 @@ package javax.vecmath;
  */
 public class $vector/mutableType()$ extends $vector/baseType()$ {
 
-    $components:{x| private $componentType$ $x$;}; separator = "\n"$
+    $components:{x| public $componentType$ $x$;}; separator = "\n"$
 
     /**
      * Default constructor - all components are set to 0

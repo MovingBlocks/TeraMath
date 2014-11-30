@@ -26,10 +26,10 @@ public class $quat/mutableType()$ extends $quat/baseType()$ {
     // required in set(Matrix4 m)
     private final static double EPS2 = 1.0e-30;
 
-    private $componentType$ x;
-    private $componentType$ y;
-    private $componentType$ z;
-    private $componentType$ w;
+    public $componentType$ x;
+    public $componentType$ y;
+    public $componentType$ z;
+    public $componentType$ w;
 
     /**
      * Constructs and initializes a $quat/mutableType()$ with (0 / 0 / 0 / 0)
@@ -357,6 +357,31 @@ public class $quat/mutableType()$ extends $quat/baseType()$ {
         z = -z;
     }
 
+    /**
+     * Sets the value of this quaternion to the equivalent rotation
+     * of the AxisAngle argument.
+     * @param a  the AxisAngle to be emulated
+     */
+    public final void set(AxisAngle4f a)
+    {
+	float mag,amag;
+	// Quat = cos(theta/2) + sin(theta/2)(roation_axis)
+	amag = (float)Math.sqrt( a.x*a.x + a.y*a.y + a.z*a.z);
+	if (amag < EPS ) {
+	    w = 0.0f;
+	    x = 0.0f;
+	    y = 0.0f;
+	    z = 0.0f;
+	} else {
+	    amag = 1.0f/amag;
+	    mag = (float)Math.sin(a.angle/2.0);
+	    w = (float)Math.cos(a.angle/2.0);
+	    x = a.x*amag*mag;
+	    y = a.y*amag*mag;
+	    z = a.z*amag*mag;
+	}
+    }
+    
     /**
      * Normalizes the value of this quaternion in place.
      */

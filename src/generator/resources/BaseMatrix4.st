@@ -153,10 +153,7 @@ $components:{x |
      */
     public final $matrix/vector3Type()$ getTranslation()
     {
-        $matrix/vector3Type()$ trans = new $matrix/vector3Type()$();
-        trans.x = getM03();
-        trans.y = getM13();
-        trans.z = getM23();
+        $matrix/vector3Type()$ trans = new $matrix/vector3Type()$(getM03(), getM13(), getM23());
         return trans;
     }
 
