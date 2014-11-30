@@ -79,7 +79,41 @@ $components:{x |
     public $matrix/mutableType()$() {
         // no-op
     }
-    
+
+    public $matrix/mutableType()$(AxisAngle4f a1) {
+
+        double c = Math.cos(a1.angle);
+        double s = Math.sin(a1.angle);
+        double t = 1.0 - c;
+
+        // if axis is already normalised then comment this
+        double magnitude = Math.sqrt(a1.x*a1.x + a1.y*a1.y + a1.z*a1.z);
+        if (magnitude==0) {
+            throw new IllegalArgumentException("a1 has length 0");
+        }
+
+        a1.x /= magnitude;
+        a1.y /= magnitude;
+        a1.z /= magnitude;
+
+        m00 = (float) (c + a1.x * a1.x * t);
+        m11 = (float) (c + a1.y * a1.y * t);
+        m22 = (float) (c + a1.z * a1.z * t);
+
+        double tmp1 = a1.x * a1.y * t;
+        double tmp2 = a1.z * s;
+        m10 = (float) (tmp1 + tmp2);
+        m01 = (float) (tmp1 - tmp2);
+        tmp1 = a1.x * a1.z * t;
+        tmp2 = a1.y * s;
+        m20 = (float) (tmp1 - tmp2);
+        m02 = (float) (tmp1 + tmp2);
+        tmp1 = a1.y * a1.z * t;
+        tmp2 = a1.x * s;
+        m21 = (float) (tmp1 + tmp2);
+        m12 = (float) (tmp1 - tmp2);
+    }
+
    /**
      * Constructs and initializes a Matrix4d from the quaternion,
      * translation, and scale values; the scale is applied only to the
