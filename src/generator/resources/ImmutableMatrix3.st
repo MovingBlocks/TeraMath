@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package javax.vecmath;
+package org.terasology.math.geom;
 
 /**
  * Defines an immutable $dimensions$x$dimensions$ $componentType$ matrix

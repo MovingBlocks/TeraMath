@@ -24,8 +24,7 @@
  *
  */
 
-package javax.vecmath;
-
+package org.terasology.math.geom;
 
 /**
  * A four-element axis angle represented by single-precision floating point
