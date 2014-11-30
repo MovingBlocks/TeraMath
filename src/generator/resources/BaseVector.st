@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package javax.vecmath;
+package org.terasology.math.geom;
 
 $if(!componentType.discrete)$
 import com.google.common.base.Preconditions;

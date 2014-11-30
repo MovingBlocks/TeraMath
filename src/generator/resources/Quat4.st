@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package javax.vecmath;
+package org.terasology.math.geom;
 
 /**
  * A 4-element quaternion represented by double precision floating 

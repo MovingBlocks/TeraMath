@@ -48,7 +48,7 @@ public class MathGenerator {
         templateDir.delimiterStopChar = '$';
         templateDir.importTemplates(new STGroupDir("src/generator/resources/groups"));
 
-        outputDir = new File("src/generated/java/javax/vecmath");
+        outputDir = new File("src/generated/java/org/terasology/math/geom");
         outputDir.mkdirs();
     }
 

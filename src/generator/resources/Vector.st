@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package javax.vecmath;
+package org.terasology.math.geom;
 
 /**
  * $vector/mutableType()$ is the mutable implementation of $vector/baseType()$, for representing points or vectors in $dimensions$ dimensional space of type
