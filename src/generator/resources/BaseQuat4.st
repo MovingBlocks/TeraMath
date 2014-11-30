@@ -29,7 +29,7 @@ public abstract class $quat/baseType()$ {
      */
     public static final $quat/immutableType()$ IDENTITY = new $quat/immutableType()$(0, 0, 0, 1);
 
-    private static final $componentType$ EPS = $comp/const("1.0e-12")$;
+    protected static final $componentType$ EPS = $comp/const("1.0e-12")$;
     
     /**
      * @return the x component

@@ -26,7 +26,7 @@ $components:{x |
     /**
      * Entry at row $x.row$, column $x.col$
      */
-    private $componentType$ $x$;
+    public $componentType$ $x$;
 };separator = "\n"$
 
     /**
@@ -1000,9 +1000,9 @@ $components:{x |
     public final void transformPoint($matrix/vector3Type()$ point)
     {
         $componentType$ x, y;
-        x = m00 * point.x + m01 * point.y + m02 * point.z + m03;
-        y = m10 * point.x + m11 * point.y + m12 * point.z + m13;
-        point.setZ(m20 * point.x + m21 * point.y + m22 * point.z + m23);
+        x = m00 * point.x() + m01 * point.y() + m02 * point.z() + m03;
+        y = m10 * point.x() + m11 * point.y() + m12 * point.z() + m13;
+        point.setZ(m20 * point.x() + m21 * point.y() + m22 * point.z() + m23);
         point.setX(x);
         point.setY(y);
     }
@@ -1016,9 +1016,9 @@ $components:{x |
     {
         $componentType$ x, y;
 
-        x = m00 * normal.x + m01 * normal.y + m02 * normal.z;
-        y = m10 * normal.x + m11 * normal.y + m12 * normal.z;
-        normal.setZ(m20 * normal.x + m21 * normal.y + m22 * normal.z);
+        x = m00 * normal.x() + m01 * normal.y() + m02 * normal.z();
+        y = m10 * normal.x() + m11 * normal.y() + m12 * normal.z();
+        normal.setZ(m20 * normal.x() + m21 * normal.y() + m22 * normal.z());
         normal.setX(x);
         normal.setY(y);
     }
