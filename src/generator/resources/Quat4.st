@@ -364,24 +364,46 @@ public class $quat/mutableType()$ extends $quat/baseType()$ {
      */
     public final void set(AxisAngle4f a)
     {
-	float mag,amag;
-	// Quat = cos(theta/2) + sin(theta/2)(roation_axis)
-	amag = (float)Math.sqrt( a.x*a.x + a.y*a.y + a.z*a.z);
-	if (amag < EPS ) {
-	    w = 0.0f;
-	    x = 0.0f;
-	    y = 0.0f;
-	    z = 0.0f;
-	} else {
-	    amag = 1.0f/amag;
-	    mag = (float)Math.sin(a.angle/2.0);
-	    w = (float)Math.cos(a.angle/2.0);
-	    x = a.x*amag*mag;
-	    y = a.y*amag*mag;
-	    z = a.z*amag*mag;
-	}
+        float mag,amag;
+        // Quat = cos(theta/2) + sin(theta/2)(roation_axis)
+        amag = (float)Math.sqrt( a.x*a.x + a.y*a.y + a.z*a.z);
+        if (amag < EPS ) {
+            w = 0.0f;
+            x = 0.0f;
+            y = 0.0f;
+            z = 0.0f;
+        } else {
+            amag = 1.0f/amag;
+            mag = (float)Math.sin(a.angle/2.0);
+            w = (float)Math.cos(a.angle/2.0);
+            x = a.x*amag*mag;
+            y = a.y*amag*mag;
+            z = a.z*amag*mag;
+        }
     }
-    
+
+    /** 
+     * See Game Programming Gems 2.10. 
+     * @param v0 must be normalized
+     * @param v1 must be normalized
+     */
+    public static $quat/mutableType()$ shortestArcQuat($quat/vector3Type()$ v0, $quat/vector3Type()$ v1) {
+        $quat/vector3Type()$ c = new $quat/vector3Type()$();
+        c.cross(v0, v1);
+        float d = v0.dot(v1);
+
+        if (d < -1.0 + FLT_EPSILON) {
+            // just pick any vector
+            return new $quat/mutableType()$(0.0f, 1.0f, 0.0f, 0.0f);
+        }
+
+        float s = (float) Math.sqrt((1.0f + d) * 2.0f);
+        float rs = 1.0f / s;
+
+        return new $quat/mutableType()$(c.x * rs, c.y * rs, c.z * rs, s * 0.5f);
+    }
+
+
     /**
      * Normalizes the value of this quaternion in place.
      */
