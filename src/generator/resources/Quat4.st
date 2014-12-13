@@ -88,14 +88,9 @@ public class $quat/mutableType()$ extends $quat/baseType()$ {
      * @param angle the rotation angle in radians
      */
     public $quat/mutableType()$($quat/vector3Type()$ axis, double angle) {
-        double d = axis.length();
-        $componentType$ s = $comp/cast("Math.sin(angle * 0.5) / d")$;
-        x = axis.getX() * s;
-        y = axis.getY() * s;
-        z = axis.getZ() * s;
-        w = $comp/cast("Math.cos(angle * 0.5)")$;
+        set(axis, angle);
     }
-
+    
     /**
      * @param yaw the yaw angle (in radians)
      * @param pitch the pitch angle (in radians)
@@ -214,6 +209,14 @@ public class $quat/mutableType()$ extends $quat/baseType()$ {
         this.z = 1;
     }
 
+    public void set($quat/vector3Type()$ axis, double angle) {
+        double d = axis.length();
+        $componentType$ s = $comp/cast("Math.sin(angle * 0.5) / d")$;
+        x = axis.getX() * s;
+        y = axis.getY() * s;
+        z = axis.getZ() * s;
+        w = $comp/cast("Math.cos(angle * 0.5)")$;
+    }
 
     /**
      * Sets the value of this quaternion to the rotational component of
@@ -355,31 +358,6 @@ public class $quat/mutableType()$ extends $quat/baseType()$ {
         x = -x;
         y = -y;
         z = -z;
-    }
-
-    /**
-     * Sets the value of this quaternion to the equivalent rotation
-     * of the AxisAngle argument.
-     * @param a  the AxisAngle to be emulated
-     */
-    public final void set(AxisAngle4f a)
-    {
-        float mag,amag;
-        // Quat = cos(theta/2) + sin(theta/2)(roation_axis)
-        amag = (float)Math.sqrt( a.x*a.x + a.y*a.y + a.z*a.z);
-        if (amag < EPS ) {
-            w = 0.0f;
-            x = 0.0f;
-            y = 0.0f;
-            z = 0.0f;
-        } else {
-            amag = 1.0f/amag;
-            mag = (float)Math.sin(a.angle/2.0);
-            w = (float)Math.cos(a.angle/2.0);
-            x = a.x*amag*mag;
-            y = a.y*amag*mag;
-            z = a.z*amag*mag;
-        }
     }
 
     /** 
