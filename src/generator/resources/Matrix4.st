@@ -144,8 +144,7 @@ $components:{x |
      * modified.
      * @param trans  the translational component
      */
-    public final void setTranslation($matrix/baseVector3Type()$ trans)
-    {
+    public final void setTranslation($matrix/baseVector3Type()$ trans) {
        this.m03 = trans.getX();
        this.m13 = trans.getY();
        this.m23 = trans.getZ();
@@ -997,9 +996,10 @@ $components:{x |
    * point input paramter is assumed to be one.
    * @param point  the input point to be transformed.
    */
-    public final void transformPoint($matrix/vector3Type()$ point)
-    {
-        $componentType$ x, y;
+    public final void transformPoint($matrix/vector3Type()$ point) {
+        $componentType$ x;
+        $componentType$ y;
+
         x = m00 * point.x() + m01 * point.y() + m02 * point.z() + m03;
         y = m10 * point.x() + m11 * point.y() + m12 * point.z() + m13;
         point.setZ(m20 * point.x() + m21 * point.y() + m22 * point.z() + m23);
@@ -1012,9 +1012,9 @@ $components:{x |
    * back into normal.  The fourth element of the normal is assumed to be zero.
    * @param normal   the input normal to be transformed.
    */
-    public final void transformVector($matrix/vector3Type()$ normal)
-    {
-        $componentType$ x, y;
+    public final void transformVector($matrix/vector3Type()$ normal) {
+        $componentType$ x;
+        $componentType$ y;
 
         x = m00 * normal.x() + m01 * normal.y() + m02 * normal.z();
         y = m10 * normal.x() + m11 * normal.y() + m12 * normal.z();

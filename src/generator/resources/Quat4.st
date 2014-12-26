@@ -24,7 +24,7 @@ package org.terasology.math.geom;
 public class $quat/mutableType()$ extends $quat/baseType()$ {
 
     // required in set(Matrix4 m)
-    private final static double EPS2 = 1.0e-30;
+    private static final double EPS2 = 1.0e-30;
 
     public $componentType$ x;
     public $componentType$ y;
@@ -147,11 +147,11 @@ public class $quat/mutableType()$ extends $quat/baseType()$ {
      * Sets the value of this $quat/baseType()$ to the value of $quat/mutableType()$ t1.
      * @param t1 the $quat/mutableType()$ to be copied
      */
-    public final void set($componentType$ x, $componentType$ y, $componentType$ z, $componentType$ w) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
+    public final void set($componentType$ nx, $componentType$ ny, $componentType$ nz, $componentType$ nw) {
+        this.x = nx;
+        this.y = ny;
+        this.z = nz;
+        this.w = nw;
     }
 
     /**
@@ -159,8 +159,7 @@ public class $quat/mutableType()$ extends $quat/baseType()$ {
      * the passed matrix.
      * @param m1 the matrix
      */
-    public final void set(BaseMatrix3$componentType.abbrev$ m1)
-    {
+    public final void set(BaseMatrix3$componentType.abbrev$ m1) {
         $componentType$ ww = 0.25$componentType.abbrev$ * (m1.getM00() + m1.getM11() + m1.getM22() + 1.0$componentType.abbrev$);
 
         if (ww >= 0) {
@@ -223,8 +222,7 @@ public class $quat/mutableType()$ extends $quat/baseType()$ {
      * the passed matrix.
      * @param m1 the matrix
      */
-    public final void set(BaseMatrix4$componentType.abbrev$ m1)
-    {
+    public final void set(BaseMatrix4$componentType.abbrev$ m1) {
         $componentType$ ww = 0.25$componentType.abbrev$ * (m1.getM00() + m1.getM11() + m1.getM22() + m1.getM33());
 
         if (ww >= 0) {

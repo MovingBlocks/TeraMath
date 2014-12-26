@@ -151,8 +151,7 @@ $components:{x |
      * Retrieves the translational components of this matrix.
      * @return a new vector that will receive the translational component
      */
-    public final $matrix/vector3Type()$ getTranslation()
-    {
+    public final $matrix/vector3Type()$ getTranslation() {
         $matrix/vector3Type()$ trans = new $matrix/vector3Type()$(getM03(), getM13(), getM23());
         return trans;
     }
