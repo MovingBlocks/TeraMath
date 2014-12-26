@@ -88,6 +88,18 @@ group = 'org.terasology'
 description = 'A math / geometry library'
 // project name must be defined in a separate settings.gradle file
 
+task sourceJar(type: Jar) {
+    description = "Create a JAR with all sources"
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    description = "Create a JAR with the JavaDoc for the java sources"
+    from javadoc.destinationDir
+    classifier = 'javadoc'
+}
+
 checkstyle {
     ignoreFailures = true
     configProperties.samedir = checkstyle.configFile.parentFile
