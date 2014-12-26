@@ -16,7 +16,7 @@ apply plugin: 'findbugs'
 
 // gradle wrapper version
 wrapper {
-    gradleVersion '1.10'
+    gradleVersion '2.1'
 }
 
 ext {
@@ -52,11 +52,11 @@ sourceSets {
 // Primary dependencies definition
 dependencies {
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.7'
-    compile group: 'com.google.guava', name: 'guava', version: '15.0'
+    compile group: 'com.google.guava', name: 'guava', version: '18.0'
     compile group: 'org.antlr', name: 'ST4', version: '4.0.7'
     
     generatorCompile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.7'
-    generatorCompile group: 'com.google.guava', name: 'guava', version: '15.0'
+    generatorCompile group: 'com.google.guava', name: 'guava', version: '18.0'
     generatorCompile group: 'org.antlr', name: 'ST4', version: '4.0.7'
 
     // These dependencies are only needed for running tests
@@ -107,11 +107,13 @@ checkstyle {
 
 pmd {
     ignoreFailures = true
-    ruleSetFiles = files("config/pmd/pmd.xml")
+    ruleSetFiles = files("$rootDir/config/pmd/pmd.xml")
+    // by default, gradle uses both ruleset file AND the rulesets. 
+    // We override the ruleSets to use only those from the file 
+    ruleSets = []
 }
 
 findbugs {
-    toolVersion = '2.0.3'
     ignoreFailures = true
     effort = 'max'
     reportLevel = 'medium'
