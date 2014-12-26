@@ -86,12 +86,7 @@ compileJava.dependsOn generateSources
 // Library and distribution config
 group = 'org.terasology'
 description = 'A math / geometry library'
-
-distributions {
-    main{
-        baseName = 'TeraMath'
-    }
-}
+// project name must be defined in a separate settings.gradle file
 
 checkstyle {
     ignoreFailures = true
