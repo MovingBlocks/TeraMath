@@ -9,14 +9,14 @@ apply plugin: 'java'
 apply plugin: 'project-report'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
-apply plugin: 'java-library-distribution'
+apply plugin: 'maven'
 apply plugin: 'checkstyle'
 apply plugin: 'pmd'
 apply plugin: 'findbugs'
 
 // gradle wrapper version
 wrapper {
-    gradleVersion '1.10'
+    gradleVersion '2.1'
 }
 
 ext {
@@ -52,11 +52,11 @@ sourceSets {
 // Primary dependencies definition
 dependencies {
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.7'
-    compile group: 'com.google.guava', name: 'guava', version: '15.0'
+    compile group: 'com.google.guava', name: 'guava', version: '18.0'
     compile group: 'org.antlr', name: 'ST4', version: '4.0.7'
     
     generatorCompile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.7'
-    generatorCompile group: 'com.google.guava', name: 'guava', version: '15.0'
+    generatorCompile group: 'com.google.guava', name: 'guava', version: '18.0'
     generatorCompile group: 'org.antlr', name: 'ST4', version: '4.0.7'
 
     // These dependencies are only needed for running tests
@@ -86,18 +86,26 @@ compileJava.dependsOn generateSources
 // Library and distribution config
 group = 'org.terasology'
 description = 'A math / geometry library'
-version = '0.1.0'
+// project name must be defined in a separate settings.gradle file
 
-// Check to see if we're running in Jenkins and in that case attach a snapshot+job build number
-if (env.BUILD_NUMBER != null) {
-    version += '-SNAPSHOT+' + env.BUILD_NUMBER
+task sourceJar(type: Jar) {
+    description = "Create a JAR with all sources"
+    from sourceSets.main.allSource
+    classifier = 'sources'
 }
 
-distributions {
-    main{
-        baseName = 'TeraMath'
-    }
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    description = "Create a JAR with the JavaDoc for the java sources"
+    from javadoc.destinationDir
+    classifier = 'javadoc'
 }
+
+// Define the artifacts we want to publish (the .pom will also be included since the Maven plugin is active)
+artifacts {
+    archives sourceJar
+    archives javadocJar
+}
+
 
 checkstyle {
     ignoreFailures = true
@@ -106,11 +114,13 @@ checkstyle {
 
 pmd {
     ignoreFailures = true
-    ruleSetFiles = files("config/pmd/pmd.xml")
+    ruleSetFiles = files("$rootDir/config/pmd/pmd.xml")
+    // by default, gradle uses both ruleset file AND the rulesets. 
+    // We override the ruleSets to use only those from the file 
+    ruleSets = []
 }
 
 findbugs {
-    toolVersion = '2.0.3'
     ignoreFailures = true
     effort = 'max'
     reportLevel = 'medium'

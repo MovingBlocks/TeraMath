@@ -26,7 +26,7 @@ $components:{x |
     /**
      * Entry at row $x.row$, column $x.col$
      */
-    private $componentType$ $x$;
+    public $componentType$ $x$;
 };separator = "\n"$
 
     /**

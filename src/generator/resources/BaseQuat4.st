@@ -29,7 +29,12 @@ public abstract class $quat/baseType()$ {
      */
     public static final $quat/immutableType()$ IDENTITY = new $quat/immutableType()$(0, 0, 0, 1);
 
-    private static final $componentType$ EPS = $comp/const("1.0e-12")$;
+    protected static final $componentType$ EPS = $comp/const("1.0e-12")$;
+    
+    /**
+     * As defined by BulletGlobals
+     */
+    protected static final float FLT_EPSILON = 1.1920929E-7f;
     
     /**
      * @return the x component
@@ -63,6 +68,22 @@ public abstract class $quat/baseType()$ {
      */
     public $quat/vector3Type()$ getAxis() {
         return new $quat/vector3Type()$(getX(), getY(), getZ());
+    }
+    
+    public $quat/vector3Type()$ rotate($quat/vector3Type()$ v) {
+        return rotate(v, new $quat/vector3Type()$());
+    }
+    
+    public $quat/vector3Type()$ rotate($quat/vector3Type()$ v, $quat/vector3Type()$ out) {
+        $quat/mutableType()$ q = new $quat/mutableType()$(this);
+        q.mul(v);
+
+        $quat/mutableType()$ tmp = new $quat/mutableType()$();
+        tmp.inverse(this);
+        q.mul(tmp);
+
+        out.set(q.x, q.y, q.z);
+        return out;
     }
     
     /**

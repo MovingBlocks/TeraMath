@@ -68,9 +68,8 @@ $endif$
      * @param v1 the other vector
      * @return the dot product of this and other
      */
-    public final double dot($vector/baseType()$ other)
-    {
-        return $components:{x|this.get$x.proper$() * other.get$x.proper$()}; separator = " + "$;
+    public final float dot($vector/baseType()$ other) {
+        return (float) ($components:{x|this.get$x.proper$() * other.get$x.proper$()}; separator = " + "$);
     }
 
     /**
@@ -79,7 +78,27 @@ $endif$
     public $componentType$ lengthSquared() {
         return $components:{x| get$x.proper$() * get$x.proper$()};separator = " + "$;
     }
-    
+
+   /**
+    *   Returns the angle in radians between this vector and the vector
+    *   parameter; the return value is constrained to the range [0,PI].
+    *   @param v1    the other vector
+    *   @return   the angle in radians in the range [0,PI]
+    */
+   public final float angle($vector/baseType()$ v1) {
+      double vDot = this.dot(v1) / (this.length() * v1.length());
+
+      if (vDot < -1.0) {
+          vDot = -1.0;
+      }
+
+      if (vDot >  1.0) {
+          vDot =  1.0;
+      }
+
+      return (float) Math.acos(vDot);
+   }
+
     /**
      * @return the distance to the origin
      */

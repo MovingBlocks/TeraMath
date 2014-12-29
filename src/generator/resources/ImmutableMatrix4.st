@@ -60,6 +60,7 @@ $components:{x|
      * @param column the column number to be retrieved (zero indexed)
      * @return the value at the indexed element.
      */
+    @Override
     public final $componentType$ get(int row, int column) {
         switch (row) {
             case 0:

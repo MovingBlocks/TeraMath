@@ -26,7 +26,7 @@ $components:{x |
     /**
      * Entry at row $x.row$, column $x.col$
      */
-    private $componentType$ $x$;
+    public $componentType$ $x$;
 };separator = "\n"$
 
     /**
@@ -79,7 +79,7 @@ $components:{x |
     public $matrix/mutableType()$() {
         // no-op
     }
-    
+
    /**
      * Constructs and initializes a Matrix4d from the quaternion,
      * translation, and scale values; the scale is applied only to the
@@ -137,7 +137,19 @@ $components:{x |
         this.m32 = 0;
         this.m33 = 1;
     }
-    
+
+    /**
+     * Modifies the translational components of this matrix to the values
+     * of the Vector3f argument; the other values of this matrix are not
+     * modified.
+     * @param trans  the translational component
+     */
+    public final void setTranslation($matrix/baseVector3Type()$ trans) {
+       this.m03 = trans.getX();
+       this.m13 = trans.getY();
+       this.m23 = trans.getZ();
+    }
+
     /**
      * Retrieves the value at the specified row and column of the specified
      * matrix.
@@ -822,6 +834,17 @@ $components:{x |
     }
 
     /**
+     * Sets the value of this matrix to the result of multiplying
+     * the two argument matrices together.
+     * @param m1 the first matrix
+     * @param m2 the second matrix
+     */
+    public final void mul($matrix/baseType()$ m1, $matrix/baseType()$ m2) {
+        set(m1);
+        mul(m2);
+    }
+
+    /**
       * Sets the value of this matrix to the result of multiplying itself
       * with matrix m1.
       * @param m1 the other matrix
@@ -965,6 +988,50 @@ $components:{x |
                 + m32 * vec.getZ() + m33 * vec.getW());
 
         vec.set(x, y, z, w);
+    }
+
+  /**
+   * Transforms the point parameter with this Matrix4f and
+   * places the result back into point.  The fourth element of the
+   * point input paramter is assumed to be one.
+   * @param point  the input point to be transformed.
+   */
+    public final void transformPoint($matrix/vector3Type()$ point) {
+        $componentType$ x;
+        $componentType$ y;
+
+        x = m00 * point.x() + m01 * point.y() + m02 * point.z() + m03;
+        y = m10 * point.x() + m11 * point.y() + m12 * point.z() + m13;
+        point.setZ(m20 * point.x() + m21 * point.y() + m22 * point.z() + m23);
+        point.setX(x);
+        point.setY(y);
+    }
+
+  /**
+   * Transforms the normal parameter by this transform and places the value
+   * back into normal.  The fourth element of the normal is assumed to be zero.
+   * @param normal   the input normal to be transformed.
+   */
+    public final void transformVector($matrix/vector3Type()$ normal) {
+        $componentType$ x;
+        $componentType$ y;
+
+        x = m00 * normal.x() + m01 * normal.y() + m02 * normal.z();
+        y = m10 * normal.x() + m11 * normal.y() + m12 * normal.z();
+        normal.setZ(m20 * normal.x() + m21 * normal.y() + m22 * normal.z());
+        normal.setX(x);
+        normal.setY(y);
+    }
+
+
+    /**
+     * Sets the value of this matrix to the matrix inverse
+     * of the passed (user declared) matrix m1.
+     * @param m1 the matrix to be inverted
+     */
+    public final void invert($matrix/mutableType()$ m1) {
+        set(m1);
+        invert();
     }
 
     /**
