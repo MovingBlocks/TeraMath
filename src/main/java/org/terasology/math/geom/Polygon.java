@@ -26,18 +26,18 @@ import com.google.common.collect.ImmutableList.Builder;
  */
 public final class Polygon implements Shape {
 
-    private final List<ImmutableVector2d> vertices;
+    private final List<ImmutableVector2f> vertices;
 
     /**
      * @param vertices a list of vertices (copied for internal storage)
      */
-    public Polygon(List<? extends BaseVector2d> vertices) {
-        Builder<ImmutableVector2d> bldr = ImmutableList.builder();
-        for (BaseVector2d v : vertices) {
-            if (v instanceof ImmutableVector2d) {
-                bldr.add((ImmutableVector2d) v);
+    public Polygon(List<? extends BaseVector2f> vertices) {
+        Builder<ImmutableVector2f> bldr = ImmutableList.builder();
+        for (BaseVector2f v : vertices) {
+            if (v instanceof ImmutableVector2f) {
+                bldr.add((ImmutableVector2f) v);
             } else {
-                bldr.add(new ImmutableVector2d(v));
+                bldr.add(new ImmutableVector2f(v));
             }
         }
 
@@ -69,8 +69,8 @@ public final class Polygon implements Shape {
         int index;
         int nextIndex;
         int n = vertices.size();
-        ImmutableVector2d point;
-        ImmutableVector2d next;
+        ImmutableVector2f point;
+        ImmutableVector2f next;
         double signedDoubleArea = 0;
         for (index = 0; index < n; ++index) {
             nextIndex = (index + 1) % n;
@@ -82,17 +82,17 @@ public final class Polygon implements Shape {
     }
 
     @Override
-    public boolean contains(BaseVector2d v) {
+    public boolean contains(BaseVector2f v) {
         return contains(v.x(), v.y());
     }
 
     /**
-     * @see java.awt.Polygon#contains(double, double)
+     * @see java.awt.Polygon#contains(float, float)
      * @param x the x coord
      * @param y the y coord
      * @return true if the polygon contains the point
      */
-    public boolean contains(double x, double y) {
+    public boolean contains(float x, float y) {
         int npoints = vertices.size();
 
         if (npoints <= 2) { // || !getBoundingBox().contains(x, y)) {
@@ -100,7 +100,7 @@ public final class Polygon implements Shape {
         }
         int hits = 0;
 
-        ImmutableVector2d last = vertices.get(npoints - 1);
+        ImmutableVector2f last = vertices.get(npoints - 1);
 
         double lastx = last.x();
         double lasty = last.y();
@@ -109,7 +109,7 @@ public final class Polygon implements Shape {
 
         // Walk the edges of the polygon
         for (int i = 0; i < npoints; lastx = curx, lasty = cury, i++) {
-            ImmutableVector2d cur = vertices.get(i);
+            ImmutableVector2f cur = vertices.get(i);
             curx = cur.x();
             cury = cur.y();
 

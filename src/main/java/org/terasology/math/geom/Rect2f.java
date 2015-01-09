@@ -19,24 +19,22 @@ import java.util.Objects;
 
 /**
  * @author Immortius
- * @author Martin Steiger
  */
-public final class Rect2d implements Shape {
-
-    public static final Rect2d EMPTY = new Rect2d();
+public final class Rect2f implements Shape {
+    public static final Rect2f EMPTY = new Rect2f();
 
     // position
-    private double posX;
-    private double posY;
+    private float posX;
+    private float posY;
 
     // size
-    private double w;
-    private double h;
+    private float w;
+    private float h;
 
-    private Rect2d() {
+    private Rect2f() {
     }
 
-    private Rect2d(double x, double y, double w, double h) {
+    private Rect2f(float x, float y, float w, float h) {
         this.posX = x;
         this.posY = y;
 
@@ -44,33 +42,33 @@ public final class Rect2d implements Shape {
         this.h = h;
     }
 
-    public static Rect2d createFromMinAndSize(double x, double y, double width, double height) {
+    public static Rect2f createFromMinAndSize(float x, float y, float width, float height) {
         if (width <= 0 || height <= 0) {
             return EMPTY;
         }
-        return new Rect2d(x, y, width, height);
+        return new Rect2f(x, y, width, height);
     }
 
-    public static Rect2d createFromMinAndSize(BaseVector2d min, BaseVector2d size) {
-        return createFromMinAndSize(min.getX(), min.getY(), size.getX(), size.getY());
+    public static Rect2f createFromMinAndSize(Vector2f min, Vector2f size) {
+        return createFromMinAndSize(min.x, min.y, size.x, size.y);
     }
 
-    public static Rect2d createFromMinAndMax(double minX, double minY, double maxX, double maxY) {
+    public static Rect2f createFromMinAndMax(float minX, float minY, float maxX, float maxY) {
         if (maxX <= minX || maxY <= minY) {
             return EMPTY;
         }
-        return new Rect2d(minX, minY, maxX - minX, maxY - minY);
+        return new Rect2f(minX, minY, maxX - minX, maxY - minY);
     }
 
-    public static Rect2d createFromMinAndMax(BaseVector2d min, BaseVector2d max) {
-        return createFromMinAndMax(min.getX(), min.getY(), max.getX(), max.getY());
+    public static Rect2f createFromMinAndMax(Vector2f min, Vector2f max) {
+        return createFromMinAndMax(min.x, min.y, max.x, max.y);
     }
 
-    public static Rect2d createEncompassing(BaseVector2d a, BaseVector2d b) {
-        return createEncompassing(a.getX(), a.getY(), b.getX(), b.getY());
+    public static Rect2f createEncompassing(Vector2f a, Vector2f b) {
+        return createEncompassing(a.x, a.y, b.x, b.y);
     }
 
-    public static Rect2d createEncompassing(double ax, double ay, double bx, double by) {
+    public static Rect2f createEncompassing(float ax, float ay, float bx, float by) {
         return createFromMinAndMax(Math.min(ax, bx), Math.min(ay, by), Math.max(ax, bx), Math.max(ay, by));
     }
 
@@ -81,63 +79,64 @@ public final class Rect2d implements Shape {
     /**
      * @return The smallest vector in the region
      */
-    public Vector2d min() {
-        return new Vector2d(posX, posY);
+    public Vector2f min() {
+        return new Vector2f(posX, posY);
     }
 
     /**
      * @return The size of the region
      */
-    public Vector2d size() {
-        return new Vector2d(w, h);
+    public Vector2f size() {
+        return new Vector2f(w, h);
     }
 
-    public double maxX() {
+    public float maxX() {
         return posX + w;
     }
 
-    public double minX() {
+    public float minX() {
         return posX;
     }
 
-    public double maxY() {
+
+    public float maxY() {
         return posY + h;
     }
 
-    public double minY() {
+    public float minY() {
         return posY;
     }
 
-    public double width() {
+    public float width() {
         return w;
     }
 
-    public double height() {
+    public float height() {
         return h;
     }
 
     /**
-     * @return The area of the Rect2d - width * height
+     * @return The area of the Rect2f - width * height
      */
-    public double area() {
+    public float area() {
         return w * h;
     }
 
     /**
      * @param other
-     * @return The Rect2d that is encompassed by both this and other. If they
+     * @return The Rect2f that is encompassed by both this and other. If they
      *         do not overlap then the Rect2i.EMPTY is returned
      */
-    public Rect2d intersect(Rect2d other) {
-        double minX = Math.max(posX, other.posX);
-        double maxX = Math.min(maxX(), other.maxX());
-        double minY = Math.max(posY, other.posY);
-        double maxY = Math.min(maxY(), other.maxY());
+    public Rect2f intersect(Rect2f other) {
+        float minX = Math.max(posX, other.posX);
+        float maxX = Math.min(maxX(), other.maxX());
+        float minY = Math.max(posY, other.posY);
+        float maxY = Math.min(maxY(), other.maxY());
         return createFromMinAndMax(minX, minY, maxX, maxY);
     }
 
     /**
-     * @return true if (left <= x < right) and (top <= y < bottom)
+     * @return true if (left <= pos.x < right) and (top <= pos.y < bottom)
      */
     @Override
     public boolean contains(BaseVector2f pos) {
@@ -149,15 +148,15 @@ public final class Rect2d implements Shape {
      * @param y the y coordinate
      * @return true if (left <= x < right) and (top <= y < bottom)
      */
-    public boolean contains(double x, double y) {
-        return !isEmpty() && (x >= posX) && (y >= posY) && (x < posX + w) && (y < posY + h);
+    public boolean contains(float x, float y) {
+        return !isEmpty() && (x >= posX) && (y >= posY) && (x <= posX + w) && (y <= posY + h);
     }
 
-    public boolean encompasses(Rect2d other) {
+    public boolean encompasses(Rect2f other) {
         return !isEmpty() && !other.isEmpty() && other.posX >= posX && other.posY >= posY && other.posX + other.w <= posX + w && other.posY + w <= posY + w;
     }
 
-    public boolean overlaps(Rect2d other) {
+    public boolean overlaps(Rect2f other) {
         return !isEmpty() && !other.isEmpty() && other.posX < posX + w && other.posX + other.w > posX && other.posY < posY + h && other.posY + other.h > posY;
     }
 
@@ -166,8 +165,8 @@ public final class Rect2d implements Shape {
         if (this == obj) {
             return true;
         }
-        if (obj instanceof Rect2d) {
-            Rect2d other = (Rect2d) obj;
+        if (obj instanceof Rect2f) {
+            Rect2f other = (Rect2f) obj;
             return other.posX == posX && other.posY == posY && other.w == w && other.h == h;
         }
         return false;

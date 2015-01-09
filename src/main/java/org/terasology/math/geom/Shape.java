@@ -26,5 +26,5 @@ public interface Shape {
      * @param v the point to test
      * @return true if inside, false otherwise
      */
-    boolean contains(BaseVector2d v);
+    boolean contains(BaseVector2f v);
 }

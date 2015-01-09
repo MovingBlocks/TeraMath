@@ -30,7 +30,7 @@ public class CircleTest {
     @Test
     public void testContains() {
         Circle c = new Circle(3, 5, 2);
-        assertTrue(c.contains(new Vector2d(2, 4)));
-        assertFalse(c.contains(new Vector2d(1, 4)));
+        assertTrue(c.contains(new Vector2f(2, 4)));
+        assertFalse(c.contains(new Vector2f(1, 4)));
     }
 }

@@ -25,18 +25,18 @@ import com.google.common.base.Preconditions;
  */
 public final class Circle implements Shape {
 
-    private final ImmutableVector2d center;
-    private final double radius;
+    private final ImmutableVector2f center;
+    private final float radius;
 
     /**
      * @param centerX the center X coord
      * @param centerY the center Y coord
      * @param radius the radius
      */
-    public Circle(double centerX, double centerY, double radius) {
+    public Circle(float centerX, float centerY, float radius) {
         Preconditions.checkArgument(radius >= 0, "radius must be >= 0");
 
-        this.center = new ImmutableVector2d(centerX, centerY);
+        this.center = new ImmutableVector2f(centerX, centerY);
         this.radius = radius;
     }
 
@@ -45,7 +45,7 @@ public final class Circle implements Shape {
      * @param centerY the center Y coord
      * @param radius the radius
      */
-    public Circle(BaseVector2d center, double radius) {
+    public Circle(BaseVector2f center, float radius) {
         this(center.getX(), center.getY(), radius);
     }
 
@@ -57,21 +57,21 @@ public final class Circle implements Shape {
     /**
      * @return the center of the cirle
      */
-    public ImmutableVector2d getCenter() {
+    public ImmutableVector2f getCenter() {
         return center;
     }
 
     /**
      * @return the radius of the circle
      */
-    public double getRadius() {
+    public float getRadius() {
         return radius;
     }
 
     @Override
-    public boolean contains(BaseVector2d v) {
-        double dx = v.x() - center.x();
-        double dy = v.y() - center.y();
+    public boolean contains(BaseVector2f v) {
+        float dx = v.x() - center.x();
+        float dy = v.y() - center.y();
 
         return dx * dx + dy * dy <= radius * radius;
     }
