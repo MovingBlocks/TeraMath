@@ -16,6 +16,8 @@
 
 package org.terasology.math.geom;
 
+import com.google.common.base.Preconditions;
+
 
 /**
  * Defines a circle
@@ -23,7 +25,7 @@ package org.terasology.math.geom;
  */
 public final class Circle implements Shape {
 
-    private final Vector2d center;
+    private final ImmutableVector2d center;
     private final double radius;
 
     /**
@@ -32,7 +34,9 @@ public final class Circle implements Shape {
      * @param radius the radius
      */
     public Circle(double centerX, double centerY, double radius) {
-        this.center = new Vector2d(centerX, centerY);
+        Preconditions.checkArgument(radius >= 0, "radius must be >= 0");
+
+        this.center = new ImmutableVector2d(centerX, centerY);
         this.radius = radius;
     }
 
@@ -41,9 +45,8 @@ public final class Circle implements Shape {
      * @param centerY the center Y coord
      * @param radius the radius
      */
-    public Circle(Vector2d center, double radius) {
-        this.center = center;
-        this.radius = radius;
+    public Circle(BaseVector2d center, double radius) {
+        this(center.getX(), center.getY(), radius);
     }
 
     @Override
@@ -54,7 +57,7 @@ public final class Circle implements Shape {
     /**
      * @return the center of the cirle
      */
-    public Vector2d getCenter() {
+    public ImmutableVector2d getCenter() {
         return center;
     }
 

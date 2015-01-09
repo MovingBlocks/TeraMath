@@ -22,29 +22,36 @@ package org.terasology.math.geom;
  */
 public final class LineSegment {
 
-    private final Vector2d p0;
-    private final Vector2d p1;
+    private final ImmutableVector2d p0;
+    private final ImmutableVector2d p1;
 
     /**
      * @param p0 the first point
      * @param p1 the second point
      */
-    public LineSegment(Vector2d p0, Vector2d p1) {
-        this.p0 = p0;
-        this.p1 = p1;
+    public LineSegment(BaseVector2d p0, BaseVector2d p1) {
+        this.p0 = new ImmutableVector2d(p0);
+        this.p1 = new ImmutableVector2d(p1);
     }
 
     /**
      * @return the first point
      */
-    public Vector2d getP0() {
+    public ImmutableVector2d getP0() {
         return p0;
     }
 
     /**
      * @return the second point
      */
-    public Vector2d getP1() {
+    public ImmutableVector2d getP1() {
         return p1;
+    }
+
+    /**
+     * @return the direction (not normalized)
+     */
+    public ImmutableVector2d getDir() {
+        return p1.sub(p0);
     }
 }

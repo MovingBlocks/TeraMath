@@ -16,21 +16,32 @@
 
 package org.terasology.math.geom;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableList.Builder;
 
 /**
  * @author Martin Steiger
  */
 public final class Polygon implements Shape {
 
-    private final List<Vector2d> vertices;
+    private final List<ImmutableVector2d> vertices;
 
     /**
      * @param vertices a list of vertices (copied for internal storage)
      */
-    public Polygon(List<Vector2d> vertices) {
-        this.vertices = new ArrayList<Vector2d>(vertices);
+    public Polygon(List<? extends BaseVector2d> vertices) {
+        Builder<ImmutableVector2d> bldr = ImmutableList.builder();
+        for (BaseVector2d v : vertices) {
+            if (v instanceof ImmutableVector2d) {
+                bldr.add((ImmutableVector2d) v);
+            } else {
+                bldr.add(new ImmutableVector2d(v));
+            }
+        }
+
+        this.vertices = bldr.build();
     }
 
     /**
@@ -58,8 +69,8 @@ public final class Polygon implements Shape {
         int index;
         int nextIndex;
         int n = vertices.size();
-        Vector2d point;
-        Vector2d next;
+        ImmutableVector2d point;
+        ImmutableVector2d next;
         double signedDoubleArea = 0;
         for (index = 0; index < n; ++index) {
             nextIndex = (index + 1) % n;
@@ -83,14 +94,14 @@ public final class Polygon implements Shape {
      */
     public boolean contains(double x, double y) {
         int npoints = vertices.size();
-        
+
         if (npoints <= 2) { // || !getBoundingBox().contains(x, y)) {
             return false;
         }
         int hits = 0;
 
-        Vector2d last = vertices.get(npoints - 1);
-        
+        ImmutableVector2d last = vertices.get(npoints - 1);
+
         double lastx = last.x();
         double lasty = last.y();
         double curx;
@@ -98,7 +109,7 @@ public final class Polygon implements Shape {
 
         // Walk the edges of the polygon
         for (int i = 0; i < npoints; lastx = curx, lasty = cury, i++) {
-            Vector2d cur = vertices.get(i);
+            ImmutableVector2d cur = vertices.get(i);
             curx = cur.x();
             cury = cur.y();
 
