@@ -59,7 +59,7 @@ public abstract class $quat/baseType()$ {
     /**
      * @return the rotation angle
      */
-    public double getAngle() {
+    public $componentType$ getAngle() {
         return $comp/cast("Math.acos(getW()) * 2.0")$;
     }
     

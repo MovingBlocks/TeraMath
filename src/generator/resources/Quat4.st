@@ -17,7 +17,7 @@
 package org.terasology.math.geom;
 
 /**
- * A 4-element quaternion represented by double precision floating 
+ * A 4-element quaternion represented by $componentType$ precision floating 
  * point x,y,z,w coordinates.
  * @author Martin Steiger
  */
@@ -87,7 +87,7 @@ public class $quat/mutableType()$ extends $quat/baseType()$ {
      * @param axis the axis. Length must be != 0
      * @param angle the rotation angle in radians
      */
-    public $quat/mutableType()$($quat/vector3Type()$ axis, double angle) {
+    public $quat/mutableType()$($quat/vector3Type()$ axis, $componentType$ angle) {
         set(axis, angle);
     }
     
@@ -96,20 +96,20 @@ public class $quat/mutableType()$ extends $quat/baseType()$ {
      * @param pitch the pitch angle (in radians)
      * @param roll the roll angle (in radians)
      */
-    public $quat/mutableType()$(double yaw, double pitch, double roll) {
-        double halfYaw = yaw * 0.5f;
-        double halfPitch = pitch * 0.5f;
-        double halfRoll = roll * 0.5f;
-        double cosYaw = Math.cos(halfYaw);
-        double sinYaw = Math.sin(halfYaw);
-        double cosPitch = Math.cos(halfPitch);
-        double sinPitch = Math.sin(halfPitch);
-        double cosRoll = Math.cos(halfRoll);
-        double sinRoll = Math.sin(halfRoll);
-        x = $comp/cast("cosRoll * sinPitch * cosYaw + sinRoll * cosPitch * sinYaw")$;
-        y = $comp/cast("cosRoll * cosPitch * sinYaw - sinRoll * sinPitch * cosYaw")$;
-        z = $comp/cast("sinRoll * cosPitch * cosYaw - cosRoll * sinPitch * sinYaw")$;
-        w = $comp/cast("cosRoll * cosPitch * cosYaw + sinRoll * sinPitch * sinYaw")$;
+    public $quat/mutableType()$($componentType$ yaw, $componentType$ pitch, $componentType$ roll) {
+        $componentType$ halfYaw = yaw * 0.5f;
+        $componentType$ halfPitch = pitch * 0.5f;
+        $componentType$ halfRoll = roll * 0.5f;
+        $componentType$ cosYaw = $comp/cast("Math.cos(halfYaw)")$;
+        $componentType$ sinYaw = $comp/cast("Math.sin(halfYaw)")$;
+        $componentType$ cosPitch = $comp/cast("Math.cos(halfPitch)")$;
+        $componentType$ sinPitch = $comp/cast("Math.sin(halfPitch)")$;
+        $componentType$ cosRoll = $comp/cast("Math.cos(halfRoll)")$;
+        $componentType$ sinRoll = $comp/cast("Math.sin(halfRoll)")$;
+        x = cosRoll * sinPitch * cosYaw + sinRoll * cosPitch * sinYaw;
+        y = cosRoll * cosPitch * sinYaw - sinRoll * sinPitch * cosYaw;
+        z = sinRoll * cosPitch * cosYaw - cosRoll * sinPitch * sinYaw;
+        w = cosRoll * cosPitch * cosYaw + sinRoll * sinPitch * sinYaw;
     }
 
     @Override
@@ -208,7 +208,7 @@ public class $quat/mutableType()$ extends $quat/baseType()$ {
         this.z = 1;
     }
 
-    public void set($quat/vector3Type()$ axis, double angle) {
+    public void set($quat/vector3Type()$ axis, $componentType$ angle) {
         double d = axis.length();
         $componentType$ s = $comp/cast("Math.sin(angle * 0.5) / d")$;
         x = axis.getX() * s;

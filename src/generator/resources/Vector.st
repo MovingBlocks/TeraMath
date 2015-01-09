@@ -187,6 +187,15 @@ $components:{x|
     }
 
     /**
+     * Negate each component
+     * @return this
+     */
+    public $vector/mutableType()$ negate() {
+        $components:{x| this.$x$ = -this.$x$;}; separator = "\n"$
+        return this;
+    }
+
+    /**
      * Sets the value of this vector to the vector difference
      * of vector t1 and t2 (this = t1 - t2).
      * @param t1 the first vector
