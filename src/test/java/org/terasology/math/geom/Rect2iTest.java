@@ -16,9 +16,15 @@
 package org.terasology.math.geom;
 
 
+import org.junit.Assert;
 import org.junit.Test;
 
+import com.google.common.collect.Lists;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -65,13 +71,13 @@ public class Rect2iTest {
     @Test
     public void testEncompass() {
         // encompass self
-        assertTrue(Rect2i.createFromMinAndSize(5, 5, 47, 57).encompasses(Rect2i.createFromMinAndSize(5, 5, 47, 57)));
+        assertTrue(Rect2i.createFromMinAndSize(5, 5, 47, 57).contains(Rect2i.createFromMinAndSize(5, 5, 47, 57)));
 
-        assertTrue(Rect2i.createFromMinAndSize(5, 5, 47, 57).encompasses(Rect2i.createFromMinAndSize(45, 35, 5, 20)));
-        assertTrue(Rect2i.createFromMinAndSize(5, 5, 47, 57).encompasses(Rect2i.createFromMinAndSize(50, 60, 2, 2)));
+        assertTrue(Rect2i.createFromMinAndSize(5, 5, 47, 57).contains(Rect2i.createFromMinAndSize(45, 35, 5, 20)));
+        assertTrue(Rect2i.createFromMinAndSize(5, 5, 47, 57).contains(Rect2i.createFromMinAndSize(50, 60, 2, 2)));
 
-        assertFalse(Rect2i.createFromMinAndSize(5, 5, 47, 57).encompasses(Rect2i.createFromMinAndSize(50, 60, 3, 2)));
-        assertFalse(Rect2i.createFromMinAndSize(5, 5, 47, 57).encompasses(Rect2i.createFromMinAndSize(50, 60, 2, 3)));
+        assertFalse(Rect2i.createFromMinAndSize(5, 5, 47, 57).contains(Rect2i.createFromMinAndSize(50, 60, 3, 2)));
+        assertFalse(Rect2i.createFromMinAndSize(5, 5, 47, 57).contains(Rect2i.createFromMinAndSize(50, 60, 2, 3)));
     }
 
     @Test
@@ -90,7 +96,7 @@ public class Rect2iTest {
     }
 
     @Test
-    public void testContains() {
+    public void testContainsPoint() {
         Rect2i a = Rect2i.createFromMinAndMax(1, 2, 3, 4);
         assertTrue(a.contains(1, 2));
         assertTrue(a.contains(2, 3));
@@ -101,17 +107,63 @@ public class Rect2iTest {
     }
 
     @Test
-    public void testTouches() {
+    public void testContainsSelf() {
         Rect2i a = Rect2i.createFromMinAndMax(1, 2, 10, 20);
-        assertTrue(a.touches(1, 2));
-        assertTrue(a.touches(10, 20));
-        assertTrue(a.touches(1, 5));
-        assertTrue(a.touches(5, 2));
-        assertTrue(a.touches(10, 5));
-        assertTrue(a.touches(5, 20));
-        assertFalse(a.touches(4, 3));
-        assertFalse(a.touches(1, 1));
-        assertFalse(a.contains(11, 20));
-        assertFalse(a.contains(10, 21));
+        assertTrue(a.contains(a));
+
+        // same behavior as AWT
+        java.awt.Rectangle awtRc = new java.awt.Rectangle(1,  2, 10, 20);
+        assertTrue(awtRc.contains(awtRc));
+    }
+
+    @Test
+    public void testContainsRect() {
+        Rect2i a = Rect2i.createFromMinAndMax(1, 2, 10, 20);
+
+        assertTrue(a.contains(Rect2i.createFromMinAndMax(5, 5, 5, 5)));
+        assertFalse(a.contains(Rect2i.createFromMinAndMax(11, 5, 35, 5)));
+        assertFalse(a.contains(Rect2i.createFromMinAndMax(1, 21, 5, 95)));
+
+        assertTrue(a.contains(Rect2i.createFromMinAndMax(1, 2, 3, 3)));
+        assertTrue(a.contains(Rect2i.createFromMinAndMax(4, 2, 8, 8)));
+        assertTrue(a.contains(Rect2i.createFromMinAndMax(1, 4, 8, 8)));
+        assertTrue(a.contains(Rect2i.createFromMinAndMax(5, 12, 9, 19)));
+        assertTrue(a.contains(Rect2i.createFromMinAndMax(5, 12, 10, 20)));
+        assertFalse(a.contains(Rect2i.createFromMinAndMax(5, 12, 10, 21)));
+        assertFalse(a.contains(Rect2i.createFromMinAndMax(5, 12, 11, 20)));
+    }
+
+    @Test
+    public void testIterator() {
+        Rect2i a = Rect2i.createFromMinAndMax(2, 3, 4, 5);
+
+        List<BaseVector2i> expected = Lists.<BaseVector2i>newArrayList(
+                new Vector2i(2, 3), new Vector2i(3, 3), new Vector2i(4, 3),
+                new Vector2i(2, 4), new Vector2i(3, 4), new Vector2i(4, 4),
+                new Vector2i(2, 5), new Vector2i(3, 5), new Vector2i(4, 5));
+
+        // we cannot compare the entire Iterable at once, because
+        // the BaseVector2i is reused for all elements
+        Iterator<BaseVector2i> iterator = expected.iterator();
+        for (BaseVector2i v : a.coords()) {
+            assertEquals(iterator.next(), v);
+        }
+    }
+
+    @Test
+    public void testIteratorOverflow() {
+        Rect2i a = Rect2i.createFromMinAndMax(2, 3, 4, 5);
+        Iterator<BaseVector2i> it = a.coords().iterator();
+        for (int i = 0; i < 9; i++) {
+            it.next();
+        }
+
+        try {
+            it.next();  // check for exception only in this call
+            Assert.fail("The method should throw NoSuchElementException now");
+        } catch (NoSuchElementException e) {
+            // this is supposed to happen
+            return;
+        }
     }
 }

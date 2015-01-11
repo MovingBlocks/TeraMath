@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 MovingBlocks
+ * Copyright 2015 MovingBlocks
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -116,18 +116,18 @@ public final class Rect2f implements Shape {
     }
 
     /**
-     * @return The area of the Rect2f - width * height
+     * @return The area - width * height
      */
     public float area() {
         return w * h;
     }
 
     /**
-     * @param other
+     * @param other the rectangle to compute the intersection with
      * @return The Rect2f that is encompassed by both this and other. If they
      *         do not overlap then the Rect2i.EMPTY is returned
      */
-    public Rect2f intersect(Rect2f other) {
+    public Rect2f intersection(Rect2f other) {
         float minX = Math.max(posX, other.posX);
         float maxX = Math.min(maxX(), other.maxX());
         float minY = Math.max(posY, other.posY);
@@ -144,20 +144,58 @@ public final class Rect2f implements Shape {
     }
 
     /**
+     * Only the top and left edge are inside, bottom and right edges are not.
      * @param x the x coordinate
      * @param y the y coordinate
      * @return true if (left <= x < right) and (top <= y < bottom)
      */
+    @Override
     public boolean contains(float x, float y) {
-        return !isEmpty() && (x >= posX) && (y >= posY) && (x <= posX + w) && (y <= posY + h);
+        return !isEmpty()
+            && (x >= posX)
+            && (y >= posY)
+            && (x < posX + w)
+            && (y < posY + h);
     }
 
-    public boolean encompasses(Rect2f other) {
-        return !isEmpty() && !other.isEmpty() && other.posX >= posX && other.posY >= posY && other.posX + other.w <= posX + w && other.posY + w <= posY + w;
+    /**
+     * A rectangle does encompass itself!
+     * @param other the other rectangle
+     * @return true if t
+     */
+    public boolean contains(Rect2f other) {
+        return !isEmpty()
+            && !other.isEmpty()
+            && other.posX >= posX
+            && other.posY >= posY
+            && other.posX + other.w <= posX + w
+            && other.posY + other.h <= posY + h;
     }
 
-    public boolean overlaps(Rect2f other) {
-        return !isEmpty() && !other.isEmpty() && other.posX < posX + w && other.posX + other.w > posX && other.posY < posY + h && other.posY + other.h > posY;
+    /**
+     * @param x the x coordinate
+     * @param y the y coordinate
+     * @param eps the epsilon
+     * @return true if the point is closer than eps to the border of the rectangle
+     */
+    public boolean touches(float x, float y, float eps) {
+        if (isEmpty()) {
+            return false;
+        }
+
+        return (Math.abs(x - posX)     < eps && y > posY - eps && y < posY + h + eps)
+            || (Math.abs(x - posX - w) < eps && y > posY - eps && y < posY + h + eps)
+            || (Math.abs(y - posY)     < eps && x > posX - eps && x < posX + h + eps)
+            || (Math.abs(y - posY - h) < eps && x > posX - eps && x < posX + w + eps);
+    }
+
+    public boolean intersects(Rect2f other) {
+        return !isEmpty()
+            && !other.isEmpty()
+            && other.posX < posX + w
+            && other.posX + other.w > posX
+            && other.posY < posY + h
+            && other.posY + other.h > posY;
     }
 
     @Override

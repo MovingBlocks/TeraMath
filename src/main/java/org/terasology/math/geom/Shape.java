@@ -23,8 +23,17 @@ package org.terasology.math.geom;
 public interface Shape {
 
     /**
-     * @param v the point to test
-     * @return true if inside, false otherwise
+     * The exact definition of <i>insideness</i> depends on the implementation
+     * @param v the position coordinates
+     * @return true if the polygon contains the point
      */
     boolean contains(BaseVector2f v);
+
+    /**
+     * The exact definition of <i>insideness</i> depends on the implementation
+     * @param x the x coord
+     * @param y the y coord
+     * @return true if the polygon contains the point
+     */
+    boolean contains(float x, float y);
 }

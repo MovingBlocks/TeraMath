@@ -19,13 +19,14 @@ import com.google.common.collect.Lists;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 /**
  * 2D Rectangle
  */
 // TODO: Review and bring into line with Region3i's api
-public final class Rect2i implements Iterable<Vector2i> {
+public final class Rect2i {
     public static final Rect2i EMPTY = new Rect2i();
 
     // position
@@ -152,12 +153,25 @@ public final class Rect2i implements Iterable<Vector2i> {
         return contains(pos.x, pos.y);
     }
 
+    /**
+     * @param x the x coordinate
+     * @param y the y coordinate
+     * @return true only if the left <= x < right and top <= y < bottom
+     */
     public boolean contains(int x, int y) {
-        return !isEmpty() && (x >= posX) && (y >= posY) && (x < posX + w) && (y < posY + h);
+        return !isEmpty()
+            && (x >= posX)
+            && (y >= posY)
+            && (x < posX + w)
+            && (y < posY + h);
     }
 
-    public boolean encompasses(Rect2i other) {
-        return !isEmpty() && other.posX >= posX && other.posY >= posY && other.posX + other.w <= posX + w && other.posY + other.h <= posY + h;
+    public boolean contains(Rect2i other) {
+        return !isEmpty()
+            && other.posX >= posX
+            && other.posY >= posY
+            && other.posX + other.w <= posX + w
+            && other.posY + other.h <= posY + h;
     }
 
     public boolean overlaps(Rect2i other) {
@@ -172,24 +186,6 @@ public final class Rect2i implements Iterable<Vector2i> {
             return minY <= maxY;
         }
         return false;
-    }
-
-    /**
-     * @return true if the vector lies exactly on one of the edges
-     */
-    public boolean touches(BaseVector2i v) {
-        return touches(v.getX(), v.getY());
-    }
-
-    /**
-     * @return true if the coords lie exactly on one of the edges
-     */
-    public boolean touches(int x, int y) {
-        return
-            (x == posX && y >= posY && y < posY + h)
-         || (x == posX + w - 1 && y >= posY && y < posY + h)
-         || (y == posY && x >= posX && x < posX + h)
-         || (y == posY + h - 1 && x >= posX && x < posX + w);
     }
 
     @Override
@@ -214,12 +210,6 @@ public final class Rect2i implements Iterable<Vector2i> {
         return String.format("(x=%d y=%d w=%d h=%d)", posX, posY, w, h);
     }
 
-    ////////
-
-    // a - b
-    // @pre a and b have the same size
-    // @return list of disjunct rects building the subtraction result (eg. L-shape)
-
     /**
      * Returns the difference between a and b - that is all parts of a that are not contained by b.
      *
@@ -229,7 +219,7 @@ public final class Rect2i implements Iterable<Vector2i> {
      */
     public static List<Rect2i> difference(Rect2i a, Rect2i b) {
         List<Rect2i> result = Lists.newArrayList();
-        if (b.encompasses(a)) {
+        if (b.contains(a)) {
             return result;
         }
         if (!a.overlaps(b)) {
@@ -270,34 +260,45 @@ public final class Rect2i implements Iterable<Vector2i> {
     }
 
     /**
-     * Provides an iterator over the positions in the Rect2i. They are iterated from min to max, x before y (so all values at minY, then minY + 1, etc)
+     * Provides an iterator over the positions in the Rect2i. They are iterated
+     * from min to max, x before y (so all values at minY, then minY + 1, etc)
+     * <br/><br/>
+     * Do <b>not</b> store the result vectors as they are reused!
      *
      * @return An iterator over all positions in the Rect2i.
      */
-    @Override
-    public Iterator<Vector2i> iterator() {
-        return new Iterator<Vector2i>() {
-
-            private Vector2i pos = new Vector2i(posX - 1, posY);
+    public Iterable<BaseVector2i> coords() {
+        return new Iterable<BaseVector2i>() {
 
             @Override
-            public boolean hasNext() {
-                return pos.getY() < maxY() || pos.getX() < maxX();
-            }
+            public Iterator<BaseVector2i> iterator() {
+                return new Iterator<BaseVector2i>() {
 
-            @Override
-            public Vector2i next() {
-                pos.x++;
-                if (pos.x > maxX()) {
-                    pos.x = posX;
-                    pos.y++;
-                }
-                return pos;
-            }
+                    private Vector2i pos = new Vector2i(posX - 1, posY);
 
-            @Override
-            public void remove() {
-                throw new UnsupportedOperationException();
+                    @Override
+                    public boolean hasNext() {
+                        return pos.getY() < maxY() || pos.getX() < maxX();
+                    }
+
+                    @Override
+                    public BaseVector2i next() {
+                        pos.x++;
+                        if (pos.x > maxX()) {
+                            pos.x = posX;
+                            pos.y++;
+                            if (pos.y > maxY()) {
+                                throw new NoSuchElementException();
+                            }
+                        }
+                        return pos;
+                    }
+
+                    @Override
+                    public void remove() {
+                        throw new UnsupportedOperationException();
+                    }
+                };
             }
         };
     }

@@ -28,44 +28,48 @@ public final class Polygon implements Shape {
 
     private final List<ImmutableVector2f> vertices;
 
+    private Polygon(List<ImmutableVector2f> vertices) {
+        this.vertices = vertices;
+    }
+
     /**
-     * @param vertices a list of vertices (copied for internal storage)
+     * @param vertices a list of vertices (vertices are copied)
      */
-    public Polygon(List<? extends BaseVector2f> vertices) {
+    public static Polygon createCopy(List<Vector2f> vertices) {
         Builder<ImmutableVector2f> bldr = ImmutableList.builder();
         for (BaseVector2f v : vertices) {
-            if (v instanceof ImmutableVector2f) {
-                bldr.add((ImmutableVector2f) v);
-            } else {
-                bldr.add(new ImmutableVector2f(v));
-            }
+            bldr.add(new ImmutableVector2f(v));
         }
 
-        this.vertices = bldr.build();
+        return new Polygon(bldr.build());
+    }
+
+    /**
+     * @param vertices a list of vertices (vertices are directly used)
+     */
+    public static Polygon create(List<ImmutableVector2f> vertices) {
+        return new Polygon(ImmutableList.copyOf(vertices));
     }
 
     /**
      * @return the area of the polygon
      */
-    public double area() {
-        return Math.abs(signedDoubleArea() * 0.5);
+    public float area() {
+        return (float) Math.abs(signedArea());
     }
 
     /**
      * @return the winding of the polygon
      */
     public Winding winding() {
-        double signedDoubleArea = signedDoubleArea();
-        if (signedDoubleArea < 0) {
-            return Winding.CLOCKWISE;
-        }
-        if (signedDoubleArea > 0) {
-            return Winding.COUNTERCLOCKWISE;
-        }
-        return Winding.NONE;
+        double signedArea = signedArea();
+
+        return (signedArea <= 0)
+            ? Winding.CLOCKWISE
+            : Winding.COUNTERCLOCKWISE;
     }
 
-    private double signedDoubleArea() {
+    private double signedArea() {
         int index;
         int nextIndex;
         int n = vertices.size();
@@ -78,20 +82,55 @@ public final class Polygon implements Shape {
             next = vertices.get(nextIndex);
             signedDoubleArea += point.getX() * next.getY() - next.getX() * point.getY();
         }
-        return signedDoubleArea;
+        return signedDoubleArea * 0.5;
     }
 
+    /**
+     * A point is considered to lie inside a
+     * <code>Polygon</code> if and only if:
+     * <ul>
+     * <li> it lies completely
+     * inside the<code>Shape</code> boundary <i>or</i>
+     * <li>
+     * it lies exactly on the <code>Shape</code> boundary <i>and</i> the
+     * space immediately adjacent to the
+     * point in the increasing <code>X</code> direction is
+     * entirely inside the boundary <i>or</i>
+     * <li>
+     * it lies exactly on a horizontal boundary segment <b>and</b> the
+     * space immediately adjacent to the point in the
+     * increasing <code>Y</code> direction is inside the boundary.
+     * </ul>
+     * @param x the x coord
+     * @param y the y coord
+     * @return true if the polygon contains the point
+     */
     @Override
     public boolean contains(BaseVector2f v) {
         return contains(v.x(), v.y());
     }
 
     /**
-     * @see java.awt.Polygon#contains(float, float)
+     * A point is considered to lie inside a
+     * <code>Polygon</code> if and only if:
+     * <ul>
+     * <li> it lies completely
+     * inside the<code>Shape</code> boundary <i>or</i>
+     * <li>
+     * it lies exactly on the <code>Shape</code> boundary <i>and</i> the
+     * space immediately adjacent to the
+     * point in the increasing <code>X</code> direction is
+     * entirely inside the boundary <i>or</i>
+     * <li>
+     * it lies exactly on a horizontal boundary segment <b>and</b> the
+     * space immediately adjacent to the point in the
+     * increasing <code>Y</code> direction is inside the boundary.
+     * </ul>
      * @param x the x coord
      * @param y the y coord
      * @return true if the polygon contains the point
      */
+    @Override
     public boolean contains(float x, float y) {
         int npoints = vertices.size();
 
