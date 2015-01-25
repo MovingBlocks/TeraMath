@@ -260,14 +260,14 @@ public final class Rect2i {
     }
 
     /**
-     * Provides an iterator over the positions in the Rect2i. They are iterated
+     * Provides a read-only iterator over the positions in the Rect2i. They are iterated
      * from min to max, x before y (so all values at minY, then minY + 1, etc)
      * <br/><br/>
      * Do <b>not</b> store the result vectors as they are reused!
      *
      * @return An iterator over all positions in the Rect2i.
      */
-    public Iterable<BaseVector2i> coords() {
+    public Iterable<BaseVector2i> contents() {
         return new Iterable<BaseVector2i>() {
 
             @Override

@@ -145,7 +145,7 @@ public class Rect2iTest {
         // we cannot compare the entire Iterable at once, because
         // the BaseVector2i is reused for all elements
         Iterator<BaseVector2i> iterator = expected.iterator();
-        for (BaseVector2i v : a.coords()) {
+        for (BaseVector2i v : a.contents()) {
             assertEquals(iterator.next(), v);
         }
     }
@@ -153,7 +153,7 @@ public class Rect2iTest {
     @Test
     public void testIteratorOverflow() {
         Rect2i a = Rect2i.createFromMinAndMax(2, 3, 4, 5);
-        Iterator<BaseVector2i> it = a.coords().iterator();
+        Iterator<BaseVector2i> it = a.contents().iterator();
         for (int i = 0; i < 9; i++) {
             it.next();
         }
