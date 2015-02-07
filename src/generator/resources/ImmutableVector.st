@@ -41,6 +41,18 @@ public final class $vector/immutableType()$ extends $vector/baseType()$ {
         this($components:{x| other.get$x.proper$()}; separator = ", "$);
     }
 
+    /**
+     * Returns an immutable version of the provided vector.
+     * @param other the vector to use
+     */
+    public static $vector/immutableType()$ createOrUse($vector/baseType()$ other) {
+        if (other instanceof $vector/immutableType()$) {
+            return ($vector/immutableType()$) other;
+        }
+
+        return new $vector/immutableType()$(other);
+    }
+
 $components:{x|
     @Override
     public $componentType$ get$x.proper$() {
