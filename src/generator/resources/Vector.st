@@ -306,8 +306,29 @@ $components:{x|
     }
 
     /**
-     * Multiplies this with a scalar value
+     * Multiplies a point on a per-component basis.
      *
+     $components:{x| * @param value$x.proper$ the value to multiply the $x$ component with}; separator = "\n"$
+     * @return this
+     */
+    public $vector/mutableType()$ mul($comp/paramsPrefix("value")$) {
+        $components:{x| this.$x$ *= value$x.proper$;}; separator = "\n"$
+        return this;
+    }
+
+    /**
+     * Multiplies this with a scalar value
+     * This is equivalent to calling scale(value).
+     * @param value a scalar value
+     * @return this
+     */
+    public $vector/mutableType()$ mul($componentType$ value) {
+        return scale(value);
+    }
+
+    /**
+     * Multiplies this with a scalar value.
+     * This is equivalent to calling mul(value).
      * @param value a scalar value
      * @return this
      */
