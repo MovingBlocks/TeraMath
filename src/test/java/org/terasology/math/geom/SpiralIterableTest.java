@@ -41,7 +41,7 @@ public final class SpiralIterableTest {
     public void testCw1() {
         SpiralIterable spiral = SpiralIterable.clockwise(new Vector2i(3, 1), 1);
 
-        Iterator<Vector2i> iterator = spiral.iterator();
+        Iterator<BaseVector2i> iterator = spiral.iterator();
 
         List<Vector2i> expected = Arrays.asList(new Vector2i(3, 1));
 
@@ -55,7 +55,7 @@ public final class SpiralIterableTest {
         for (int rad = 0; rad < 20; rad++) {
             int count = 0;
             SpiralIterable spiral = SpiralIterable.clockwise(new Vector2i(3, 1), rad);
-            for (@SuppressWarnings("unused") Vector2i pos : spiral) {
+            for (@SuppressWarnings("unused") BaseVector2i pos : spiral) {
                 count++;
             }
             Assert.assertEquals("rad: " + rad, (rad * 2 + 1) * (rad * 2 + 1), count);
@@ -65,7 +65,7 @@ public final class SpiralIterableTest {
     @Test(expected = NoSuchElementException.class)
     public void testInvalidNext() {
         SpiralIterable spiral = SpiralIterable.clockwise(new Vector2i(3, 1), 3);
-        Iterator<Vector2i> it = spiral.iterator();
+        Iterator<BaseVector2i> it = spiral.iterator();
         while (it.hasNext()) {
             it.next();
         }
@@ -76,7 +76,7 @@ public final class SpiralIterableTest {
     public void testCcw1() {
         SpiralIterable spiral = SpiralIterable.counterClockwise(new Vector2i(3, 1), 1);
 
-        Iterator<Vector2i> iterator = spiral.iterator();
+        Iterator<BaseVector2i> iterator = spiral.iterator();
 
         List<Vector2i> expected = Arrays.asList(new Vector2i(3, 1));
 
@@ -89,7 +89,7 @@ public final class SpiralIterableTest {
     public void testCw2() {
         SpiralIterable spiral = SpiralIterable.clockwise(new Vector2i(3, 1), 2);
 
-        Iterator<Vector2i> iterator = spiral.iterator();
+        Iterator<BaseVector2i> iterator = spiral.iterator();
 
         List<Vector2i> expected = Arrays.asList(
                 new Vector2i(3, 1), new Vector2i(4, 1), new Vector2i(4, 2),
@@ -105,7 +105,7 @@ public final class SpiralIterableTest {
     public void testInfiniteCw() {
         SpiralIterable spiral = SpiralIterable.clockwise(new Vector2i(3, 1));
 
-        Iterator<Vector2i> iterator = spiral.iterator();
+        Iterator<BaseVector2i> iterator = spiral.iterator();
 
         List<Vector2i> expected = Arrays.asList(
                 new Vector2i(3, 1), new Vector2i(4, 1), new Vector2i(4, 2),
@@ -122,7 +122,7 @@ public final class SpiralIterableTest {
     public void testInfiniteCounterCw() {
         SpiralIterable spiral = SpiralIterable.counterClockwise(new Vector2i(3, 1));
 
-        Iterator<Vector2i> iterator = spiral.iterator();
+        Iterator<BaseVector2i> iterator = spiral.iterator();
 
         List<Vector2i> expected = Arrays.asList(
                 new Vector2i(3, 1), new Vector2i(4, 1), new Vector2i(4, 0),

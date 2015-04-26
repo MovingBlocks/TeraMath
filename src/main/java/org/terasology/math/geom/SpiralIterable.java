@@ -30,7 +30,7 @@ import com.google.common.base.Preconditions;
  * The iterating vector is reused. <b>Do not attempt to store the instance</b> e.g. in a collection.
  * @author Martin Steiger
  */
-public final class SpiralIterable implements Iterable<Vector2i> {
+public final class SpiralIterable implements Iterable<BaseVector2i> {
 
     /**
      * (MAX_SIDELEN * 2 + 1) ^2 must be < Integer.MAX_VALUE
@@ -96,9 +96,9 @@ public final class SpiralIterable implements Iterable<Vector2i> {
     }
 
     @Override
-    public Iterator<Vector2i> iterator() {
+    public Iterator<BaseVector2i> iterator() {
 
-        return new Iterator<Vector2i>() {
+        return new Iterator<BaseVector2i>() {
             private int radius = 1;
             private int leg;
             private int x = -1;
@@ -108,7 +108,7 @@ public final class SpiralIterable implements Iterable<Vector2i> {
             private Vector2i pos = new Vector2i();
 
             @Override
-            public Vector2i next() {
+            public BaseVector2i next() {
                 if (index >= maxArea) {
                     throw new NoSuchElementException("radius has been reached");
                 }
