@@ -33,13 +33,29 @@ public final class SpiralIterableTest {
     @Test(expected = IllegalArgumentException.class)
     public void testLengthLast() {
         int rad = 23170;
-        SpiralIterable spiral = SpiralIterable.clockwise(new Vector2i(3, 1), rad);
+        SpiralIterable spiral = SpiralIterable.clockwise(new Vector2i(3, 1)).maxRadius(rad).build();
         spiral.iterator();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testInvalidScale() {
+        SpiralIterable spiral = SpiralIterable.clockwise(new Vector2i(3, 1)).scale(0).build();
+        spiral.iterator();
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void testInvalidNext() {
+        SpiralIterable spiral = SpiralIterable.clockwise(new Vector2i(3, 1)).maxRadius(3).build();
+        Iterator<BaseVector2i> it = spiral.iterator();
+        while (it.hasNext()) {
+            it.next();
+        }
+        it.next();
     }
 
     @Test
     public void testCw1() {
-        SpiralIterable spiral = SpiralIterable.clockwise(new Vector2i(3, 1), 1);
+        SpiralIterable spiral = SpiralIterable.clockwise(new Vector2i(3, 1)).maxRadius(1).build();
 
         Iterator<BaseVector2i> iterator = spiral.iterator();
 
@@ -51,10 +67,26 @@ public final class SpiralIterableTest {
     }
 
     @Test
+    public void testScale2() {
+        SpiralIterable spiral = SpiralIterable.clockwise(new Vector2i(3, 1)).scale(2).build();
+
+        Iterator<BaseVector2i> iterator = spiral.iterator();
+
+        List<Vector2i> expected = Arrays.asList(
+                new Vector2i(3, 1), new Vector2i(5, 1), new Vector2i(5, 3),
+                new Vector2i(3, 3), new Vector2i(1, 3), new Vector2i(1, 1),
+                new Vector2i(1, -1), new Vector2i(3, -1), new Vector2i(5, -1));
+
+        for (Vector2i pt : expected) {
+            Assert.assertEquals(pt, iterator.next());
+        }
+    }
+
+    @Test
     public void testLength() {
         for (int rad = 0; rad < 20; rad++) {
             int count = 0;
-            SpiralIterable spiral = SpiralIterable.clockwise(new Vector2i(3, 1), rad);
+            SpiralIterable spiral = SpiralIterable.clockwise(new Vector2i(3, 1)).maxRadius(rad).build();
             for (@SuppressWarnings("unused") BaseVector2i pos : spiral) {
                 count++;
             }
@@ -62,19 +94,9 @@ public final class SpiralIterableTest {
         }
     }
 
-    @Test(expected = NoSuchElementException.class)
-    public void testInvalidNext() {
-        SpiralIterable spiral = SpiralIterable.clockwise(new Vector2i(3, 1), 3);
-        Iterator<BaseVector2i> it = spiral.iterator();
-        while (it.hasNext()) {
-            it.next();
-        }
-        it.next();
-    }
-
     @Test
     public void testCcw1() {
-        SpiralIterable spiral = SpiralIterable.counterClockwise(new Vector2i(3, 1), 1);
+        SpiralIterable spiral = SpiralIterable.counterClockwise(new Vector2i(3, 1)).maxRadius(1).build();
 
         Iterator<BaseVector2i> iterator = spiral.iterator();
 
@@ -87,7 +109,7 @@ public final class SpiralIterableTest {
 
     @Test
     public void testCw2() {
-        SpiralIterable spiral = SpiralIterable.clockwise(new Vector2i(3, 1), 2);
+        SpiralIterable spiral = SpiralIterable.clockwise(new Vector2i(3, 1)).maxRadius(2).build();
 
         Iterator<BaseVector2i> iterator = spiral.iterator();
 
@@ -103,7 +125,7 @@ public final class SpiralIterableTest {
 
     @Test
     public void testInfiniteCw() {
-        SpiralIterable spiral = SpiralIterable.clockwise(new Vector2i(3, 1));
+        SpiralIterable spiral = SpiralIterable.clockwise(new Vector2i(3, 1)).build();
 
         Iterator<BaseVector2i> iterator = spiral.iterator();
 
@@ -120,7 +142,7 @@ public final class SpiralIterableTest {
 
     @Test
     public void testInfiniteCounterCw() {
-        SpiralIterable spiral = SpiralIterable.counterClockwise(new Vector2i(3, 1));
+        SpiralIterable spiral = SpiralIterable.counterClockwise(new Vector2i(3, 1)).build();
 
         Iterator<BaseVector2i> iterator = spiral.iterator();
 

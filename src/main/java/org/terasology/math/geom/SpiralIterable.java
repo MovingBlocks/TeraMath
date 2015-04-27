@@ -40,18 +40,22 @@ public final class SpiralIterable implements Iterable<BaseVector2i> {
     private final Vector2i center;
     private final boolean clockwise;
     private final int maxArea;
+    private final int scale;
 
     /**
      * @param center the spiral center
-     * @param maxRadius the maximum radius of the spiral [0..23169] (inclusive)
      * @param clockwise true for clockwise iteration, false for counter-clockwise
+     * @param scale the scale of the iteration (positive integer)
+     * @param maxRadius the maximum radius of the spiral [0..23169] (inclusive)
      */
-    private SpiralIterable(Vector2i center, boolean clockwise, int maxRadius) {
+    private SpiralIterable(Vector2i center, boolean clockwise, int scale, int maxRadius) {
+        Preconditions.checkArgument(scale > 0, "scale must be > 0");
         Preconditions.checkArgument(maxRadius >= 0, "maxRadius must be >= 0");
         Preconditions.checkArgument(maxRadius <= MAX_RADIUS, "maxRadius must be <= " + MAX_RADIUS);
 
         int sideLen = maxRadius * 2 + 1;
 
+        this.scale = scale;
         this.center = center;
         this.maxArea = sideLen * sideLen;
         this.clockwise = clockwise;
@@ -62,18 +66,8 @@ public final class SpiralIterable implements Iterable<BaseVector2i> {
      * The point will be the first iterated point.
      * @param center the spiral center
      */
-    public static SpiralIterable clockwise(Vector2i center) {
-        return new SpiralIterable(center, true, MAX_RADIUS);
-    }
-
-    /**
-     * Iterates in clock-wise orientation around the given point.
-     * The point will be the first iterated point.
-     * @param maxRadius the maximum radius of the spiral [0..23169] (inclusive)
-     * @param center the spiral center
-     */
-    public static SpiralIterable clockwise(Vector2i center, int maxRadius) {
-        return new SpiralIterable(center, true, maxRadius);
+    public static Builder clockwise(Vector2i center) {
+        return new Builder(center, true);
     }
 
     /**
@@ -81,18 +75,8 @@ public final class SpiralIterable implements Iterable<BaseVector2i> {
      * The point will be the first iterated point.
      * @param center the spiral center
      */
-    public static SpiralIterable counterClockwise(Vector2i center) {
-        return new SpiralIterable(center, false, MAX_RADIUS);
-    }
-
-    /**
-     * Iterates in clock-wise orientation around the given point.
-     * The point will be the first iterated point.
-     * @param maxRadius the maximum radius of the spiral [0..23169] (inclusive)
-     * @param center the spiral center
-     */
-    public static SpiralIterable counterClockwise(Vector2i center, int maxRadius) {
-        return new SpiralIterable(center, false, maxRadius);
+    public static Builder counterClockwise(Vector2i center) {
+        return new Builder(center, false);
     }
 
     @Override
@@ -141,8 +125,10 @@ public final class SpiralIterable implements Iterable<BaseVector2i> {
                         break;
                 }
 
-                pos.set(center.getX() + x, center.getY() + (clockwise ? y : -y));
                 index++;
+                int finalX = center.getX() + x * scale;
+                int finalY = center.getY() + (clockwise ? y : -y) * scale;
+                pos.set(finalX, finalY);
                 return pos;
             }
 
@@ -156,5 +142,42 @@ public final class SpiralIterable implements Iterable<BaseVector2i> {
                 throw new UnsupportedOperationException("remove");
             }
         };
+    }
+
+    public static final class Builder {
+
+        private final Vector2i center;
+        private final boolean clockwise;
+        private int maxRadius = MAX_RADIUS;
+        private int scale = 1;
+
+        private Builder(Vector2i center, boolean clockwise) {
+            this.clockwise = clockwise;
+            this.center = center;
+        }
+
+        /**
+         * Default value is 23169.
+         * @param newRadius the maximum radius of the spiral [0..23169] (inclusive)
+         * @return this
+         */
+        public Builder maxRadius(int newRadius) {
+            this.maxRadius = newRadius;
+            return this;
+        }
+
+        /**
+         * Default value is 1.
+         * @param newScale the scale of the iteration (positive integer)
+         * @return this
+         */
+        public Builder scale(int newScale) {
+            this.scale = newScale;
+            return this;
+        }
+
+        public SpiralIterable build() {
+            return new SpiralIterable(center, clockwise, scale, maxRadius);
+        }
     }
 }
