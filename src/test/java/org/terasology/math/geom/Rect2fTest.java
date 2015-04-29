@@ -16,6 +16,7 @@
 package org.terasology.math.geom;
 
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -82,5 +83,31 @@ public class Rect2fTest {
         assertFalse(a.touches(1.6f, 2.6f, eps));
         assertFalse(a.touches(10.6f, 20.6f, eps));
         assertFalse(a.touches(9.4f, 19.4f, eps));
+    }
+
+    @Test
+    public void testDistancePoint() {
+        Rect2f rc = Rect2f.createFromMinAndMax(2, 1, 10, 20);
+        float e = 0.001f;
+
+        // corners
+        assertEquals(0, rc.distanceSquared(2, 1), e);
+        assertEquals(0, rc.distanceSquared(10, 20), e);
+
+        // inside
+        assertEquals(0, rc.distanceSquared(4, 3), e);
+        assertEquals(0, rc.distanceSquared(8, 19), e);
+
+        // edges
+        assertEquals(0, rc.distanceSquared(7, 1), e);
+        assertEquals(0, rc.distanceSquared(10, 11), e);
+
+        // outside
+        assertEquals(1, rc.distanceSquared(1, 1), e);
+        assertEquals(1, rc.distanceSquared(11, 1), e);
+        assertEquals(2 * 2 + 1 * 1, rc.distanceSquared(11, 22), e);
+        assertEquals(4 * 4 + 0 * 0, rc.distanceSquared(14, 13), e);
+        assertEquals(2 * 2 + 1 * 1, rc.distanceSquared(12, 21), e);
+        assertEquals(2 * 2 + 1 * 1, rc.distanceSquared(11, 22), e);
     }
 }
