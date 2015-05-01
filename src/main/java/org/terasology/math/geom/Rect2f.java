@@ -198,6 +198,30 @@ public final class Rect2f implements Shape {
             && other.posY + other.h > posY;
     }
 
+    /**
+     * Computes the distance to a given point
+     * @param px the point x coordinate
+     * @param py the point y coordinate
+     * @return the squared distance between point and this rectangle
+     */
+    public float distance(float px, float py) {
+        return (float) Math.sqrt(distanceSquared(px, py));
+    }
+
+    /**
+     * Computes the distance to a given point
+     * @param px the point x coordinate
+     * @param py the point y coordinate
+     * @return the squared distance between point and this rectangle
+     */
+    public float distanceSquared(float px, float py) {
+      float cx2 = posX * 2 + w;
+      float cy2 = posY * 2 + h;
+      float dx = Math.max(Math.abs(2 * px - cx2) - w, 0) / 2;
+      float dy = Math.max(Math.abs(2 * py - cy2) - h, 0) / 2;
+      return dx * dx + dy * dy;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

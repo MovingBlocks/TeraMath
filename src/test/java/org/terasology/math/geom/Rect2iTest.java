@@ -16,19 +16,18 @@
 package org.terasology.math.geom;
 
 
-import org.junit.Assert;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-import com.google.common.collect.Lists;
-
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import org.junit.Assert;
+import org.junit.Test;
+
+import com.google.common.collect.Lists;
 
 public class Rect2iTest {
 
@@ -131,6 +130,31 @@ public class Rect2iTest {
         assertTrue(a.contains(Rect2i.createFromMinAndMax(5, 12, 10, 20)));
         assertFalse(a.contains(Rect2i.createFromMinAndMax(5, 12, 10, 21)));
         assertFalse(a.contains(Rect2i.createFromMinAndMax(5, 12, 11, 20)));
+    }
+
+    @Test
+    public void testDistancePoint() {
+        Rect2i rc = Rect2i.createFromMinAndMax(2, 1, 10, 20);
+
+        // corners
+        assertEquals(0, rc.distanceSquared(2, 1));
+        assertEquals(0, rc.distanceSquared(10, 20));
+
+        // inside
+        assertEquals(0, rc.distanceSquared(4, 3));
+        assertEquals(0, rc.distanceSquared(8, 19));
+
+        // edges
+        assertEquals(0, rc.distanceSquared(7, 1));
+        assertEquals(0, rc.distanceSquared(10, 11));
+
+        // outside
+        assertEquals(1, rc.distanceSquared(1, 1));
+        assertEquals(1, rc.distanceSquared(11, 1));
+        assertEquals(2 * 2 + 1 * 1, rc.distanceSquared(11, 22));
+        assertEquals(4 * 4 + 0 * 0, rc.distanceSquared(14, 13));
+        assertEquals(2 * 2 + 1 * 1, rc.distanceSquared(12, 21));
+        assertEquals(2 * 2 + 1 * 1, rc.distanceSquared(11, 22));
     }
 
     @Test

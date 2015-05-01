@@ -146,6 +146,33 @@ public final class Rect2i {
     }
 
     /**
+     * Computes the distance to a given point
+     * @param px the point x coordinate
+     * @param py the point y coordinate
+     * @return the squared distance between point and this rectangle
+     */
+    public float distance(int px, int py) {
+        return (float) Math.sqrt(distanceSquared(px, py));
+    }
+
+    /**
+     * Computes the squared distance to a given point
+     * @param px the point x coordinate
+     * @param py the point y coordinate
+     * @return the squared distance between point and this rectangle
+     */
+    public int distanceSquared(int px, int py) {
+        // In contrast to Rect2f.distanceSquared, we compute the distance to
+        // maxX and maxY instead of x+width/y+height.
+        // This is why we need to subtract 1 from width/height.
+        int cx2 = posX * 2 + w - 1;
+        int cy2 = posY * 2 + h - 1;
+        int dx = Math.max(Math.abs(2 * px - cx2) - w + 1, 0) / 2;
+        int dy = Math.max(Math.abs(2 * py - cy2) - h + 1, 0) / 2;
+        return dx * dx + dy * dy;
+    }
+
+    /**
      * @param pos
      * @return Whether this Rect2i includes pos
      */
