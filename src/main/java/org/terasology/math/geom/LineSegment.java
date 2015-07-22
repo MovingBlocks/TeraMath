@@ -54,4 +54,49 @@ public final class LineSegment {
     public ImmutableVector2f getDir() {
         return end.sub(start);
     }
+
+    /**
+     * Computes the smallest distance to a given point in 2D space
+     * @param pointP the point to test
+     * @return the smallest distance
+     */
+    public float distanceToPoint(BaseVector2f pointP) {
+        return distanceToPoint(getStart(), getEnd(), pointP);
+    }
+
+    /**
+     * Computes the smallest distance to a given point in 2D space
+     * @param pointA the start of the line segment
+     * @param pointB the end of the line segment
+     * @param pointP the point to test
+     * @return the smallest distance
+     */
+    public static float distanceToPoint(BaseVector2f pointA, BaseVector2f pointB, BaseVector2f pointP) {
+
+        float ab0 = pointB.getX() - pointA.getX();
+        float ab1 = pointB.getY() - pointA.getY();
+
+        float ac0 = pointP.getX() - pointA.getX();
+        float ac1 = pointP.getY() - pointA.getY();
+
+        float bc0 = pointP.getX() - pointB.getX();
+        float bc1 = pointP.getY() - pointB.getY();
+
+        float dot1 = ab0 * bc0 + ab1 * bc1;
+
+        if (dot1 > 0) {
+            return pointB.distance(pointP);
+        }
+
+        float dot2 = -ab0 * ac0 - ab1 * ac1;
+
+        if (dot2 > 0) {
+            return BaseVector2f.distance(pointA, pointP);
+        }
+
+        float cross = ab0 * ac1 - ab1 * ac0;
+        float dist = cross / BaseVector2f.distance(pointA, pointB);
+
+        return Math.abs(dist);
+    }
 }
