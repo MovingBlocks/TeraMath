@@ -26,7 +26,7 @@ import java.util.Objects;
  * 2D Rectangle
  */
 // TODO: Review and bring into line with Region3i's api
-public final class Rect2i {
+public class Rect2i {
     public static final Rect2i EMPTY = new Rect2i();
 
     // position
@@ -37,10 +37,10 @@ public final class Rect2i {
     private int w;
     private int h;
 
-    private Rect2i() {
+    protected Rect2i() {
     }
 
-    private Rect2i(int x, int y, int w, int h) {
+    protected Rect2i(int x, int y, int w, int h) {
         this.posX = x;
         this.posY = y;
 
