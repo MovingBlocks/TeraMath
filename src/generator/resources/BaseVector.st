@@ -16,9 +16,12 @@
 
 package org.terasology.math.geom;
 
-$if(!componentType.discrete)$
-import com.google.common.base.Preconditions;
+$if(componentType.discrete)$
+import java.math.RoundingMode;
+
+import com.google.common.math.DoubleMath;
 $endif$
+import com.google.common.base.Preconditions;
 
 /**
  * A vector/point in $dimensions$D space
@@ -60,6 +63,23 @@ $if(!componentType.discrete)$
 
         $components:{x| $componentType$ $x$ = a.get$x.proper$() * (1 - t) + b.get$x.proper$() * t; }; separator = "\n"$
         return new $vector/mutableType()$($components;separator=", "$);
+    }
+$else$
+    /**
+     * @param a the first point
+     * @param b the second point
+     * @param t the interpolation value in the range [0..1]
+     * @param mode the rounding mode to use
+     * @return the interpolated point
+     */
+    public static $vector/mutableType()$ lerp($vector/baseType()$ a, $vector/baseType()$ b, double t, RoundingMode mode) {
+        Preconditions.checkArgument(t >= 0 && t <= 1, "t must be in range [0..1]");
+
+        $components:{x| double $x$ = a.get$x.proper$() * (1 - t) + b.get$x.proper$() * t; }; separator = "\n"$
+
+        return new $vector/mutableType()$(
+$components:{x|
+            DoubleMath.roundToInt($x$, mode)}; separator=",\n"$);
     }
 $endif$
 
