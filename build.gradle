@@ -1,3 +1,7 @@
+plugins {
+    id "org.standardout.versioneye" version "1.0.1"
+}
+
 /*
  * This is a Gradle build file:
  * - Gradle Homepage: http://gradle.org/
@@ -16,7 +20,7 @@ apply plugin: 'findbugs'
 
 // gradle wrapper version
 wrapper {
-    gradleVersion '2.1'
+    gradleVersion '2.6'
 }
 
 ext {
@@ -51,17 +55,16 @@ sourceSets {
 
 // Primary dependencies definition
 dependencies {
-    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.7'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.12'
     compile group: 'com.google.guava', name: 'guava', version: '18.0'
-    compile group: 'org.antlr', name: 'ST4', version: '4.0.7'
     
-    generatorCompile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.7'
+    generatorCompile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.12'
     generatorCompile group: 'com.google.guava', name: 'guava', version: '18.0'
-    generatorCompile group: 'org.antlr', name: 'ST4', version: '4.0.7'
+    generatorCompile group: 'org.antlr', name: 'ST4', version: '4.0.8'
 
     // These dependencies are only needed for running tests
-    testCompile group: 'junit', name: 'junit', version: '4.11'
-    testCompile group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.2'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'ch.qos.logback', name: 'logback-classic', version: '1.1.3'
 }
 
 // Set the expected module Java level (can use a higher Java to run, but should not use features from a higher Java)
@@ -82,6 +85,12 @@ task generateSources(type:JavaExec) {
 }
 
 compileJava.dependsOn generateSources
+
+clean {
+    // the clean task should delete the folder, because it is the
+    // output folder of generateSources, but it doesn't do it.
+    delete generatedSrcDir
+}
 
 // Library and distribution config
 group = 'org.terasology'
@@ -124,6 +133,11 @@ findbugs {
     ignoreFailures = true
     effort = 'max'
     reportLevel = 'medium'
+}
+
+// TODO: Temporary until javadoc has been fixed for Java 8 everywhere
+javadoc {
+    failOnError = false
 }
 
 // Setup IntelliJ-IDEA
