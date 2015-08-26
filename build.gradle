@@ -88,7 +88,7 @@ group = 'org.terasology'
 description = 'A math / geometry library'
 // project name must be defined in a separate settings.gradle file
 
-task sourceJar(type: Jar) {
+task sourceJar(type: Jar, dependsOn: generateSources) {
     description = "Create a JAR with all sources"
     from sourceSets.main.allSource
     classifier = 'sources'
