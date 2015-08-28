@@ -60,12 +60,12 @@ public final class Rect2f implements Shape {
         return new Rect2f(minX, minY, maxX - minX, maxY - minY);
     }
 
-    public static Rect2f createFromMinAndMax(Vector2f min, Vector2f max) {
-        return createFromMinAndMax(min.x, min.y, max.x, max.y);
+    public static Rect2f createFromMinAndMax(BaseVector2f min, BaseVector2f max) {
+        return createFromMinAndMax(min.getX(), min.getY(), max.getX(), max.getY());
     }
 
-    public static Rect2f createEncompassing(Vector2f a, Vector2f b) {
-        return createEncompassing(a.x, a.y, b.x, b.y);
+    public static Rect2f createEncompassing(BaseVector2f a, BaseVector2f b) {
+        return createEncompassing(a.getX(), a.getY(), b.getX(), b.getY());
     }
 
     public static Rect2f createEncompassing(float ax, float ay, float bx, float by) {

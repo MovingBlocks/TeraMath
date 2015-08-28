@@ -62,16 +62,16 @@ public class Rect2i {
         return new Rect2i(minX, minY, maxX - minX + 1, maxY - minY + 1);
     }
 
-    public static Rect2i createFromMinAndSize(Vector2i min, Vector2i size) {
-        return createFromMinAndSize(min.x, min.y, size.x, size.y);
+    public static Rect2i createFromMinAndSize(BaseVector2i min, BaseVector2i size) {
+        return createFromMinAndSize(min.getX(), min.getY(), size.getX(), size.getY());
     }
 
-    public static Rect2i createFromMinAndMax(Vector2i min, Vector2i max) {
-        return createFromMinAndMax(min.x, min.y, max.x, max.y);
+    public static Rect2i createFromMinAndMax(BaseVector2i min, BaseVector2i max) {
+        return createFromMinAndMax(min.getX(), min.getY(), max.getX(), max.getY());
     }
 
-    public static Rect2i createEncompassing(Vector2i a, Vector2i b) {
-        return createEncompassing(a.x, a.y, b.x, b.y);
+    public static Rect2i createEncompassing(BaseVector2i a, BaseVector2i b) {
+        return createEncompassing(a.getX(), a.getY(), b.getX(), b.getY());
     }
 
     public static Rect2i createEncompassing(int ax, int ay, int bx, int by) {
