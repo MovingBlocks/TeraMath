@@ -72,31 +72,51 @@ public final class LineSegment {
      * @return the smallest distance
      */
     public static float distanceToPoint(BaseVector2f pointA, BaseVector2f pointB, BaseVector2f pointP) {
+        return distanceToPoint(
+                pointA.getX(), pointA.getY(),
+                pointB.getX(), pointB.getY(),
+                pointP.getX(), pointP.getY());
+    }
+    /**
+     * Computes the smallest distance to a given point in 2D space
+     * @param pointA the start of the line segment
+     * @param pointB the end of the line segment
+     * @param pointP the point to test
+     * @return the smallest distance
+     */
+    public static float distanceToPoint(float pointAx, float pointAy, float pointBx, float pointBy,
+                                        float pointPx, float pointPy) {
 
-        float ab0 = pointB.getX() - pointA.getX();
-        float ab1 = pointB.getY() - pointA.getY();
+        float ab0 = pointBx - pointAx;
+        float ab1 = pointBy - pointAy;
 
-        float ac0 = pointP.getX() - pointA.getX();
-        float ac1 = pointP.getY() - pointA.getY();
+        float ac0 = pointPx - pointAx;
+        float ac1 = pointPy - pointAy;
 
-        float bc0 = pointP.getX() - pointB.getX();
-        float bc1 = pointP.getY() - pointB.getY();
+        float bc0 = pointPx - pointBx;
+        float bc1 = pointPy - pointBy;
 
         float dot1 = ab0 * bc0 + ab1 * bc1;
 
         if (dot1 > 0) {
-            return pointB.distance(pointP);
+            return distance(pointBx, pointBy, pointPx, pointPy);
         }
 
         float dot2 = -ab0 * ac0 - ab1 * ac1;
 
         if (dot2 > 0) {
-            return BaseVector2f.distance(pointA, pointP);
+            return distance(pointAx, pointAy, pointPx, pointPy);
         }
 
         float cross = ab0 * ac1 - ab1 * ac0;
-        float dist = cross / BaseVector2f.distance(pointA, pointB);
+        float dist = cross / distance(pointAx, pointAy, pointBx, pointBy);
 
         return Math.abs(dist);
+    }
+
+    private static float distance(float x0, float y0, float x1, float y1) {
+        float dx = x1 - x0;
+        float dy = y1 - y0;
+        return (float) Math.sqrt(dx * dx + dy * dy);
     }
 }
