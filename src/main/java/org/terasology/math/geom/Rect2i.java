@@ -26,7 +26,7 @@ import java.util.Objects;
  * 2D Rectangle
  */
 // TODO: Review and bring into line with Region3i's api
-public class Rect2i {
+public class Rect2i extends BaseRect {
     public static final Rect2i EMPTY = new Rect2i();
 
     // position
@@ -173,19 +173,12 @@ public class Rect2i {
     }
 
     /**
-     * @param pos
-     * @return Whether this Rect2i includes pos
-     */
-    public boolean contains(Vector2i pos) {
-        return contains(pos.x, pos.y);
-    }
-
-    /**
      * @param x the x coordinate
      * @param y the y coordinate
      * @return true only if the left <= x < right and top <= y < bottom
      */
-    public boolean contains(int x, int y) {
+    @Override
+    public boolean contains(float x, float y) {
         return !isEmpty()
             && (x >= posX)
             && (y >= posY)
@@ -284,6 +277,26 @@ public class Rect2i {
 
     public int sizeY() {
         return h;
+    }
+
+    @Override
+    public int outcode(float x, float y) {
+        int out = 0;
+        if (this.w <= 0) {
+            out |= OUT_LEFT | OUT_RIGHT;
+        } else if (x < this.posX) {
+            out |= OUT_LEFT;
+        } else if (x > this.posX + this.w) {
+            out |= OUT_RIGHT;
+        }
+        if (this.h <= 0) {
+            out |= OUT_TOP | OUT_BOTTOM;
+        } else if (y < this.posY) {
+            out |= OUT_TOP;
+        } else if (y > this.posY + this.h) {
+            out |= OUT_BOTTOM;
+        }
+        return out;
     }
 
     /**

@@ -31,6 +31,13 @@ public interface Shape {
 
     /**
      * The exact definition of <i>insideness</i> depends on the implementation
+     * @param v the position coordinates
+     * @return true if the polygon contains the point
+     */
+    boolean contains(BaseVector2i v);
+
+    /**
+     * The exact definition of <i>insideness</i> depends on the implementation
      * @param x the x coord
      * @param y the y coord
      * @return true if the polygon contains the point

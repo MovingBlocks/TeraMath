@@ -131,6 +131,31 @@ public final class Polygon implements Shape {
      * @return true if the polygon contains the point
      */
     @Override
+    public boolean contains(BaseVector2i v) {
+        return contains(v.x(), v.y());
+    }
+
+    /**
+     * A point is considered to lie inside a
+     * <code>Polygon</code> if and only if:
+     * <ul>
+     * <li> it lies completely
+     * inside the<code>Shape</code> boundary <i>or</i>
+     * <li>
+     * it lies exactly on the <code>Shape</code> boundary <i>and</i> the
+     * space immediately adjacent to the
+     * point in the increasing <code>X</code> direction is
+     * entirely inside the boundary <i>or</i>
+     * <li>
+     * it lies exactly on a horizontal boundary segment <b>and</b> the
+     * space immediately adjacent to the point in the
+     * increasing <code>Y</code> direction is inside the boundary.
+     * </ul>
+     * @param x the x coord
+     * @param y the y coord
+     * @return true if the polygon contains the point
+     */
+    @Override
     public boolean contains(float x, float y) {
         int npoints = vertices.size();
 

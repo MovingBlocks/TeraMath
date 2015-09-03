@@ -44,4 +44,26 @@ public class LineSegmentTest {
             Assert.assertEquals(0, LineSegment.distanceToPoint(p0, p1, ipol), 0.01);
         }
     }
+
+    @Test
+    public void equalsTest() {
+        LineSegment seg1 = new LineSegment(0, 1, 5, 5);
+        LineSegment seg2 = new LineSegment(0, 1, 5, 5);
+        LineSegment seg3 = new LineSegment(0, 1, 5, 4);
+        Assert.assertEquals(seg1, seg2);
+        Assert.assertNotEquals(seg1, seg3);
+        Assert.assertNotEquals(seg2, seg3);
+    }
+
+    @Test
+    public void intersectionTest() {
+        Rect2i rc = Rect2i.createFromMinAndMax(1, 2, 10, 20);
+        Assert.assertEquals(new LineSegment(5, 6, 10, 12), new LineSegment(5, 6, 10, 12).getClipped(rc));
+        Assert.assertEquals(new LineSegment(1, 2, 5, 6), new LineSegment(0, 1, 5, 6).getClipped(rc));
+        Assert.assertEquals(new LineSegment(3, 4, 8, 9), new LineSegment(3, 4, 8, 9).getClipped(rc));
+        Assert.assertEquals(new LineSegment(1, 5, 10, 5), new LineSegment(0, 5, 15, 5).getClipped(rc));
+        Assert.assertEquals(new LineSegment(2, 2, 2, 20), new LineSegment(2, 0, 2, 25).getClipped(rc));
+        Assert.assertEquals(new LineSegment(1, 2, 10, 2), new LineSegment(0, 2, 30, 2).getClipped(rc));
+        Assert.assertEquals(new LineSegment(10, 20, 10, 20), new LineSegment(8, 22, 12, 18).getClipped(rc));
+    }
 }

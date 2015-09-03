@@ -20,7 +20,7 @@ import java.util.Objects;
 /**
  * @author Immortius
  */
-public final class Rect2f implements Shape {
+public final class Rect2f extends BaseRect {
     public static final Rect2f EMPTY = new Rect2f();
 
     // position
@@ -220,6 +220,26 @@ public final class Rect2f implements Shape {
       float dx = Math.max(Math.abs(2 * px - cx2) - w, 0) / 2;
       float dy = Math.max(Math.abs(2 * py - cy2) - h, 0) / 2;
       return dx * dx + dy * dy;
+    }
+
+    @Override
+    public int outcode(float x, float y) {
+        int out = 0;
+        if (this.w <= 0) {
+            out |= OUT_LEFT | OUT_RIGHT;
+        } else if (x < this.posX) {
+            out |= OUT_LEFT;
+        } else if (x > this.posX + this.w) {
+            out |= OUT_RIGHT;
+        }
+        if (this.h <= 0) {
+            out |= OUT_TOP | OUT_BOTTOM;
+        } else if (y < this.posY) {
+            out |= OUT_TOP;
+        } else if (y > this.posY + this.h) {
+            out |= OUT_BOTTOM;
+        }
+        return out;
     }
 
     @Override

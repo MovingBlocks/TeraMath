@@ -80,6 +80,14 @@ public final class Circle implements Shape {
      * @return true if the distance is <= radius
      */
     @Override
+    public boolean contains(BaseVector2i v) {
+        return contains(v.getX(), v.getY());
+    }
+
+    /**
+     * @return true if the distance is <= radius
+     */
+    @Override
     public boolean contains(float x, float y) {
         float dx = x - center.x();
         float dy = y - center.y();
