@@ -94,5 +94,67 @@ public final class Circle implements Shape {
 
         return dx * dx + dy * dy <= radius * radius;
     }
+
+    public boolean intersects(Rect2i rect) {
+        return intersects(center.getX(), center.getY(), radius, rect);
+    }
+
+    /**
+     * @param pos the center of the circle
+     * @param radius the radius of the circle
+     * @param rect the rectangle to test against
+     * @return true if the distance is <= radius
+     */
+    public static boolean intersects(BaseVector2i pos, float radius, Rect2i rect) {
+        return intersects(pos.getX(), pos.getY(), radius, rect);
+    }
+
+    /**
+     * @param pos the center of the circle
+     * @param radius the radius of the circle
+     * @param rect the rectangle to test against
+     * @return true if the distance is <= radius
+     */
+    public static boolean intersects(BaseVector2f pos, float radius, Rect2i rect) {
+        return intersects(pos.getX(), pos.getY(), radius, rect);
+    }
+
+    /**
+     * @param x the center x coord of the circle
+     * @param y the center y coord of the circle
+     * @param radius the radius of the circle
+     * @param rect the rectangle to test against
+     * @return true if the distance is <= radius
+     */
+    public static boolean intersects(float x, float y, float radius, Rect2i rect) {
+        if (rect.isEmpty()) {
+            return false;
+        }
+
+        float halfWidth = rect.width() * 0.5f;
+        float circleDistanceX = Math.abs(x - rect.minX() - halfWidth);
+        if (circleDistanceX > (halfWidth + radius)) {
+            return false;
+        }
+        float halfHeight = rect.height() * 0.5f;
+        float circleDistanceY = Math.abs(y - rect.minY() - halfHeight);
+        if (circleDistanceY > (halfHeight + radius)) {
+            return false;
+        }
+
+        if (circleDistanceX <= halfWidth) {
+            return true;
+        }
+
+        if (circleDistanceY <= halfHeight) {
+            return true;
+        }
+
+        return sqr(circleDistanceX - halfWidth) + sqr(circleDistanceY - halfHeight) <= sqr(radius);
+    }
+
+    private static float sqr(float f) {
+        return f * f;
+    }
 }
 
