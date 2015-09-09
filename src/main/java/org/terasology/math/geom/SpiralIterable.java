@@ -37,7 +37,7 @@ public final class SpiralIterable implements Iterable<BaseVector2i> {
      */
     private static final int MAX_RADIUS = 23169;
 
-    private final Vector2i center;
+    private final ImmutableVector2i center;
     private final boolean clockwise;
     private final int maxArea;
     private final int scale;
@@ -48,7 +48,7 @@ public final class SpiralIterable implements Iterable<BaseVector2i> {
      * @param scale the scale of the iteration (positive integer)
      * @param maxRadius the maximum radius of the spiral [0..23169] (inclusive)
      */
-    private SpiralIterable(Vector2i center, boolean clockwise, int scale, int maxRadius) {
+    private SpiralIterable(BaseVector2i center, boolean clockwise, int scale, int maxRadius) {
         Preconditions.checkArgument(scale > 0, "scale must be > 0");
         Preconditions.checkArgument(maxRadius >= 0, "maxRadius must be >= 0");
         Preconditions.checkArgument(maxRadius <= MAX_RADIUS, "maxRadius must be <= " + MAX_RADIUS);
@@ -56,7 +56,7 @@ public final class SpiralIterable implements Iterable<BaseVector2i> {
         int sideLen = maxRadius * 2 + 1;
 
         this.scale = scale;
-        this.center = center;
+        this.center = ImmutableVector2i.createOrUse(center);
         this.maxArea = sideLen * sideLen;
         this.clockwise = clockwise;
     }
@@ -66,7 +66,7 @@ public final class SpiralIterable implements Iterable<BaseVector2i> {
      * The point will be the first iterated point.
      * @param center the spiral center
      */
-    public static Builder clockwise(Vector2i center) {
+    public static Builder clockwise(BaseVector2i center) {
         return new Builder(center, true);
     }
 
@@ -75,7 +75,7 @@ public final class SpiralIterable implements Iterable<BaseVector2i> {
      * The point will be the first iterated point.
      * @param center the spiral center
      */
-    public static Builder counterClockwise(Vector2i center) {
+    public static Builder counterClockwise(BaseVector2i center) {
         return new Builder(center, false);
     }
 
@@ -146,12 +146,12 @@ public final class SpiralIterable implements Iterable<BaseVector2i> {
 
     public static final class Builder {
 
-        private final Vector2i center;
+        private final BaseVector2i center;
         private final boolean clockwise;
         private int maxRadius = MAX_RADIUS;
         private int scale = 1;
 
-        private Builder(Vector2i center, boolean clockwise) {
+        private Builder(BaseVector2i center, boolean clockwise) {
             this.clockwise = clockwise;
             this.center = center;
         }
