@@ -48,6 +48,18 @@ public class Rect2i extends BaseRect {
         this.h = h;
     }
 
+    /**
+     * Copy constructor
+     * @param other the instance to copy
+     */
+    public Rect2i(Rect2i other) {
+        this.posX = other.posX;
+        this.posY = other.posY;
+
+        this.w = other.w;
+        this.h = other.h;
+    }
+
     public static Rect2i createFromMinAndSize(int x, int y, int width, int height) {
         if (width <= 0 || height <= 0) {
             return EMPTY;
