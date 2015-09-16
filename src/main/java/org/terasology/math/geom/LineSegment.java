@@ -68,6 +68,15 @@ public final class LineSegment {
     }
 
     /**
+     * Perform a linear interpolation between the segment endpoints.
+     * @param val the interpolation factor. A value of zero return start, a value of one return end.
+     * @return the interpolated point
+     */
+    public Vector2f lerp(float val) {
+        return BaseVector2f.lerp(start, end, val);
+    }
+
+    /**
      * Computes the smallest distance to a given point in 2D space
      * @param pointP the point to test
      * @return the smallest distance
