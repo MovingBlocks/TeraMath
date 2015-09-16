@@ -82,6 +82,11 @@ public class Rect2i extends BaseRect {
         return w == 0 || h == 0;
     }
 
+    @Override
+    public Rect2f getBounds() {
+        return Rect2f.createFromMinAndSize(posX, posY, w, h);
+    }
+
     /**
      * @return The smallest vector in the region
      */

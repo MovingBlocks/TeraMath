@@ -76,6 +76,11 @@ public final class Rect2f extends BaseRect {
         return this == EMPTY;
     }
 
+    @Override
+    public Rect2f getBounds() {
+        return this;
+    }
+
     /**
      * @return The smallest vector in the region
      */

@@ -68,6 +68,12 @@ public final class Circle implements Shape {
         return radius;
     }
 
+    @Override
+    public Rect2f getBounds() {
+        float dia = radius * 2f;
+        return Rect2f.createFromMinAndSize(center.x() - radius, center.y() - radius, dia, dia);
+    }
+
     /**
      * @return true if the distance is <= radius
      */

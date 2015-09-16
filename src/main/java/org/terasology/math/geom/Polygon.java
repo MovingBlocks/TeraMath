@@ -18,6 +18,7 @@ package org.terasology.math.geom;
 
 import java.util.List;
 
+import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
 
@@ -26,9 +27,12 @@ import com.google.common.collect.ImmutableList.Builder;
  */
 public final class Polygon implements Shape {
 
-    private final List<ImmutableVector2f> vertices;
+    private final ImmutableList<ImmutableVector2f> vertices;
+    private Rect2f bbox;
 
-    private Polygon(List<ImmutableVector2f> vertices) {
+    private Polygon(ImmutableList<ImmutableVector2f> vertices) {
+        Preconditions.checkArgument(!vertices.isEmpty(), "vertices must not be empty");
+
         this.vertices = vertices;
     }
 
@@ -56,6 +60,14 @@ public final class Polygon implements Shape {
      */
     public float area() {
         return (float) Math.abs(signedArea());
+    }
+
+    @Override
+    public Rect2f getBounds() {
+        if (bbox == null) {
+            bbox = BoundingBox.compute(vertices);
+        }
+        return bbox;
     }
 
     /**

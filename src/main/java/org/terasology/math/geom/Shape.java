@@ -43,4 +43,9 @@ public interface Shape {
      * @return true if the polygon contains the point
      */
     boolean contains(float x, float y);
+
+    /**
+     * @return the bounding box of the shape
+     */
+    Rect2f getBounds();
 }
