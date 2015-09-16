@@ -263,11 +263,16 @@ public class Rect2i extends BaseRect {
         return result;
     }
 
+
     public Rect2i expand(Vector2i amount) {
+        return expand(amount.getX(), amount.getY());
+    }
+
+    public Rect2i expand(int dx, int dy) {
         Vector2i expandedMin = min();
-        expandedMin.sub(amount);
+        expandedMin.sub(dx, dy);
         Vector2i expandedMax = max();
-        expandedMax.add(amount);
+        expandedMax.add(dx, dy);
         return createFromMinAndMax(expandedMin, expandedMax);
     }
 
