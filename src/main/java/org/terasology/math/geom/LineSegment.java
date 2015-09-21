@@ -159,14 +159,14 @@ public final class LineSegment {
             if ((out1 & (BaseRect.OUT_LEFT | BaseRect.OUT_RIGHT)) != 0) {
                 float x = rc.minX();
                 if ((out1 & BaseRect.OUT_RIGHT) != 0) {
-                    x += rc.width();
+                    x = Math.nextDown(x + rc.width());
                 }
                 y1 = y1 + (x - x1) * (y2 - y1) / (x2 - x1);
                 x1 = x;
             } else {
                 float y = rc.minY();
                 if ((out1 & BaseRect.OUT_BOTTOM) != 0) {
-                    y += rc.height();
+                    y = Math.nextDown(y + rc.height());
                 }
                 x1 = x1 + (y - y1) * (x2 - x1) / (y2 - y1);
                 y1 = y;
@@ -190,9 +190,9 @@ public final class LineSegment {
         float y2 = end.getY();
 
         float minX = rect.minX();
-        float maxX = rect.maxX();
+        float maxX = Math.nextDown(rect.minX() + rect.width());
         float minY = rect.minY();
-        float maxY = rect.maxY();
+        float maxY = Math.nextDown(rect.minY() + rect.height());
 
         int f1 = rect.outcode(x1, y1);
         int f2 = rect.outcode(x2, y2);

@@ -296,14 +296,14 @@ public class Rect2i extends BaseRect {
             out |= OUT_LEFT | OUT_RIGHT;
         } else if (x < this.posX) {
             out |= OUT_LEFT;
-        } else if (x > this.posX + this.w) {
+        } else if (x >= this.posX + this.w) {
             out |= OUT_RIGHT;
         }
         if (this.h <= 0) {
             out |= OUT_TOP | OUT_BOTTOM;
         } else if (y < this.posY) {
             out |= OUT_TOP;
-        } else if (y > this.posY + this.h) {
+        } else if (y >= this.posY + this.h) {
             out |= OUT_BOTTOM;
         }
         return out;

@@ -16,6 +16,8 @@
 
 package org.terasology.math.geom;
 
+import java.util.Random;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -58,12 +60,37 @@ public class LineSegmentTest {
     @Test
     public void intersectionTest() {
         Rect2i rc = Rect2i.createFromMinAndMax(1, 2, 10, 20);
-        Assert.assertEquals(new LineSegment(5, 6, 10, 12), new LineSegment(5, 6, 10, 12).getClipped(rc));
-        Assert.assertEquals(new LineSegment(1, 2, 5, 6), new LineSegment(0, 1, 5, 6).getClipped(rc));
-        Assert.assertEquals(new LineSegment(3, 4, 8, 9), new LineSegment(3, 4, 8, 9).getClipped(rc));
-        Assert.assertEquals(new LineSegment(1, 5, 10, 5), new LineSegment(0, 5, 15, 5).getClipped(rc));
-        Assert.assertEquals(new LineSegment(2, 2, 2, 20), new LineSegment(2, 0, 2, 25).getClipped(rc));
-        Assert.assertEquals(new LineSegment(1, 2, 10, 2), new LineSegment(0, 2, 30, 2).getClipped(rc));
-        Assert.assertEquals(new LineSegment(10, 20, 10, 20), new LineSegment(8, 22, 12, 18).getClipped(rc));
+        assertSegEquals(new LineSegment(5, 6, 10, 12), new LineSegment(5, 6, 10, 12).getClipped(rc));
+        assertSegEquals(new LineSegment(1, 2, 5, 6), new LineSegment(0, 1, 5, 6).getClipped(rc));
+        assertSegEquals(new LineSegment(3, 4, 8, 9), new LineSegment(3, 4, 8, 9).getClipped(rc));
+        assertSegEquals(new LineSegment(1, 5, 10, 5), new LineSegment(0, 5, 15, 5).getClipped(rc));
+        assertSegEquals(new LineSegment(2, 2, 2, 20), new LineSegment(2, 0, 2, 25).getClipped(rc));
+        assertSegEquals(new LineSegment(1, 2, 10, 2), new LineSegment(0, 2, 30, 2).getClipped(rc));
+        assertSegEquals(new LineSegment(10, 20, 10, 20), new LineSegment(8, 23, 12, 19).getClipped(rc));
+    }
+
+    private void assertSegEquals(LineSegment l1, LineSegment l2) {
+        Assert.assertEquals(new Vector2i(l1.getStart()), new Vector2i(l2.getStart()));
+        Assert.assertEquals(new Vector2i(l1.getEnd()), new Vector2i(l2.getEnd()));
+    }
+
+    @Test
+    public void randomCuts() {
+        Rect2i rc = Rect2i.createFromMinAndSize(3, 3, 5, 5);
+        Vector2f p0 = new Vector2f();
+        Vector2f p1 = new Vector2f();
+
+        Random rng = new Random(123234);
+        for (int i = 0; i < 10000; i++) {
+            float sx = rng.nextFloat() * 10f;
+            float sy = rng.nextFloat() * 10f;
+            float dx = rng.nextFloat() * 10f;
+            float dy = rng.nextFloat() * 10f;
+            LineSegment seg = new LineSegment(sx, sy, dx, dy);
+            if (seg.intersects(rc)) {
+                seg.getClipped(rc, p0, p1);
+                Assert.assertTrue(rc.contains(p0.x, p0.y) && rc.contains(p1.x, p1.y));
+            }
+        }
     }
 }
