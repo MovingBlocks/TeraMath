@@ -16,7 +16,7 @@
 
 package org.terasology.math.geom;
 
-import java.util.Objects;
+import org.terasology.math.TeraMath;
 
 /**
  * Defines a line segment
@@ -159,14 +159,14 @@ public final class LineSegment {
             if ((out1 & (BaseRect.OUT_LEFT | BaseRect.OUT_RIGHT)) != 0) {
                 float x = rc.minX();
                 if ((out1 & BaseRect.OUT_RIGHT) != 0) {
-                    x = Math.nextDown(x + rc.width());
+                    x = TeraMath.nextDown(x + rc.width());
                 }
                 y1 = y1 + (x - x1) * (y2 - y1) / (x2 - x1);
                 x1 = x;
             } else {
                 float y = rc.minY();
                 if ((out1 & BaseRect.OUT_BOTTOM) != 0) {
-                    y = Math.nextDown(y + rc.height());
+                    y = TeraMath.nextDown(y + rc.height());
                 }
                 x1 = x1 + (y - y1) * (x2 - x1) / (y2 - y1);
                 y1 = y;
@@ -190,9 +190,9 @@ public final class LineSegment {
         float y2 = end.getY();
 
         float minX = rect.minX();
-        float maxX = Math.nextDown(rect.minX() + rect.width());
+        float maxX = TeraMath.nextDown(rect.minX() + rect.width());
         float minY = rect.minY();
-        float maxY = Math.nextDown(rect.minY() + rect.height());
+        float maxY = TeraMath.nextDown(rect.minY() + rect.height());
 
         int f1 = rect.outcode(x1, y1);
         int f2 = rect.outcode(x2, y2);
@@ -264,7 +264,11 @@ public final class LineSegment {
 
     @Override
     public int hashCode() {
-        return Objects.hash(start, end);
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + start.hashCode();
+        result = prime * result + end.hashCode();
+        return result;
     }
 
     @Override

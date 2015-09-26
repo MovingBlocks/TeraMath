@@ -20,7 +20,6 @@ import com.google.common.collect.Lists;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Objects;
 
 /**
  * 2D Rectangle
@@ -227,7 +226,13 @@ public class Rect2i extends BaseRect {
 
     @Override
     public int hashCode() {
-        return Objects.hash(posX, posY, w, h);
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + posX;
+        result = prime * result + posY;
+        result = prime * result + w;
+        result = prime * result + h;
+        return result;
     }
 
     @Override

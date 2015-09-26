@@ -631,4 +631,40 @@ public final class TeraMath {
     public static float sqr(int i) {
         return i * i;
     }
+
+    /**
+     * Returns the floating-point value adjacent to {@code d} in the direction of negative infinity.
+     * @param f  starting floating-point value
+     * @return The adjacent floating-point value closer to negative infinity.
+     * @deprecated Use {@link Math#nextDown(float)} if Java 8 is available.
+     */
+    @Deprecated
+    public static float nextDown(float f) {
+        if (Float.isNaN(f) || f == Float.NEGATIVE_INFINITY) {
+            return f;
+        } else {
+            if (f == 0.0f) {
+                return -Float.MIN_VALUE;
+            } else {
+                return Float.intBitsToFloat(Float.floatToRawIntBits(f) + ((f > 0.0f) ? -1 : 1));
+            }
+        }
+    }
+
+    /**
+     * Returns the floating-point value adjacent to {@code f} in the direction of positive infinity.
+     * @param f starting floating-point value
+     * @return The adjacent floating-point value closer to positive infinity.
+     * @deprecated Use {@link Math#nextUp(float)} if Java 8 is available.
+     */
+    @Deprecated
+    public static float nextUp(float f) {
+        if (Float.isNaN(f) || f == Float.POSITIVE_INFINITY) {
+            return f;
+        } else {
+            f += 0.0f;
+            return Float.intBitsToFloat(Float.floatToRawIntBits(f) + ((f >= 0.0f) ? 1 : -1));
+        }
+    }
+
 }

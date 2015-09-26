@@ -15,8 +15,6 @@
  */
 package org.terasology.math.geom;
 
-import java.util.Objects;
-
 /**
  * @author Immortius
  */
@@ -261,7 +259,13 @@ public final class Rect2f extends BaseRect {
 
     @Override
     public int hashCode() {
-        return Objects.hash(posX, posY, w, h);
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + Float.floatToIntBits(posX);
+        result = prime * result + Float.floatToIntBits(posY);
+        result = prime * result + Float.floatToIntBits(w);
+        result = prime * result + Float.floatToIntBits(h);
+        return result;
     }
 
     @Override
