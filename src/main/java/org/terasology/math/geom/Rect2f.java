@@ -201,6 +201,18 @@ public final class Rect2f extends BaseRect {
             && other.posY + other.h > posY;
     }
 
+    public Rect2f expand(Vector2f amount) {
+        return expand(amount.getX(), amount.getY());
+    }
+
+    public Rect2f expand(float dx, float dy) {
+        float minX = minX() - dx;
+        float minY = minY() - dy;
+        float maxX = maxX() + dx;
+        float maxY = maxY() + dy;
+        return createFromMinAndMax(minX, minY, maxX, maxY);
+    }
+
     /**
      * Computes the distance to a given point
      * @param px the point x coordinate

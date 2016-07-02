@@ -190,4 +190,14 @@ public class Rect2iTest {
             return;
         }
     }
+
+    @Test
+    public void textExpand() {
+        Rect2i rc = Rect2i.createFromMinAndMax(2, 1, 10, 20);
+        rc = rc.expand(3, 4);
+        assertEquals(-1, rc.minX());
+        assertEquals(-3, rc.minY());
+        assertEquals(13, rc.maxX());
+        assertEquals(24, rc.maxY());
+    }
 }
