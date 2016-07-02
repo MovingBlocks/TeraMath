@@ -78,6 +78,13 @@ public final class Rect2f extends BaseRect {
         return createFromMinAndSize(centerX - width * 0.5f, centerY - height * 0.5f, width, height);
     }
 
+    public static Rect2f copy(Rect2i rc) {
+        if (rc.isEmpty()) {
+            return EMPTY;
+        }
+        return new Rect2f(rc.minX(), rc.minY(), rc.width(), rc.height());
+    }
+
     public boolean isEmpty() {
         return this == EMPTY;
     }
