@@ -47,8 +47,8 @@ public final class Rect2f extends BaseRect {
         return new Rect2f(x, y, width, height);
     }
 
-    public static Rect2f createFromMinAndSize(Vector2f min, Vector2f size) {
-        return createFromMinAndSize(min.x, min.y, size.x, size.y);
+    public static Rect2f createFromMinAndSize(BaseVector2f min, BaseVector2f size) {
+        return createFromMinAndSize(min.getX(), min.getY(), size.getX(), size.getY());
     }
 
     public static Rect2f createFromMinAndMax(float minX, float minY, float maxX, float maxY) {
@@ -68,6 +68,14 @@ public final class Rect2f extends BaseRect {
 
     public static Rect2f createEncompassing(float ax, float ay, float bx, float by) {
         return createFromMinAndMax(Math.min(ax, bx), Math.min(ay, by), Math.max(ax, bx), Math.max(ay, by));
+    }
+
+    public static Rect2f createFromCenterAndSize(BaseVector2f center, BaseVector2f size) {
+        return createFromCenterAndSize(center.getX(), center.getY(), size.getX(), size.getY());
+    }
+
+    public static Rect2f createFromCenterAndSize(float centerX, float centerY, float width, float height) {
+        return createFromMinAndSize(centerX - width * 0.5f, centerY - height * 0.5f, width, height);
     }
 
     public boolean isEmpty() {
