@@ -16,10 +16,6 @@
 
 package org.terasology.math.geom;
 
-import org.terasology.math.geom.BaseVector2i;
-import org.terasology.math.geom.Rect2f;
-import org.terasology.math.geom.Vector2i;
-
 /**
  * Transforms coordinates from the source rectangle into relative coordinates
  * in the target rectangle.
@@ -34,12 +30,12 @@ public class Rect2fTransformer {
         this.target = target;
     }
 
-    public Vector2i apply(float wx, float wy) {
-        return new Vector2i(applyX(wx), applyY(wy));
+    public Vector2f apply(float wx, float wy) {
+        return new Vector2f(applyX(wx), applyY(wy));
     }
 
-    public Vector2i apply(BaseVector2i v) {
-        return new Vector2i(applyX(v.getX()), applyY(v.getY()));
+    public Vector2f apply(BaseVector2i v) {
+        return new Vector2f(applyX(v.getX()), applyY(v.getY()));
     }
 
     public float applyX(float wx) {

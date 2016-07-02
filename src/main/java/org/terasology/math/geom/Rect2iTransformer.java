@@ -16,10 +16,6 @@
 
 package org.terasology.math.geom;
 
-import org.terasology.math.geom.BaseVector2i;
-import org.terasology.math.geom.Rect2i;
-import org.terasology.math.geom.Vector2i;
-
 /**
  * Transforms coordinates from the source rectangle into relative coordinates
  * in the target rectangle.
