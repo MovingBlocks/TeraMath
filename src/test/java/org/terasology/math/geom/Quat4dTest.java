@@ -46,13 +46,13 @@ public class Quat4dTest {
     @Test
     public void testInversion() {
         Random r = new Random(1234);
-        
+
         for (int i = 0; i < 100; i++) {
             double x = r.nextDouble() * 100;
             double y = r.nextDouble() * 100;
             double z = r.nextDouble() * 100;
             double w = r.nextDouble() * 2d * Math.PI;
-            
+
             Quat4d q1 = new Quat4d(x, y, z, w);
             Quat4d q2 = new Quat4d(q1);
             q2.inverse();
@@ -60,7 +60,18 @@ public class Quat4dTest {
             assertQuat4dEquals(BaseQuat4d.IDENTITY, q1, EPSILON);
         }
     }
-    
+
+    @Test
+    public void testYawPitchRoll() {
+        float yaw = 0.7f;
+        float pitch = 0.2f;
+        float roll = 0.3f;
+        Quat4d q = new Quat4d(yaw, pitch, roll);
+        assertEquals(yaw, q.getYaw(), 0.01);
+        assertEquals(pitch, q.getPitch(), 0.01);
+        assertEquals(roll, q.getRoll(), 0.01);
+    }
+
     private static void assertQuat4dEquals(BaseQuat4d a, BaseQuat4d b, double epsilon) {
         assertEquals("x not equal", a.getX(), b.getX(), epsilon);
         assertEquals("y not equal", a.getY(), b.getY(), epsilon);

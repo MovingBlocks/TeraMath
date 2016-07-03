@@ -62,7 +62,30 @@ public abstract class $quat/baseType()$ {
     public $componentType$ getAngle() {
         return $comp/cast("Math.acos(getW()) * 2.0")$;
     }
-    
+
+    /**
+     * @return the Euler yaw angle (heading)
+     */
+    public $componentType$ getYaw() {
+        return $comp/cast("Math.atan2(2.0 * (getW() * getY() + getZ() * getX()),
+                1.0 - 2.0 * (getX() * getX() + getY() * getY()))")$;
+    }
+
+    /**
+     * @return the Euler pitch angle (attitude)
+     */
+    public $componentType$ getPitch() {
+        return $comp/cast("Math.asin(2.0 * (getW() * getX() - getY() * getZ()))")$;
+    }
+
+    /**
+     * @return the Euler roll angle (bank)
+     */
+    public $componentType$ getRoll() {
+        return $comp/cast("Math.atan2(2.0 * (getW() * getZ() + getX() * getY()),
+                1.0 - 2.0 * (getZ() * getZ() + getX() * getX()))")$;
+    }
+
     /**
      * @return a copy of the axis components
      */
