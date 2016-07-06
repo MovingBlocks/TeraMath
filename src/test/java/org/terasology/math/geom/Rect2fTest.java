@@ -110,4 +110,16 @@ public class Rect2fTest {
         assertEquals(2 * 2 + 1 * 1, rc.distanceSquared(12, 21), e);
         assertEquals(2 * 2 + 1 * 1, rc.distanceSquared(11, 22), e);
     }
+
+    @Test
+    public void textExpand() {
+        float e = 0.001f;
+        Rect2f rc = Rect2f.createFromMinAndMax(2, 1, 10, 20);
+        rc = rc.expand(3, 4);
+        assertEquals(-1, rc.minX(), e);
+        assertEquals(-3, rc.minY(), e);
+        assertEquals(13, rc.maxX(), e);
+        assertEquals(24, rc.maxY(), e);
+    }
+
 }
