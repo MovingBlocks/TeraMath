@@ -62,14 +62,47 @@ public class Quat4dTest {
     }
 
     @Test
+    public void testRandomYawPitchRoll() {
+        Random rng = new Random(1423);
+        for (int i = 0; i < 10000; i++) {
+            double yaw = rng.nextDouble() * 6.3f - 3.15f;
+            double pitch = rng.nextDouble() * 3.14f - 1.57f;  // pitch values > 90deg result in a flipped rotation
+            double roll = rng.nextDouble() * 6.3f - 3.15f;
+            Quat4d q = new Quat4d(yaw, pitch, roll);
+            assertEqualAngle(yaw, q.getYaw(), 0.01);
+            assertEqualAngle(pitch, q.getPitch(), 0.01);
+            assertEqualAngle(roll, q.getRoll(), 0.01);
+        }
+    }
+
+    @Test
     public void testYawPitchRoll() {
-        float yaw = 0.7f;
-        float pitch = 0.2f;
-        float roll = 0.3f;
+        double yaw = 0.3;
+        double pitch = -Math.PI;
+        double roll = 0.1;
         Quat4d q = new Quat4d(yaw, pitch, roll);
-        assertEquals(yaw, q.getYaw(), 0.01);
-        assertEquals(pitch, q.getPitch(), 0.01);
-        assertEquals(roll, q.getRoll(), 0.01);
+        assertEqualAngle(yaw, q.getYaw(), 0.01);
+        assertEqualAngle(pitch, q.getPitch(), 0.01);
+        assertEqualAngle(roll, q.getRoll(), 0.01);
+    }
+
+    private void assertEqualAngle(double expected, double actual, double eps) {
+        double ne = expected;
+        double pi2 = Math.PI / 2;
+        while (ne >= pi2) {
+            ne -= Math.PI;
+        }
+        while (ne < -pi2) {
+            ne += Math.PI;
+        }
+        double na = actual;
+        while (na >= pi2) {
+            na -= Math.PI;
+        }
+        while (na < -pi2) {
+            na += Math.PI;
+        }
+        assertEquals(ne, na, eps);
     }
 
     private static void assertQuat4dEquals(BaseQuat4d a, BaseQuat4d b, double epsilon) {
