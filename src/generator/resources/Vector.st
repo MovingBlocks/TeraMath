@@ -371,11 +371,13 @@ $if(is3D)$
      * @param v1 the first vector
      * @param v2 the second vector
      */
-    public final void cross($vector/baseType()$ v1, $vector/baseType()$ v2) {
+    public final $vector/mutableType()$ cross($vector/baseType()$ v1, $vector/baseType()$ v2) {
         this.x = v1.getY() * v2.getZ() - v1.getZ() * v2.getY();
         this.y = v2.getX() * v1.getZ() - v2.getZ() * v1.getX();
         this.z = v1.getX() * v2.getY() - v1.getY() * v2.getX();
+        return this;
     }
+
 $endif$
 
 $if(!componentType.discrete)$
