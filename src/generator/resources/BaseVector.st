@@ -85,12 +85,25 @@ $endif$
 
     /**
      * Returns the dot product of this vector and vector other.
-     * @param v1 the other vector
+     * @param other the other vector
      * @return the dot product of this and other
      */
     public final float dot($vector/baseType()$ other) {
         return (float) ($components:{x|this.get$x.proper$() * other.get$x.proper$()}; separator = " + "$);
     }
+
+
+$if(!componentType.discrete)$
+    /**
+    * Returns the current vector projected onto v
+    * @param v other vector to project onto
+    *
+    */
+    public final $vector/mutableType()$ project( $vector/baseType()$ v)
+    {
+        return new $vector/mutableType()$(this).mul(this.dot(v)/ (this.length() * this.length()));
+    }
+$endif$
 
     /**
      * @return the squared distance to the origin
