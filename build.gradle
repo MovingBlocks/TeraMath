@@ -68,8 +68,8 @@ dependencies {
 }
 
 // Set the expected module Java level (can use a higher Java to run, but should not use features from a higher Java)
-sourceCompatibility = 1.6
-targetCompatibility = 1.6
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 task generateSources(type:JavaExec) {
     dependsOn compileGeneratorJava
