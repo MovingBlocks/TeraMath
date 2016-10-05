@@ -32,6 +32,18 @@ public final class Rect2f extends BaseRect {
     private Rect2f() {
     }
 
+    /**
+     * Copy constructor
+     * @param other the instance to copy
+     */
+    public Rect2f(Rect2f other) {
+        this.posX = other.posX;
+        this.posY = other.posY;
+
+        this.w = other.w;
+        this.h = other.h;
+    }
+
     private Rect2f(float x, float y, float w, float h) {
         this.posX = x;
         this.posY = y;
