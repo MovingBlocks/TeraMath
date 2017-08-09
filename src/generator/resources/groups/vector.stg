@@ -1,3 +1,4 @@
 baseType() ::= "BaseVector<dimensions><componentType.abbrev>"
 mutableType() ::= "Vector<dimensions><componentType.abbrev>"
 immutableType() ::= "ImmutableVector<dimensions><componentType.abbrev>"
+gdxVector() ::= "Vector<dimensions>"

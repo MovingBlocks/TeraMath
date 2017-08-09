@@ -16,6 +16,11 @@
 
 package org.terasology.math.geom;
 
+$if(componentType.floatType)$
+import com.badlogic.gdx.math.Matrix4;
+$endif$
+
+
 /**
  * A $componentType$ precision floating point $dimensions$x$dimensions$ $componentType$ matrix.
  * @author auto-generated
@@ -1102,6 +1107,32 @@ $components:{x |
         m33 = lm33;
     }
 
+$if(componentType.floatType)$
+    /**
+     * Converts to libgdx matrix
+     */
+    public Matrix4 asMatrix4()
+    {
+        float[] m = new float[16];
+        m[Matrix4.M00] = this.getM00();
+        m[Matrix4.M01] = this.getM01();
+        m[Matrix4.M02] = this.getM02();
+        m[Matrix4.M03] = this.getM03();
+        m[Matrix4.M10] = this.getM10();
+        m[Matrix4.M11] = this.getM11();
+        m[Matrix4.M12] = this.getM12();
+        m[Matrix4.M13] = this.getM13();
+        m[Matrix4.M20] = this.getM20();
+        m[Matrix4.M21] = this.getM21();
+        m[Matrix4.M22] = this.getM22();
+        m[Matrix4.M23] = this.getM23();
+        m[Matrix4.M30] = this.getM30();
+        m[Matrix4.M31] = this.getM31();
+        m[Matrix4.M32] = this.getM32();
+        m[Matrix4.M33] = this.getM33();
+        return new Matrix4(m);
+    }
+$endif$
 
 $components:{x|
     @Override

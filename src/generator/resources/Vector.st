@@ -22,6 +22,11 @@ import java.math.RoundingMode;
 import com.google.common.math.DoubleMath;
 $endif$
 
+
+$if(componentType.floatType)$
+    import com.badlogic.gdx.math.$vector/gdxVector()$;
+$endif$
+
 /**
  * $vector/mutableType()$ is the mutable implementation of $vector/baseType()$, for representing points or vectors in $dimensions$ dimensional space of type
  * $componentType$.
@@ -376,6 +381,17 @@ $if(is3D)$
         this.y = v2.getX() * v1.getZ() - v2.getZ() * v1.getX();
         this.z = v1.getX() * v2.getY() - v1.getY() * v2.getX();
         return this;
+    }
+
+$endif$
+
+$if(componentType.floatType)$
+    /**
+     * Converts to libgdx vector
+     */
+    public $vector/gdxVector()$ as$vector/gdxVector()$()
+    {
+        return new $vector/gdxVector()$($components:{x| $x$}; separator = ","$);
     }
 
 $endif$
