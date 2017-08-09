@@ -16,6 +16,11 @@
 
 package org.terasology.math.geom;
 
+
+$if(componentType.floatType)$
+import com.badlogic.gdx.math.Matrix3;
+$endif$
+
 /**
  * A $componentType$ precision floating point $dimensions$x$dimensions$ $componentType$ matrix.
  * @author auto-generated
@@ -771,6 +776,28 @@ $components:{x |
             throw new IllegalStateException("matrix is not invertible");
         }
     }
+
+
+
+$if(componentType.floatType)$
+    /**
+     * Converts to libgdx matrix
+     */
+     public Matrix3 asMatrix3()
+     {
+         float[] m = new float[9];
+         m[Matrix3.M00] = this.getM00();
+         m[Matrix3.M01] = this.getM01();
+         m[Matrix3.M02] = this.getM02();
+         m[Matrix3.M10] = this.getM10();
+         m[Matrix3.M11] = this.getM11();
+         m[Matrix3.M12] = this.getM12();
+         m[Matrix3.M20] = this.getM20();
+         m[Matrix3.M21] = this.getM21();
+         m[Matrix3.M22] = this.getM22();
+         return new Matrix3(m);
+     }
+$endif$
     
     /**
      * Multiply this matrix by the tuple t and place the result

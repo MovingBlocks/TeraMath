@@ -16,6 +16,10 @@
 
 package org.terasology.math.geom;
 
+$if(componentType.floatType)$
+    import com.badlogic.gdx.math.$quat/gdxQuaternion()$;
+$endif$
+
 /**
  * A 4-element quaternion represented by $componentType$ precision floating 
  * point x,y,z,w coordinates.
@@ -303,6 +307,16 @@ public class $quat/mutableType()$ extends $quat/baseType()$ {
         this.y = ry;
         this.z = rz;
     }
+
+
+$if(componentType.floatType)$
+    /**
+     * Converts to libgdx quaternion
+     */
+    public $quat/gdxQuaternion()$ as$quat/gdxQuaternion()$(){
+        return new $quat/gdxQuaternion()$(x,y,z,w);
+    }
+$endif$
 
     /**
       * Sets the value of this quaternion to the quaternion product of

@@ -27,6 +27,8 @@ ext {
     generatorClassName = 'org.terasology.math.generator.MathGeneratorRunner'
     generatedSrcDir = 'src/generated/java'
 
+    gdxVersion = "1.9.3"
+
     // Read environment variables, including variables passed by jenkins continuous integration server
     env = System.getenv()
 }
@@ -35,6 +37,8 @@ ext {
 repositories {
     // Main Maven repo
     mavenCentral()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    maven { url "https://oss.sonatype.org/content/repositories/releases/" }
 }
 
 sourceSets {
@@ -57,7 +61,9 @@ sourceSets {
 dependencies {
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.12'
     compile group: 'com.google.guava', name: 'guava', version: '18.0'
-    
+
+    compile "com.badlogicgames.gdx:gdx:$gdxVersion"
+
     generatorCompile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.12'
     generatorCompile group: 'com.google.guava', name: 'guava', version: '18.0'
     generatorCompile group: 'org.antlr', name: 'ST4', version: '4.0.8'
