@@ -101,7 +101,7 @@ $if(!componentType.discrete)$
     */
     public final $vector/mutableType()$ project( $vector/baseType()$ v)
     {
-        return new $vector/mutableType()$(this).mul(this.dot(v)/ (this.length() * this.length()));
+        return new $vector/mutableType()$(v).mul(this.dot(v)/ (v.lengthSquared()));
     }
 $endif$
 
