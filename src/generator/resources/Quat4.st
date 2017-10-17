@@ -53,18 +53,18 @@ public class $quat/mutableType()$ extends $quat/baseType()$ {
     }
 
     /**
-     * Constructs and initializes a Quat4d from the specified xyzw coordinates.
+     * Constructs and initializes a Quat4d from the specified xyzw coordinates and normalizes.
      * @param x the x coordinate
      * @param y the y coordinate
      * @param z the z coordinate
      * @param w the w scalar component
      */
     public $quat/mutableType()$($componentType$ x, $componentType$ y, $componentType$ z, $componentType$ w) {
-        $componentType$ mag = $comp/const("1.0")$ / $comp/cast("Math.sqrt(x * x + y * y + z * z + w * w)")$;
-        this.x = x * mag;
-        this.y = y * mag;
-        this.z = z * mag;
-        this.w = w * mag;
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
+        this.normalize();
     }
 
     /**
@@ -133,8 +133,8 @@ public class $quat/mutableType()$ extends $quat/baseType()$ {
     }
 
     /**
-     * Sets the value of this $quat/baseType()$ to the value of $quat/mutableType()$ t1.
-     * @param t1 the $quat/mutableType()$ to be copied
+     * Sets the value of this $quat/baseType()$ to the value of $quat/mutableType()$ other.
+     * @param other the $quat/mutableType()$ to be copied
      */
     public final void set($quat/baseType()$ other) {
         this.x = other.getX();
@@ -144,14 +144,17 @@ public class $quat/mutableType()$ extends $quat/baseType()$ {
     }
 
     /**
-     * Sets the value of this $quat/baseType()$ to the value of $quat/mutableType()$ t1.
-     * @param t1 the $quat/mutableType()$ to be copied
+     * Sets the value of this $quat/baseType()$ to the value of $quat/mutableType()$ from the specified xyzw coordinates.
+     * @param x the x coordinate
+     * @param y the y coordinate
+     * @param z the z coordinate
+     * @param w the w scalar component
      */
-    public final void set($componentType$ nx, $componentType$ ny, $componentType$ nz, $componentType$ nw) {
-        this.x = nx;
-        this.y = ny;
-        this.z = nz;
-        this.w = nw;
+    public final void set($componentType$ x, $componentType$ y, $componentType$ z, $componentType$ w) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.w = w;
     }
 
     /**
