@@ -169,6 +169,9 @@ public abstract class BaseVector2dTest {
         BaseVector2d a = createBaseVector2d(-4, 3);
         BaseVector2d b = createBaseVector2d(3, 4);
 
+        // Just to confirm that they are actually perpendicular
+        assertEquals(0.0, a.dot(b), EPSILON);
+
         assertBaseVector2dEquals(BaseVector2d.ZERO, b.project(a), EPSILON);
     }
 
