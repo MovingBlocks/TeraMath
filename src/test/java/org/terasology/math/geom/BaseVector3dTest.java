@@ -148,6 +148,44 @@ public abstract class BaseVector3dTest {
         assertEquals(30, b.distanceSquared(a), EPSILON);
     }
 
+    @Test
+    public void project() {
+        BaseVector3d a = createBaseVector3d(-4, 3, 2);
+        BaseVector3d b = createBaseVector3d(1, 2, 1);
+
+        // a.lengthSquared == 29.0;
+        // a.dot(b) == 4.0;
+        BaseVector3d projected = createBaseVector3d(-4 * 4.0 / 29.0, 3 * 4.0 / 29.0, 2 * 4.0 / 29.0);
+
+        assertBaseVector3dEquals(projected, b.project(a), EPSILON);
+    }
+
+    @Test
+    public void projectAlongAxes() {
+        BaseVector3d a = createBaseVector3d(-4, 3, 2);
+
+        BaseVector3d alongX = createBaseVector3d(1011, 0, 0);
+        assertBaseVector3dEquals(createBaseVector3d(a.getX(), 0, 0), a.project(alongX), EPSILON);
+
+        BaseVector3d alongY = createBaseVector3d(0, 333.333, 0);
+        assertBaseVector3dEquals(createBaseVector3d(0, a.getY(), 0), a.project(alongY), EPSILON);
+
+        BaseVector3d alongZ = createBaseVector3d(0, 0, 1337.1337);
+        assertBaseVector3dEquals(createBaseVector3d(0, 0, a.getZ()), a.project(alongZ), EPSILON);
+    }
+
+    @Test
+    public void projectPerpendicular() {
+        BaseVector3d a = createBaseVector3d(-4, 2, -1);
+        BaseVector3d b = createBaseVector3d(3, 9, 6);
+
+        // Just to confirm that they are actually perpendicular
+        assertEquals(0.0, a.dot(b), EPSILON);
+
+        assertBaseVector3dEquals(BaseVector3d.ZERO, b.project(a), EPSILON);
+    }
+
+
     public static void assertBaseVector3dEquals(BaseVector3d a, BaseVector3d b, double epsilon) {
         assertEquals(a.getX(), b.getX(), epsilon);
         assertEquals(a.getY(), b.getY(), epsilon);

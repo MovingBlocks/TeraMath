@@ -141,6 +141,40 @@ public abstract class BaseVector2dTest {
         assertEquals(26, b.distanceSquared(a), EPSILON);
     }
 
+    @Test
+    public void project() {
+        BaseVector2d a = createBaseVector2d(-4, 3);
+        BaseVector2d b = createBaseVector2d(1, 2);
+
+        // a.lengthSquared() == 25.0
+        // a.dot(b) == 2
+        BaseVector2d projected = createBaseVector2d(-4 * 2 / 25.0, 3 * 2 / 25.0);
+
+        assertBaseVector2dEquals(projected, b.project(a), EPSILON);
+    }
+
+    @Test
+    public void projectAlongAxes() {
+        BaseVector2d a = createBaseVector2d(-4, 3);
+
+        BaseVector2d alongX = createBaseVector2d(1011, 0);
+        assertBaseVector2dEquals(createBaseVector2d(a.getX(), 0), a.project(alongX), EPSILON);
+
+        BaseVector2d alongY = createBaseVector2d(0, 333.333);
+        assertBaseVector2dEquals(createBaseVector2d(0, a.getY()), a.project(alongY), EPSILON);
+    }
+
+    @Test
+    public void projectPerpendicular() {
+        BaseVector2d a = createBaseVector2d(-4, 3);
+        BaseVector2d b = createBaseVector2d(3, 4);
+
+        // Just to confirm that they are actually perpendicular
+        assertEquals(0.0, a.dot(b), EPSILON);
+
+        assertBaseVector2dEquals(BaseVector2d.ZERO, b.project(a), EPSILON);
+    }
+
     public static void assertBaseVector2dEquals(BaseVector2d a, BaseVector2d b, double epsilon) {
         assertEquals(a.getX(), b.getX(), epsilon);
         assertEquals(a.getY(), b.getY(), epsilon);
