@@ -1,4 +1,4 @@
-#TeraMath
+# TeraMath
 **A math library for Terasology**
 
 ### Overview
