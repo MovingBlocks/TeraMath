@@ -15,7 +15,7 @@
  */
 
 
-package org.terasology.math.geom;
+package org.terasology.math.vectors;
 
 import java.util.ArrayList;
 import org.terasology.math.vectors.VectorPool;
