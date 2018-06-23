@@ -118,6 +118,7 @@ public class MathGenerator {
         generateTuple("BaseVector", components, type);
         generateTuple("ImmutableVector", components, type);
         generateTuple("Vector", components, type);
+        generateTuple("VectorPool",components,type);
     }
 
     private void generateTuple(String template, List<Component> components, ComponentType type) throws IOException {

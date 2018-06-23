@@ -1,0 +1,2 @@
+mutableType() ::= "VectorPool<dimensions><componentType.abbrev>"
+baseType() ::= "Vector<dimensions><componentType.abbrev>"
