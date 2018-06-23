@@ -21,8 +21,8 @@ import java.util.ArrayList;
 import org.terasology.math.vectors.VectorPool;
 
 /**
- * $vector/mutableType()$ is the mutable implementation of $vector/baseType()$, for representing a pool of saved vectors in $dimensions$ dimensional space of type
- * $componentType$. This reduces the memory that has to be freed by the garbage collects by reusing an existing vector.
+ * Represents a pool of $vectorpool/baseType()$s, where $vectorpool/baseType()$s can be freed into or drawn from to reduce
+ * the amount of objects that have to be garbage collected.
  *
  * @author auto-generated
  */
@@ -31,9 +31,9 @@ public class $vectorpool/mutableType()$ implements VectorPool<$vectorpool/baseTy
     private final ArrayList<$vectorpool/baseType()$> pool = new ArrayList<$vectorpool/baseType()$>();
 
     /**
-    * returns a $vectorpool/baseType()$ to the pool
+    * Returns a $vectorpool/baseType()$ to the pool.
     *
-    * @param other the vector to return
+    * @param other The vector to return
     **/
     @Override
     public void free($vectorpool/baseType()$ other) {
@@ -41,10 +41,8 @@ public class $vectorpool/mutableType()$ implements VectorPool<$vectorpool/baseTy
     }
 
     /**
-    * retrieves a $vectorpool/baseType()$ from the pool of available $vectorpool/baseType()$ and sets all the fields to 0.
+    * Retrieves a $vectorpool/baseType()$ from the pool of available $vectorpool/baseType()$s and sets all the fields to 0.
     * A new $vectorpool/baseType()$ is created if the pool is empty.
-    *
-    * @param other the vector to return
     **/
     @Override
     public $vectorpool/baseType()$ getVector() {
@@ -52,9 +50,10 @@ public class $vectorpool/mutableType()$ implements VectorPool<$vectorpool/baseTy
     }
 
     /**
-    * retrieves a $vectorpool/baseType()$ from the pool and sets the fields based off of other.
+    * Retrieves a $vectorpool/baseType()$ from the pool and sets its value based on the value of other.
+    * A new $vectorpool/baseType()$ is created if the pool is empty.
     *
-    * @param other the vector to return
+    * @param other The vector to base retrieved vector of
     **/
     @Override
     public $vectorpool/baseType()$ getVector($vectorpool/baseType()$ other) {
@@ -62,7 +61,8 @@ public class $vectorpool/mutableType()$ implements VectorPool<$vectorpool/baseTy
     }
 
    /**
-     * retrieves a $vectorpool/baseType()$ from the pool and sets the fields based off the given components
+     * Retrieves a $vectorpool/baseType()$ from the pool and sets its value to given coordinates.
+     * A new $vectorpool/baseType()$ is created if the pool is empty.
      *
      $components:{x| * @param $x$ the $x$ component}; separator = "\n"$
      * @return The created/drawn vector.
@@ -78,12 +78,12 @@ public class $vectorpool/mutableType()$ implements VectorPool<$vectorpool/baseTy
     /**
      * Needs to be threadsafe, this is the easiest way.
      *
-     * When {@code free} is true, {@code $vectorpool/baseType()$} is freed and {@code null} is returned. When false, {@code vector3i}
+     * When {@code free} is true, {@code v} is freed and {@code null} is returned. When false, {@code v}
      * is ignored and vector is drawn and returned.
      */
-    private synchronized $vectorpool/baseType()$ synchronizedOperation (boolean free, $vectorpool/baseType()$ other) {
+    private synchronized $vectorpool/baseType()$ synchronizedOperation (boolean free, $vectorpool/baseType()$ v) {
         if (free) {
-            pool.add(other);
+            pool.add(v);
             return null;
         }
         if (pool.size() > 0) {
