@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.terasology.math.vectors;
+package org.terasology.math.geom;
 
 /**
  * Pool of Vectors, or, optionally, any object.

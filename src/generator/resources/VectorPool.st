@@ -15,10 +15,9 @@
  */
 
 
-package org.terasology.math.vectors;
+package org.terasology.math.geom;
 
 import java.util.ArrayList;
-import org.terasology.math.vectors.VectorPool;
 
 /**
  * Represents a pool of $vectorpool/baseType()$s, where $vectorpool/baseType()$s can be freed into or drawn from to reduce
@@ -27,6 +26,44 @@ import org.terasology.math.vectors.VectorPool;
  * @author auto-generated
  */
 public class $vectorpool/mutableType()$ implements VectorPool<$vectorpool/baseType()$> {
+    public static class Helper{
+        private static final $vectorpool/mutableType()$ vectorPool = new $vectorpool/mutableType()$();
+
+        /**
+         * Marks vector for reuse.
+         *
+         * Freed vectors can be gotten by another thread or method right after the call to this, and freed vectors must no
+         * longer be used in the original place.
+         *
+         * @param v $vectorpool/baseType()$ to free
+         */
+        public static void free($vectorpool/baseType()$ v) {
+            vectorPool.free(v);
+        }
+
+        /**
+         * Returns vector positioned at origin.
+         *
+         * @return New $vectorpool/baseType()$ with all dimensions set to 0.
+         */
+        public static $vectorpool/baseType()$ getVector() {
+            return vectorPool.getVector();
+        }
+
+        /**
+         * Returns copy of the passed-in vector.
+         *
+         * @param other $vectorpool/baseType()$ to make coy of
+         * @return The copied vector
+         */
+        public static $vectorpool/baseType()$ getVector($vectorpool/baseType()$ other) {
+            return vectorPool.getVector(other);
+        }
+
+        public static $vectorpool/baseType()$ getVector($components:{x| $componentType$ $x$}; separator = ", "$) {
+            return vectorPool.getVector($components:{x| $x$}; separator = ", "$);
+        }
+    }
 
     private final ArrayList<$vectorpool/baseType()$> pool = new ArrayList<$vectorpool/baseType()$>();
 
