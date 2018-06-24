@@ -18,6 +18,8 @@ package org.terasology.math.generator;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.Year;
+import java.util.Calendar;
 import java.util.List;
 
 import org.stringtemplate.v4.ST;
@@ -34,6 +36,7 @@ public class MathGenerator {
 
     private final STRawGroupDir templateDir;
     private final File outputDir;
+    private final int year;
 
     private ComponentType doubleType = new ComponentType("double", "d", false, "Double.doubleToLongBits");
     private ComponentType floatType = new ComponentType("float", "f", false, "Float.floatToIntBits");
@@ -50,6 +53,8 @@ public class MathGenerator {
 
         outputDir = new File("src/generated/java/org/terasology/math/geom");
         outputDir.mkdirs();
+
+        year = Calendar.getInstance().get(Calendar.YEAR);
     }
 
     public void createVector() throws IOException {
@@ -93,6 +98,7 @@ public class MathGenerator {
         st.add("componentType", type);
         st.add("dimensions", dims);
         st.add("components", entries);  // using the "components" name allows us to use the same template groups
+        st.add("year", year);
 
         String fname = template + dims + type.getAbbrev() + ".java";
         st.write(new File(outputDir, fname), ErrorManager.DEFAULT_ERROR_LISTENER);
@@ -108,6 +114,7 @@ public class MathGenerator {
     private void generateQuat(String template, ComponentType type) throws IOException {
         ST st = templateDir.getInstanceOf(template);
         st.add("componentType", type);
+        st.add("year", year);
 
         String fname = template + type.getAbbrev() + ".java";
         st.write(new File(outputDir, fname), ErrorManager.DEFAULT_ERROR_LISTENER);
@@ -127,6 +134,7 @@ public class MathGenerator {
         st.add("dimensions", components.size());
         st.add("components", components);
         st.add("is3D", components.size() == 3);
+        st.add("year", year);
 
         String fname = template + components.size() + type.getAbbrev() + ".java";
         st.write(new File(outputDir, fname), ErrorManager.DEFAULT_ERROR_LISTENER);
