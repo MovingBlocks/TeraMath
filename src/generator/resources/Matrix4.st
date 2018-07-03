@@ -16,6 +16,8 @@
 
 package org.terasology.math.geom;
 
+import java.nio.*;
+
 /**
  * A $componentType$ precision floating point $dimensions$x$dimensions$ $componentType$ matrix.
  * @author auto-generated
@@ -1035,6 +1037,15 @@ $components:{x |
     }
 
     /**
+    * takes the contents of the matrix and appends the results to a buffer
+    * @param buffer to append results to
+    */
+    public void appendToBuffer($matrix/bufferType()$ fb){
+      $components:{x| fb.put($x$);}; separator = "\n"$
+      fb.flip();
+    }
+
+    /**
      * Invert the matrix
      * @throws IllegalStateException if the matrix is not invertible
      */
@@ -1101,7 +1112,6 @@ $components:{x |
         m32 = lm32;
         m33 = lm33;
     }
-
 
 $components:{x|
     @Override

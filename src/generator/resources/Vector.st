@@ -53,6 +53,7 @@ public class $vector/mutableType()$ extends $vector/baseType()$ {
         this($components:{x| other.get$x.proper$()}; separator = ", "$);
     }
 
+
 $if(componentType.discrete)$
     /**
      $components:{x| * @param $x$ the $x$ component}; separator = "\n"$
@@ -378,14 +379,64 @@ $if(is3D)$
         return this;
     }
 
+
+    $if(!componentType.discrete)$
+
+    /**
+     * @return The reflection of direction against normal
+     */
+    public final $vector/mutableType()$ reflect($vector/mutableType()$ direction, $vector/mutableType()$ normal) {
+        set(normal);
+        scale(-2.0f * direction.dot(normal));
+        add(direction);
+        return this;
+    }
+
+   /**
+    * @return The reflection of direction against normal
+    */
+   public final $vector/mutableType()$ parallelComponent($vector/mutableType()$ direction, $vector/mutableType()$ normal) {
+       set(normal);
+       scale(direction.dot(normal));
+       return this;
+   }
+
+   /**
+    * @return the portion of direction that is perpendicular to normal
+    */
+   public final $vector/mutableType()$ perpendicularComponent($vector/mutableType()$ direction, $vector/mutableType()$ normal) {
+       parallelComponent(direction, normal);
+       scale(-1);
+       add(direction);
+       return this;
+   }
+
+   $endif$
+
 $endif$
 
 $if(!componentType.discrete)$
-    /**
-     * Set the length of this vector to one
+     /**
+     * Set the length of this vector to one if and only if the length is greater then zero
+     * else return a vector of length zero.
      *
      * @return this
      */
+    public $vector/mutableType()$ safeNormalize() {
+         final float EPSILON = 0.000001f;
+
+        normalize();
+        if(length() < EPSILON){
+            $components:{x| $x$ = 0;}; separator = "\n"$
+        }
+        return this;
+    }
+
+     /**
+      * Set the length of this vector to one
+      *
+      * @return this
+      */
     public $vector/mutableType()$ normalize() {
         return scale(1 / length());
     }
