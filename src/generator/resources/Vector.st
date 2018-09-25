@@ -393,7 +393,7 @@ $if(is3D)$
     }
 
    /**
-    * @return The reflection of direction against normal
+    * @return the portion of the diriction that is parallel to the normal
     */
    public final $vector/mutableType()$ parallelComponent($vector/mutableType()$ direction, $vector/mutableType()$ normal) {
        set(normal);
