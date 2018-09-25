@@ -69,6 +69,11 @@ public class MathGenerator {
         generateQuat(doubleType);
     }
 
+    public  void createRegion() throws IOException{
+        generateRegion(floatType,false);
+        generateRegion(intType,true);
+    }
+
     public void createMatrix(int dims) throws IOException {
         List<Entry> components = Lists.newArrayList();
         for (int i = 0; i < dims; i++) {
@@ -95,6 +100,22 @@ public class MathGenerator {
         st.add("components", entries);  // using the "components" name allows us to use the same template groups
 
         String fname = template + dims + type.getAbbrev() + ".java";
+        st.write(new File(outputDir, fname), ErrorManager.DEFAULT_ERROR_LISTENER);
+        System.out.println("Created file " + fname);
+    }
+
+    private void generateRegion(ComponentType type,boolean discrete) throws IOException{
+        generateRegion("BaseRegion3", type,discrete);
+        generateRegion("ImmutableRegion3", type,discrete);
+        generateRegion("Region3", type,discrete);
+    }
+
+    private void generateRegion(String template, ComponentType type,boolean discrete) throws IOException{
+        ST st = templateDir.getInstanceOf(template);
+        st.add("componentType", type);
+        st.add("isDiscrete",discrete);
+
+        String fname = template + type.getAbbrev() + ".java";
         st.write(new File(outputDir, fname), ErrorManager.DEFAULT_ERROR_LISTENER);
         System.out.println("Created file " + fname);
     }

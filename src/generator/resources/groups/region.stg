@@ -1,0 +1,5 @@
+baseType() ::= "BaseRegion3<componentType.abbrev>"
+mutableType() ::= "Region3<componentType.abbrev>"
+immutableType() ::= "ImmutableRegion3<componentType.abbrev>"
+vector3Type() ::= "Vector3<componentType.abbrev>"
+vector3ImmutableType() ::= "ImmutableVector3<componentType.abbrev>"

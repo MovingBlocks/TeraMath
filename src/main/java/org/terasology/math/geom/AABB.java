@@ -314,7 +314,7 @@ public final class AABB {
      * @return The normal
      */
     public Vector3f normalForPlaneClosestToOrigin(Vector3f pointOnAABB, Vector3f origin, boolean testX, boolean testY, boolean testZ) {
-        List<Vector3f> normals = new ArrayList<>();
+        List<Vector3f> normals = new ArrayList<Vector3f>();
 
         if (pointOnAABB.z == min.z && testZ) {
             normals.add(new Vector3f(0, 0, -1));

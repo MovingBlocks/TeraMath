@@ -32,6 +32,7 @@ public final class MathGeneratorRunner {
     public static void main(String[] args) {
         try {
             MathGenerator mg = new MathGenerator();
+            mg.createRegion();
             mg.createVector();
             mg.createQuat();
             mg.createMatrix(3);
