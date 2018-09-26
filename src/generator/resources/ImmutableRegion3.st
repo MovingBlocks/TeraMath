@@ -24,10 +24,9 @@ public class $region/immutableType()$ extends $region/baseType()$ {
     private final $region/vector3ImmutableType()$ min;
     private final $region/vector3ImmutableType()$ size;
 
-
-    @Override
-    public $region/baseType()$ min(){
-        return min;
+    public  $region/immutableType()$($region/baseType()$ other){
+        min = new $region/vector3ImmutableType()$(other.min());
+        size = new $region/vector3ImmutableType()$(other.size());
     }
 
     @Override
@@ -46,24 +45,27 @@ public class $region/immutableType()$ extends $region/baseType()$ {
     }
 
     @Override
-    public $region/baseType()$ size(){
+    public $region/vector3BaseType()$ min(){
+        return min;
+    }
+
+    @Override
+    public $componentType$ sizeX(){
+        return size.getX();
+
+    }
+    @Override
+    public $componentType$ sizeY(){
+        return size.getY();
+    }
+    @Override
+    public $componentType$ sizeZ(){
+        return size.getZ();
+    }
+
+   @Override
+    public $region/vector3BaseType()$ size(){
         return size;
     }
-
-    @Override
-    public $componentType$ maxX(){
-        return max.getX();
-    }
-
-    @Override
-    public $componentType$ maxY(){
-        return max.getY();
-    }
-
-    @Override
-    public $componentType$ maxZ(){
-        return max.getZ();
-    }
-
 
 }

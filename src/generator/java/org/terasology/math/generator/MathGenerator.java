@@ -70,8 +70,8 @@ public class MathGenerator {
     }
 
     public  void createRegion() throws IOException{
-        generateRegion(floatType,false);
-        generateRegion(intType,true);
+        generateRegion(floatType);
+        generateRegion(intType);
     }
 
     public void createMatrix(int dims) throws IOException {
@@ -104,16 +104,15 @@ public class MathGenerator {
         System.out.println("Created file " + fname);
     }
 
-    private void generateRegion(ComponentType type,boolean discrete) throws IOException{
-        generateRegion("BaseRegion3", type,discrete);
-        generateRegion("ImmutableRegion3", type,discrete);
-        generateRegion("Region3", type,discrete);
+    private void generateRegion(ComponentType type) throws IOException{
+        generateRegion("BaseRegion3", type);
+        generateRegion("ImmutableRegion3", type);
+        generateRegion("Region3", type);
     }
 
-    private void generateRegion(String template, ComponentType type,boolean discrete) throws IOException{
+    private void generateRegion(String template, ComponentType type) throws IOException{
         ST st = templateDir.getInstanceOf(template);
         st.add("componentType", type);
-        st.add("isDiscrete",discrete);
 
         String fname = template + type.getAbbrev() + ".java";
         st.write(new File(outputDir, fname), ErrorManager.DEFAULT_ERROR_LISTENER);

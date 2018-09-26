@@ -258,6 +258,17 @@ $components:{x|
     }
 
     /**
+     * Adds value to all components of the vector
+     *
+     * @param value the point
+     * @return this
+     */
+    public $vector/mutableType()$ add($componentType$ value) {
+        $components:{x| this.$x$ += value;}; separator = "\n"$
+        return this;
+    }
+
+    /**
      * Subtracts a point from this point
      *
      $components:{x| * @param value$x.proper$ the value to subtract from the $x$ component}; separator = "\n"$
@@ -278,6 +289,18 @@ $components:{x|
         $components:{x| this.$x$ -= other.get$x.proper$();}; separator = "\n"$
         return this;
     }
+
+    /**
+     * Adds value to all components of the vector
+     *
+     * @param value the point
+     * @return this
+     */
+    public $vector/mutableType()$ sub($componentType$ value) {
+        $components:{x| this.$x$ -= value;}; separator = "\n"$
+        return this;
+    }
+
 
     /**
      *  Sets each component of this tuple to its absolute value.
@@ -391,20 +414,5 @@ $if(!componentType.discrete)$
     }
 $endif$
 
-$if(componentType.discrete)$
-    /**
-     * @return The equivalent Vector$dimensions$f
-     */
-    public Vector$dimensions$f toVector$dimensions$f() {
-        return new Vector$dimensions$f($components:{x|$x$}; separator = ", "$);
-    }
-
-    /**
-     * @return The equivalent Vector$dimensions$d
-     */
-    public Vector$dimensions$d toVector$dimensions$d() {
-        return new Vector$dimensions$d($components:{x|$x$}; separator = ", "$);
-    }
-$endif$
 
 }

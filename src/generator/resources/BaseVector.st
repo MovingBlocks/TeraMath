@@ -220,4 +220,20 @@ $endif$
     public String toString() {
         return "(" + $components:{x | get$x.proper$()}; separator = " + \", \" + "$ + ")";
     }
+
+$if(componentType.discrete)$
+   /**
+    * @return The equivalent Vector$dimensions$f
+    */
+   public Vector$dimensions$f toVector$dimensions$f() {
+       return new Vector$dimensions$f($components:{x|get$x.proper$()}; separator = ", "$);
+   }
+
+   /**
+    * @return The equivalent Vector$dimensions$d
+    */
+   public Vector$dimensions$d toVector$dimensions$d() {
+       return new Vector$dimensions$d($components:{x|get$x.proper$()}; separator = ", "$);
+   }
+$endif$
 }
