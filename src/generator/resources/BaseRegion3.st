@@ -79,9 +79,9 @@ public abstract class $region/baseType()$ $if(componentType.discrete)$ implement
     }
 
     public boolean contains($componentType$ x, $componentType$ y, $componentType$ z) {
-         return !(max().x() < x || min().x() >= x)
-                        && !(max().y() < y || min().y() >= y)
-                        && !(max().z() < z || min().z() >= z);
+         return (x < max().x() && x >= min().x() )
+                        && (y < max().y() && y >= min().y())
+                        && (z < max().z() && z >= min().z());
     }
 
 
@@ -222,10 +222,10 @@ $if(componentType.discrete)$
                 public Vector3i next() {
                     Vector3i result = new Vector3i(pos.x + min().x(), pos.y + min().y(), pos.z + min().z());
                     pos.z++;
-                    if (pos.z > size().z()) {
+                    if (pos.z >= size().z() ) {
                         pos.z = 0;
                         pos.y++;
-                        if (pos.y > size().y()) {
+                        if (pos.y >= size().y() ) {
                             pos.y = 0;
                             pos.x++;
                         }

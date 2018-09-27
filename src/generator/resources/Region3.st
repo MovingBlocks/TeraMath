@@ -73,19 +73,13 @@ $endif$
 
     @Override
     public $componentType$ minZ(){
-        return min.x();
+        return min.z();
     }
 
     @Override
     public $region/vector3BaseType()$ min(){
         return min;
     }
-
-
-    public static $region/mutableType()$ createFromMinAndSize($region/vector3BaseType()$ min, $region/vector3BaseType()$ size) {
-        return new $region/mutableType()$().setMinSize(min, size);
-    }
-
 
     public static $region/mutableType()$ createCenterExtent($region/vector3BaseType()$ center, $region/vector3BaseType()$ extent) {
         $region/vector3Type()$ min = new $region/vector3Type()$(center);
@@ -100,6 +94,20 @@ $endif$
          $region/vector3Type()$ min = new  $region/vector3Type()$(center.x() - extent, center.y() - extent, center.z() - extent);
          $region/vector3Type()$ max = new  $region/vector3Type()$(center.x() + extent, center.y() + extent, center.z() + extent);
        return new $region/mutableType()$().setMinMax(min, max);
+    }
+
+    /**
+     * Create a region by two point
+     * @param a vertex a
+     * @param b the diagonal vertex of a
+     * @return a new region base on vertex a and b
+     */
+    public static $region/mutableType()$ createBounded($region/vector3BaseType()$ a, $region/vector3BaseType()$ b) {
+         $region/vector3Type()$ min = new  $region/vector3Type()$(a);
+        min.min(b);
+         $region/vector3Type()$ max = new  $region/vector3Type()$(a);
+        max.max(b);
+        return new $region/mutableType()$().setMinMax(min, max);
     }
 
 
