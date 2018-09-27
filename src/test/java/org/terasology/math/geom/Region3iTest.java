@@ -27,16 +27,15 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class Region3iTest
-{
+public class Region3iTest {
 
     @Test
     public void testCreateRegionWithMinAndSize() {
         List<Vector3i> mins = Arrays.asList(new Vector3i(), new Vector3i(1, 1, 1), new Vector3i(3, 4, 5));
         List<Vector3i> size = Arrays.asList(new Vector3i(1, 1, 1), new Vector3i(3, 3, 3), new Vector3i(8, 5, 2));
-        List<Vector3i> expectedMax = Arrays.asList(new Vector3i(1,1,1), new Vector3i(4, 4, 4), new Vector3i(11, 9, 7));
+        List<Vector3i> expectedMax = Arrays.asList(new Vector3i(1, 1, 1), new Vector3i(4, 4, 4), new Vector3i(11, 9, 7));
         for (int i = 0; i < mins.size(); ++i) {
-            Region3i region = new  Region3i().setMinSize(mins.get(i), size.get(i));
+            Region3i region = new Region3i().setMinSize(mins.get(i), size.get(i));
             assertEquals(mins.get(i), region.min());
             assertEquals(size.get(i), region.size());
             assertEquals(expectedMax.get(i), region.max());
@@ -81,14 +80,14 @@ public class Region3iTest
     public void testCreateRegionWithBounds() {
         Region3i expectedRegion = new Region3i().setMinMax(new Vector3i(-2, 4, -16), new Vector3i(4, 107, 0));
 
-        assertEquals(expectedRegion,Region3i.createBounded(new Vector3i(-2, 4, -16),new Vector3i(4, 107, 0)));
-        assertEquals(expectedRegion,Region3i.createBounded(new Vector3i(4, 4, -16),new Vector3i(-2, 107, 0)));
-        assertEquals(expectedRegion,Region3i.createBounded(new Vector3i(-2, 107, -16),new Vector3i(4, 4, 0)));
-        assertEquals(expectedRegion,Region3i.createBounded(new Vector3i(-2, 4, 0),new Vector3i(4, 107, -16)));
-        assertEquals(expectedRegion,Region3i.createBounded(new Vector3i(4, 107, -16),new Vector3i(-2, 4, 0)));
-        assertEquals(expectedRegion,Region3i.createBounded(new Vector3i(4, 4, 0),new Vector3i(-2, 107, -16)));
-        assertEquals(expectedRegion,Region3i.createBounded(new Vector3i(-2, 107, 0),new Vector3i(4, 4, -16)));
-        assertEquals(expectedRegion,Region3i.createBounded(new Vector3i(4, 107, 0),new Vector3i(-2, 4, -16)));
+        assertEquals(expectedRegion, Region3i.createBounded(new Vector3i(-2, 4, -16), new Vector3i(4, 107, 0)));
+        assertEquals(expectedRegion, Region3i.createBounded(new Vector3i(4, 4, -16), new Vector3i(-2, 107, 0)));
+        assertEquals(expectedRegion, Region3i.createBounded(new Vector3i(-2, 107, -16), new Vector3i(4, 4, 0)));
+        assertEquals(expectedRegion, Region3i.createBounded(new Vector3i(-2, 4, 0), new Vector3i(4, 107, -16)));
+        assertEquals(expectedRegion, Region3i.createBounded(new Vector3i(4, 107, -16), new Vector3i(-2, 4, 0)));
+        assertEquals(expectedRegion, Region3i.createBounded(new Vector3i(4, 4, 0), new Vector3i(-2, 107, -16)));
+        assertEquals(expectedRegion, Region3i.createBounded(new Vector3i(-2, 107, 0), new Vector3i(4, 4, -16)));
+        assertEquals(expectedRegion, Region3i.createBounded(new Vector3i(4, 107, 0), new Vector3i(-2, 4, -16)));
 
     }
 
