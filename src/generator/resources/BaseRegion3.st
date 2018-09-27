@@ -39,7 +39,7 @@ public abstract class $region/baseType()$ $if(componentType.discrete)$ implement
     }
 
     public $componentType$ maxY(){
-      return minY() + sizeY();
+        return minY() + sizeY();
     }
 
     public $componentType$ maxZ(){
@@ -79,9 +79,9 @@ public abstract class $region/baseType()$ $if(componentType.discrete)$ implement
     }
 
     public boolean contains($componentType$ x, $componentType$ y, $componentType$ z) {
-         return (x < max().x() && x >= min().x() )
-                        && (y < max().y() && y >= min().y())
-                        && (z < max().z() && z >= min().z());
+        return (x < max().x() && x >= min().x() )
+            && (y < max().y() && y >= min().y())
+            && (z < max().z() && z >= min().z());
     }
 
 
@@ -93,10 +93,9 @@ public abstract class $region/baseType()$ $if(componentType.discrete)$ implement
      */
     public boolean overlaps($region/baseType()$ region) {
         return !(max().x() < region.min().x() || min().x() > region.max().x())
-                && !(max().y() < region.min().y() || min().y() > region.max().y())
-                && !(max().z() < region.min().z() || min().z() > region.max().z());
+            && !(max().y() < region.min().y() || min().y() > region.max().y())
+            && !(max().z() < region.min().z() || min().z() > region.max().z());
     }
-
 
     public boolean isEmpty() {
         return sizeX() + sizeY() + sizeZ()  == 0;
@@ -139,10 +138,10 @@ $endif$
      */
 $if(componentType.discrete)$
     public Vector3f[] getVertices() {
-      Vector3f[] vertices = new Vector3f[8];
+        Vector3f[] vertices = new Vector3f[8];
 $else$
     public $region/vector3Type()$[] getVertices() {
-       $region/vector3Type()$[] vertices = new $region/vector3Type()$[8];
+        $region/vector3Type()$[] vertices = new $region/vector3Type()$[8];
 $endif$
         // Front
         vertices[0] = new Vector3f(minX(), minY(), maxZ());
@@ -159,124 +158,122 @@ $endif$
 
 $if(componentType.discrete)$
     public Vector3f centerPointForNormal(Direction dir) {
-       Vector3f result = new Vector3f();
-       Vector3f c = center();
+        Vector3f result = new Vector3f();
+        Vector3f c = center();
 $else$
     public $region/vector3Type()$ centerPointForNormal(Direction dir) {
          $region/vector3Type()$ result = new $region/vector3Type()$();
          $region/vector3Type()$ c = center();
 $endif$
-     switch (dir){
-             case LEFT:
+        switch (dir){
+            case LEFT:
                 result.set(maxX(), c.y(), c.z());
                 break;
-             case RIGHT:
+            case RIGHT:
                 result.set(minX(), c.y(), c.z());
                 break;
-             case BACKWARD:
+            case BACKWARD:
                 result.set(c.x(), c.y(), maxZ());
                 break;
-             case UP:
+            case UP:
                 result.set(c.x(), c.y(), minZ());
                 break;
-             case DOWN:
+            case DOWN:
                 result.set(c.x(), maxY(), c.z());
                 break;
-             case FORWARD:
+            case FORWARD:
                 result.set(c.x(), minY(), c.z());
                 break;
-         }
+        }
 
         return result;
     }
 
 $if(componentType.discrete)$
+    @Override
+    public Iterator<$region/vector3Type()$> iterator() {
+        return new RegionIterator();
+    }
+
+    /**
+    * @param other
+    * @return An iterator over the positions in this region that aren't in other
+    */
+    public Iterator<$region/vector3Type()$> subtract(Region3i other) {
+        return new SubtractiveIterator(other);
+    }
+
+    private class RegionIterator implements Iterator<$region/vector3Type()$> {
+        $region/vector3Type()$ pos;
+
+        RegionIterator() {
+            this.pos = new $region/vector3Type()$();
+        }
+
         @Override
-        public Iterator<$region/vector3Type()$> iterator() {
-            return new RegionIterator();
+        public boolean hasNext() {
+            return pos.x < size().x();
         }
 
-        /**
-         * @param other
-         * @return An iterator over the positions in this region that aren't in other
-         */
-        public Iterator<$region/vector3Type()$> subtract(Region3i other) {
-            return new SubtractiveIterator(other);
+        @Override
+        public Vector3i next() {
+            Vector3i result = new Vector3i(pos.x + min().x(), pos.y + min().y(), pos.z + min().z());
+            pos.z++;
+            if (pos.z >= size().z() ) {
+                pos.z = 0;
+                pos.y++;
+                if (pos.y >= size().y() ) {
+                    pos.y = 0;
+                    pos.x++;
+                }
+            }
+            return result;
         }
 
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException("Not supported.");
+        }
+    }
 
+    private class SubtractiveIterator implements Iterator<$region/vector3Type()$> {
+        private Iterator<$region/vector3Type()$> innerIterator;
+        private $region/vector3Type()$ next;
+        private $region/mutableType()$ other;
 
-        private class RegionIterator implements Iterator<$region/vector3Type()$> {
-                $region/vector3Type()$ pos;
+        SubtractiveIterator($region/mutableType()$ other) {
+            this.other = other;
+            innerIterator = iterator();
+            updateNext();
+        }
 
-                RegionIterator() {
-                    this.pos = new $region/vector3Type()$();
-                }
-
-                @Override
-                public boolean hasNext() {
-                    return pos.x < size().x();
-                }
-
-                @Override
-                public Vector3i next() {
-                    Vector3i result = new Vector3i(pos.x + min().x(), pos.y + min().y(), pos.z + min().z());
-                    pos.z++;
-                    if (pos.z >= size().z() ) {
-                        pos.z = 0;
-                        pos.y++;
-                        if (pos.y >= size().y() ) {
-                            pos.y = 0;
-                            pos.x++;
-                        }
-                    }
-                    return result;
-                }
-
-                @Override
-                public void remove() {
-                    throw new UnsupportedOperationException("Not supported.");
+        private void updateNext() {
+            while (innerIterator.hasNext()) {
+                next = innerIterator.next();
+                if (!other.contains(next)) {
+                    return;
                 }
             }
+            next = null;
+        }
 
-            private class SubtractiveIterator implements Iterator<$region/vector3Type()$> {
-                private Iterator<$region/vector3Type()$> innerIterator;
-                private $region/vector3Type()$ next;
-                private $region/mutableType()$ other;
+        @Override
+        public boolean hasNext() {
+            return next != null;
+        }
 
-                 SubtractiveIterator($region/mutableType()$ other) {
-                    this.other = other;
-                    innerIterator = iterator();
-                    updateNext();
-                }
+        @Override
+        public $region/vector3Type()$ next() {
+            $region/vector3Type()$ result = new $region/vector3Type()$(next);
+            updateNext();
+            return result;
+        }
 
-                private void updateNext() {
-                    while (innerIterator.hasNext()) {
-                        next = innerIterator.next();
-                        if (!other.contains(next)) {
-                            return;
-                        }
-                    }
-                    next = null;
-                }
-
-                @Override
-                public boolean hasNext() {
-                    return next != null;
-                }
-
-                @Override
-                public $region/vector3Type()$ next() {
-                    $region/vector3Type()$ result = new $region/vector3Type()$(next);
-                    updateNext();
-                    return result;
-                }
-
-                @Override
-                public void remove() {
-                    throw new UnsupportedOperationException();
-                }
-            }
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+    }
 $endif$
 
     @Override

@@ -22,7 +22,7 @@ import gnu.trove.list.TFloatList;
 /**
  * Describes an axis-aligned bounded space in 3D integer.
  */
-public class $region/mutableType()$ extends $region/baseType()${
+public class $region/mutableType()$ extends $region/baseType()$ {
 
 $if(!componentType.discrete)$
     public static final float DEFAULT_MARGIN = 0.01f;
@@ -34,7 +34,6 @@ $endif$
 
     public $region/mutableType()$(){
     }
-
 
     public $region/mutableType()$($region/baseType()$ other){
         min.set(other.min());
@@ -91,9 +90,9 @@ $endif$
     }
 
     public static $region/mutableType()$ createFromCenterExtents($region/vector3BaseType()$ center, $componentType$ extent) {
-         $region/vector3Type()$ min = new  $region/vector3Type()$(center.x() - extent, center.y() - extent, center.z() - extent);
-         $region/vector3Type()$ max = new  $region/vector3Type()$(center.x() + extent, center.y() + extent, center.z() + extent);
-       return new $region/mutableType()$().setMinMax(min, max);
+        $region/vector3Type()$ min = new  $region/vector3Type()$(center.x() - extent, center.y() - extent, center.z() - extent);
+        $region/vector3Type()$ max = new  $region/vector3Type()$(center.x() + extent, center.y() + extent, center.z() + extent);
+        return new $region/mutableType()$().setMinMax(min, max);
     }
 
     /**
@@ -103,32 +102,31 @@ $endif$
      * @return a new region base on vertex a and b
      */
     public static $region/mutableType()$ createBounded($region/vector3BaseType()$ a, $region/vector3BaseType()$ b) {
-         $region/vector3Type()$ min = new  $region/vector3Type()$(a);
+        $region/vector3Type()$ min = new  $region/vector3Type()$(a);
         min.min(b);
-         $region/vector3Type()$ max = new  $region/vector3Type()$(a);
+        $region/vector3Type()$ max = new  $region/vector3Type()$(a);
         max.max(b);
         return new $region/mutableType()$().setMinMax(min, max);
     }
 
-
     public static $region/mutableType()$ createEncompassing(Iterable<$region/mutableType()$> others) {
-         $region/vector3Type()$ min;
-         $region/vector3Type()$ max;
+        $region/vector3Type()$ min;
+        $region/vector3Type()$ max;
 
-         Iterator<$region/mutableType()$> i = others.iterator();
-         if(i.hasNext()){
+        Iterator<$region/mutableType()$> i = others.iterator();
+        if(i.hasNext()){
             $region/mutableType()$ next = i.next();
             min = new $region/vector3Type()$(next.min());
             max = new $region/vector3Type()$(next.max());
-         } else{
+        } else{
             return new $region/mutableType()$(EMPTY);
-         }
-         while(i.hasNext()){
-             $region/mutableType()$ next = i.next();
-             min.min(next.min());
-             max.max(next.max());
-         }
-         return new $region/mutableType()$().setMinMax(min, max);
+        }
+        while(i.hasNext()){
+            $region/mutableType()$ next = i.next();
+            min.min(next.min());
+            max.max(next.max());
+        }
+        return new $region/mutableType()$().setMinMax(min, max);
     }
 
     public static $region/mutableType()$ createEncompassing($region/mutableType()$ a, $region/mutableType()$ b) {
@@ -155,7 +153,6 @@ $endif$
     }
 
 
-
     public  $region/mutableType()$ setMinSize($region/vector3BaseType()$ min, $region/vector3BaseType()$ size){
         if (size.x() <= 0 || size.y() <= 0 || size.z() <= 0) {
             return this;
@@ -174,8 +171,6 @@ $endif$
         this.size.set(size);
         return this;
     }
-
-
 
     /**
     * @param other
@@ -208,7 +203,7 @@ $endif$
             max.z = ($componentType$)Math.max(max.z, vertices.get(3 * index + 2));
         }
         $if(componentType.discrete)$
-            max.add(1);
+        max.add(1);
         $endif$
         return new $region/mutableType()$().setMinMax(min, max);
     }
