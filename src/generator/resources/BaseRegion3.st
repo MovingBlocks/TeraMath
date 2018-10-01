@@ -35,15 +35,15 @@ public abstract class $region/baseType()$ $if(componentType.discrete)$ implement
     public abstract $region/vector3BaseType()$ min();
 
     public $componentType$ maxX(){
-        return minX() + sizeX();
+        return minX() + sizeX()  $if(componentType.discrete)$ - 1 $endif$;
     }
 
     public $componentType$ maxY(){
-        return minY() + sizeY();
+        return minY() + sizeY()  $if(componentType.discrete)$ - 1 $endif$;
     }
 
     public $componentType$ maxZ(){
-        return minZ() + sizeZ();
+        return minZ() + sizeZ() $if(componentType.discrete)$ - 1 $endif$;
     }
 
     public $region/vector3BaseType()$ max(){

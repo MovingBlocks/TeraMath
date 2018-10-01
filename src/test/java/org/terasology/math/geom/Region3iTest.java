@@ -33,7 +33,7 @@ public class Region3iTest {
     public void testCreateRegionWithMinAndSize() {
         List<Vector3i> mins = Arrays.asList(new Vector3i(), new Vector3i(1, 1, 1), new Vector3i(3, 4, 5));
         List<Vector3i> size = Arrays.asList(new Vector3i(1, 1, 1), new Vector3i(3, 3, 3), new Vector3i(8, 5, 2));
-        List<Vector3i> expectedMax = Arrays.asList(new Vector3i(1, 1, 1), new Vector3i(4, 4, 4), new Vector3i(11, 9, 7));
+        List<Vector3i> expectedMax = Arrays.asList(new Vector3i(), new Vector3i(3, 3, 3), new Vector3i(10, 8, 6));
         for (int i = 0; i < mins.size(); ++i) {
             Region3i region = new Region3i().setMinSize(mins.get(i), size.get(i));
             assertEquals(mins.get(i), region.min());
@@ -41,38 +41,21 @@ public class Region3iTest {
             assertEquals(expectedMax.get(i), region.max());
             assertFalse(region.isEmpty());
         }
+
     }
 
     @Test
     public void testCreateRegionWithMinMax() {
-        Vector3i min;
-        Vector3i max;
-        Region3i region;
-
-        min = new Vector3i();
-        max = new Vector3i();
-        region = new Region3i().setMinMax(min, max);
-        assertEquals(min, region.min());
-        assertEquals(max, region.max());
-        assertEquals(new Vector3i(), region.size());
-        assertTrue(region.isEmpty());
-
-
-        min = new Vector3i(1, 1, 1);
-        max = new Vector3i(3, 3, 3);
-        region = new Region3i().setMinMax(min, max);
-        assertEquals(min, region.min());
-        assertEquals(max, region.max());
-        assertEquals(new Vector3i(2, 2, 2), region.size());
-        assertFalse(region.isEmpty());
-
-        min = new Vector3i(3, 4, 5);
-        max = new Vector3i(10, 8, 6);
-        region = new Region3i().setMinMax(min, max);
-        assertEquals(min, region.min());
-        assertEquals(max, region.max());
-        assertEquals(new Vector3i(7, 4, 1), region.size());
-        assertFalse(region.isEmpty());
+        List<Vector3i> mins = Arrays.asList(new Vector3i(), new Vector3i(1, 1, 1), new Vector3i(3, 4, 5));
+        List<Vector3i> expectedSize = Arrays.asList(new Vector3i(1, 1, 1), new Vector3i(3, 3, 3), new Vector3i(8, 5, 2));
+        List<Vector3i> max = Arrays.asList(new Vector3i(), new Vector3i(3, 3, 3), new Vector3i(10, 8, 6));
+        for (int i = 0; i < mins.size(); ++i) {
+            Region3i region = new Region3i().setMinMax(mins.get(i), max.get(i));
+            assertEquals(mins.get(i), region.min());
+            assertEquals(max.get(i), region.max());
+            assertEquals(expectedSize.get(i), region.size());
+            assertFalse(region.isEmpty());
+        }
 
     }
 
@@ -112,9 +95,9 @@ public class Region3iTest {
         Region3i region = new Region3i().setMinMax(min, max);
 
         Set<Vector3i> expected = Sets.newHashSet();
-        for (int x = min.x; x < max.x; ++x) {
-            for (int y = min.y; y < max.y; ++y) {
-                for (int z = min.z; z < max.z; ++z) {
+        for (int x = min.x; x <= max.x; ++x) {
+            for (int y = min.y; y <= max.y; ++y) {
+                for (int z = min.z; z <= max.z; ++z) {
                     expected.add(new Vector3i(x, y, z));
                 }
             }

@@ -154,6 +154,9 @@ $endif$
 
 
     public  $region/mutableType()$ setMinSize($region/vector3BaseType()$ min, $region/vector3BaseType()$ size){
+$if(componentType.discrete)$
+        size.add(1);
+$endif$
         if (size.x() <= 0 || size.y() <= 0 || size.z() <= 0) {
             return this;
         }
@@ -164,11 +167,7 @@ $endif$
 
     public  $region/mutableType()$ setMinMax($region/vector3BaseType()$ min, $region/vector3BaseType()$ max){
         $region/vector3BaseType()$ size = new $region/vector3Type()$(max.x() - min.x(), max.y() - min.y() , max.z() - min.z());
-        if (size.x() <= 0 || size.y() <= 0 || size.z() <= 0) {
-            return this;
-        }
-        this.min.set(min);
-        this.size.set(size);
+        this.setMinSize(min,size);
         return this;
     }
 
