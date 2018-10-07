@@ -223,20 +223,17 @@ ext {
 
     // Activate copyright conventions
     ideaActivateCopyright = { Node iprNode ->
-        def copyrightManager = iprNode.component.find { it.'@name' == 'CopyrightManager' }
-        copyrightManager.'@default' = "TeraMath"
-        def copyright = copyrightManager.copyright.find { it.option.find { it.'@name' == "myName" }?.'@value' == "TeraMath" }
-        if (copyright == null) {
-            copyrightManager.append(new XmlParser().parseText('''
-                <copyright>
-                    <option name="notice" value="Copyright 2018 MovingBlocks&#10;&#10;Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);&#10;you may not use this file except in compliance with the License.&#10;You may obtain a copy of the License at&#10;&#10;     http://www.apache.org/licenses/LICENSE-2.0&#10;&#10;Unless required by applicable law or agreed to in writing, software&#10;distributed under the License is distributed on an &quot;AS IS&quot; BASIS,&#10;WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#10;See the License for the specific language governing permissions and&#10;limitations under the License." />
-                    <option name="keyword" value="Copyright" />
-                    <option name="allowReplaceKeyword" value="" />
-                    <option name="myName" value="TeraMath" />
-                    <option name="myLocal" value="true" />
-                </copyright>
-            '''))
-        }
+        // Setup copyright statement injection
+        def copyrightManager = iprNode.find { it.@name == 'CopyrightManager' }
+        copyrightManager.@default = "TerasologyEngine"
+        def copyright = copyrightManager.appendNode("copyright")
+        copyright.appendNode("option", [name: "notice", value: 'Copyright ' + Calendar.getInstance().get(Calendar.YEAR) + ' MovingBlocks\n\nLicensed under the Apache License, Version 2.0 (the "License");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n     http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an "AS IS" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.'])
+        copyright.appendNode("option", [name: "keyword", value: "Copyright"])
+        copyright.appendNode("option", [name: "allowReplaceKeyword", value: ""])
+        copyright.appendNode("option", [name: "myName", value: "TerasologyEngine"])
+        copyright.appendNode("option", [name: "myLocal", value: "true"])
+        def langOptions = copyrightManager.appendNode("LanguageOptions", [name: "__TEMPLATE__"])
+        langOptions.appendNode("option", [name: "addBlankAfter", value: "false"])
     }
 
     // Enable "make project automatically"
