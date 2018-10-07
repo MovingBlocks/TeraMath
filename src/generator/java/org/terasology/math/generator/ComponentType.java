@@ -26,13 +26,15 @@ public class ComponentType {
     private String abbreviation;
     private boolean discrete;
     private boolean floatType;
+    private String bufferType;
 
-    public ComponentType(String type, String abbreviation, boolean discrete, String typeEqualsFunction) {
+    public ComponentType(String buffer,String type, String abbreviation, boolean discrete, String typeEqualsFunction) {
         this.type = type;
         this.typeEqualsFunction = typeEqualsFunction;
         this.abbreviation = abbreviation;
         this.discrete = discrete;
         this.floatType = (type.equals("float"));
+        this.bufferType = buffer;
     }
 
     public String getToIntegralFunc() {
@@ -50,6 +52,8 @@ public class ComponentType {
     public boolean isFloatType() {
         return floatType;
     }
+
+    public String getBufferType() {return bufferType;}
 
     @Override
     public String toString() {

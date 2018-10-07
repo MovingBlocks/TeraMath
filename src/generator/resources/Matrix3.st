@@ -16,6 +16,8 @@
 
 package org.terasology.math.geom;
 
+import java.nio.*;
+
 /**
  * A $componentType$ precision floating point $dimensions$x$dimensions$ $componentType$ matrix.
  * @author auto-generated
@@ -771,7 +773,16 @@ $components:{x |
             throw new IllegalStateException("matrix is not invertible");
         }
     }
-    
+
+    /**
+    * takes the contents of the matrix and appends the results to a buffer
+    * @param buffer to append results to
+    */
+    public void appendToBuffer($matrix/bufferType()$ fb){
+      $components:{x| fb.put($x$);}; separator = "\n"$
+      fb.flip();
+    }
+
     /**
      * Multiply this matrix by the tuple t and place the result
      * back into the tuple (t = this*t).
