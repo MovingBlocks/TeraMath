@@ -16,7 +16,7 @@
 package org.terasology.math.geom;
 
 /**
- * Pool of Vectors, or, optionally, any object.
+ * Pool of Vectors.
  *
  * VectorPool must be threadsafe!!
  *
