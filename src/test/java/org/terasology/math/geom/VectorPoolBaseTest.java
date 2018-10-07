@@ -16,14 +16,20 @@
 
 package org.terasology.math.geom;
 
-/**
- * Some default implementations of {@link Shape}
- * @author Martin Steiger
- */
-public abstract class AbstractShape implements Shape {
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
-    @Override
-    public boolean contains(BaseVector2f v) {
-        return contains(v.getX(), v.getY());
+public abstract class VectorPoolBaseTest<T extends VectorPool<Y>,Y> {
+    public abstract T getVectorPool();
+
+    @Test
+    public void reuseVectorTest() {
+        T pool = getVectorPool();
+        Y v1 = pool.getVector();
+        pool.free(v1);
+        Y v2 = pool.getVector();
+        assertSame(v1, v2);
+
     }
 }
