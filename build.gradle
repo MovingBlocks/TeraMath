@@ -1,10 +1,23 @@
-apply from: "$rootDir/config/gradle/common.gradle"
+apply from: "$rootDir/config/gradle/artifactory.gradle"
 
 apply plugin: 'java'
 apply plugin: 'project-report'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
-apply plugin: 'maven'
+
+// Dependencies needed for what our Gradle scripts themselves use. It cannot be included via an external Gradle file :-(
+buildscript {
+    repositories {
+        // External libs - jcenter is Bintray and is supposed to be a superset of Maven Central, but do both just in case
+        jcenter()
+        mavenCentral()
+    }
+
+    dependencies {
+        // Artifactory plugin
+        classpath(group: 'org.jfrog.buildinfo', name: 'build-info-extractor-gradle', version: '4.0.0')
+    }
+}
 
 ext {
     dirConfigMetrics = 'config/metrics'
@@ -56,7 +69,6 @@ task extractConfig (type: Copy) {
     into "$rootDir/$dirConfigMetrics"
 }
 
-
 // Primary dependencies definition
 dependencies {
     checkstyle ('com.puppycrawl.tools:checkstyle:6.14.1')
@@ -74,7 +86,6 @@ dependencies {
     codeMetrics group: 'org.terasology.config', name: 'codemetrics', version: '1.2.0', ext: 'zip'
 
 }
-
 
 // Set the expected module Java level (can use a higher Java to run, but should not use features from a higher Java)
 sourceCompatibility = 1.8
@@ -106,23 +117,8 @@ group = 'org.terasology'
 description = 'A math / geometry library'
 // project name must be defined in a separate settings.gradle file
 
-task sourceJar(type: Jar, dependsOn: generateSources) {
-    description = "Create a JAR with all sources"
-    from sourceSets.main.allSource
-    classifier = 'sources'
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    description = "Create a JAR with the JavaDoc for the java sources"
-    from javadoc.destinationDir
-    classifier = 'javadoc'
-}
-
-// Define the artifacts we want to publish (the .pom will also be included since the Maven plugin is active)
-artifacts {
-    archives sourceJar
-    archives javadocJar
-}
+// Beyond the common Java setup this project also has some generated source files to add in
+sourceJar.dependsOn generateSources
 
 // TODO: Temporary until javadoc has been fixed for Java 8 everywhere
 javadoc {
