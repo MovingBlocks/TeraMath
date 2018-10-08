@@ -1,13 +1,3 @@
-plugins {
-    id "org.standardout.versioneye" version "1.0.1"
-}
-
-/*
- * This is a Gradle build file:
- * - Gradle Homepage: http://gradle.org/
- * - Gradle Documentation: http://gradle.org/documentation
- * - View tasks for this project: $ gradlew tasks
- */
 apply from: "$rootDir/config/gradle/common.gradle"
 
 apply plugin: 'java'
@@ -203,14 +193,14 @@ ext {
             def option = builder.option(name: 'configuration') {
                 map {
                     entry(key: 'active-configuration',
-                            value: 'PROJECT_RELATIVE:$PROJECT_DIR$/config/checkstyle/checkstyle.xml:TeraMath CheckStyle')
+                            value: 'PROJECT_RELATIVE:$PROJECT_DIR$/config/metrics/checkstyle/checkstyle.xml:TeraMath CheckStyle')
                     entry(key: 'check-nonjava-files', value: false)
                     entry(key: 'check-test-classes', value: true)
                     entry(key: 'location-0',
                             value: 'CLASSPATH:/sun_checks.xml:The default CheckStyle rules')
                     entry(key: 'location-1',
-                            value: 'PROJECT_RELATIVE:$PROJECT_DIR$/config/checkstyle/checkstyle.xml:TeraMath CheckStyle')
-                    entry(key: 'property-1.samedir', value: 'config/checkstyle')
+                            value: 'PROJECT_RELATIVE:$PROJECT_DIR$/config/metrics/checkstyle/checkstyle.xml:TeraMath CheckStyle')
+                    entry(key: 'property-1.samedir', value: 'config/metrics/checkstyle')
                     entry(key: 'suppress-errors', value: false)
                     entry(key: 'thirdparty-classpath', value: '')
                 }
@@ -250,4 +240,3 @@ ext {
 ideaModule.dependsOn rootProject.extractConfig
 tasks.eclipse.dependsOn rootProject.extractConfig
 check.dependsOn rootProject.extractConfig
-
