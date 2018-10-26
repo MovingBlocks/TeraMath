@@ -75,6 +75,8 @@ dependencies {
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.12'
     compile group: 'com.google.guava', name: 'guava', version: '18.0'
 
+    compile 'org.joml:joml:1.9.11'
+
     generatorCompile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.12'
     generatorCompile group: 'com.google.guava', name: 'guava', version: '18.0'
     generatorCompile group: 'org.antlr', name: 'ST4', version: '4.0.8'
@@ -91,20 +93,20 @@ dependencies {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-task generateSources(type:JavaExec) {
-    dependsOn compileGeneratorJava
-    outputs.dir file(generatedSrcDir)
+//task generateSources(type:JavaExec) {
+//    dependsOn compileGeneratorJava
+//    outputs.dir file(generatedSrcDir)
     
-    main = generatorClassName
-    workingDir = rootDir
-    String[] runArgs = []
-    args runArgs
+//    main = generatorClassName
+//    workingDir = rootDir
+//    String[] runArgs = []
+//    args runArgs
 
-    classpath sourceSets.generator.output.classesDir
-    classpath sourceSets.generator.runtimeClasspath
-}
+//    classpath sourceSets.generator.output.classesDir
+//    classpath sourceSets.generator.runtimeClasspath
+//}
 
-compileJava.dependsOn generateSources
+//compileJava.dependsOn generateSources
 
 clean {
     // the clean task should delete the folder, because it is the
