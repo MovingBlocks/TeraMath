@@ -30,7 +30,7 @@ public final class MathGeneratorRunner {
      * @param args ignored
      */
     public static void main(String[] args) {
-        try {
+       /* try {
             MathGenerator mg = new MathGenerator();
             mg.createVector();
             mg.createQuat();
@@ -38,7 +38,7 @@ public final class MathGeneratorRunner {
             mg.createMatrix(4);
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
 }

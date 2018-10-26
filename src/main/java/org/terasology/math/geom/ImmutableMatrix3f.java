@@ -20,53 +20,8 @@ package org.terasology.math.geom;
  * Defines an immutable 3x3 float matrix
  * @author auto-generated
  */
+@Deprecated
 public class ImmutableMatrix3f extends BaseMatrix3f {
-
-    /**
-     * Entry at row 0, column 0
-     */
-    private final float m00;
-
-    /**
-     * Entry at row 0, column 1
-     */
-    private final float m01;
-
-    /**
-     * Entry at row 0, column 2
-     */
-    private final float m02;
-
-    /**
-     * Entry at row 1, column 0
-     */
-    private final float m10;
-
-    /**
-     * Entry at row 1, column 1
-     */
-    private final float m11;
-
-    /**
-     * Entry at row 1, column 2
-     */
-    private final float m12;
-
-    /**
-     * Entry at row 2, column 0
-     */
-    private final float m20;
-
-    /**
-     * Entry at row 2, column 1
-     */
-    private final float m21;
-
-    /**
-     * Entry at row 2, column 2
-     */
-    private final float m22;
-
 
     /**
      * Constructs and initializes a Matrix3d from the specified values.

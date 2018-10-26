@@ -23,6 +23,7 @@ import com.google.common.base.Preconditions;
  * Defines a circle
  * @author Martin Steiger
  */
+@Deprecated
 public final class Circle implements Shape {
 
     private final ImmutableVector2f center;

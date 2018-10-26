@@ -22,10 +22,9 @@ package org.terasology.math.geom;
  *
  * @author auto-generated
  */
+@Deprecated
 public final class ImmutableVector2f extends BaseVector2f {
 
-    private final float x;
-    private final float y;
 
     /**
     * @param x the x component

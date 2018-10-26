@@ -22,6 +22,7 @@ package org.terasology.math.geom;
  *
  * @author auto-generated
  */
+@Deprecated
 public final class ImmutableVector3d extends BaseVector3d {
 
     private final double x;

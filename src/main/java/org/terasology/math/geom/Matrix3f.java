@@ -22,6 +22,7 @@ import java.nio.FloatBuffer;
  * A float precision floating point 3x3 float matrix.
  * @author auto-generated
  */
+@Deprecated
 public class Matrix3f extends BaseMatrix3f {
 
     /**

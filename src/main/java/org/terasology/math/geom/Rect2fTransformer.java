@@ -20,6 +20,7 @@ package org.terasology.math.geom;
  * Transforms coordinates from the source rectangle into relative coordinates
  * in the target rectangle.
  */
+@Deprecated
 public class Rect2fTransformer {
 
     private Rect2f source;

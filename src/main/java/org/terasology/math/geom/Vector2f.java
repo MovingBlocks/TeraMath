@@ -22,6 +22,7 @@ package org.terasology.math.geom;
  *
  * @author auto-generated
  */
+@Deprecated
 public class Vector2f extends BaseVector2f {
 
     /**

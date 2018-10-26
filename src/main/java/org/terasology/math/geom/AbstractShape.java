@@ -20,6 +20,7 @@ package org.terasology.math.geom;
  * Some default implementations of {@link Shape}
  * @author Martin Steiger
  */
+@Deprecated
 public abstract class AbstractShape implements Shape {
 
     @Override

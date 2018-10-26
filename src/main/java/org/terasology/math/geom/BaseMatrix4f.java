@@ -22,6 +22,7 @@ import java.util.Locale;
  * Defines a 4x4 float matrix 
  * @author auto-generated
  */
+@Deprecated
 public abstract class BaseMatrix4f extends org.joml.Matrix4f{
 
     /**
@@ -32,6 +33,8 @@ public abstract class BaseMatrix4f extends org.joml.Matrix4f{
             0, 1, 0, 0,
             0, 0, 1, 0,
             0, 0, 0, 1);
+
+    public abstract float get(int row, int column);
 
     /**
      * @return the matrix element at row 0, column 0

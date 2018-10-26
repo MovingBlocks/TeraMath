@@ -21,6 +21,7 @@ import org.terasology.math.TeraMath;
 /**
  * Defines a line segment
  */
+@Deprecated
 public final class LineSegment {
 
     private final ImmutableVector2f start;

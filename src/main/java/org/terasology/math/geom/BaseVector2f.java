@@ -22,6 +22,7 @@ import com.google.common.base.Preconditions;
  * A vector/point in 2D space
  * @author auto-generated
  */
+@Deprecated
 public abstract class BaseVector2f extends org.joml.Vector2f{
 
     /**

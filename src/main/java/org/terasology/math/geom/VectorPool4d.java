@@ -25,6 +25,7 @@ import java.util.ArrayList;
  *
  * @author auto-generated
  */
+@Deprecated
 public class VectorPool4d implements VectorPool<Vector4d> {
     public static class Helper{
         private static final VectorPool4d vectorPool = new VectorPool4d();

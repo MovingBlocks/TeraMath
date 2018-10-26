@@ -16,12 +16,15 @@
 
 package org.terasology.math.geom;
 
+import org.joml.Matrix4d;
+
 import java.util.Locale;
 
 /**
  * Defines a 4x4 double matrix 
  * @author auto-generated
  */
+@Deprecated
 public abstract class BaseMatrix4d extends org.joml.Matrix4d {
 
     /**
@@ -254,85 +257,85 @@ public abstract class BaseMatrix4d extends org.joml.Matrix4d {
       * @param epsilon  the threshold value
      * @return true if equals up to epsilon
       */
-    public final boolean epsilonEquals(BaseMatrix4d m1, double epsilon) {
+    public final boolean epsilonEquals(Matrix4d m1, double epsilon) {
         double diff;
 
-        diff = getM00() - m1.getM00();
+        diff = getM00() - m1.m00();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM01() - m1.getM01();
+        diff = getM01() - m1.m01();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM02() - m1.getM02();
+        diff = getM02() - m1.m02();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM03() - m1.getM03();
+        diff = getM03() - m1.m03();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM10() - m1.getM10();
+        diff = getM10() - m1.m10();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM11() - m1.getM11();
+        diff = getM11() - m1.m11();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM12() - m1.getM12();
+        diff = getM12() - m1.m12();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM13() - m1.getM13();
+        diff = getM13() - m1.m13();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM20() - m1.getM20();
+        diff = getM20() - m1.m20();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM21() - m1.getM21();
+        diff = getM21() - m1.m21();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM22() - m1.getM22();
+        diff = getM22() - m1.m22();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM23() - m1.getM23();
+        diff = getM23() - m1.m23();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM30() - m1.getM30();
+        diff = getM30() - m1.m30();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM31() - m1.getM31();
+        diff = getM31() - m1.m31();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM32() - m1.getM32();
+        diff = getM32() - m1.m32();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM33() - m1.getM33();
+        diff = getM33() - m1.m33();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }

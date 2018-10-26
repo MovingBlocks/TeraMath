@@ -25,6 +25,7 @@ import java.math.RoundingMode;
  * A vector/point in 3D space
  * @author auto-generated
  */
+@Deprecated
 public abstract class BaseVector3i extends org.joml.Vector3i {
 
     /**

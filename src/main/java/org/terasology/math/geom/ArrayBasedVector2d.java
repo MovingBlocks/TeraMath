@@ -24,6 +24,7 @@ import com.google.common.base.Preconditions;
  * An implementation of {@link BaseVector2d}, based on a double array
  * @author Martin Steiger
  */
+@Deprecated
 public class ArrayBasedVector2d extends BaseVector2d {
 
     private final double[] array;

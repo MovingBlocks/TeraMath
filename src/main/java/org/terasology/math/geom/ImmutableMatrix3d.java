@@ -20,53 +20,8 @@ package org.terasology.math.geom;
  * Defines an immutable 3x3 double matrix
  * @author auto-generated
  */
+@Deprecated
 public class ImmutableMatrix3d extends BaseMatrix3d {
-
-    /**
-     * Entry at row 0, column 0
-     */
-    private final double m00;
-
-    /**
-     * Entry at row 0, column 1
-     */
-    private final double m01;
-
-    /**
-     * Entry at row 0, column 2
-     */
-    private final double m02;
-
-    /**
-     * Entry at row 1, column 0
-     */
-    private final double m10;
-
-    /**
-     * Entry at row 1, column 1
-     */
-    private final double m11;
-
-    /**
-     * Entry at row 1, column 2
-     */
-    private final double m12;
-
-    /**
-     * Entry at row 2, column 0
-     */
-    private final double m20;
-
-    /**
-     * Entry at row 2, column 1
-     */
-    private final double m21;
-
-    /**
-     * Entry at row 2, column 2
-     */
-    private final double m22;
-
 
     /**
      * Constructs and initializes a Matrix3d from the specified values.

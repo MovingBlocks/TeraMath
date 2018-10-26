@@ -26,6 +26,7 @@ import java.math.RoundingMode;
  *
  * @author auto-generated
  */
+@Deprecated
 public class Vector3i extends BaseVector3i {
 
     /**

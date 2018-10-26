@@ -25,6 +25,7 @@ import com.google.common.collect.ImmutableList.Builder;
 /**
  * @author Martin Steiger
  */
+@Deprecated
 public final class Polygon implements Shape {
 
     private final ImmutableList<ImmutableVector2f> vertices;

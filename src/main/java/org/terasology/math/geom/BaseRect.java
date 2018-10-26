@@ -19,6 +19,7 @@ package org.terasology.math.geom;
 /**
  * TODO Type description
  */
+@Deprecated
 public abstract class BaseRect implements Shape {
 
     /**

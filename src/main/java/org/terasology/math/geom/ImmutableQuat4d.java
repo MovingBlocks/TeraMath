@@ -20,12 +20,8 @@ package org.terasology.math.geom;
  * An immutable implementation of {@link BaseQuat4d}
  * @author auto-generated
  */
+@Deprecated
 public final class ImmutableQuat4d extends BaseQuat4d {
-
-    private final double x;
-    private final double y;
-    private final double z;
-    private final double w;
 
     /**
      * Constructs an instance from the specified xyzw coordinates.

@@ -22,12 +22,8 @@ package org.terasology.math.geom;
  *
  * @author auto-generated
  */
+@Deprecated
 public final class ImmutableVector4f extends BaseVector4f {
-
-    private final float x;
-    private final float y;
-    private final float z;
-    private final float w;
 
     /**
     * @param x the x component

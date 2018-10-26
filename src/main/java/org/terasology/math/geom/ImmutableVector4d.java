@@ -22,12 +22,9 @@ package org.terasology.math.geom;
  *
  * @author auto-generated
  */
+@Deprecated
 public final class ImmutableVector4d extends BaseVector4d {
 
-    private final double x;
-    private final double y;
-    private final double z;
-    private final double w;
 
     /**
     * @param x the x component

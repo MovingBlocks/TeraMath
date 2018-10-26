@@ -21,6 +21,7 @@ package org.terasology.math.geom;
  * point x,y,z,w coordinates.
  * @author Martin Steiger
  */
+@Deprecated
 public class Quat4f extends BaseQuat4f {
 
     // required in set(Matrix4 m)

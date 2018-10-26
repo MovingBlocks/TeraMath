@@ -22,6 +22,7 @@ package org.terasology.math.geom;
  *
  * @param <T> Type of object stored in pool
  */
+@Deprecated
 public interface VectorPool<T> {
     /**
      * Marks vector for reuse.

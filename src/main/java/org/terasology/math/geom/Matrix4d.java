@@ -16,12 +16,15 @@
 
 package org.terasology.math.geom;
 
+import org.joml.Quaterniond;
+
 import java.nio.DoubleBuffer;
 
 /**
  * A double precision floating point 4x4 double matrix.
  * @author auto-generated
  */
+@Deprecated
 public class Matrix4d extends BaseMatrix4d {
     /**
      * Constructs and initializes a Matrix4d from the specified values.
@@ -42,8 +45,9 @@ public class Matrix4d extends BaseMatrix4d {
      * @param m32 the m32 component
      * @param m33 the m33 component
      */
-    public Matrix4d(double m00, double m01, double m02, double m03, double m10, double m11, double m12, double m13, double m20, double m21, double m22, double m23, double m30, double m31, double m32, double m33) {
-        this._m00(m00;
+    public Matrix4d(double m00, double m01, double m02, double m03, double m10, double m11, double m12, double m13, double m20, double m21, double m22, double m23, double m30, double m31, double m32, double m33){
+
+        this._m00(m00);
         this._m01(m01);
         this._m02(m02);
         this._m03(m03);
@@ -59,6 +63,9 @@ public class Matrix4d extends BaseMatrix4d {
         this._m31(m31);
         this._m32(m32);
         this._m33(m33);
+
+        determineProperties();
+
     }
 
     /**
@@ -67,22 +74,25 @@ public class Matrix4d extends BaseMatrix4d {
      *  @param m1  the source matrix
      */
     public Matrix4d(BaseMatrix4d m1) {
-        this._m00 = m1.getM00();
-        this._m01 = m1.getM01();
-        this._m02 = m1.getM02();
-        this._m03 = m1.getM03();
-        this._m10 = m1.getM10();
-        this._m11 = m1.getM11();
-        this._m12 = m1.getM12();
-        this._m13 = m1.getM13();
-        this._m20 = m1.getM20();
-        this._m21 = m1.getM21();
-        this._m22 = m1.getM22();
-        this._m23 = m1.getM23();
-        this._m30 = m1.getM30();
-        this._m31(m1.getM31();
-        this._m32(m1.getM32();
-        this._m33(m1.getM33();
+        this._m00(m1.getM00());
+        this._m01(m1.getM01());
+        this._m02(m1.getM02());
+        this._m03(m1.getM03());
+        this._m10(m1.getM10());
+        this._m11(m1.getM11());
+        this._m12(m1.getM12());
+        this._m13(m1.getM13());
+        this._m20(m1.getM20());
+        this._m21(m1.getM21());
+        this._m22(m1.getM22());
+        this._m23(m1.getM23());
+        this._m30(m1.getM30());
+        this._m31(m1.getM31());
+        this._m32(m1.getM32());
+        this._m33(m1.getM33());
+
+        determineProperties();
+
     }
 
     /**
@@ -91,25 +101,28 @@ public class Matrix4d extends BaseMatrix4d {
      * @param v the array of length 16 containing in order
      */
     public Matrix4d(double[] v) {
-        this.m00 = v[ 0];
-        this.m01 = v[ 1];
-        this.m02 = v[ 2];
-        this.m03 = v[ 3];
 
-        this.m10 = v[ 4];
-        this.m11 = v[ 5];
-        this.m12 = v[ 6];
-        this.m13 = v[ 7];
+        this._m00(v[0]);
+        this._m01(v[1]);
+        this._m02(v[2]);
+        this._m03(v[3]);
 
-        this.m20 = v[ 8];
-        this.m21 = v[ 9];
-        this.m22 = v[10];
-        this.m23 = v[11];
+        this._m10(v[4]);
+        this._m11(v[5]);
+        this._m12(v[6]);
+        this._m13(v[7]);
 
-        this.m30 = v[12];
-        this.m31 = v[13];
-        this.m32 = v[14];
-        this.m33 = v[15];
+        this._m20(v[8]);
+        this._m21(v[9]);
+        this._m22(v[10]);
+        this._m23(v[11]);
+
+        this._m30(v[12]);
+        this._m31(v[13]);
+        this._m32(v[14]);
+        this._m33(v[15]);
+
+        determineProperties();
     }
 
     /**
@@ -117,6 +130,8 @@ public class Matrix4d extends BaseMatrix4d {
      */
     public Matrix4d() {
         // no-op
+
+        determineProperties();
     }
 
    /**
@@ -128,27 +143,27 @@ public class Matrix4d extends BaseMatrix4d {
      * @param t1  the translational component of the matrix
      * @param s   the scale value applied to the rotational components
      */
-    public Matrix4d(BaseQuat4d q1, BaseVector3d t1, double s) {  
-        m00 = s * (1.0 - 2.0 * q1.getY() * q1.getY() - 2.0 * q1.getZ() * q1.getZ());
-        m10 = s * (2.0 * (q1.getX() * q1.getY() + q1.getW() * q1.getZ()));
-        m20 = s * (2.0 * (q1.getX() * q1.getZ() - q1.getW() * q1.getY()));
+    public Matrix4d(Quaterniond q1, org.joml.Vector3d t1, double s) {
+        _m00(s * (1.0 - 2.0 * q1.y() * q1.y() - 2.0 * q1.z() * q1.z()));
+        _m10(s * (2.0 * (q1.x() * q1.y() + q1.w() * q1.z())));
+        _m20(s * (2.0 * (q1.x() * q1.z() - q1.w() * q1.y())));
 
-        m01 = s * (2.0 * (q1.getX() * q1.getY() - q1.getW() * q1.getZ()));
-        m11 = s * (1.0 - 2.0 * q1.getX() * q1.getX() - 2.0 * q1.getZ() * q1.getZ());
-        m21 = s * (2.0 * (q1.getY() * q1.getZ() + q1.getW() * q1.getX()));
+        _m01(s * (2.0 * (q1.x() * q1.y() - q1.w() * q1.z())));
+        _m11(s * (1.0 - 2.0 * q1.x() * q1.x() - 2.0 * q1.z() * q1.z()));
+        _m21(s * (2.0 * (q1.y() * q1.z() + q1.w() * q1.x())));
 
-        m02 = s * (2.0 * (q1.getX() * q1.getZ() + q1.getW() * q1.getY()));
-        m12 = s * (2.0 * (q1.getY() * q1.getZ() - q1.getW() * q1.getX()));
-        m22 = s * (1.0 - 2.0 * q1.getX() * q1.getX() - 2.0 * q1.getY() * q1.getY());
+        _m02(s * (2.0 * (q1.x() * q1.z() + q1.w() * q1.y())));
+        _m12(s * (2.0 * (q1.x() * q1.z() - q1.w() * q1.x())));
+        _m22(s * (1.0 - 2.0 * q1.x() * q1.x() - 2.0 * q1.y() * q1.y()));
 
-        m03 = t1.getX();
-        m13 = t1.getY();
-        m23 = t1.getZ();
+        _m03(t1.x());
+        _m13(t1.y());
+        _m23(t1.z());
 
-        m30 = 0;
-        m31 = 0;
-        m32 = 0;
-        m33 = 1;
+        _m30(0);
+        _m31(0);
+        _m32(0);
+        _m33(1);
 
     }
 
@@ -156,38 +171,9 @@ public class Matrix4d extends BaseMatrix4d {
      * Sets this Matrix3d to identity.
      */
     public final void setIdentity() {
-        this.m00 = 1;
-        this.m01 = 0;
-        this.m02 = 0;
-        this.m03 = 0;
-
-        this.m10 = 0;
-        this.m11 = 1;
-        this.m12 = 0;
-        this.m13 = 0;
-
-        this.m20 = 0;
-        this.m21 = 0;
-        this.m22 = 1;
-        this.m23 = 0;
-
-        this.m30 = 0;
-        this.m31 = 0;
-        this.m32 = 0;
-        this.m33 = 1;
+        this.identity();
     }
 
-    /**
-     * Modifies the translational components of this matrix to the values
-     * of the Vector3f argument; the other values of this matrix are not
-     * modified.
-     * @param trans  the translational component
-     */
-    public final void setTranslation(BaseVector3d trans) {
-       this.m03 = trans.getX();
-       this.m13 = trans.getY();
-       this.m23 = trans.getZ();
-    }
 
     /**
      * Retrieves the value at the specified row and column of the specified
@@ -276,16 +262,16 @@ public class Matrix4d extends BaseMatrix4d {
             case 0:
                 switch (column) {
                     case 0:
-                        this.m00 = value;
+                        this._m00(value);
                         break;
                     case 1:
-                        this.m01 = value;
+                        this._m01(value);
                         break;
                     case 2:
-                        this.m02 = value;
+                        this._m02(value);
                         break;
                     case 3:
-                        this.m03 = value;
+                        this._m03(value);
                         break;
                     default:
                         throw new ArrayIndexOutOfBoundsException("col not in [0..3]");
@@ -295,16 +281,16 @@ public class Matrix4d extends BaseMatrix4d {
             case 1:
                 switch (column) {
                     case 0:
-                        this.m10 = value;
+                        this.m10(value);
                         break;
                     case 1:
-                        this.m11 = value;
+                        this.m11(value);
                         break;
                     case 2:
-                        this.m12 = value;
+                        this.m12(value);
                         break;
                     case 3:
-                        this.m13 = value;
+                        this.m13(value);
                         break;
                     default:
                         throw new ArrayIndexOutOfBoundsException("col not in [0..3]");
@@ -314,16 +300,16 @@ public class Matrix4d extends BaseMatrix4d {
             case 2:
                 switch (column) {
                     case 0:
-                        this.m20 = value;
+                        this.m20(value);
                         break;
                     case 1:
-                        this.m21 = value;
+                        this.m21(value);
                         break;
                     case 2:
-                        this.m22 = value;
+                        this.m22(value);
                         break;
                     case 3:
-                        this.m23 = value;
+                        this.m23(value);
                         break;
                     default:
                         throw new ArrayIndexOutOfBoundsException("col not in [0..3]");
@@ -333,16 +319,16 @@ public class Matrix4d extends BaseMatrix4d {
             case 3:
                 switch (column) {
                     case 0:
-                        this.m30 = value;
+                        this.m30(value);
                         break;
                     case 1:
-                        this.m31 = value;
+                        this.m31(value);
                         break;
                     case 2:
-                        this.m32 = value;
+                        this.m32(value);
                         break;
                     case 3:
-                        this.m33 = value;
+                        this.m33(value);
                         break;
                     default:
                         throw new ArrayIndexOutOfBoundsException("col not in [0..3]");
@@ -354,329 +340,32 @@ public class Matrix4d extends BaseMatrix4d {
         }
     }
 
-    /**
-     * Sets the specified row of this matrix3d to the 4 values provided.
-     * @param row the row number to be modified (zero indexed)
-     * @param x the first column element
-     * @param y the second column element
-     * @param z the third column element
-     * @param w the fourth column element
-     */
-    public final void setRow(int row, double x, double y, double z, double w) {
-        switch (row) {
-            case 0:
-                this.m00 = x;
-                this.m01 = y;
-                this.m02 = z;
-                this.m03 = w;
-                break;
-
-            case 1:
-                this.m10 = x;
-                this.m11 = y;
-                this.m12 = z;
-                this.m13 = w;
-                break;
-
-            case 2:
-                this.m20 = x;
-                this.m21 = y;
-                this.m22 = z;
-                this.m23 = w;
-                break;
-
-            case 3:
-                this.m30 = x;
-                this.m31 = y;
-                this.m32 = z;
-                this.m33 = w;
-                break;
-
-            default:
-                throw new ArrayIndexOutOfBoundsException("row not in [0..3]");
-        }
-    }
-
-    /**
-     * Sets the specified row of this matrix3d to the Vector provided.
-     * @param row the row number to be modified (zero indexed)
-     * @param v the replacement row
-     */
-    public final void setRow(int row, Vector4d v) {
-        switch (row) {
-            case 0:
-                this.m00 = v.getX();
-                this.m01 = v.getY();
-                this.m02 = v.getZ();
-                this.m03 = v.getW();
-                break;
-
-            case 1:
-                this.m10 = v.getX();
-                this.m11 = v.getY();
-                this.m12 = v.getZ();
-                this.m13 = v.getW();
-                break;
-
-            case 2:
-                this.m20 = v.getX();
-                this.m21 = v.getY();
-                this.m22 = v.getZ();
-                this.m23 = v.getW();
-                break;
-
-            case 3:
-                this.m30 = v.getX();
-                this.m31 = v.getY();
-                this.m32 = v.getZ();
-                this.m33 = v.getW();
-                break;
-
-            default:
-                throw new ArrayIndexOutOfBoundsException("row not in [0..3]");
-        }
-    }
-
-    /**
-     * Sets the specified row of this matrix3d to the three values provided.
-     * @param row the row number to be modified (zero indexed)
-     * @param v the replacement row
-     */
-    public final void setRow(int row, double[] v) {
-        switch (row) {
-            case 0:
-                this.m00 = v[0];
-                this.m01 = v[1];
-                this.m02 = v[2];
-                this.m03 = v[3];
-                break;
-
-            case 1:
-                this.m10 = v[0];
-                this.m11 = v[1];
-                this.m12 = v[2];
-                this.m13 = v[3];
-                break;
-
-            case 2:
-                this.m20 = v[0];
-                this.m21 = v[1];
-                this.m22 = v[2];
-                this.m23 = v[3];
-                break;
-
-            case 3:
-                this.m30 = v[0];
-                this.m31 = v[1];
-                this.m32 = v[2];
-                this.m33 = v[3];
-                break;
-
-            default:
-                throw new ArrayIndexOutOfBoundsException("row not in [0..2]");
-        }
-    }
-
-    /**
-     * Sets the specified column of this matrix3d to the three values provided.
-     * @param column the column number to be modified (zero indexed)
-     * @param x the first row element
-     * @param y the second row element
-     * @param z the third row element
-     * @param w the fourth row element
-     */
-    public final void setColumn(int column, double x, double y, double z, double w) {
-        switch (column) {
-            case 0:
-                this.m00 = x;
-                this.m10 = y;
-                this.m20 = z;
-                this.m30 = w;
-                break;
-
-            case 1:
-                this.m01 = x;
-                this.m11 = y;
-                this.m21 = z;
-                this.m31 = w;
-                break;
-
-            case 2:
-                this.m02 = x;
-                this.m12 = y;
-                this.m22 = z;
-                this.m32 = w;
-                break;
-
-            case 3:
-                this.m03 = x;
-                this.m13 = y;
-                this.m23 = z;
-                this.m33 = w;
-                break;
-
-            default:
-                throw new ArrayIndexOutOfBoundsException("col not in [0..3]");
-        }
-    }
-
-    /**
-     * Sets the specified column of this matrix3d to the vector provided.
-     * @param column the column number to be modified (zero indexed)
-     * @param v the replacement column
-     */
-    public final void setColumn(int column, BaseVector4d v) {
-        switch (column) {
-            case 0:
-                this.m00 = v.getX();
-                this.m10 = v.getY();
-                this.m20 = v.getZ();
-                this.m30 = v.getW();
-                break;
-
-            case 1:
-                this.m01 = v.getX();
-                this.m11 = v.getY();
-                this.m21 = v.getZ();
-                this.m31 = v.getW();
-                break;
-
-            case 2:
-                this.m02 = v.getX();
-                this.m12 = v.getY();
-                this.m22 = v.getZ();
-                this.m32 = v.getW();
-                break;
-
-            case 3:
-                this.m03 = v.getX();
-                this.m13 = v.getY();
-                this.m23 = v.getZ();
-                this.m33 = v.getW();
-                break;
-
-            default:
-                throw new ArrayIndexOutOfBoundsException("col not in [0..3]");
-        }
-    }
-
-    /**
-     * Sets the specified column of this matrix3d to the three values provided.
-     * @param column the column number to be modified (zero indexed)
-     * @param v the replacement column
-     */
-    public final void setColumn(int column, double[] v) {
-        switch (column) {
-            case 0:
-                this.m00 = v[0];
-                this.m10 = v[1];
-                this.m20 = v[2];
-                this.m30 = v[3];
-                break;
-
-            case 1:
-                this.m01 = v[0];
-                this.m11 = v[1];
-                this.m21 = v[2];
-                this.m31 = v[3];
-                break;
-
-            case 2:
-                this.m02 = v[0];
-                this.m12 = v[1];
-                this.m22 = v[2];
-                this.m32 = v[3];
-                break;
-
-            case 3:
-                this.m03 = v[0];
-                this.m13 = v[1];
-                this.m23 = v[2];
-                this.m33 = v[3];
-                break;
-
-            default:
-                throw new ArrayIndexOutOfBoundsException("col not in [0..3]");
-        }
-    }
 
     /**
      * Adds a scalar to each component of this matrix.
      * @param scalar  the scalar adder
      */
     public final void add(double scalar) {
-        m00 += scalar;
-        m01 += scalar;
-        m02 += scalar;
-        m03 += scalar;
 
-        m10 += scalar;
-        m11 += scalar;
-        m12 += scalar;
-        m13 += scalar;
+        _m00(m00()+scalar);
+        _m01(m01()+scalar);
+        _m02(m02()+scalar);
+        _m03(m03()+scalar);
 
-        m20 += scalar;
-        m21 += scalar;
-        m22 += scalar;
-        m23 += scalar;
+        _m10(m10()+scalar);
+        _m11(m11()+scalar);
+        _m12(m12()+scalar);
+        _m13(m13()+scalar);
 
-        m30 += scalar;
-        m31 += scalar;
-        m32 += scalar;
-        m33 += scalar;
-    }
+        _m20(m20()+scalar);
+        _m21(m21()+scalar);
+        _m22(m22()+scalar);
+        _m23(m23()+scalar);
 
-    /**
-     * Sets the value of this matrix to the sum of itself and matrix m1.
-     * @param m1 the other matrix
-     */
-    public final void add(BaseMatrix4d m1) {
-        this.m00 += m1.get(0, 0);
-        this.m01 += m1.get(0, 1);
-        this.m02 += m1.get(0, 2);
-        this.m03 += m1.get(0, 3);
-
-        this.m10 += m1.get(1, 0);
-        this.m11 += m1.get(1, 1);
-        this.m12 += m1.get(1, 2);
-        this.m13 += m1.get(1, 3);
-
-        this.m20 += m1.get(2, 0);
-        this.m21 += m1.get(2, 1);
-        this.m22 += m1.get(2, 2);
-        this.m23 += m1.get(2, 3);
-
-        this.m30 += m1.get(3, 0);
-        this.m31 += m1.get(3, 1);
-        this.m32 += m1.get(3, 2);
-        this.m33 += m1.get(3, 3);
-    }
-
-    /**
-     * Sets the value of this matrix to the matrix difference of itself and
-     * matrix m1 (this = this - m1).
-     * @param m1 the other matrix
-     */
-    public final void sub(BaseMatrix4d m1) {
-        this.m00 -= m1.get(0, 0);
-        this.m01 -= m1.get(0, 1);
-        this.m02 -= m1.get(0, 2);
-        this.m03 -= m1.get(0, 3);
-
-        this.m10 -= m1.get(1, 0);
-        this.m11 -= m1.get(1, 1);
-        this.m12 -= m1.get(1, 2);
-        this.m13 -= m1.get(1, 3);
-
-        this.m20 -= m1.get(2, 0);
-        this.m21 -= m1.get(2, 1);
-        this.m22 -= m1.get(2, 2);
-        this.m23 -= m1.get(2, 3);
-
-        this.m30 -= m1.get(3, 0);
-        this.m31 -= m1.get(3, 1);
-        this.m32 -= m1.get(3, 2);
-        this.m33 -= m1.get(3, 3);
+        _m30(m30()+scalar);
+        _m31(m31()+scalar);
+        _m32(m32()+scalar);
+        _m33(m33()+scalar);
     }
 
 
@@ -684,26 +373,9 @@ public class Matrix4d extends BaseMatrix4d {
      * Sets the value of this matrix to the transpose of the argument matrix.
      * @param m1 the matrix to be transposed
      */
-    public final void transpose(BaseMatrix4d m1) {
-        this.m00 = m1.get(0, 0);
-        this.m01 = m1.get(1, 0);
-        this.m02 = m1.get(2, 0);
-        this.m03 = m1.get(3, 0);
-
-        this.m10 = m1.get(0, 1);
-        this.m11 = m1.get(1, 1);
-        this.m12 = m1.get(2, 1);
-        this.m13 = m1.get(3, 1);
-
-        this.m20 = m1.get(0, 2);
-        this.m21 = m1.get(1, 2);
-        this.m22 = m1.get(2, 2);
-        this.m23 = m1.get(3, 2);
-
-        this.m30 = m1.get(0, 3);
-        this.m31 = m1.get(1, 3);
-        this.m32 = m1.get(2, 3);
-        this.m33 = m1.get(3, 3);
+    public final void transpose(Matrix4d m1) {
+        this.set(m1);
+        this.transpose();
     }
 
 
@@ -712,53 +384,27 @@ public class Matrix4d extends BaseMatrix4d {
      * double precision quaternion argument.
      * @param q1 the quaternion to be converted
      */
-    public final void set(Quat4d q1) {
-        this.m00 = 1.0 - 2.0 * q1.getY() * q1.getY() - 2.0 * q1.getZ() * q1.getZ();
-        this.m10 = 2.0 * (q1.getX() * q1.getY() + q1.getW() * q1.getZ());
-        this.m20 = 2.0 * (q1.getX() * q1.getZ() - q1.getW() * q1.getY());
+    public final void set(Quaterniond q1) {
+        this._m00(1.0 - 2.0 * q1.y() * q1.y() - 2.0 * q1.z() * q1.z());
+        this._m10(2.0 * (q1.x() * q1.y() + q1.w() * q1.z()));
+        this._m20(2.0 * (q1.x() * q1.z() - q1.w() * q1.y()));
 
-        this.m01 = 2.0 * (q1.getX() * q1.getY() - q1.getW() * q1.getZ());
-        this.m11 = 1.0 - 2.0 * q1.getX() * q1.getX() - 2.0 * q1.getZ() * q1.getZ();
-        this.m21 = 2.0 * (q1.getY() * q1.getZ() + q1.getW() * q1.getX());
+        this._m01(2.0 * (q1.x() * q1.y() - q1.w() * q1.z()));
+        this._m11(1.0 - 2.0 * q1.x() * q1.x() - 2.0 * q1.z() * q1.z());
+        this._m21(2.0 * (q1.y() * q1.z() + q1.w() * q1.x()));
 
-        this.m02 = 2.0 * (q1.getX() * q1.getZ() + q1.getW() * q1.getY());
-        this.m12 = 2.0 * (q1.getY() * q1.getZ() - q1.getW() * q1.getX());
-        this.m22 = 1.0 - 2.0 * q1.getX() * q1.getX() - 2.0 * q1.getY() * q1.getY();
+        this._m02(2.0 * (q1.x() * q1.z() + q1.w() * q1.y()));
+        this._m12(2.0 * (q1.y() * q1.z() - q1.w() * q1.x()));
+        this._m22(1.0 - 2.0 * q1.x() * q1.x() - 2.0 * q1.y() * q1.y());
 
-        this.m03 = 0;
-        this.m13 = 0;
-        this.m23 = 0;
+        this._m03(0);
+        this._m13(0);
+        this._m23(0);
 
-        this.m30 = 0;
-        this.m31 = 0;
-        this.m32 = 0;
-        this.m33 = 1;
-    }
-
-    /**
-     * Sets the value of this matrix to the value of the argument.
-     * @param m1 the source
-     */
-    public final void set(BaseMatrix4d m1) {
-        this.m00 = m1.get(0, 0);
-        this.m01 = m1.get(0, 1);
-        this.m02 = m1.get(0, 2);
-        this.m03 = m1.get(0, 3);
-
-        this.m10 = m1.get(1, 0);
-        this.m11 = m1.get(1, 1);
-        this.m12 = m1.get(1, 2);
-        this.m13 = m1.get(1, 3);
-
-        this.m20 = m1.get(2, 0);
-        this.m21 = m1.get(2, 1);
-        this.m22 = m1.get(2, 2);
-        this.m23 = m1.get(2, 3);
-
-        this.m30 = m1.get(3, 0);
-        this.m31 = m1.get(3, 1);
-        this.m32 = m1.get(3, 2);
-        this.m33 = m1.get(3, 3);
+        this._m30(0);
+        this._m31(0);
+        this._m32(0);
+        this._m33(1);
     }
 
     /**
@@ -767,25 +413,11 @@ public class Matrix4d extends BaseMatrix4d {
      * @param scale the scale factor for the matrix
      */
     public final void set(double scale) {
-        this.m00 = scale;
-        this.m01 = 0;
-        this.m02 = 0;
-        this.m03 = 0;
-
-        this.m10 = 0;
-        this.m11 = scale;
-        this.m12 = 0;
-        this.m13 = 0;
-
-        this.m20 = 0;
-        this.m21 = 0;
-        this.m22 = scale;
-        this.m23 = 0;
-
-        this.m30 = 0;
-        this.m31 = 0;
-        this.m32 = 0;
-        this.m33 = scale;
+        this.zero();
+        this._m00(scale);
+        this._m11(scale);
+        this._m22(scale);
+        this._m33(scale);
     }
 
     /**
@@ -793,25 +425,25 @@ public class Matrix4d extends BaseMatrix4d {
       * @param scalar  The scalar multiplier.
       */
     public final void mul(double scalar) {
-        m00 *= scalar;
-        m01 *= scalar;
-        m02 *= scalar;
-        m03 *= scalar;
+        _m00(m00()*scalar);
+        _m01(m01()*scalar);
+        _m02(m02()*scalar);
+        _m03(m03()*scalar);
 
-        m10 *= scalar;
-        m11 *= scalar;
-        m12 *= scalar;
-        m13 *= scalar;
+        _m10(m10()*scalar);
+        _m11(m11()*scalar);
+        _m12(m12()*scalar);
+        _m13(m13()*scalar);
 
-        m20 *= scalar;
-        m21 *= scalar;
-        m22 *= scalar;
-        m23 *= scalar;
+        _m20(m20()*scalar);
+        _m21(m21()*scalar);
+        _m22(m22()*scalar);
+        _m23(m23()*scalar);
 
-        m30 *= scalar;
-        m31 *= scalar;
-        m32 *= scalar;
-        m33 *= scalar;
+        _m30(m30()*scalar);
+        _m31(m31()*scalar);
+        _m32(m32()*scalar);
+        _m33(m33()*scalar);
     }
 
     /**
@@ -826,130 +458,35 @@ public class Matrix4d extends BaseMatrix4d {
     }
 
     /**
-      * Sets the value of this matrix to the result of multiplying itself
-      * with matrix m1.
-      * @param m1 the other matrix
-      */
-    public final void mul(BaseMatrix4d m1) {
-        double lm00;
-        double lm01;
-        double lm02;
-        double lm03;
-        double lm10;
-        double lm11;
-        double lm12;
-        double lm13;
-        double lm20;
-        double lm21;
-        double lm22;
-        double lm23;
-        double lm30;
-        double lm31;
-        double lm32;
-        double lm33;  // vars for temp result matrix 
-
-        lm00 = m00 * m1.getM00() + m01 * m1.getM10()
-             + m02 * m1.getM20() + m03 * m1.getM30();
-        lm01 = m00 * m1.getM01() + m01 * m1.getM11()
-             + m02 * m1.getM21() + m03 * m1.getM31();
-        lm02 = m00 * m1.getM02() + m01 * m1.getM12()
-             + m02 * m1.getM22() + m03 * m1.getM32();
-        lm03 = m00 * m1.getM03() + m01 * m1.getM13()
-             + m02 * m1.getM23() + m03 * m1.getM33();
-
-        lm10 = m10 * m1.getM00() + m11 * m1.getM10()
-             + m12 * m1.getM20() + m13 * m1.getM30();
-        lm11 = m10 * m1.getM01() + m11 * m1.getM11()
-             + m12 * m1.getM21() + m13 * m1.getM31();
-        lm12 = m10 * m1.getM02() + m11 * m1.getM12()
-             + m12 * m1.getM22() + m13 * m1.getM32();
-        lm13 = m10 * m1.getM03() + m11 * m1.getM13()
-             + m12 * m1.getM23() + m13 * m1.getM33();
-
-        lm20 = m20 * m1.getM00() + m21 * m1.getM10()
-             + m22 * m1.getM20() + m23 * m1.getM30();
-        lm21 = m20 * m1.getM01() + m21 * m1.getM11()
-             + m22 * m1.getM21() + m23 * m1.getM31();
-        lm22 = m20 * m1.getM02() + m21 * m1.getM12()
-             + m22 * m1.getM22() + m23 * m1.getM32();
-        lm23 = m20 * m1.getM03() + m21 * m1.getM13()
-             + m22 * m1.getM23() + m23 * m1.getM33();
-
-        lm30 = m30 * m1.getM00() + m31 * m1.getM10()
-             + m32 * m1.getM20() + m33 * m1.getM30();
-        lm31 = m30 * m1.getM01() + m31 * m1.getM11()
-             + m32 * m1.getM21() + m33 * m1.getM31();
-        lm32 = m30 * m1.getM02() + m31 * m1.getM12()
-             + m32 * m1.getM22() + m33 * m1.getM32();
-        lm33 = m30 * m1.getM03() + m31 * m1.getM13()
-             + m32 * m1.getM23() + m33 * m1.getM33();
-
-        m00 = lm00;
-        m01 = lm01;
-        m02 = lm02;
-        m03 = lm03;
-        m10 = lm10;
-        m11 = lm11;
-        m12 = lm12;
-        m13 = lm13;
-        m20 = lm20;
-        m21 = lm21;
-        m22 = lm22;
-        m23 = lm23;
-        m30 = lm30;
-        m31 = lm31;
-        m32 = lm32;
-        m33 = lm33;
-    }
-
-    /**
      * Sets this matrix to all zeros.
      */
     public final void setZero() {
-        m00 = 0;
-        m01 = 0;
-        m02 = 0;
-        m03 = 0;
-
-        m10 = 0;
-        m11 = 0;
-        m12 = 0;
-        m13 = 0;
-
-        m20 = 0;
-        m21 = 0;
-        m22 = 0;
-        m23 = 0;
-
-        m30 = 0;
-        m31 = 0;
-        m32 = 0;
-        m33 = 0;
+        this.zero();
     }
 
     /**
      * Negates the value of this matrix: this = -this.
      */
     public final void negate() {
-        this.m00 = -this.m00;
-        this.m01 = -this.m01;
-        this.m02 = -this.m02;
-        this.m03 = -this.m03;
+        this._m00(-this.m00());
+        this._m01(-this.m01());
+        this._m02(-this.m02());
+        this._m03(-this.m03());
 
-        this.m10 = -this.m10;
-        this.m11 = -this.m11;
-        this.m12 = -this.m12;
-        this.m13 = -this.m13;
+        this._m10(-this.m10());
+        this._m11(-this.m11());
+        this._m12(-this.m12());
+        this._m13(-this.m13());
 
-        this.m20 = -this.m20;
-        this.m21 = -this.m21;
-        this.m22 = -this.m22;
-        this.m23 = -this.m23;
+        this._m20(-this.m20());
+        this._m21(-this.m21());
+        this._m22(-this.m22());
+        this._m23(-this.m23());
 
-        this.m30 = -this.m30;
-        this.m31 = -this.m31;
-        this.m32 = -this.m32;
-        this.m33 = -this.m33;
+        this._m30(-this.m30());
+        this._m31(-this.m31());
+        this._m32(-this.m32());
+        this._m33(-this.m33());
     }
 
     /**
@@ -959,14 +496,14 @@ public class Matrix4d extends BaseMatrix4d {
      */
     public final void transform(Vector4d vec) {
 
-        double x = (m00 * vec.getX() + m01 * vec.getY()
-                + m02 * vec.getZ() + m03 * vec.getW());
-        double y = (m10 * vec.getX() + m11 * vec.getY()
-                + m12 * vec.getZ() + m13 * vec.getW());
-        double z = (m20 * vec.getX() + m21 * vec.getY()
-                + m22 * vec.getZ() + m23 * vec.getW());
-        double w = (m30 * vec.getX() + m31 * vec.getY()
-                + m32 * vec.getZ() + m33 * vec.getW());
+        double x = (m00() * vec.x() + m01() * vec.y()
+                + m02() * vec.z() + m03() * vec.w());
+        double y = (m10() * vec.x() + m11() * vec.y()
+                + m12() * vec.z() + m13() * vec.w());
+        double z = (m20() * vec.x() + m21() * vec.y()
+                + m22() * vec.z() + m23() * vec.w());
+        double w = (m30() * vec.x() + m31() * vec.y()
+                + m32() * vec.z() + m33() * vec.w());
 
         vec.set(x, y, z, w);
     }
@@ -977,15 +514,15 @@ public class Matrix4d extends BaseMatrix4d {
    * point input paramter is assumed to be one.
    * @param point  the input point to be transformed.
    */
-    public final void transformPoint(Vector3d point) {
+    public final void transformPoint(org.joml.Vector3d point) {
         double x;
         double y;
 
-        x = m00 * point.x() + m01 * point.y() + m02 * point.z() + m03;
-        y = m10 * point.x() + m11 * point.y() + m12 * point.z() + m13;
-        point.setZ(m20 * point.x() + m21 * point.y() + m22 * point.z() + m23);
-        point.setX(x);
-        point.setY(y);
+        x = m00() * point.x() + m01() * point.y() + m02() * point.z() + m03();
+        y = m10() * point.x() + m11() * point.y() + m12() * point.z() + m13();
+        point.z = (m20() * point.x() + m21() * point.y() + m22() * point.z() + m23());
+        point.x = (x);
+        point.y = (y);
     }
 
   /**
@@ -993,15 +530,15 @@ public class Matrix4d extends BaseMatrix4d {
    * back into normal.  The fourth element of the normal is assumed to be zero.
    * @param normal   the input normal to be transformed.
    */
-    public final void transformVector(Vector3d normal) {
+    public final void transformVector(org.joml.Vector3d normal) {
         double x;
         double y;
 
-        x = m00 * normal.x() + m01 * normal.y() + m02 * normal.z();
-        y = m10 * normal.x() + m11 * normal.y() + m12 * normal.z();
-        normal.setZ(m20 * normal.x() + m21 * normal.y() + m22 * normal.z());
-        normal.setX(x);
-        normal.setY(y);
+        x = m00() * normal.x() + m01() * normal.y() + m02() * normal.z();
+        y = m10() * normal.x() + m11() * normal.y() + m12() * normal.z();
+        normal.z = (m20() * normal.x() + m21() * normal.y() + m22() * normal.z());
+        normal.x = x;
+        normal.y = y;
     }
 
 
@@ -1020,103 +557,87 @@ public class Matrix4d extends BaseMatrix4d {
     * @param fb to append results to
     */
     public void appendToBuffer(DoubleBuffer fb){
-      fb.put(m00);
-      fb.put(m01);
-      fb.put(m02);
-      fb.put(m03);
-      fb.put(m10);
-      fb.put(m11);
-      fb.put(m12);
-      fb.put(m13);
-      fb.put(m20);
-      fb.put(m21);
-      fb.put(m22);
-      fb.put(m23);
-      fb.put(m30);
-      fb.put(m31);
-      fb.put(m32);
-      fb.put(m33);
-      fb.flip();
+        get(fb);
     }
 
     @Override
     public final double getM00() {
-        return m00;
+        return m00();
     }
 
     @Override
     public final double getM01() {
-        return m01;
+        return m01();
     }
 
     @Override
     public final double getM02() {
-        return m02;
+        return m02();
     }
 
     @Override
     public final double getM03() {
-        return m03;
+        return m03();
     }
 
     @Override
     public final double getM10() {
-        return m10;
+        return m10();
     }
 
     @Override
     public final double getM11() {
-        return m11;
+        return m11();
     }
 
     @Override
     public final double getM12() {
-        return m12;
+        return m12();
     }
 
     @Override
     public final double getM13() {
-        return m13;
+        return m13();
     }
 
     @Override
     public final double getM20() {
-        return m20;
+        return m20();
     }
 
     @Override
     public final double getM21() {
-        return m21;
+        return m21();
     }
 
     @Override
     public final double getM22() {
-        return m22;
+        return m22();
     }
 
     @Override
     public final double getM23() {
-        return m23;
+        return m23();
     }
 
     @Override
     public final double getM30() {
-        return m30;
+        return m30();
     }
 
     @Override
     public final double getM31() {
-        return m31;
+        return m31();
     }
 
     @Override
     public final double getM32() {
-        return m32;
+        return m32();
     }
 
     @Override
     public final double getM33() {
-        return m33;
+        return m33();
     }
 
 
@@ -1126,7 +647,7 @@ public class Matrix4d extends BaseMatrix4d {
      * @param m00 the value for row 0, column 0
      */
     public final void setM00(double m00) {
-        this.m00 = m00;
+        this._m00(m00);
     }
 
     /**
@@ -1135,7 +656,7 @@ public class Matrix4d extends BaseMatrix4d {
      * @param m01 the value for row 0, column 1
      */
     public final void setM01(double m01) {
-        this.m01 = m01;
+        this._m01(m01);
     }
 
     /**
@@ -1144,7 +665,7 @@ public class Matrix4d extends BaseMatrix4d {
      * @param m02 the value for row 0, column 2
      */
     public final void setM02(double m02) {
-        this.m02 = m02;
+        this._m02(m02);
     }
 
     /**
@@ -1153,7 +674,7 @@ public class Matrix4d extends BaseMatrix4d {
      * @param m03 the value for row 0, column 3
      */
     public final void setM03(double m03) {
-        this.m03 = m03;
+        this._m03(m03);
     }
 
     /**
@@ -1162,7 +683,7 @@ public class Matrix4d extends BaseMatrix4d {
      * @param m10 the value for row 1, column 0
      */
     public final void setM10(double m10) {
-        this.m10 = m10;
+        this._m10(m10);
     }
 
     /**
@@ -1171,7 +692,7 @@ public class Matrix4d extends BaseMatrix4d {
      * @param m11 the value for row 1, column 1
      */
     public final void setM11(double m11) {
-        this.m11 = m11;
+        this._m11(m11);
     }
 
     /**
@@ -1180,7 +701,7 @@ public class Matrix4d extends BaseMatrix4d {
      * @param m12 the value for row 1, column 2
      */
     public final void setM12(double m12) {
-        this.m12 = m12;
+        this._m12(m12);
     }
 
     /**
@@ -1189,7 +710,7 @@ public class Matrix4d extends BaseMatrix4d {
      * @param m13 the value for row 1, column 3
      */
     public final void setM13(double m13) {
-        this.m13 = m13;
+        this._m13(m13);
     }
 
     /**
@@ -1198,7 +719,7 @@ public class Matrix4d extends BaseMatrix4d {
      * @param m20 the value for row 2, column 0
      */
     public final void setM20(double m20) {
-        this.m20 = m20;
+        this._m20(m20);
     }
 
     /**
@@ -1207,7 +728,7 @@ public class Matrix4d extends BaseMatrix4d {
      * @param m21 the value for row 2, column 1
      */
     public final void setM21(double m21) {
-        this.m21 = m21;
+        this._m21(m21);
     }
 
     /**
@@ -1216,7 +737,7 @@ public class Matrix4d extends BaseMatrix4d {
      * @param m22 the value for row 2, column 2
      */
     public final void setM22(double m22) {
-        this.m22 = m22;
+        this._m22(m22);
     }
 
     /**
@@ -1225,7 +746,7 @@ public class Matrix4d extends BaseMatrix4d {
      * @param m23 the value for row 2, column 3
      */
     public final void setM23(double m23) {
-        this.m23 = m23;
+        this._m23(m23);
     }
 
     /**
@@ -1234,7 +755,7 @@ public class Matrix4d extends BaseMatrix4d {
      * @param m30 the value for row 3, column 0
      */
     public final void setM30(double m30) {
-        this.m30 = m30;
+        this._m30(m30);
     }
 
     /**
@@ -1243,7 +764,7 @@ public class Matrix4d extends BaseMatrix4d {
      * @param m31 the value for row 3, column 1
      */
     public final void setM31(double m31) {
-        this.m31 = m31;
+        this._m31 (m31);
     }
 
     /**
@@ -1252,7 +773,7 @@ public class Matrix4d extends BaseMatrix4d {
      * @param m32 the value for row 3, column 2
      */
     public final void setM32(double m32) {
-        this.m32 = m32;
+        this._m32(m32);
     }
 
     /**
@@ -1261,7 +782,7 @@ public class Matrix4d extends BaseMatrix4d {
      * @param m33 the value for row 3, column 3
      */
     public final void setM33(double m33) {
-        this.m33 = m33;
+        this._m33(m33);
     }
 
 

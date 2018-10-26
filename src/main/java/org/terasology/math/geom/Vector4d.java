@@ -22,6 +22,7 @@ package org.terasology.math.geom;
  *
  * @author auto-generated
  */
+@Deprecated
 public class Vector4d extends BaseVector4d {
 
     /**

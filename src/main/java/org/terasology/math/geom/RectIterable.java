@@ -23,6 +23,7 @@ import java.util.Iterator;
  * <p>
  * The iterating vector is reused. <b>Do not attempt to store the instance</b> e.g. in a collection.
  */
+@Deprecated
 public final class RectIterable implements Iterable<BaseVector2i> {
 
     private final ImmutableVector2i start;

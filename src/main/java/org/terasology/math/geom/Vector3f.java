@@ -22,6 +22,7 @@ package org.terasology.math.geom;
  *
  * @author auto-generated
  */
+@Deprecated
 public class Vector3f extends BaseVector3f {
     /**
      * Default constructor - all components are set to 0

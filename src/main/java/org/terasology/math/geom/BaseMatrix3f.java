@@ -22,6 +22,7 @@ import java.util.Locale;
  * Defines a 3x3 float matrix 
  * @author auto-generated
  */
+@Deprecated
 public abstract class BaseMatrix3f extends org.joml.Matrix3f{
 
     /**

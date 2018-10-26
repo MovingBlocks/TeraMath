@@ -22,10 +22,8 @@ package org.terasology.math.geom;
  *
  * @author auto-generated
  */
+@Deprecated
 public final class ImmutableVector2d extends BaseVector2d {
-
-    private final double x;
-    private final double y;
 
     /**
     * @param x the x component

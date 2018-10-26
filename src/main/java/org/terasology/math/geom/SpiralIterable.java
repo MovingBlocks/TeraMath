@@ -30,6 +30,7 @@ import com.google.common.base.Preconditions;
  * The iterating vector is reused. <b>Do not attempt to store the instance</b> e.g. in a collection.
  * @author Martin Steiger
  */
+@Deprecated
 public final class SpiralIterable implements Iterable<BaseVector2i> {
 
     /**

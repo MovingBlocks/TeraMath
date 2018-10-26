@@ -25,6 +25,7 @@ import java.util.NoSuchElementException;
  * 2D Rectangle
  */
 // TODO: Review and bring into line with Region3i's api
+@Deprecated
 public class Rect2i extends BaseRect {
     public static final Rect2i EMPTY = new Rect2i();
 

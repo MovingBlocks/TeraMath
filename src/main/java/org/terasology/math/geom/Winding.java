@@ -19,6 +19,7 @@ package org.terasology.math.geom;
 /**
  * @author Martin Steiger
  */
+@Deprecated
 public enum Winding {
 
     CLOCKWISE,

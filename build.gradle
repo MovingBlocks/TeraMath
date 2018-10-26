@@ -120,7 +120,7 @@ description = 'A math / geometry library'
 // project name must be defined in a separate settings.gradle file
 
 // Beyond the common Java setup this project also has some generated source files to add in
-sourceJar.dependsOn generateSources
+//sourceJar.dependsOn generateSources
 
 // TODO: Temporary until javadoc has been fixed for Java 8 everywhere
 javadoc {
@@ -170,7 +170,7 @@ idea {
     }
 }
 
-ideaModule.dependsOn generateSources
+//ideaModule.dependsOn generateSources
 
 ext {
 

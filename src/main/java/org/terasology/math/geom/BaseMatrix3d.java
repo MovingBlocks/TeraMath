@@ -22,6 +22,7 @@ import java.util.Locale;
  * Defines a 3x3 double matrix 
  * @author auto-generated
  */
+@Deprecated
 public abstract class BaseMatrix3d extends org.joml.Matrix3d{
 
     /**

@@ -20,6 +20,7 @@ package org.terasology.math.geom;
  * Interface for all kinds of 2D shapes
  * @author Martin Steiger
  */
+@Deprecated
 public interface Shape {
 
     /**

@@ -20,87 +20,8 @@ package org.terasology.math.geom;
  * Defines an immutable 4x4 float matrix
  * @author auto-generated
  */
+@Deprecated
 public class ImmutableMatrix4f extends BaseMatrix4f {
-
-    /**
-     * Entry at row 0, column 0
-     */
-    private final float m00;
-
-    /**
-     * Entry at row 0, column 1
-     */
-    private final float m01;
-
-    /**
-     * Entry at row 0, column 2
-     */
-    private final float m02;
-
-    /**
-     * Entry at row 0, column 3
-     */
-    private final float m03;
-
-    /**
-     * Entry at row 1, column 0
-     */
-    private final float m10;
-
-    /**
-     * Entry at row 1, column 1
-     */
-    private final float m11;
-
-    /**
-     * Entry at row 1, column 2
-     */
-    private final float m12;
-
-    /**
-     * Entry at row 1, column 3
-     */
-    private final float m13;
-
-    /**
-     * Entry at row 2, column 0
-     */
-    private final float m20;
-
-    /**
-     * Entry at row 2, column 1
-     */
-    private final float m21;
-
-    /**
-     * Entry at row 2, column 2
-     */
-    private final float m22;
-
-    /**
-     * Entry at row 2, column 3
-     */
-    private final float m23;
-
-    /**
-     * Entry at row 3, column 0
-     */
-    private final float m30;
-
-    /**
-     * Entry at row 3, column 1
-     */
-    private final float m31;
-
-    /**
-     * Entry at row 3, column 2
-     */
-    private final float m32;
-
-    /**
-     * Entry at row 3, column 3
-     */
-    private final float m33;
 
 
     /**
@@ -123,22 +44,22 @@ public class ImmutableMatrix4f extends BaseMatrix4f {
      * @param m33 the m33 component
      */
     public ImmutableMatrix4f(float m00, float m01, float m02, float m03, float m10, float m11, float m12, float m13, float m20, float m21, float m22, float m23, float m30, float m31, float m32, float m33) {
-        this.m00 = m00;
-        this.m01 = m01;
-        this.m02 = m02;
-        this.m03 = m03;
-        this.m10 = m10;
-        this.m11 = m11;
-        this.m12 = m12;
-        this.m13 = m13;
-        this.m20 = m20;
-        this.m21 = m21;
-        this.m22 = m22;
-        this.m23 = m23;
-        this.m30 = m30;
-        this.m31 = m31;
-        this.m32 = m32;
-        this.m33 = m33;
+        this._m00(m00);
+        this._m01(m01);
+        this._m02(m02);
+        this._m03(m03);
+        this._m10(m10);
+        this._m11(m11);
+        this._m12(m12);
+        this._m13(m13);
+        this._m20(m20);
+        this._m21(m21);
+        this._m22(m22);
+        this._m23(m23);
+        this._m30(m30);
+        this._m31(m31);
+        this._m32(m32);
+        this._m33(m33);
     }
 
     /**
@@ -147,102 +68,102 @@ public class ImmutableMatrix4f extends BaseMatrix4f {
      *  @param m1  the source matrix
      */
     public ImmutableMatrix4f(BaseMatrix4f m1) {
-        this.m00 = m1.getM00();
-        this.m01 = m1.getM01();
-        this.m02 = m1.getM02();
-        this.m03 = m1.getM03();
-        this.m10 = m1.getM10();
-        this.m11 = m1.getM11();
-        this.m12 = m1.getM12();
-        this.m13 = m1.getM13();
-        this.m20 = m1.getM20();
-        this.m21 = m1.getM21();
-        this.m22 = m1.getM22();
-        this.m23 = m1.getM23();
-        this.m30 = m1.getM30();
-        this.m31 = m1.getM31();
-        this.m32 = m1.getM32();
-        this.m33 = m1.getM33();
+        this._m00(m1.getM00());
+        this._m01(m1.getM01());
+        this._m02(m1.getM02());
+        this._m03(m1.getM03());
+        this._m10(m1.getM10());
+        this._m11(m1.getM11());
+        this._m12(m1.getM12());
+        this._m13(m1.getM13());
+        this._m20(m1.getM20());
+        this._m21(m1.getM21());
+        this._m22(m1.getM22());
+        this._m23(m1.getM23());
+        this._m30(m1.getM30());
+        this._m31(m1.getM31());
+        this._m32(m1.getM32());
+        this._m33(m1.getM33());
     }
 
     @Override
     public final float getM00() {
-        return m00;
+        return m00();
     }
 
     @Override
     public final float getM01() {
-        return m01;
+        return m01();
     }
 
     @Override
     public final float getM02() {
-        return m02;
+        return m02();
     }
 
     @Override
     public final float getM03() {
-        return m03;
+        return m03();
     }
 
     @Override
     public final float getM10() {
-        return m10;
+        return m10();
     }
 
     @Override
     public final float getM11() {
-        return m11;
+        return m11();
     }
 
     @Override
     public final float getM12() {
-        return m12;
+        return m12();
     }
 
     @Override
     public final float getM13() {
-        return m13;
+        return m13();
     }
 
     @Override
     public final float getM20() {
-        return m20;
+        return m20();
     }
 
     @Override
     public final float getM21() {
-        return m21;
+        return m21();
     }
 
     @Override
     public final float getM22() {
-        return m22;
+        return m22();
     }
 
     @Override
     public final float getM23() {
-        return m23;
+        return m23();
     }
 
     @Override
     public final float getM30() {
-        return m30;
+        return m30();
     }
 
     @Override
     public final float getM31() {
-        return m31;
+        return m31();
     }
 
     @Override
     public final float getM32() {
-        return m32;
+        return m32();
     }
 
     @Override
     public final float getM33() {
-        return m33;
+        return m33();
     }
 
 

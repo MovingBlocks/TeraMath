@@ -21,6 +21,7 @@ import java.util.Collection;
 /**
  * Defines a axis-aligned bounding box based on a set of {@link BaseVector2f} instances.
  */
+@Deprecated
 public final class BoundingBox {
     private float x1;
     private float y1;
