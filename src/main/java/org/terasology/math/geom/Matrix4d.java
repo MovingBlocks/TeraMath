@@ -130,7 +130,7 @@ public class Matrix4d extends BaseMatrix4d {
      */
     public Matrix4d() {
         // no-op
-
+        this.set(0);
         determineProperties();
     }
 

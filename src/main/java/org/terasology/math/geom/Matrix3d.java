@@ -90,6 +90,7 @@ public class Matrix3d extends BaseMatrix3d {
      * Constructs and initializes to all zeros.
      */
     public Matrix3d() {
+        this.set(0);
         // no-op
     }
 
