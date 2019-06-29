@@ -75,6 +75,8 @@ dependencies {
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.12'
     compile group: 'com.google.guava', name: 'guava', version: '18.0'
 
+    compile 'org.joml:joml:1.9.11'
+
     generatorCompile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.12'
     generatorCompile group: 'com.google.guava', name: 'guava', version: '18.0'
     generatorCompile group: 'org.antlr', name: 'ST4', version: '4.0.8'

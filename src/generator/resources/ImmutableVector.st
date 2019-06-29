@@ -16,6 +16,10 @@
 
 package org.terasology.math.geom;
 
+import org.joml.*;
+import java.nio.ByteBuffer;
+import java.nio.DoubleBuffer;
+
 /**
  * An immutable implementation of $vector/baseType()$, which is a point or vector in $dimensions$D space with $componentType$ components.
  * This type is intended for use for constants, or any time you want a $vector/baseType()$ that is guaranteed immutable.
@@ -121,5 +125,6 @@ $components:{x|
         $components:{x| $componentType$ n$x$ = $x$ * value;}; separator = "\n"$
         return new $vector/immutableType()$($components:{x|n$x$}; separator = ", "$);
     }
+
 
 }

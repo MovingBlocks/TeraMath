@@ -2,3 +2,10 @@ baseType() ::= "BaseVector<dimensions><componentType.abbrev>"
 mutableType() ::= "Vector<dimensions><componentType.abbrev>"
 immutableType() ::= "ImmutableVector<dimensions><componentType.abbrev>"
 bufferType() :: "<componentType.bufferType>"
+
+jomlImplType() ::= "Vector<dimensions><componentType.abbrev>c"
+jomlType() ::= "Vector<dimensions><componentType.abbrev>"
+
+
+jomlImplDoubleType() ::= "Vector<dimensions>dc"
+jomlImplFloatType() ::= "Vector<dimensions>fc"

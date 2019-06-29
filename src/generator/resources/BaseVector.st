@@ -22,12 +22,16 @@ import java.math.RoundingMode;
 import com.google.common.math.DoubleMath;
 $endif$
 import com.google.common.base.Preconditions;
+import org.joml.*;
+import java.lang.Math;
+import java.nio.ByteBuffer;
+import java.nio.DoubleBuffer;
 
 /**
  * A vector/point in $dimensions$D space
  * @author auto-generated
  */
-public abstract class $vector/baseType()$ {
+public abstract class $vector/baseType()$ implements $vector/jomlImplType()${
 
     /**
      * An immutable instance with all components set to 0
@@ -105,12 +109,21 @@ $if(!componentType.discrete)$
     }
 $endif$
 
+$if(!componentType.discrete)$
     /**
      * @return the squared distance to the origin
      */
     public $componentType$ lengthSquared() {
         return $components:{x| get$x.proper$() * get$x.proper$()};separator = " + "$;
     }
+$else$
+    /**
+     * @return the squared distance to the origin
+     */
+    public long lengthSquared() {
+        return $components:{x| get$x.proper$() * get$x.proper$()};separator = " + "$;
+    }
+$endif$
 
    /**
     *   Returns the angle in radians between this vector and the vector
@@ -220,4 +233,173 @@ $endif$
     public String toString() {
         return "(" + $components:{x | get$x.proper$()}; separator = " + \", \" + "$ + ")";
     }
+
+
+
+    @Override
+    public ByteBuffer get(ByteBuffer buffer) {
+        return null;
+    }
+
+    @Override
+    public ByteBuffer get(int index, ByteBuffer buffer) {
+        return null;
+    }
+
+    @Override
+    public DoubleBuffer get(DoubleBuffer buffer) {
+        return null;
+    }
+
+    @Override
+    public DoubleBuffer get(int index, DoubleBuffer buffer) {
+        return null;
+    }
+
+    @Override
+    public $vector/jomlImplType()$  getToAddress(long address) {
+        return null;
+    }
+
+    @Override
+    public org.joml.$vector/jomlType()$ mul($componentType$ scalar, org.joml.$vector/jomlType()$ dest) {
+        return null;
+    }
+
+    @Override
+    public org.joml.$vector/jomlType()$ mul($vector/jomlImplType()$ v, org.joml.$vector/jomlType()$ dest) {
+        return null;
+    }
+
+    @Override
+    public org.joml.$vector/jomlType()$ mulPosition(Matrix3x2dc mat, org.joml.$vector/jomlType()$ dest) {
+        return null;
+    }
+
+    @Override
+    public org.joml.$vector/jomlType()$ mulDirection(Matrix3x2dc mat, org.joml.$vector/jomlType()$ dest) {
+        return null;
+    }
+
+    @Override
+    public $componentType$ dot($vector/jomlImplType()$ v) {
+        return 0;
+    }
+
+    @Override
+    public $componentType$ angle($vector/jomlImplType()$ v) {
+        return 0;
+    }
+
+$if(!componentType.discrete)$
+    @Override
+    public $componentType$ distance($vector/jomlImplDoubleType()$ v) {
+        return 0;
+    }
+
+    @Override
+    public $componentType$ distance($vector/jomlImplFloatType()$ v) {
+        return 0;
+    }
+$endif$
+
+    @Override
+    public org.joml.$vector/jomlType()$ normalize(org.joml.$vector/jomlType()$ dest) {
+        return null;
+    }
+
+    @Override
+    public org.joml.$vector/jomlType()$ normalize($componentType$ length, org.joml.$vector/jomlType()$ dest) {
+        return null;
+    }
+
+    @Override
+    public org.joml.$vector/jomlType()$ mul($comp/paramsPrefix()$, org.joml.$vector/jomlType()$ dest) {
+        return null;
+    }
+
+    @Override
+    public $componentType$ distance($comp/paramsPrefix()$) {
+        return 0;
+    }
+
+
+
+$if(!componentType.discrete)$
+    @Override
+    public org.joml.$vector/jomlType()$ sub($vector/jomlImplDoubleType()$ v, org.joml.$vector/jomlType()$ dest) {
+        return null;
+    }
+
+    @Override
+    public org.joml.$vector/jomlType()$ sub($vector/jomlImplFloatType()$ v, org.joml.$vector/jomlType()$ dest) {
+        return null;
+    }
+$endif$
+
+    @Override
+    public org.joml.$vector/jomlType()$ sub($comp/paramsPrefix()$, org.joml.$vector/jomlType()$ dest) {
+        return null;
+    }
+
+
+$if(!componentType.discrete)$
+    @Override
+    public org.joml.$vector/jomlType()$ add($vector/jomlImplDoubleType()$ v, org.joml.$vector/jomlType()$ dest) {
+        return null;
+    }
+
+    @Override
+    public org.joml.$vector/jomlType()$ add($vector/jomlImplFloatType()$ v, org.joml.$vector/jomlType()$ dest) {
+        return null;
+    }
+$endif$
+
+
+    @Override
+    public  org.joml.$vector/jomlType()$ add($comp/paramsPrefix()$,  org.joml.$vector/jomlType()$ dest) {
+        return null;
+    }
+
+
+    @Override
+    public org.joml.$vector/jomlType()$ negate(org.joml.$vector/jomlType()$ dest) {
+        return null;
+    }
+
+    @Override
+    public org.joml.$vector/jomlType()$ lerp($vector/jomlImplType()$ other, $componentType$ t, org.joml.$vector/jomlType()$ dest) {
+        return null;
+    }
+
+    @Override
+    public org.joml.$vector/jomlType()$ fma($vector/jomlImplType()$ a, $vector/jomlImplType()$ b, org.joml.$vector/jomlType()$ dest) {
+        return null;
+    }
+
+    @Override
+    public org.joml.$vector/jomlType()$ fma($componentType$ a, $vector/jomlImplType()$ b, org.joml.$vector/jomlType()$ dest) {
+        return null;
+    }
+
+    @Override
+    public org.joml.$vector/jomlType()$ min($vector/jomlImplType()$ v, org.joml.$vector/jomlType()$ dest) {
+        return null;
+    }
+
+    @Override
+    public org.joml.$vector/jomlType()$ max($vector/jomlImplType()$ v, org.joml.$vector/jomlType()$ dest) {
+        return null;
+    }
+
+    @Override
+    public $componentType$ get(int component) throws IllegalArgumentException {
+        return 0;
+    }
+
+    @Override
+    public boolean equals($vector/jomlImplType()$ v, $componentType$ delta) {
+        return false;
+    }
+
 }
