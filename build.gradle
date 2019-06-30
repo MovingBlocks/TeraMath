@@ -40,11 +40,6 @@ repositories {
 }
 
 sourceSets {
-    main {
-        java {
-            srcDir generatedSrcDir
-        }
-    }
     generator {
         java {
             srcDir 'src/generator/java'
@@ -93,34 +88,10 @@ dependencies {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-task generateSources(type:JavaExec) {
-    dependsOn compileGeneratorJava
-    outputs.dir file(generatedSrcDir)
-    
-    main = generatorClassName
-    workingDir = rootDir
-    String[] runArgs = []
-    args runArgs
-
-    classpath sourceSets.generator.output.classesDir
-    classpath sourceSets.generator.runtimeClasspath
-}
-
-compileJava.dependsOn generateSources
-
-clean {
-    // the clean task should delete the folder, because it is the
-    // output folder of generateSources, but it doesn't do it.
-    delete generatedSrcDir
-}
-
 // Library and distribution config
 group = 'org.terasology'
 description = 'A math / geometry library'
 // project name must be defined in a separate settings.gradle file
-
-// Beyond the common Java setup this project also has some generated source files to add in
-sourceJar.dependsOn generateSources
 
 // TODO: Temporary until javadoc has been fixed for Java 8 everywhere
 javadoc {
@@ -169,8 +140,6 @@ idea {
         }
     }
 }
-
-ideaModule.dependsOn generateSources
 
 ext {
 
