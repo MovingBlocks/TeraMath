@@ -255,13 +255,12 @@ public abstract class BaseQuat4f implements Quaternionfc {
 
     @Override
     public Quaternionf add(Quaternionfc q2, Quaternionf dest) {
-
         return new Quaternionf(x(),y(),z(),w()).add(q2,dest);
     }
 
     @Override
     public float angle() {
-        return 0;
+        return new Quaternionf(x(),y(),z(),w()).angle();
     }
 
     @Override
@@ -280,6 +279,26 @@ public abstract class BaseQuat4f implements Quaternionfc {
     }
 
     @Override
+    public Matrix4x3f get(Matrix4x3f dest) {
+        return new Quaternionf(x(),y(),z(),w()).get(dest);
+    }
+
+    @Override
+    public Matrix4x3d get(Matrix4x3d dest) {
+        return new Quaternionf(x(),y(),z(),w()).get(dest);
+    }
+
+    @Override
+    public AxisAngle4f get(AxisAngle4f dest) {
+        return new Quaternionf(x(),y(),z(),w()).get(dest);
+    }
+
+    @Override
+    public Quaterniond get(Quaterniond dest) {
+        return new Quaternionf(x(),y(),z(),w()).get(dest);
+    }
+
+    @Override
     public org.joml.Matrix4f get(org.joml.Matrix4f dest) {
         return new Quaternionf(x(),y(),z(),w()).get(dest);
     }
@@ -287,6 +306,36 @@ public abstract class BaseQuat4f implements Quaternionfc {
     @Override
     public Quaternionf get(Quaternionf dest) {
         return new Quaternionf(x(),y(),z(),w()).get(dest);
+    }
+
+    @Override
+    public ByteBuffer getAsMatrix3f(ByteBuffer dest) {
+        return new Quaternionf(x(),y(),z(),w()).getAsMatrix3f(dest);
+    }
+
+    @Override
+    public FloatBuffer getAsMatrix3f(FloatBuffer dest) {
+        return new Quaternionf(x(),y(),z(),w()).getAsMatrix3f(dest);
+    }
+
+    @Override
+    public ByteBuffer getAsMatrix4f(ByteBuffer dest) {
+        return new Quaternionf(x(),y(),z(),w()).getAsMatrix4f(dest);
+    }
+
+    @Override
+    public FloatBuffer getAsMatrix4f(FloatBuffer dest) {
+        return new Quaternionf(x(),y(),z(),w()).getAsMatrix4f(dest);
+    }
+
+    @Override
+    public ByteBuffer getAsMatrix4x3f(ByteBuffer dest) {
+        return new Quaternionf(x(),y(),z(),w()).getAsMatrix4x3f(dest);
+    }
+
+    @Override
+    public FloatBuffer getAsMatrix4x3f(FloatBuffer dest) {
+        return new Quaternionf(x(),y(),z(),w()).getAsMatrix4x3f(dest);
     }
 
     @Override

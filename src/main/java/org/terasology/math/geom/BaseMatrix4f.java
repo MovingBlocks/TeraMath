@@ -362,87 +362,87 @@ public abstract class BaseMatrix4f  implements Matrix4fc{
 
     @Override
     public int properties() {
-        return 0;
+        return new Matrix4f(this).determineProperties().properties();
     }
 
     @Override
     public float m00() {
-        return 0;
+        return getM00();
     }
 
     @Override
     public float m01() {
-        return 0;
+        return getM01();
     }
 
     @Override
     public float m02() {
-        return 0;
+        return getM02();
     }
 
     @Override
     public float m03() {
-        return 0;
+        return getM03();
     }
 
     @Override
     public float m10() {
-        return 0;
+        return getM10();
     }
 
     @Override
     public float m11() {
-        return 0;
+        return getM11();
     }
 
     @Override
     public float m12() {
-        return 0;
+        return getM12();
     }
 
     @Override
     public float m13() {
-        return 0;
+        return getM13();
     }
 
     @Override
     public float m20() {
-        return 0;
+        return getM20();
     }
 
     @Override
     public float m21() {
-        return 0;
+        return getM21();
     }
 
     @Override
     public float m22() {
-        return 0;
+        return getM22();
     }
 
     @Override
     public float m23() {
-        return 0;
+        return getM23();
     }
 
     @Override
     public float m30() {
-        return 0;
+        return getM30();
     }
 
     @Override
     public float m31() {
-        return 0;
+        return getM31();
     }
 
     @Override
     public float m32() {
-        return 0;
+        return getM32();
     }
 
     @Override
     public float m33() {
-        return 0;
+        return getM33();
     }
 
     @Override

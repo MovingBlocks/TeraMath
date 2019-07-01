@@ -250,12 +250,12 @@ public abstract class BaseQuat4d implements Quaterniondc {
 
     @Override
     public double dot(Quaterniondc otherQuat) {
-        return 0;
+        return new Quaterniond(this).dot(otherQuat);
     }
 
     @Override
     public double angle() {
-        return 0;
+        return new Quaterniond(this).angle();
     }
 
     @Override

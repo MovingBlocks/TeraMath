@@ -272,12 +272,12 @@ public abstract class BaseVector3d implements Vector3dc{
 
     @Override
     public double dot(double x, double y, double z) {
-        return 0;
+        return x() * x + y() * y + z*z();
     }
 
     @Override
     public double angleCos(Vector3dc v) {
-        return 0;
+        return new Vector3d(this).angleCos(v);
     }
 
     @Override
