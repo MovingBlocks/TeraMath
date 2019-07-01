@@ -38,7 +38,7 @@ import java.util.Locale;
  * Defines a 3x3 double matrix 
  * @author auto-generated
  */
-public abstract class BaseMatrix3d implements Matrix3dc{
+public abstract class BaseMatrix3d implements Matrix3dc {
 
     /**
      * The immutable identity matrix
@@ -118,6 +118,7 @@ public abstract class BaseMatrix3d implements Matrix3dc{
      * (i.e., Matrix3d.equals returns true) will return the same hash
      * code value.  Two objects with different data members may return the
      * same hash value, although this is not likely.
+     *
      * @return the integer hash code value
      */
     @Override
@@ -149,6 +150,7 @@ public abstract class BaseMatrix3d implements Matrix3dc{
 
     /**
      * This version correctly deals with NaN and signed zero values
+     *
      * @param obj the object to compare with
      * @return true if equal
      */
@@ -170,35 +172,37 @@ public abstract class BaseMatrix3d implements Matrix3dc{
     }
 
     /**
-      * Returns true if all of the data members of Matrix3d m1 are
-      * equal to the corresponding data members in this Matrix3d.
-      * VecMath also uses explicit checks for -0 == 0
-      * @param other the matrix with which the comparison is made
-      * @return  true or false
-      */
+     * Returns true if all of the data members of Matrix3d m1 are
+     * equal to the corresponding data members in this Matrix3d.
+     * VecMath also uses explicit checks for -0 == 0
+     *
+     * @param other the matrix with which the comparison is made
+     * @return true or false
+     */
     public final boolean equals(BaseMatrix3d other) {
-        return 
-            Double.doubleToLongBits(getM00()) == Double.doubleToLongBits(other.getM00())
-            && Double.doubleToLongBits(getM01()) == Double.doubleToLongBits(other.getM01())
-            && Double.doubleToLongBits(getM02()) == Double.doubleToLongBits(other.getM02())
-            && Double.doubleToLongBits(getM10()) == Double.doubleToLongBits(other.getM10())
-            && Double.doubleToLongBits(getM11()) == Double.doubleToLongBits(other.getM11())
-            && Double.doubleToLongBits(getM12()) == Double.doubleToLongBits(other.getM12())
-            && Double.doubleToLongBits(getM20()) == Double.doubleToLongBits(other.getM20())
-            && Double.doubleToLongBits(getM21()) == Double.doubleToLongBits(other.getM21())
-            && Double.doubleToLongBits(getM22()) == Double.doubleToLongBits(other.getM22());
+        return
+                Double.doubleToLongBits(getM00()) == Double.doubleToLongBits(other.getM00())
+                        && Double.doubleToLongBits(getM01()) == Double.doubleToLongBits(other.getM01())
+                        && Double.doubleToLongBits(getM02()) == Double.doubleToLongBits(other.getM02())
+                        && Double.doubleToLongBits(getM10()) == Double.doubleToLongBits(other.getM10())
+                        && Double.doubleToLongBits(getM11()) == Double.doubleToLongBits(other.getM11())
+                        && Double.doubleToLongBits(getM12()) == Double.doubleToLongBits(other.getM12())
+                        && Double.doubleToLongBits(getM20()) == Double.doubleToLongBits(other.getM20())
+                        && Double.doubleToLongBits(getM21()) == Double.doubleToLongBits(other.getM21())
+                        && Double.doubleToLongBits(getM22()) == Double.doubleToLongBits(other.getM22());
     }
 
     /**
-      * Returns true if the L-infinite distance between this matrix
-      * and matrix m1 is less than or equal to the epsilon parameter,
-      * otherwise returns false.  The L-infinite
-      * distance is equal to
-      * MAX[i=0,1,2 ; j=0,1,2 ; abs(this.m(i,j) - m1.m(i,j)]
-      * @param m1  the matrix to be compared to this matrix
-      * @param epsilon  the threshold value
+     * Returns true if the L-infinite distance between this matrix
+     * and matrix m1 is less than or equal to the epsilon parameter,
+     * otherwise returns false.  The L-infinite
+     * distance is equal to
+     * MAX[i=0,1,2 ; j=0,1,2 ; abs(this.m(i,j) - m1.m(i,j)]
+     *
+     * @param m1      the matrix to be compared to this matrix
+     * @param epsilon the threshold value
      * @return true if equals up to epsilon
-      */
+     */
     public final boolean epsilonEquals(BaseMatrix3d m1, double epsilon) {
         double diff;
 
@@ -297,112 +301,113 @@ public abstract class BaseMatrix3d implements Matrix3dc{
 
     @Override
     public Matrix3d mul(Matrix3dc right, Matrix3d dest) {
-        return null;
+        return new Matrix3d(this).mul(right, dest);
     }
 
     @Override
     public Matrix3d mulLocal(Matrix3dc left, Matrix3d dest) {
-        return null;
+        return new Matrix3d(this).mulLocal(left, dest);
     }
 
     @Override
     public Matrix3d mul(Matrix3fc right, Matrix3d dest) {
-        return null;
+        return new Matrix3d(this).mul(right, dest);
     }
 
     /**
      * Computes the determinant of this matrix.
+     *
      * @return the determinant of the matrix
      */
     public final double determinant() {
-        return  this.getM00() * (this.getM11() * this.getM22() - this.getM12() * this.getM21())
-              + this.getM01() * (this.getM12() * this.getM20() - this.getM10() * this.getM22())
-              + this.getM02() * (this.getM10() * this.getM21() - this.getM11() * this.getM20());
+        return this.getM00() * (this.getM11() * this.getM22() - this.getM12() * this.getM21())
+                + this.getM01() * (this.getM12() * this.getM20() - this.getM10() * this.getM22())
+                + this.getM02() * (this.getM10() * this.getM21() - this.getM11() * this.getM20());
     }
 
     @Override
     public Matrix3d invert(Matrix3d dest) {
-        return null;
+        return new Matrix3d(this).invert(dest);
     }
 
     @Override
     public Matrix3d transpose(Matrix3d dest) {
-        return null;
+        return new Matrix3d(this).transpose(dest);
     }
 
     @Override
     public Matrix3d get(Matrix3d dest) {
-        return null;
+        return new Matrix3d(this).get(dest);
     }
 
     @Override
     public AxisAngle4f getRotation(AxisAngle4f dest) {
-        return null;
+        return new Matrix3d(this).getRotation(dest);
     }
 
     @Override
     public Quaternionf getUnnormalizedRotation(Quaternionf dest) {
-        return null;
+        return new Matrix3d(this).getUnnormalizedRotation(dest);
     }
 
     @Override
     public Quaternionf getNormalizedRotation(Quaternionf dest) {
-        return null;
+        return new Matrix3d(this).getNormalizedRotation(dest);
     }
 
     @Override
     public Quaterniond getUnnormalizedRotation(Quaterniond dest) {
-        return null;
+        return new Matrix3d(this).getUnnormalizedRotation(dest);
     }
 
     @Override
     public Quaterniond getNormalizedRotation(Quaterniond dest) {
-        return null;
+        return new Matrix3d(this).getNormalizedRotation(dest);
     }
 
     @Override
     public DoubleBuffer get(DoubleBuffer buffer) {
-        return null;
+        return new Matrix3d(this).get(buffer);
     }
 
     @Override
     public DoubleBuffer get(int index, DoubleBuffer buffer) {
-        return null;
+        return new Matrix3d(this).get(index, buffer);
     }
 
     @Override
     public FloatBuffer get(FloatBuffer buffer) {
-        return null;
+        return new Matrix3d(this).get(buffer);
     }
 
     @Override
     public FloatBuffer get(int index, FloatBuffer buffer) {
-        return null;
+        return new Matrix3d(this).get(index, buffer);
     }
 
     @Override
     public ByteBuffer get(ByteBuffer buffer) {
-        return null;
+        return new Matrix3d(this).get(buffer);
     }
 
     @Override
     public ByteBuffer get(int index, ByteBuffer buffer) {
-        return null;
+        return new Matrix3d(this).get(index, buffer);
     }
 
     @Override
     public ByteBuffer getFloats(ByteBuffer buffer) {
-        return null;
+        return new Matrix3d(this).getFloats(buffer);
     }
 
     @Override
     public ByteBuffer getFloats(int index, ByteBuffer buffer) {
-        return null;
+        return new Matrix3d(this).getFloats(index, buffer);
     }
 
     @Override
     public Matrix3dc getToAddress(long address) {
-        return null;
+        return new Matrix3d(this).getToAddress(address);
     }
 
     @Override
@@ -413,7 +418,8 @@ public abstract class BaseMatrix3d implements Matrix3dc{
     /**
      * Retrieves the value at the specified row and column of the specified
      * matrix.
-     * @param row the row number to be retrieved (zero indexed)
+     *
+     * @param row    the row number to be retrieved (zero indexed)
      * @param column the column number to be retrieved (zero indexed)
      * @return the value at the indexed element.
      */
@@ -421,103 +427,104 @@ public abstract class BaseMatrix3d implements Matrix3dc{
 
     @Override
     public Matrix3d normal(Matrix3d dest) {
-        return null;
+        return new Matrix3d(this).normal(dest);
     }
 
     @Override
     public Matrix3d lookAlong(Vector3dc dir, Vector3dc up, Matrix3d dest) {
-        return null;
+        return new Matrix3d(this).lookAlong(dir, up, dest);
     }
 
     @Override
     public Matrix3d lookAlong(double dirX, double dirY, double dirZ, double upX, double upY, double upZ, Matrix3d dest) {
-        return null;
+        return new Matrix3d(this).lookAlong(dirX, dirY, dirZ, upX, upY, upZ, dest);
     }
 
     @Override
     public org.joml.Vector3d getScale(org.joml.Vector3d dest) {
-        return null;
+        return new Matrix3d(this).getScale(dest);
     }
 
     @Override
     public org.joml.Vector3d positiveZ(org.joml.Vector3d dir) {
-        return null;
+        return new Matrix3d(this).positiveZ(dir);
     }
 
     @Override
     public org.joml.Vector3d normalizedPositiveZ(org.joml.Vector3d dir) {
-        return null;
+        return new Matrix3d(this).normalizedPositiveZ(dir);
     }
 
     @Override
     public org.joml.Vector3d positiveX(org.joml.Vector3d dir) {
-        return null;
+        return new Matrix3d(this).positiveX(dir);
     }
 
     @Override
     public org.joml.Vector3d normalizedPositiveX(org.joml.Vector3d dir) {
-        return null;
+        return new Matrix3d(this).normalizedPositiveX(dir);
     }
 
     @Override
     public org.joml.Vector3d positiveY(org.joml.Vector3d dir) {
-        return null;
+        return new Matrix3d(this).positiveY(dir);
     }
 
     @Override
     public org.joml.Vector3d normalizedPositiveY(org.joml.Vector3d dir) {
-        return null;
+        return new Matrix3d(this).normalizedPositiveY(dir);
     }
 
     @Override
     public Matrix3d add(Matrix3dc other, Matrix3d dest) {
-        return null;
+        return new Matrix3d(this).add(other, dest);
     }
 
     @Override
     public Matrix3d sub(Matrix3dc subtrahend, Matrix3d dest) {
-        return null;
+        return new Matrix3d(this).sub(subtrahend, dest);
     }
 
     @Override
     public Matrix3d mulComponentWise(Matrix3dc other, Matrix3d dest) {
-        return null;
+        return new Matrix3d(this).mulComponentWise(other, dest);
     }
 
     @Override
     public Matrix3d lerp(Matrix3dc other, double t, Matrix3d dest) {
-        return null;
+        return new Matrix3d(this).lerp(other, t, dest);
     }
 
     @Override
     public Matrix3d rotateTowards(Vector3dc direction, Vector3dc up, Matrix3d dest) {
-        return null;
+        return new Matrix3d(this).rotateTowards(direction, up, dest);
     }
 
     @Override
     public Matrix3d rotateTowards(double dirX, double dirY, double dirZ, double upX, double upY, double upZ, Matrix3d dest) {
-        return null;
+        return new Matrix3d(this).rotateTowards(dirX, dirY, dirZ, upX, upY, upZ, dest);
     }
 
     @Override
     public org.joml.Vector3d getEulerAnglesZYX(org.joml.Vector3d dest) {
-        return null;
+        return new Matrix3d(this).getEulerAnglesZYX(dest);
     }
 
     @Override
     public Matrix3d obliqueZ(double a, double b, Matrix3d dest) {
-        return null;
+        return new Matrix3d(this).obliqueZ(a, b, dest);
     }
 
     @Override
     public boolean equals(Matrix3dc m, double delta) {
-        return false;
+        return new Matrix3d(this).equals(m, delta);
     }
 
     /**
      * Copies the matrix values in the specified row into the vector parameter.
-     * @param row  the matrix row
-     * @return the vector into that contains the matrix row values 
+     *
+     * @param row the matrix row
+     * @return the vector into that contains the matrix row values
      */
     public final Vector3d getRow(int row) {
         if (row == 0) {
@@ -533,8 +540,9 @@ public abstract class BaseMatrix3d implements Matrix3dc{
 
     /**
      * Copies the matrix values in the specified row into the array parameter.
-     * @param row  the matrix row
-     * @param v    the array into which the matrix row values will be copied
+     *
+     * @param row the matrix row
+     * @param v   the array into which the matrix row values will be copied
      */
     public final void getRow(int row, double[] v) {
         if (row == 0) {
@@ -558,7 +566,8 @@ public abstract class BaseMatrix3d implements Matrix3dc{
     /**
      * Copies the matrix values in the specified column into the vector
      * parameter.
-     * @param column  the matrix column
+     *
+     * @param column the matrix column
      * @return the vector that contains the matrix row values
      */
     public final Vector3d getColumn(int column) {
@@ -577,8 +586,9 @@ public abstract class BaseMatrix3d implements Matrix3dc{
     /**
      * Copies the matrix values in the specified column into the array
      * parameter.
+     *
      * @param column the matrix column
-     * @param v the array into which the matrix row values will be copied
+     * @param v      the array into which the matrix row values will be copied
      */
     public final void getColumn(int column, double[] v) {
         if (column == 0) {
@@ -601,6 +611,7 @@ public abstract class BaseMatrix3d implements Matrix3dc{
 
     /**
      * Copies the matrix values into the array parameter.
+     *
      * @param v the array into which the matrix values will be copied
      */
     public final double[] get(double[] v) {
@@ -625,187 +636,188 @@ public abstract class BaseMatrix3d implements Matrix3dc{
     @Override
     public float[] get(float[] v) {
         v[0] = (float) getM00();
-        v[1] = (float)getM01();
-        v[2] = (float)getM02();
-        v[3] = (float)getM10();
-        v[4] = (float)getM11();
-        v[5] = (float)getM12();
-        v[6] = (float)getM20();
-        v[7] = (float)getM21();
-        v[8] = (float)getM22();
+        v[1] = (float) getM01();
+        v[2] = (float) getM02();
+        v[3] = (float) getM10();
+        v[4] = (float) getM11();
+        v[5] = (float) getM12();
+        v[6] = (float) getM20();
+        v[7] = (float) getM21();
+        v[8] = (float) getM22();
         return v;
     }
 
     @Override
     public Matrix3d scale(Vector3dc xyz, Matrix3d dest) {
 
-        return new Matrix3d(this).scale(xyz,dest);
+        return new Matrix3d(this).scale(xyz, dest);
     }
 
     @Override
     public Matrix3d scale(double x, double y, double z, Matrix3d dest) {
-        return new Matrix3d(this).scale(x,y,z,dest);
+        return new Matrix3d(this).scale(x, y, z, dest);
     }
 
     @Override
     public Matrix3d scale(double xyz, Matrix3d dest) {
-        return new Matrix3d(this).scale(xyz,dest);
+        return new Matrix3d(this).scale(xyz, dest);
     }
 
     @Override
     public Matrix3d scaleLocal(double x, double y, double z, Matrix3d dest) {
-        return new Matrix3d(this).scaleLocal(x,y,z,dest);
+        return new Matrix3d(this).scaleLocal(x, y, z, dest);
     }
 
     @Override
     public org.joml.Vector3d transform(org.joml.Vector3d v) {
-            return new Matrix3d(this).transform(v);
+        return new Matrix3d(this).transform(v);
     }
 
     @Override
     public org.joml.Vector3d transform(Vector3dc v, org.joml.Vector3d dest) {
-            return new Matrix3d(this).transform(v,dest);
+        return new Matrix3d(this).transform(v, dest);
     }
 
     @Override
     public Vector3f transform(Vector3f v) {
-            return new Matrix3d(this).transform(v);
+        return new Matrix3d(this).transform(v);
     }
 
     @Override
     public Vector3f transform(Vector3fc v, Vector3f dest) {
-            return new Matrix3d(this).transform(v,dest);
+        return new Matrix3d(this).transform(v, dest);
     }
 
     @Override
     public org.joml.Vector3d transform(double x, double y, double z, org.joml.Vector3d dest) {
-            return new Matrix3d(this).transform(x,y,z,dest);
+        return new Matrix3d(this).transform(x, y, z, dest);
     }
 
     @Override
     public org.joml.Vector3d transformTranspose(org.joml.Vector3d v) {
-            return new Matrix3d(this).transformTranspose(v);
+        return new Matrix3d(this).transformTranspose(v);
     }
 
     @Override
     public org.joml.Vector3d transformTranspose(Vector3dc v, org.joml.Vector3d dest) {
-            return new Matrix3d(this).transformTranspose(v,dest);
+        return new Matrix3d(this).transformTranspose(v, dest);
     }
 
     @Override
     public org.joml.Vector3d transformTranspose(double x, double y, double z, org.joml.Vector3d dest) {
-            return new Matrix3d(this).transformTranspose(x,y,z,dest);
+        return new Matrix3d(this).transformTranspose(x, y, z, dest);
     }
 
     @Override
     public Matrix3d rotateX(double ang, Matrix3d dest) {
-            return new Matrix3d(this).rotateX(ang,dest);
+        return new Matrix3d(this).rotateX(ang, dest);
     }
 
     @Override
     public Matrix3d rotateY(double ang, Matrix3d dest) {
-            return new Matrix3d(this).rotateY(ang,dest);
+        return new Matrix3d(this).rotateY(ang, dest);
     }
 
     @Override
     public Matrix3d rotateZ(double ang, Matrix3d dest) {
-            return new Matrix3d(this).rotateZ(ang,dest);
+        return new Matrix3d(this).rotateZ(ang, dest);
     }
 
     @Override
     public Matrix3d rotateXYZ(double angleX, double angleY, double angleZ, Matrix3d dest) {
-            return new Matrix3d(this).rotateXYZ(angleX,angleY,angleZ,dest);
+        return new Matrix3d(this).rotateXYZ(angleX, angleY, angleZ, dest);
     }
 
     @Override
     public Matrix3d rotateZYX(double angleZ, double angleY, double angleX, Matrix3d dest) {
-            return new Matrix3d(this).rotateZYX(angleZ,angleY,angleX,dest);
+        return new Matrix3d(this).rotateZYX(angleZ, angleY, angleX, dest);
     }
 
     @Override
     public Matrix3d rotateYXZ(double angleY, double angleX, double angleZ, Matrix3d dest) {
-            return new Matrix3d(this).rotateYXZ(angleY,angleX,angleZ,dest);
+        return new Matrix3d(this).rotateYXZ(angleY, angleX, angleZ, dest);
     }
 
     @Override
     public Matrix3d rotate(double ang, double x, double y, double z, Matrix3d dest) {
-            return new Matrix3d(this).rotate(ang,x,y,z,dest);
+        return new Matrix3d(this).rotate(ang, x, y, z, dest);
     }
 
     @Override
     public Matrix3d rotateLocal(double ang, double x, double y, double z, Matrix3d dest) {
-            return new Matrix3d(this).rotateLocal(ang,x,y,z,dest);
+        return new Matrix3d(this).rotateLocal(ang, x, y, z, dest);
     }
 
     @Override
     public Matrix3d rotateLocalX(double ang, Matrix3d dest) {
-            return new Matrix3d(this).rotateLocalX(ang,dest);
+        return new Matrix3d(this).rotateLocalX(ang, dest);
     }
 
     @Override
     public Matrix3d rotateLocalY(double ang, Matrix3d dest) {
-            return new Matrix3d(this).rotateLocalY(ang,dest);
+        return new Matrix3d(this).rotateLocalY(ang, dest);
     }
 
     @Override
     public Matrix3d rotateLocalZ(double ang, Matrix3d dest) {
-            return new Matrix3d(this).rotateLocalZ(ang,dest);
+        return new Matrix3d(this).rotateLocalZ(ang, dest);
     }
 
     @Override
     public Matrix3d rotateLocal(Quaterniondc quat, Matrix3d dest) {
-            return new Matrix3d(this).rotateLocal(quat,dest);
+        return new Matrix3d(this).rotateLocal(quat, dest);
     }
 
     @Override
     public Matrix3d rotateLocal(Quaternionfc quat, Matrix3d dest) {
-            return new Matrix3d(this).rotateLocal(quat,dest);
+        return new Matrix3d(this).rotateLocal(quat, dest);
     }
 
     @Override
     public Matrix3d rotate(Quaterniondc quat, Matrix3d dest) {
-            return new Matrix3d(this).rotate(quat,dest);
+        return new Matrix3d(this).rotate(quat, dest);
     }
 
     @Override
     public Matrix3d rotate(Quaternionfc quat, Matrix3d dest) {
-            return new Matrix3d(this).rotate(quat,dest);
+        return new Matrix3d(this).rotate(quat, dest);
     }
 
     @Override
     public Matrix3d rotate(AxisAngle4f axisAngle, Matrix3d dest) {
-            return new Matrix3d(this).rotate(axisAngle,dest);
+        return new Matrix3d(this).rotate(axisAngle, dest);
     }
 
     @Override
     public Matrix3d rotate(AxisAngle4d axisAngle, Matrix3d dest) {
-            return new Matrix3d(this).rotate(axisAngle,dest);
+        return new Matrix3d(this).rotate(axisAngle, dest);
     }
 
     @Override
     public Matrix3d rotate(double angle, Vector3dc axis, Matrix3d dest) {
-            return new Matrix3d(this).rotate(angle,axis,dest);
+        return new Matrix3d(this).rotate(angle, axis, dest);
     }
 
     @Override
     public Matrix3d rotate(double angle, Vector3fc axis, Matrix3d dest) {
-            return new Matrix3d(this).rotate(angle,axis,dest);
+        return new Matrix3d(this).rotate(angle, axis, dest);
     }
 
     @Override
     public org.joml.Vector3d getRow(int row, org.joml.Vector3d dest) throws IndexOutOfBoundsException {
-            return new Matrix3d(this).getRow(row,dest);
+        return new Matrix3d(this).getRow(row, dest);
     }
 
     @Override
     public org.joml.Vector3d getColumn(int column, org.joml.Vector3d dest) throws IndexOutOfBoundsException {
-            return new Matrix3d(this).getColumn(column,dest);
+        return new Matrix3d(this).getColumn(column, dest);
     }
 
     /**
-      * Returns a string that contains the values of this Matrix3d.
-      * @return the String representation
-      */
+     * Returns a string that contains the values of this Matrix3d.
+     *
+     * @return the String representation
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

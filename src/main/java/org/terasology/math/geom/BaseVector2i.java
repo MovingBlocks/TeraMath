@@ -192,27 +192,27 @@ public abstract class BaseVector2i implements Vector2ic{
 
     @Override
     public ByteBuffer get(ByteBuffer buffer) {
-        return null;
+       return new org.joml.Vector2i(this).get(buffer);
     }
 
     @Override
     public ByteBuffer get(int index, ByteBuffer buffer) {
-        return null;
+        return new org.joml.Vector2i(this).get(index,buffer);
     }
 
     @Override
     public IntBuffer get(IntBuffer buffer) {
-        return null;
+        return new org.joml.Vector2i(this).get(buffer);
     }
 
     @Override
     public IntBuffer get(int index, IntBuffer buffer) {
-        return null;
+        return new org.joml.Vector2i(this).get(index,buffer);
     }
 
     @Override
     public Vector2ic  getToAddress(long address) {
-        return null;
+        return new org.joml.Vector2i(this).getToAddress(address);
     }
 
     @Override

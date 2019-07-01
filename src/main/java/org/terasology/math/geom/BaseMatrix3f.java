@@ -296,12 +296,12 @@ public abstract class BaseMatrix3f implements Matrix3fc {
 
     @Override
     public Matrix3f mul(Matrix3fc right, Matrix3f dest) {
-        return null;
+        return new Matrix3f(this).mul(right,dest);
     }
 
     @Override
     public Matrix3f mulLocal(Matrix3fc left, Matrix3f dest) {
-        return null;
+        return new Matrix3f(this).mulLocal(left,dest);
     }
 
     /**
@@ -317,97 +317,97 @@ public abstract class BaseMatrix3f implements Matrix3fc {
 
     @Override
     public Matrix3f invert(Matrix3f dest) {
-        return null;
+        return new Matrix3f(this).invert(dest);
     }
 
     @Override
     public Matrix3f transpose(Matrix3f dest) {
-        return null;
+        return new Matrix3f(this).transpose(dest);
     }
 
     @Override
     public Matrix3f get(Matrix3f dest) {
-        return null;
+        return new Matrix3f(this).get(dest);
     }
 
     @Override
     public Matrix4f get(Matrix4f dest) {
-        return null;
+        return new Matrix3f(this).get(dest);
     }
 
     @Override
     public AxisAngle4f getRotation(AxisAngle4f dest) {
-        return null;
+        return new Matrix3f(this).getRotation(dest);
     }
 
     @Override
     public Quaternionf getUnnormalizedRotation(Quaternionf dest) {
-        return null;
+        return new Matrix3f(this).getUnnormalizedRotation(dest);
     }
 
     @Override
     public Quaternionf getNormalizedRotation(Quaternionf dest) {
-        return null;
+        return new Matrix3f(this).getNormalizedRotation(dest);
     }
 
     @Override
     public Quaterniond getUnnormalizedRotation(Quaterniond dest) {
-        return null;
+        return new Matrix3f(this).getUnnormalizedRotation(dest);
     }
 
     @Override
     public Quaterniond getNormalizedRotation(Quaterniond dest) {
-        return null;
+        return new Matrix3f(this).getNormalizedRotation(dest);
     }
 
     @Override
     public FloatBuffer get(FloatBuffer buffer) {
-        return null;
+        return new Matrix3f(this).get(buffer);
     }
 
     @Override
     public FloatBuffer get(int index, FloatBuffer buffer) {
-        return null;
+        return new Matrix3f(this).get(index,buffer);
     }
 
     @Override
     public ByteBuffer get(ByteBuffer buffer) {
-        return null;
+        return new Matrix3f(this).get(buffer);
     }
 
     @Override
     public ByteBuffer get(int index, ByteBuffer buffer) {
-        return null;
+        return new Matrix3f(this).get(index,buffer);
     }
 
     @Override
     public FloatBuffer getTransposed(FloatBuffer buffer) {
-        return null;
+        return new Matrix3f(this).getTransposed(buffer);
     }
 
     @Override
     public FloatBuffer getTransposed(int index, FloatBuffer buffer) {
-        return null;
+        return new Matrix3f(this).getTransposed(index,buffer);
     }
 
     @Override
     public ByteBuffer getTransposed(ByteBuffer buffer) {
-        return null;
+        return new Matrix3f(this).getTransposed(buffer);
     }
 
     @Override
     public ByteBuffer getTransposed(int index, ByteBuffer buffer) {
-        return null;
+        return new Matrix3f(this).getTransposed(index,buffer);
     }
 
     @Override
     public Matrix3fc getToAddress(long address) {
-        return null;
+        return new Matrix3f(this).getToAddress(address);
     }
 
     @Override
     public float[] get(float[] arr, int offset) {
-        return new float[0];
+        return new Matrix3f(this).get(arr,offset);
     }
 
     /**
@@ -422,87 +422,87 @@ public abstract class BaseMatrix3f implements Matrix3fc {
 
     @Override
     public Matrix3f normal(Matrix3f dest) {
-        return null;
+        return new Matrix3f(this).normal(dest);
     }
 
     @Override
     public org.joml.Vector3f getScale(org.joml.Vector3f dest) {
-        return null;
+        return new Matrix3f(this).getScale(dest);
     }
 
     @Override
     public org.joml.Vector3f positiveZ(org.joml.Vector3f dir) {
-        return null;
+        return new Matrix3f(this).positiveZ(dir);
     }
 
     @Override
     public org.joml.Vector3f normalizedPositiveZ(org.joml.Vector3f dir) {
-        return null;
+        return new Matrix3f(this).normalizedPositiveZ(dir);
     }
 
     @Override
     public org.joml.Vector3f positiveX(org.joml.Vector3f dir) {
-        return null;
+        return new Matrix3f(this).positiveX(dir);
     }
 
     @Override
     public org.joml.Vector3f normalizedPositiveX(org.joml.Vector3f dir) {
-        return null;
+        return new Matrix3f(this).normalizedPositiveX(dir);
     }
 
     @Override
     public org.joml.Vector3f positiveY(org.joml.Vector3f dir) {
-        return null;
+        return new Matrix3f(this).positiveY(dir);
     }
 
     @Override
     public org.joml.Vector3f normalizedPositiveY(org.joml.Vector3f dir) {
-        return null;
+        return new Matrix3f(this).normalizedPositiveY(dir);
     }
 
     @Override
     public Matrix3f add(Matrix3fc other, Matrix3f dest) {
-        return null;
+        return new Matrix3f(this).add(other,dest);
     }
 
     @Override
     public Matrix3f sub(Matrix3fc subtrahend, Matrix3f dest) {
-        return null;
+        return new Matrix3f(this).sub(subtrahend,dest);
     }
 
     @Override
     public Matrix3f mulComponentWise(Matrix3fc other, Matrix3f dest) {
-        return null;
+        return new Matrix3f(this).mulComponentWise(other,dest);
     }
 
     @Override
     public Matrix3f lerp(Matrix3fc other, float t, Matrix3f dest) {
-        return null;
+        return new Matrix3f(this).lerp(other,t,dest);
     }
 
     @Override
     public Matrix3f rotateTowards(Vector3fc direction, Vector3fc up, Matrix3f dest) {
-        return null;
+        return new Matrix3f(this).rotateTowards(direction,up,dest);
     }
 
     @Override
     public Matrix3f rotateTowards(float dirX, float dirY, float dirZ, float upX, float upY, float upZ, Matrix3f dest) {
-        return null;
+        return new Matrix3f(this).rotateTowards(dirX,dirY,dirZ,upX,upY,upZ,dest);
     }
 
     @Override
     public org.joml.Vector3f getEulerAnglesZYX(org.joml.Vector3f dest) {
-        return null;
+        return new Matrix3f(this).getEulerAnglesZYX(dest);
     }
 
     @Override
     public Matrix3f obliqueZ(float a, float b, Matrix3f dest) {
-        return null;
+        return new Matrix3f(this).obliqueZ(a,b,dest);
     }
 
     @Override
     public boolean equals(Matrix3fc m, float delta) {
-        return false;
+        return new Matrix3f(this).equals(m,delta);
     }
 
     /**

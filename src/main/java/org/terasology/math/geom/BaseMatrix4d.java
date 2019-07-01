@@ -1332,10 +1332,13 @@ public abstract class BaseMatrix4d  implements Matrix4dc {
     }
 
     @Override
-    public abstract Matrix4d unprojectRay(double winX, double winY, int[] viewport, org.joml.Vector3d originDest, org.joml.Vector3d dirDest);
-
+    public Matrix4d unprojectRay(double winX, double winY, int[] viewport, org.joml.Vector3d originDest, org.joml.Vector3d dirDest){
+        return new Matrix4d(this).unprojectRay(winX,winY,viewport,originDest,dirDest);
+    }
     @Override
-    public abstract Matrix4d unprojectRay(Vector2dc winCoords, int[] viewport, org.joml.Vector3d originDest, org.joml.Vector3d dirDest);
+    public Matrix4d unprojectRay(Vector2dc winCoords, int[] viewport, org.joml.Vector3d originDest, org.joml.Vector3d dirDest){
+        return new Matrix4d(this).unprojectRay(winCoords,viewport,originDest,dirDest);
+    }
 
     @Override
     public org.joml.Vector4d unprojectInv(Vector3dc winCoords, int[] viewport, org.joml.Vector4d dest) {

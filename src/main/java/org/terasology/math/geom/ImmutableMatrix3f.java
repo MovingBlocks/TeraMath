@@ -212,13 +212,4 @@ public class ImmutableMatrix3f extends BaseMatrix3f {
         throw new ArrayIndexOutOfBoundsException("row/col not in [0..2]");
     }
 
-    @Override
-    public Vector3f transform(Vector3f v) {
-        return null;
-    }
-
-    @Override
-    public Vector3f transformTranspose(Vector3f v) {
-        return null;
-    }
 }

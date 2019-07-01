@@ -217,22 +217,22 @@ public abstract class BaseVector3f implements Vector3fc{
 
     @Override
     public ByteBuffer get(int index, ByteBuffer buffer) {
-        return null;
+        return new Vector3f(this).get(index,buffer);
     }
 
     @Override
     public FloatBuffer get(FloatBuffer buffer) {
-        return null;
+        return new Vector3f(this).get(buffer);
     }
 
     @Override
     public FloatBuffer get(int index, FloatBuffer buffer) {
-        return null;
+        return new Vector3f(this).get(index,buffer);
     }
 
     @Override
     public Vector3fc  getToAddress(long address) {
-        return null;
+        return new Vector3f(this).getToAddress(address);
     }
 
     @Override
@@ -259,12 +259,12 @@ public abstract class BaseVector3f implements Vector3fc{
 
     @Override
     public float distanceSquared(Vector3fc v) {
-        return new org.joml.Vector3f(x(),y(),z()).distanceSquared(v);
+        return new org.joml.Vector3f(this).distanceSquared(v);
     }
 
     @Override
     public float distanceSquared(float X, float Y, float Z) {
-       return new org.joml.Vector3f(x(),y(),z()).distanceSquared(X,Y,Z);
+       return new org.joml.Vector3f(this).distanceSquared(X,Y,Z);
     }
     @Override
     public float dot(Vector3fc v) {
@@ -283,17 +283,17 @@ public abstract class BaseVector3f implements Vector3fc{
 
     @Override
     public float angle(Vector3fc v) {
-        return new org.joml.Vector3f(x(),y(),z()).angle(v);
+        return new org.joml.Vector3f(this).angle(v);
     }
 
     @Override
     public org.joml.Vector3f normalize(org.joml.Vector3f dest) {
-        return new org.joml.Vector3f(x(),y(),z()).normalize(dest);
+        return new org.joml.Vector3f(this).normalize(dest);
     }
 
     @Override
     public org.joml.Vector3f normalize(float length, org.joml.Vector3f dest) {
-         return new org.joml.Vector3f(x(),y(),z()).normalize(length,dest);
+         return new org.joml.Vector3f(this).normalize(length,dest);
     }
 
     @Override
@@ -304,18 +304,18 @@ public abstract class BaseVector3f implements Vector3fc{
 
     @Override
     public  float distance(Vector3fc v) {
-        return new org.joml.Vector3f(x(),y(),z()).distance(v);
+        return new org.joml.Vector3f(this).distance(v);
     }
 
     @Override
     public float distance(float X, float Y, float Z) {
-       return new org.joml.Vector3f(x(),y(),z()).distance(X,Y,Z);
+       return new org.joml.Vector3f(this).distance(X,Y,Z);
     }
 
 
     @Override
     public org.joml.Vector3f sub(Vector3fc v, org.joml.Vector3f dest) {
-        return new org.joml.Vector3f(x(),y(),z()).sub(v,dest);
+        return new org.joml.Vector3f(this).sub(v,dest);
     }
 
 
@@ -330,7 +330,7 @@ public abstract class BaseVector3f implements Vector3fc{
 
     @Override
     public org.joml.Vector3f add(Vector3fc v, org.joml.Vector3f dest) {
-       return new org.joml.Vector3f(x(),y(),z()).add(v,dest);
+       return new org.joml.Vector3f(this).add(v,dest);
     }
 
     @Override
@@ -343,7 +343,7 @@ public abstract class BaseVector3f implements Vector3fc{
 
     @Override
     public org.joml.Vector3f negate(org.joml.Vector3f dest) {
-        return new org.joml.Vector3f(x(),y(),z()).negate(dest);
+        return new org.joml.Vector3f(this).negate(dest);
     }
 
     @Override
@@ -373,177 +373,177 @@ public abstract class BaseVector3f implements Vector3fc{
 
     @Override
     public org.joml.Vector3f lerp(Vector3fc other, float t, org.joml.Vector3f dest) {
-        return new org.joml.Vector3f(x(),y(),z()).lerp(other,t,dest);
+        return new org.joml.Vector3f(this).lerp(other,t,dest);
     }
     @Override
     public org.joml.Vector3f fma(Vector3fc a, Vector3fc b, org.joml.Vector3f dest) {
-       return new org.joml.Vector3f(x(),y(),z()).fma(b,dest);
+       return new org.joml.Vector3f(this).fma(b,dest);
     }
 
     @Override
     public org.joml.Vector3f fma(float a, Vector3fc b, org.joml.Vector3f dest) {
-      return new org.joml.Vector3f(x(),y(),z()).fma(a,b,dest);
+      return new org.joml.Vector3f(this).fma(a,b,dest);
     }
 
     @Override
     public org.joml.Vector3f min(Vector3fc v, org.joml.Vector3f dest) {
-       return new org.joml.Vector3f(x(),y(),z()).min(v,dest);
+       return new org.joml.Vector3f(this).min(v,dest);
     }
 
     @Override
     public org.joml.Vector3f max(Vector3fc v, org.joml.Vector3f dest) {
-        return new org.joml.Vector3f(x(),y(),z()).max(v,dest);
+        return new org.joml.Vector3f(this).max(v,dest);
     }
 
     @Override
     public float get(int component) throws IllegalArgumentException {
-       return new org.joml.Vector3f(x(),y(),z()).get(component);
+       return new org.joml.Vector3f(this).get(component);
     }
 
     @Override
     public org.joml.Vector3f mulProject(Matrix4fc mat, org.joml.Vector3f dest) {
-       return new org.joml.Vector3f(x(),y(),z()).mulProject(mat,dest);
+       return new org.joml.Vector3f(this).mulProject(mat,dest);
     }
 
     @Override
     public org.joml.Vector3f mul(Matrix3dc mat, org.joml.Vector3f dest) {
-      return new org.joml.Vector3f(x(),y(),z()).mul(mat,dest);
+      return new org.joml.Vector3f(this).mul(mat,dest);
     }
 
     @Override
     public org.joml.Vector3f mul(Matrix3fc mat, org.joml.Vector3f dest) {
-       return new org.joml.Vector3f(x(),y(),z()).mul(mat,dest);
+       return new org.joml.Vector3f(this).mul(mat,dest);
     }
     @Override
     public org.joml.Vector3f mul(Matrix3x2fc mat, org.joml.Vector3f dest) {
-        return new org.joml.Vector3f(x(),y(),z()).mul(mat,dest);
+        return new org.joml.Vector3f(this).mul(mat,dest);
     }
     @Override
     public org.joml.Vector3f mulTranspose(Matrix3fc mat, org.joml.Vector3f dest) {
-       return new org.joml.Vector3f(x(),y(),z()).mulTranspose(mat,dest);
+       return new org.joml.Vector3f(this).mulTranspose(mat,dest);
     }
     @Override
     public org.joml.Vector3f mulPosition(Matrix4fc mat, org.joml.Vector3f dest) {
-       return new org.joml.Vector3f(x(),y(),z()).mulPosition(mat,dest);
+       return new org.joml.Vector3f(this).mulPosition(mat,dest);
     }
     @Override
     public org.joml.Vector3f mulPosition(Matrix4x3fc mat, org.joml.Vector3f dest) {
-       return new org.joml.Vector3f(x(),y(),z()).mulPosition(mat,dest);
+       return new org.joml.Vector3f(this).mulPosition(mat,dest);
     }
 
     @Override
     public org.joml.Vector3f mulTransposePosition(Matrix4fc mat, org.joml.Vector3f dest) {
-        return new org.joml.Vector3f(x(),y(),z()).mulTransposePosition(mat,dest);
+        return new org.joml.Vector3f(this).mulTransposePosition(mat,dest);
     }
 
     @Override
     public float mulPositionW(Matrix4fc mat, org.joml.Vector3f dest) {
-        return new org.joml.Vector3f(x(),y(),z()).mulPositionW(mat,dest);
+        return new org.joml.Vector3f(this).mulPositionW(mat,dest);
     }
 
     @Override
     public org.joml.Vector3f mulDirection(Matrix4dc mat, org.joml.Vector3f dest) {
-        return null;
+        return new org.joml.Vector3f(this).mulDirection(mat,dest);
     }
 
     @Override
     public org.joml.Vector3f mulDirection(Matrix4fc mat, org.joml.Vector3f dest) {
-        return new org.joml.Vector3f(x(),y(),z()).mulDirection(mat,dest);
+        return new org.joml.Vector3f(this).mulDirection(mat,dest);
     }
 
     @Override
     public org.joml.Vector3f mulDirection(Matrix4x3fc mat, org.joml.Vector3f dest) {
-        return new org.joml.Vector3f(x(),y(),z()).mulDirection(mat,dest);
+        return new org.joml.Vector3f(this).mulDirection(mat,dest);
     }
 
     @Override
     public org.joml.Vector3f mulTransposeDirection(Matrix4fc mat, org.joml.Vector3f dest) {
-        return new org.joml.Vector3f(x(),y(),z()).mulTransposeDirection(mat,dest);
+        return new org.joml.Vector3f(this).mulTransposeDirection(mat,dest);
     }
 
     @Override
     public org.joml.Vector3f rotate(Quaternionfc quat, org.joml.Vector3f dest) {
-        return new org.joml.Vector3f(x(),y(),z()).rotate(quat,dest);
+        return new org.joml.Vector3f(this).rotate(quat,dest);
     }
 
     @Override
     public Quaternionf rotationTo(Vector3fc toDir, Quaternionf dest) {
-        return new org.joml.Vector3f(x(),y(),z()).rotationTo(toDir,dest);
+        return new org.joml.Vector3f(this).rotationTo(toDir,dest);
     }
 
     @Override
     public Quaternionf rotationTo(float toDirX, float toDirY, float toDirZ, Quaternionf dest) {
-        return new org.joml.Vector3f(x(),y(),z()).rotationTo(toDirX,toDirY,toDirZ,dest);
+        return new org.joml.Vector3f(this).rotationTo(toDirX,toDirY,toDirZ,dest);
     }
 
     @Override
     public org.joml.Vector3f rotateAxis(float angle, float aX, float aY, float aZ, org.joml.Vector3f dest) {
-        return new org.joml.Vector3f(x(),y(),z()).rotateAxis(angle,aX,aY,aZ,dest);
+        return new org.joml.Vector3f(this).rotateAxis(angle,aX,aY,aZ,dest);
     }
 
     @Override
     public org.joml.Vector3f rotateX(float angle, org.joml.Vector3f dest) {
-         return new org.joml.Vector3f(x(),y(),z()).rotateX(angle,dest);
+         return new org.joml.Vector3f(this).rotateX(angle,dest);
     }
 
     @Override
     public org.joml.Vector3f rotateY(float angle, org.joml.Vector3f dest) {
-        return new org.joml.Vector3f(x(),y(),z()).rotateY(angle,dest);
+        return new org.joml.Vector3f(this).rotateY(angle,dest);
     }
 
     @Override
     public org.joml.Vector3f rotateZ(float angle, org.joml.Vector3f dest) {
-        return new org.joml.Vector3f(x(),y(),z()).rotateZ(angle,dest);
+        return new org.joml.Vector3f(this).rotateZ(angle,dest);
     }
 
     @Override
     public org.joml.Vector3f div(float scalar, org.joml.Vector3f dest) {
-        return new org.joml.Vector3f(x(),y(),z()).div(scalar,dest);
+        return new org.joml.Vector3f(this).div(scalar,dest);
     }
 
     @Override
     public org.joml.Vector3f div(float x, float y, float z, org.joml.Vector3f dest) {
-        return new org.joml.Vector3f(x(),y(),z()).div(x,y,z,dest);
+        return new org.joml.Vector3f(this).div(x,y,z,dest);
     }
 
     @Override
     public org.joml.Vector3f cross(Vector3fc v, org.joml.Vector3f dest) {
-        return new org.joml.Vector3f(x(),y(),z()).cross(v,dest);
+        return new org.joml.Vector3f(this).cross(v,dest);
     }
 
     @Override
     public org.joml.Vector3f cross(float x, float y, float z, org.joml.Vector3f dest) {
-        return new org.joml.Vector3f(x(),y(),z()).cross(x,y,z,dest);
+        return new org.joml.Vector3f(this).cross(x,y,z,dest);
     }
 
     @Override
     public org.joml.Vector3f smoothStep(Vector3fc v, float t, org.joml.Vector3f dest) {
-       return new org.joml.Vector3f(x(),y(),z()).smoothStep(v,t,dest);
+       return new org.joml.Vector3f(this).smoothStep(v,t,dest);
     }
 
     @Override
     public org.joml.Vector3f hermite(Vector3fc t0, Vector3fc v1, Vector3fc t1, float t, org.joml.Vector3f dest) {
-        return new org.joml.Vector3f(x(),y(),z()).hermite(t0,v1,t1,t,dest);
+        return new org.joml.Vector3f(this).hermite(t0,v1,t1,t,dest);
     }
 
     @Override
     public int maxComponent() {
-        return new org.joml.Vector3f(x(),y(),z()).maxComponent();
+        return new org.joml.Vector3f(this).maxComponent();
     }
 
     @Override
     public int minComponent() {
-        return new org.joml.Vector3f(x(),y(),z()).minComponent();
+        return new org.joml.Vector3f(this).minComponent();
     }
 
     @Override
     public org.joml.Vector3f orthogonalize(Vector3fc v, org.joml.Vector3f dest) {
-        return new org.joml.Vector3f(x(),y(),z()).orthogonalize(v,dest);
+        return new org.joml.Vector3f(this).orthogonalize(v,dest);
     }
 
     @Override
     public org.joml.Vector3f orthogonalizeUnit(Vector3fc v, org.joml.Vector3f dest) {
-        return new org.joml.Vector3f(x(),y(),z()).orthogonalizeUnit(v,dest);
+        return new org.joml.Vector3f(this).orthogonalizeUnit(v,dest);
     }
 
 

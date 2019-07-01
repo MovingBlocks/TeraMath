@@ -193,27 +193,27 @@ public abstract class BaseVector2d implements Vector2dc{
 
     @Override
     public ByteBuffer get(ByteBuffer buffer) {
-        return null;
+        return new org.joml.Vector2d(this).get(buffer);
     }
 
     @Override
     public ByteBuffer get(int index, ByteBuffer buffer) {
-        return null;
+        return new org.joml.Vector2d(this).get(index,buffer);
     }
 
     @Override
     public DoubleBuffer get(DoubleBuffer buffer) {
-        return null;
+        return new org.joml.Vector2d(this).get(buffer);
     }
 
     @Override
     public DoubleBuffer get(int index, DoubleBuffer buffer) {
-        return null;
+        return new org.joml.Vector2d(this).get(index,buffer);
     }
 
     @Override
     public Vector2dc  getToAddress(long address) {
-        return null;
+        return new org.joml.Vector2d(this).getToAddress(address);
     }
 
     @Override

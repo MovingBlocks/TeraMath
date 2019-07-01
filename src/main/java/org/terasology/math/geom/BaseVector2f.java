@@ -192,27 +192,27 @@ public abstract class BaseVector2f implements Vector2fc{
 
     @Override
     public ByteBuffer get(ByteBuffer buffer) {
-        return null;
+        return new org.joml.Vector2f(this).get(buffer);
     }
 
     @Override
     public ByteBuffer get(int index, ByteBuffer buffer) {
-        return null;
+        return new org.joml.Vector2f(this).get(index,buffer);
     }
 
     @Override
     public FloatBuffer get(FloatBuffer buffer) {
-        return null;
+        return new org.joml.Vector2f(this).get(buffer);
     }
 
     @Override
     public FloatBuffer get(int index, FloatBuffer buffer) {
-        return null;
+        return new org.joml.Vector2f(this).get(index,buffer);
     }
 
     @Override
     public Vector2fc  getToAddress(long address) {
-        return null;
+        return new org.joml.Vector2f(this).getToAddress(address);
     }
 
     @Override

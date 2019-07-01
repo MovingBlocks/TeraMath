@@ -233,27 +233,27 @@ public abstract class BaseVector4d implements Vector4dc {
 
     @Override
     public ByteBuffer get(ByteBuffer buffer) {
-        return null;
-    }
+        return new org.joml.Vector4d(this).get(buffer)
+;    }
 
     @Override
     public ByteBuffer get(int index, ByteBuffer buffer) {
-        return null;
+       return new org.joml.Vector4d(this).get(index,buffer);
     }
 
     @Override
     public DoubleBuffer get(DoubleBuffer buffer) {
-        return null;
+       return new org.joml.Vector4d(this).get(buffer);
     }
 
     @Override
     public DoubleBuffer get(int index, DoubleBuffer buffer) {
-        return null;
+       return new org.joml.Vector4d(this).get(index,buffer);
     }
 
     @Override
     public Vector4dc getToAddress(long address) {
-        return null;
+       return new org.joml.Vector4d(this).getToAddress(address);
     }
 
     @Override
@@ -267,7 +267,7 @@ public abstract class BaseVector4d implements Vector4dc {
 
     @Override
     public org.joml.Vector4d div(double scalar, org.joml.Vector4d dest) {
-        return null;
+       return new org.joml.Vector4d(this).div(scalar,dest);
     }
 
     @Override
@@ -282,7 +282,7 @@ public abstract class BaseVector4d implements Vector4dc {
 
     @Override
     public org.joml.Vector4d mul(Vector4fc v, org.joml.Vector4d dest) {
-        return null;
+       return new org.joml.Vector4d(this).mul(v,dest);
     }
 
     @Override
@@ -307,7 +307,7 @@ public abstract class BaseVector4d implements Vector4dc {
 
     @Override
     public org.joml.Vector4d normalize3(org.joml.Vector4d dest) {
-        return null;
+       return new org.joml.Vector4d(this).normalize3(dest);
     }
 
 

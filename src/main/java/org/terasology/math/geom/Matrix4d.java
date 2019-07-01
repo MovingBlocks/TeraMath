@@ -346,16 +346,6 @@ public class Matrix4d extends BaseMatrix4d{
     }
 
 
-    @Override
-    public org.joml.Matrix4d unprojectRay(double winX, double winY, int[] viewport, org.joml.Vector3d originDest, org.joml.Vector3d dirDest) {
-        return new org.joml.Matrix4d(this).unprojectRay(winX,winY,viewport,originDest,dirDest);
-    }
-
-    @Override
-    public org.joml.Matrix4d unprojectRay(Vector2dc winCoords, int[] viewport, org.joml.Vector3d originDest, org.joml.Vector3d dirDest) {
-        return null;
-    }
-
     /**
      * Sets the specified element of this matrix3f to the value provided.
      * @param row the row number to be modified (zero indexed)
@@ -1166,7 +1156,7 @@ public class Matrix4d extends BaseMatrix4d{
 
     /**
     * takes the contents of the matrix and appends the results to a buffer
-    * @param buffer to append results to
+    * @param fb to append results to
     */
     public void appendToBuffer(DoubleBuffer fb){
       fb.put(m00);

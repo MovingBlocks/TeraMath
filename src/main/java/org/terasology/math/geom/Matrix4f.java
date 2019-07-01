@@ -1157,7 +1157,7 @@ public class Matrix4f extends BaseMatrix4f{
 
     /**
     * takes the contents of the matrix and appends the results to a buffer
-    * @param buffer to append results to
+    * @param fb to append results to
     */
     public void appendToBuffer(FloatBuffer fb){
       fb.put(m00);

@@ -215,27 +215,27 @@ public abstract class BaseVector3d implements Vector3dc{
 
     @Override
     public ByteBuffer get(ByteBuffer buffer) {
-        return null;
+        return new org.joml.Vector3d(this).get(buffer);
     }
 
     @Override
     public ByteBuffer get(int index, ByteBuffer buffer) {
-        return null;
+        return new org.joml.Vector3d(this).get(index,buffer);
     }
 
     @Override
     public DoubleBuffer get(DoubleBuffer buffer) {
-        return null;
+        return new org.joml.Vector3d(this).get(buffer);
     }
 
     @Override
     public DoubleBuffer get(int index, DoubleBuffer buffer) {
-        return null;
+        return new org.joml.Vector3d(this).get(index,buffer);
     }
 
     @Override
     public Vector3dc  getToAddress(long address) {
-        return null;
+        return new org.joml.Vector3d(this).getToAddress(address);
     }
 
     @Override

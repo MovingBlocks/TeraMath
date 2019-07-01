@@ -327,18 +327,4 @@ public class ImmutableMatrix4d extends BaseMatrix4d {
         throw new ArrayIndexOutOfBoundsException("row/col not in [0..3]");
     }
 
-    @Override
-    public Vector4d transform(Vector4d v) {
-        return null;
-    }
-
-    @Override
-    public Matrix4d unprojectRay(double winX, double winY, int[] viewport, Vector3d originDest, Vector3d dirDest) {
-        return null;
-    }
-
-    @Override
-    public Matrix4d unprojectRay(Vector2dc winCoords, int[] viewport, Vector3d originDest, Vector3d dirDest) {
-        return null;
-    }
 }

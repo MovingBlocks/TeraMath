@@ -205,27 +205,27 @@ public abstract class BaseVector3i implements Vector3ic{
 
     @Override
     public ByteBuffer get(ByteBuffer buffer) {
-        return null;
+        return new org.joml.Vector3i(this).get(buffer);
     }
 
     @Override
     public ByteBuffer get(int index, ByteBuffer buffer) {
-        return null;
+        return new org.joml.Vector3i(this).get(index,buffer);
     }
 
     @Override
     public IntBuffer get(IntBuffer buffer) {
-        return null;
+        return new org.joml.Vector3i(this).get(buffer);
     }
 
     @Override
     public IntBuffer get(int index, IntBuffer buffer) {
-        return null;
+        return new org.joml.Vector3i(this).get(index,buffer);
     }
 
     @Override
     public Vector3ic  getToAddress(long address) {
-        return null;
+        return new org.joml.Vector3i(this).getToAddress(address);
     }
 
     @Override
