@@ -63,21 +63,21 @@ public abstract class BaseVector2f implements Vector2fc{
      * @param t the interpolation value in the range [0..1]
      * @return the interpolated point
      */
-    public static Vector2f lerp(BaseVector2f a, BaseVector2f b, float t) {
+    public static Vector2f lerp(Vector2fc a, Vector2fc b, float t) {
         Preconditions.checkArgument(t >= 0 && t <= 1, "t must be in range [0..1]");
 
-        float x = a.getX() * (1 - t) + b.getX() * t; 
-        float y = a.getY() * (1 - t) + b.getY() * t; 
+        float x = a.x() * (1 - t) + b.x() * t;
+        float y = a.y() * (1 - t) + b.y() * t;
         return new Vector2f(x, y);
     }
-    /**
-     * Returns the dot product of this vector and vector other.
-     * @param other the other vector
-     * @return the dot product of this and other
-     */
-    public final float dot(BaseVector2f other) {
-        return (float) (this.getX() * other.getX() + this.getY() * other.getY());
-    }
+//    /**
+//     * Returns the dot product of this vector and vector other.
+//     * @param other the other vector
+//     * @return the dot product of this and other
+//     */
+//    public final float dot(Vector2fc other) {
+//        return (float) (this.getX() * other.getX() + this.getY() * other.getY());
+//    }
 
 
     /**
@@ -85,7 +85,7 @@ public abstract class BaseVector2f implements Vector2fc{
     * @param v other vector to project onto
     *
     */
-    public final Vector2f project( BaseVector2f v)
+    public final Vector2f project( Vector2fc v)
     {
         return new Vector2f(v).mul(this.dot(v)/ (v.lengthSquared()));
     }
@@ -102,19 +102,19 @@ public abstract class BaseVector2f implements Vector2fc{
     *   @param v1    the other vector
     *   @return   the angle in radians in the range [0,PI]
     */
-   public final float angle(BaseVector2f v1) {
-      double vDot = this.dot(v1) / (this.length() * v1.length());
-
-      if (vDot < -1.0) {
-          vDot = -1.0;
-      }
-
-      if (vDot >  1.0) {
-          vDot =  1.0;
-      }
-
-      return (float) Math.acos(vDot);
-   }
+//   public final float angle(Vector2fc v1) {
+//      double vDot = this.dot(v1) / (this.length() * v1.length());
+//
+//      if (vDot < -1.0) {
+//          vDot = -1.0;
+//      }
+//
+//      if (vDot >  1.0) {
+//          vDot =  1.0;
+//      }
+//
+//      return (float) Math.acos(vDot);
+//   }
 
     /**
      * @return the distance to the origin

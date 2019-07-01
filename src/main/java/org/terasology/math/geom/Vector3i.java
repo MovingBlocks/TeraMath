@@ -17,6 +17,7 @@
 package org.terasology.math.geom;
 
 import com.google.common.math.DoubleMath;
+import org.joml.Vector3ic;
 
 import java.math.RoundingMode;
 
@@ -53,8 +54,8 @@ public class Vector3i extends BaseVector3i {
      * Copy constructor
      * @param other The BaseVector3i to copy.
      */
-    public Vector3i(BaseVector3i other) {
-        this(other.getX(), other.getY(), other.getZ());
+    public Vector3i(Vector3ic other) {
+        this(other.x(), other.y(), other.z());
     }
 
 

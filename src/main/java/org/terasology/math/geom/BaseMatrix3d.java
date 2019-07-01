@@ -252,47 +252,47 @@ public abstract class BaseMatrix3d implements Matrix3dc{
 
     @Override
     public double m00() {
-        return 0;
+        return getM00();
     }
 
     @Override
     public double m01() {
-        return 0;
+        return getM01();
     }
 
     @Override
     public double m02() {
-        return 0;
+        return getM02();
     }
 
     @Override
     public double m10() {
-        return 0;
+        return getM10();
     }
 
     @Override
     public double m11() {
-        return 0;
+        return getM11();
     }
 
     @Override
     public double m12() {
-        return 0;
+        return getM12();
     }
 
     @Override
     public double m20() {
-        return 0;
+        return getM20();
     }
 
     @Override
     public double m21() {
-        return 0;
+        return getM21();
     }
 
     @Override
     public double m22() {
-        return 0;
+        return getM22();
     }
 
     @Override
@@ -621,9 +621,6 @@ public abstract class BaseMatrix3d implements Matrix3dc{
         return new float[0];
     }
 
-    public org.joml.Matrix3d toJomlMatrix(){
-        return  new Matrix3d(m00(),m01(),m02(),m10(),m11(),m12(),m20(),m21(),m22());
-    }
 
     @Override
     public float[] get(float[] v) {
@@ -642,167 +639,167 @@ public abstract class BaseMatrix3d implements Matrix3dc{
     @Override
     public Matrix3d scale(Vector3dc xyz, Matrix3d dest) {
 
-        return toJomlMatrix().scale(xyz,dest);
+        return new Matrix3d(this).scale(xyz,dest);
     }
 
     @Override
     public Matrix3d scale(double x, double y, double z, Matrix3d dest) {
-        return toJomlMatrix().scale(x,y,z,dest);
+        return new Matrix3d(this).scale(x,y,z,dest);
     }
 
     @Override
     public Matrix3d scale(double xyz, Matrix3d dest) {
-        return toJomlMatrix().scale(xyz,dest);
+        return new Matrix3d(this).scale(xyz,dest);
     }
 
     @Override
     public Matrix3d scaleLocal(double x, double y, double z, Matrix3d dest) {
-        return toJomlMatrix().scaleLocal(x,y,z,dest);
+        return new Matrix3d(this).scaleLocal(x,y,z,dest);
     }
 
     @Override
     public org.joml.Vector3d transform(org.joml.Vector3d v) {
-        return null;
+            return new Matrix3d(this).transform(v);
     }
 
     @Override
     public org.joml.Vector3d transform(Vector3dc v, org.joml.Vector3d dest) {
-        return null;
+            return new Matrix3d(this).transform(v,dest);
     }
 
     @Override
     public Vector3f transform(Vector3f v) {
-        return null;
+            return new Matrix3d(this).transform(v);
     }
 
     @Override
     public Vector3f transform(Vector3fc v, Vector3f dest) {
-        return null;
+            return new Matrix3d(this).transform(v,dest);
     }
 
     @Override
     public org.joml.Vector3d transform(double x, double y, double z, org.joml.Vector3d dest) {
-        return null;
+            return new Matrix3d(this).transform(x,y,z,dest);
     }
 
     @Override
     public org.joml.Vector3d transformTranspose(org.joml.Vector3d v) {
-        return null;
+            return new Matrix3d(this).transformTranspose(v);
     }
 
     @Override
     public org.joml.Vector3d transformTranspose(Vector3dc v, org.joml.Vector3d dest) {
-        return null;
+            return new Matrix3d(this).transformTranspose(v,dest);
     }
 
     @Override
     public org.joml.Vector3d transformTranspose(double x, double y, double z, org.joml.Vector3d dest) {
-        return null;
+            return new Matrix3d(this).transformTranspose(x,y,z,dest);
     }
 
     @Override
     public Matrix3d rotateX(double ang, Matrix3d dest) {
-        return null;
+            return new Matrix3d(this).rotateX(ang,dest);
     }
 
     @Override
     public Matrix3d rotateY(double ang, Matrix3d dest) {
-        return null;
+            return new Matrix3d(this).rotateY(ang,dest);
     }
 
     @Override
     public Matrix3d rotateZ(double ang, Matrix3d dest) {
-        return null;
+            return new Matrix3d(this).rotateZ(ang,dest);
     }
 
     @Override
     public Matrix3d rotateXYZ(double angleX, double angleY, double angleZ, Matrix3d dest) {
-        return null;
+            return new Matrix3d(this).rotateXYZ(angleX,angleY,angleZ,dest);
     }
 
     @Override
     public Matrix3d rotateZYX(double angleZ, double angleY, double angleX, Matrix3d dest) {
-        return null;
+            return new Matrix3d(this).rotateZYX(angleZ,angleY,angleX,dest);
     }
 
     @Override
     public Matrix3d rotateYXZ(double angleY, double angleX, double angleZ, Matrix3d dest) {
-        return null;
+            return new Matrix3d(this).rotateYXZ(angleY,angleX,angleZ,dest);
     }
 
     @Override
     public Matrix3d rotate(double ang, double x, double y, double z, Matrix3d dest) {
-        return null;
+            return new Matrix3d(this).rotate(ang,x,y,z,dest);
     }
 
     @Override
     public Matrix3d rotateLocal(double ang, double x, double y, double z, Matrix3d dest) {
-        return null;
+            return new Matrix3d(this).rotateLocal(ang,x,y,z,dest);
     }
 
     @Override
     public Matrix3d rotateLocalX(double ang, Matrix3d dest) {
-        return null;
+            return new Matrix3d(this).rotateLocalX(ang,dest);
     }
 
     @Override
     public Matrix3d rotateLocalY(double ang, Matrix3d dest) {
-        return null;
+            return new Matrix3d(this).rotateLocalY(ang,dest);
     }
 
     @Override
     public Matrix3d rotateLocalZ(double ang, Matrix3d dest) {
-        return null;
+            return new Matrix3d(this).rotateLocalZ(ang,dest);
     }
 
     @Override
     public Matrix3d rotateLocal(Quaterniondc quat, Matrix3d dest) {
-        return null;
+            return new Matrix3d(this).rotateLocal(quat,dest);
     }
 
     @Override
     public Matrix3d rotateLocal(Quaternionfc quat, Matrix3d dest) {
-        return null;
+            return new Matrix3d(this).rotateLocal(quat,dest);
     }
 
     @Override
     public Matrix3d rotate(Quaterniondc quat, Matrix3d dest) {
-        return null;
+            return new Matrix3d(this).rotate(quat,dest);
     }
 
     @Override
     public Matrix3d rotate(Quaternionfc quat, Matrix3d dest) {
-        return null;
+            return new Matrix3d(this).rotate(quat,dest);
     }
 
     @Override
     public Matrix3d rotate(AxisAngle4f axisAngle, Matrix3d dest) {
-        return null;
+            return new Matrix3d(this).rotate(axisAngle,dest);
     }
 
     @Override
     public Matrix3d rotate(AxisAngle4d axisAngle, Matrix3d dest) {
-        return null;
+            return new Matrix3d(this).rotate(axisAngle,dest);
     }
 
     @Override
     public Matrix3d rotate(double angle, Vector3dc axis, Matrix3d dest) {
-        return null;
+            return new Matrix3d(this).rotate(angle,axis,dest);
     }
 
     @Override
     public Matrix3d rotate(double angle, Vector3fc axis, Matrix3d dest) {
-        return null;
+            return new Matrix3d(this).rotate(angle,axis,dest);
     }
 
     @Override
     public org.joml.Vector3d getRow(int row, org.joml.Vector3d dest) throws IndexOutOfBoundsException {
-        return null;
+            return new Matrix3d(this).getRow(row,dest);
     }
 
     @Override
     public org.joml.Vector3d getColumn(int column, org.joml.Vector3d dest) throws IndexOutOfBoundsException {
-        return null;
+            return new Matrix3d(this).getColumn(column,dest);
     }
 
     /**

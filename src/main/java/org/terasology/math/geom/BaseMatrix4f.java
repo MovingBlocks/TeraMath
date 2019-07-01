@@ -244,24 +244,24 @@ public abstract class BaseMatrix4f  implements Matrix4fc{
       * @param other the matrix with which the comparison is made
       * @return  true or false
       */
-    public final boolean equals(BaseMatrix4f other) {
+    public final boolean equals(Matrix4fc other) {
         return 
-            Float.floatToIntBits(getM00()) == Float.floatToIntBits(other.getM00())
-            && Float.floatToIntBits(getM01()) == Float.floatToIntBits(other.getM01())
-            && Float.floatToIntBits(getM02()) == Float.floatToIntBits(other.getM02())
-            && Float.floatToIntBits(getM03()) == Float.floatToIntBits(other.getM03())
-            && Float.floatToIntBits(getM10()) == Float.floatToIntBits(other.getM10())
-            && Float.floatToIntBits(getM11()) == Float.floatToIntBits(other.getM11())
-            && Float.floatToIntBits(getM12()) == Float.floatToIntBits(other.getM12())
-            && Float.floatToIntBits(getM13()) == Float.floatToIntBits(other.getM13())
-            && Float.floatToIntBits(getM20()) == Float.floatToIntBits(other.getM20())
-            && Float.floatToIntBits(getM21()) == Float.floatToIntBits(other.getM21())
-            && Float.floatToIntBits(getM22()) == Float.floatToIntBits(other.getM22())
-            && Float.floatToIntBits(getM23()) == Float.floatToIntBits(other.getM23())
-            && Float.floatToIntBits(getM30()) == Float.floatToIntBits(other.getM30())
-            && Float.floatToIntBits(getM31()) == Float.floatToIntBits(other.getM31())
-            && Float.floatToIntBits(getM32()) == Float.floatToIntBits(other.getM32())
-            && Float.floatToIntBits(getM33()) == Float.floatToIntBits(other.getM33());
+            Float.floatToIntBits(getM00()) == Float.floatToIntBits(other.m00())
+            && Float.floatToIntBits(getM01()) == Float.floatToIntBits(other.m01())
+            && Float.floatToIntBits(getM02()) == Float.floatToIntBits(other.m02())
+            && Float.floatToIntBits(getM03()) == Float.floatToIntBits(other.m03())
+            && Float.floatToIntBits(getM10()) == Float.floatToIntBits(other.m10())
+            && Float.floatToIntBits(getM11()) == Float.floatToIntBits(other.m11())
+            && Float.floatToIntBits(getM12()) == Float.floatToIntBits(other.m12())
+            && Float.floatToIntBits(getM13()) == Float.floatToIntBits(other.m13())
+            && Float.floatToIntBits(getM20()) == Float.floatToIntBits(other.m20())
+            && Float.floatToIntBits(getM21()) == Float.floatToIntBits(other.m21())
+            && Float.floatToIntBits(getM22()) == Float.floatToIntBits(other.m22())
+            && Float.floatToIntBits(getM23()) == Float.floatToIntBits(other.m23())
+            && Float.floatToIntBits(getM30()) == Float.floatToIntBits(other.m30())
+            && Float.floatToIntBits(getM31()) == Float.floatToIntBits(other.m31())
+            && Float.floatToIntBits(getM32()) == Float.floatToIntBits(other.m32())
+            && Float.floatToIntBits(getM33()) == Float.floatToIntBits(other.m33());
     }
 
     /**
@@ -274,85 +274,85 @@ public abstract class BaseMatrix4f  implements Matrix4fc{
       * @param epsilon  the threshold value
      * @return true if equals up to epsilon
       */
-    public final boolean epsilonEquals(BaseMatrix4f m1, double epsilon) {
+    public final boolean epsilonEquals(Matrix4fc m1, double epsilon) {
         float diff;
 
-        diff = getM00() - m1.getM00();
+        diff = getM00() - m1.m00();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM01() - m1.getM01();
+        diff = getM01() - m1.m01();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM02() - m1.getM02();
+        diff = getM02() - m1.m02();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM03() - m1.getM03();
+        diff = getM03() - m1.m03();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM10() - m1.getM10();
+        diff = getM10() - m1.m10();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM11() - m1.getM11();
+        diff = getM11() - m1.m11();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM12() - m1.getM12();
+        diff = getM12() - m1.m12();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM13() - m1.getM13();
+        diff = getM13() - m1.m13();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM20() - m1.getM20();
+        diff = getM20() - m1.m20();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM21() - m1.getM21();
+        diff = getM21() - m1.m21();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM22() - m1.getM22();
+        diff = getM22() - m1.m22();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM23() - m1.getM23();
+        diff = getM23() - m1.m23();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM30() - m1.getM30();
+        diff = getM30() - m1.m30();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM31() - m1.getM31();
+        diff = getM31() - m1.m31();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM32() - m1.getM32();
+        diff = getM32() - m1.m32();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
 
-        diff = getM33() - m1.getM33();
+        diff = getM33() - m1.m33();
         if ((diff < 0 ? -diff : diff) > epsilon) {
             return false;
         }
@@ -447,92 +447,92 @@ public abstract class BaseMatrix4f  implements Matrix4fc{
 
     @Override
     public Matrix4f mul(Matrix4fc right, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).mul(right,dest);
     }
 
     @Override
     public Matrix4f mulLocal(Matrix4fc left, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).mulLocal(left,dest);
     }
 
     @Override
     public Matrix4f mulLocalAffine(Matrix4fc left, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).mulLocal(left,dest);
     }
 
     @Override
     public Matrix4f mul(Matrix3x2fc right, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).mul(right,dest);
     }
 
     @Override
     public Matrix4f mul(Matrix4x3fc right, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).mul(right,dest);
     }
 
     @Override
     public Matrix4f mulPerspectiveAffine(Matrix4fc view, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).mulPerspectiveAffine(view,dest);
     }
 
     @Override
     public Matrix4f mulPerspectiveAffine(Matrix4x3fc view, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).mulPerspectiveAffine(view,dest);
     }
 
     @Override
     public Matrix4f mulAffineR(Matrix4fc right, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).mulAffineR(right,dest);
     }
 
     @Override
     public Matrix4f mulAffine(Matrix4fc right, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).mulAffine(right,dest);
     }
 
     @Override
     public Matrix4f mulTranslationAffine(Matrix4fc right, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).mulTranslationAffine(right,dest);
     }
 
     @Override
     public Matrix4f mulOrthoAffine(Matrix4fc view, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).mulOrthoAffine(view,dest);
     }
 
     @Override
     public Matrix4f fma4x3(Matrix4fc other, float otherFactor, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).fma4x3(other,otherFactor,dest);
     }
 
     @Override
     public Matrix4f add(Matrix4fc other, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).add(other,dest);
     }
 
     @Override
     public Matrix4f sub(Matrix4fc subtrahend, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).sub(subtrahend,dest);
     }
 
     @Override
     public Matrix4f mulComponentWise(Matrix4fc other, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).mulComponentWise(other,dest);
     }
 
     @Override
     public Matrix4f add4x3(Matrix4fc other, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).add4x3(other,dest);
     }
 
     @Override
     public Matrix4f sub4x3(Matrix4fc subtrahend, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).sub4x3(subtrahend,dest);
     }
 
     @Override
     public Matrix4f mul4x3ComponentWise(Matrix4fc other, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).mul4x3ComponentWise(other,dest);
     }
 
     /**
@@ -556,197 +556,197 @@ public abstract class BaseMatrix4f  implements Matrix4fc{
 
     @Override
     public float determinant3x3() {
-        return 0;
+        return this.determinant();
     }
 
     @Override
     public float determinantAffine() {
-        return 0;
+        return new Matrix4f(this).determinantAffine();
     }
 
     @Override
     public Matrix4f invert(Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).invert(dest);
     }
 
     @Override
     public Matrix4f invertPerspective(Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).invertPerspective(dest);
     }
 
     @Override
     public Matrix4f invertFrustum(Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).invertFrustum(dest);
     }
 
     @Override
     public Matrix4f invertOrtho(Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).invertOrtho(dest);
     }
 
     @Override
     public Matrix4f invertPerspectiveView(Matrix4fc view, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).invertPerspectiveView(view,dest);
     }
 
     @Override
     public Matrix4f invertPerspectiveView(Matrix4x3fc view, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).invertPerspectiveView(view,dest);
     }
 
     @Override
     public Matrix4f invertAffine(Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).invertAffine(dest);
     }
 
     @Override
     public Matrix4f transpose(Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).transpose(dest);
     }
 
     @Override
     public Matrix4f transpose3x3(Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).transpose3x3(dest);
     }
 
     @Override
     public Matrix3f transpose3x3(Matrix3f dest) {
-        return null;
+        return new Matrix4f(this).transpose3x3(dest);
     }
 
     @Override
     public org.joml.Vector3f getTranslation(org.joml.Vector3f dest) {
-        return null;
+        return new Matrix4f(this).getTranslation(dest);
     }
 
     @Override
     public org.joml.Vector3f getScale(org.joml.Vector3f dest) {
-        return null;
+        return new Matrix4f(this).getScale(dest);
     }
 
     @Override
     public Matrix4f get(Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).get(dest);
     }
 
     @Override
     public Matrix4x3f get4x3(Matrix4x3f dest) {
-        return null;
+        return new Matrix4f(this).get4x3(dest);
     }
 
     @Override
     public Matrix4d get(Matrix4d dest) {
-        return null;
+        return new Matrix4f(this).get(dest);
     }
 
     @Override
     public Matrix3f get3x3(Matrix3f dest) {
-        return null;
+        return new Matrix4f(this).get3x3(dest);
     }
 
     @Override
     public Matrix3d get3x3(Matrix3d dest) {
-        return null;
+        return new Matrix4f(this).get3x3(dest);
     }
 
     @Override
     public AxisAngle4f getRotation(AxisAngle4f dest) {
-        return null;
+        return new Matrix4f(this).getRotation(dest);
     }
 
     @Override
     public AxisAngle4d getRotation(AxisAngle4d dest) {
-        return null;
+        return new Matrix4f(this).getRotation(dest);
     }
 
     @Override
     public Quaternionf getUnnormalizedRotation(Quaternionf dest) {
-        return null;
+        return new Matrix4f(this).getUnnormalizedRotation(dest);
     }
 
     @Override
     public Quaternionf getNormalizedRotation(Quaternionf dest) {
-        return null;
+        return new Matrix4f(this).getNormalizedRotation(dest);
     }
 
     @Override
     public Quaterniond getUnnormalizedRotation(Quaterniond dest) {
-        return null;
+        return new Matrix4f(this).getUnnormalizedRotation(dest);
     }
 
     @Override
     public Quaterniond getNormalizedRotation(Quaterniond dest) {
-        return null;
+        return new Matrix4f(this).getNormalizedRotation(dest);
     }
 
     @Override
     public FloatBuffer get(FloatBuffer buffer) {
-        return null;
+        return new Matrix4f(this).get(buffer);
     }
 
     @Override
     public FloatBuffer get(int index, FloatBuffer buffer) {
-        return null;
+        return new Matrix4f(this).get(index,buffer);
     }
 
     @Override
     public ByteBuffer get(ByteBuffer buffer) {
-        return null;
+        return new Matrix4f(this).get(buffer);
     }
 
     @Override
     public ByteBuffer get(int index, ByteBuffer buffer) {
-        return null;
+        return new Matrix4f(this).get(index,buffer);
     }
 
     @Override
     public FloatBuffer getTransposed(FloatBuffer buffer) {
-        return null;
+        return new Matrix4f(this).getTransposed(buffer);
     }
 
     @Override
     public FloatBuffer getTransposed(int index, FloatBuffer buffer) {
-        return null;
+        return new Matrix4f(this).getTransposed(index,buffer);
     }
 
     @Override
     public ByteBuffer getTransposed(ByteBuffer buffer) {
-        return null;
+        return new Matrix4f(this).getTransposed(buffer);
     }
 
     @Override
     public ByteBuffer getTransposed(int index, ByteBuffer buffer) {
-        return null;
+        return new Matrix4f(this).getTransposed(index,buffer);
     }
 
     @Override
     public FloatBuffer get4x3Transposed(FloatBuffer buffer) {
-        return null;
+        return new Matrix4f(this).get4x3Transposed(buffer);
     }
 
     @Override
     public FloatBuffer get4x3Transposed(int index, FloatBuffer buffer) {
-        return null;
+        return new Matrix4f(this).get4x3Transposed(index,buffer);
     }
 
     @Override
     public ByteBuffer get4x3Transposed(ByteBuffer buffer) {
-        return null;
+        return new Matrix4f(this).get4x3Transposed(buffer);
     }
 
     @Override
     public ByteBuffer get4x3Transposed(int index, ByteBuffer buffer) {
-        return null;
+        return new Matrix4f(this).get4x3Transposed(index,buffer);
     }
 
     @Override
     public Matrix4fc getToAddress(long address) {
-        return null;
+        return new Matrix4f(this).getToAddress(address);
     }
 
     @Override
     public float[] get(float[] arr, int offset) {
-        return new float[0];
+        return new Matrix4f(this).get(arr,offset);
     }
 
     /**
@@ -764,8 +764,7 @@ public abstract class BaseMatrix4f  implements Matrix4fc{
      * @return a new vector that will receive the translational component
      */
     public final Vector3f getTranslation() {
-        Vector3f trans = new Vector3f(getM03(), getM13(), getM23());
-        return trans;
+        return new Vector3f(getM03(), getM13(), getM23());
     }
 
     /**
@@ -899,657 +898,657 @@ public abstract class BaseMatrix4f  implements Matrix4fc{
 
     @Override
     public org.joml.Vector4f transform(org.joml.Vector4f v) {
-        return null;
+        return new Matrix4f(this).transform(v);
     }
 
     @Override
     public org.joml.Vector4f transform(Vector4fc v, org.joml.Vector4f dest) {
-        return null;
+        return new Matrix4f(this).transform(v,dest);
     }
 
     @Override
     public org.joml.Vector4f transform(float x, float y, float z, float w, org.joml.Vector4f dest) {
-        return null;
+        return new Matrix4f(this).transform(x,y,z,w,dest);
     }
 
     @Override
     public org.joml.Vector4f transformProject(org.joml.Vector4f v) {
-        return null;
+        return new Matrix4f(this).transformProject(v);
     }
 
     @Override
     public org.joml.Vector4f transformProject(Vector4fc v, org.joml.Vector4f dest) {
-        return null;
+        return new Matrix4f(this).transformProject(v,dest);
     }
 
     @Override
     public org.joml.Vector4f transformProject(float x, float y, float z, float w, org.joml.Vector4f dest) {
-        return null;
+        return new Matrix4f(this).transformProject(x,y,z,w,dest);
     }
 
     @Override
     public org.joml.Vector3f transformProject(org.joml.Vector3f v) {
-        return null;
+        return new Matrix4f(this).transformProject(v);
     }
 
     @Override
     public org.joml.Vector3f transformProject(Vector3fc v, org.joml.Vector3f dest) {
-        return null;
+        return new Matrix4f(this).transformProject(v,dest);
     }
 
     @Override
     public org.joml.Vector3f transformProject(float x, float y, float z, org.joml.Vector3f dest) {
-        return null;
+        return new Matrix4f(this).transformProject(x,y,z,dest);
     }
 
     @Override
     public org.joml.Vector3f transformPosition(org.joml.Vector3f v) {
-        return null;
+        return new Matrix4f(this).transformPosition(v);
     }
 
     @Override
     public org.joml.Vector3f transformPosition(Vector3fc v, org.joml.Vector3f dest) {
-        return null;
+        return new Matrix4f(this).transformPosition(v,dest);
     }
 
     @Override
     public org.joml.Vector3f transformPosition(float x, float y, float z, org.joml.Vector3f dest) {
-        return null;
+        return new Matrix4f(this).transformPosition(x,y,z,dest);
     }
 
     @Override
     public org.joml.Vector3f transformDirection(org.joml.Vector3f v) {
-        return null;
+        return new Matrix4f(this).transformDirection(v);
     }
 
     @Override
     public org.joml.Vector3f transformDirection(Vector3fc v, org.joml.Vector3f dest) {
-        return null;
+        return new Matrix4f(this).transformDirection(v,dest);
     }
 
     @Override
     public org.joml.Vector3f transformDirection(float x, float y, float z, org.joml.Vector3f dest) {
-        return null;
+        return new Matrix4f(this).transformDirection(x,y,z,dest);
     }
 
     @Override
     public org.joml.Vector4f transformAffine(org.joml.Vector4f v) {
-        return null;
+        return new Matrix4f(this).transformAffine(v);
     }
 
     @Override
     public org.joml.Vector4f transformAffine(Vector4fc v, org.joml.Vector4f dest) {
-        return null;
+        return new Matrix4f(this).transformAffine(v,dest);
     }
 
     @Override
     public org.joml.Vector4f transformAffine(float x, float y, float z, float w, org.joml.Vector4f dest) {
-        return null;
+        return new Matrix4f(this).transformAffine(x,y,z,w,dest);
     }
 
     @Override
     public Matrix4f scale(Vector3fc xyz, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).scale(xyz,dest);
     }
 
     @Override
     public Matrix4f scale(float xyz, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).scale(xyz,dest);
     }
 
     @Override
     public Matrix4f scale(float x, float y, float z, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).scale(x,y,z,dest);
     }
 
     @Override
     public Matrix4f scaleAround(float sx, float sy, float sz, float ox, float oy, float oz, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).scaleAround(sx,sy,sz,ox,oy,oz,dest);
     }
 
     @Override
     public Matrix4f scaleAround(float factor, float ox, float oy, float oz, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).scaleAround(factor,ox,oy,oz,dest);
     }
 
     @Override
     public Matrix4f scaleLocal(float xyz, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).scaleLocal(xyz,dest);
     }
 
     @Override
     public Matrix4f scaleLocal(float x, float y, float z, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).scaleLocal(x,y,z,dest);
     }
 
     @Override
     public Matrix4f scaleAroundLocal(float sx, float sy, float sz, float ox, float oy, float oz, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).scaleAroundLocal(sx,sy,sz,ox,oy,oz,dest);
     }
 
     @Override
     public Matrix4f scaleAroundLocal(float factor, float ox, float oy, float oz, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).scaleAroundLocal(factor,ox,oy,oz,dest);
     }
 
     @Override
     public Matrix4f rotateX(float ang, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotateX(ang,dest);
     }
 
     @Override
     public Matrix4f rotateY(float ang, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotateY(ang,dest);
     }
 
     @Override
     public Matrix4f rotateZ(float ang, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotateZ(ang,dest);
     }
 
     @Override
     public Matrix4f rotateTowardsXY(float dirX, float dirY, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotateTowardsXY(dirX,dirY,dest);
     }
 
     @Override
     public Matrix4f rotateXYZ(float angleX, float angleY, float angleZ, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotateXYZ(angleX,angleY,angleZ,dest);
     }
 
     @Override
     public Matrix4f rotateAffineXYZ(float angleX, float angleY, float angleZ, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotateAffineXYZ(angleX,angleY,angleZ,dest);
     }
 
     @Override
     public Matrix4f rotateZYX(float angleZ, float angleY, float angleX, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotateZYX(angleZ,angleY,angleX,dest);
     }
 
     @Override
     public Matrix4f rotateAffineZYX(float angleZ, float angleY, float angleX, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotateAffineZYX(angleZ,angleY,angleX,dest);
     }
 
     @Override
     public Matrix4f rotateYXZ(float angleY, float angleX, float angleZ, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotateYXZ(angleY,angleX,angleZ,dest);
     }
 
     @Override
     public Matrix4f rotateAffineYXZ(float angleY, float angleX, float angleZ, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotateAffineYXZ(angleY,angleX,angleZ,dest);
     }
 
     @Override
     public Matrix4f rotate(float ang, float x, float y, float z, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotate(ang,x,y,z,dest);
     }
 
     @Override
     public Matrix4f rotateTranslation(float ang, float x, float y, float z, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotateTranslation(ang,x,y,z,dest);
     }
 
     @Override
     public Matrix4f rotateAffine(float ang, float x, float y, float z, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotateAffine(ang,x,y,z,dest);
     }
 
     @Override
     public Matrix4f rotateLocal(float ang, float x, float y, float z, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotateLocal(ang,x,y,z,dest);
     }
 
     @Override
     public Matrix4f rotateLocalX(float ang, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotateLocalX(ang,dest);
     }
 
     @Override
     public Matrix4f rotateLocalY(float ang, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotateLocalY(ang,dest);
     }
 
     @Override
     public Matrix4f rotateLocalZ(float ang, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotateLocalZ(ang,dest);
     }
 
     @Override
     public Matrix4f translate(Vector3fc offset, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).translate(offset,dest);
     }
 
     @Override
     public Matrix4f translate(float x, float y, float z, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).translate(x,y,z,dest);
     }
 
     @Override
     public Matrix4f translateLocal(Vector3fc offset, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).translateLocal(offset,dest);
     }
 
     @Override
     public Matrix4f translateLocal(float x, float y, float z, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).translateLocal(x,y,z,dest);
     }
 
     @Override
     public Matrix4f ortho(float left, float right, float bottom, float top, float zNear, float zFar, boolean zZeroToOne, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).ortho(left,right,bottom,top,zNear,zFar,zZeroToOne,dest);
     }
 
     @Override
     public Matrix4f ortho(float left, float right, float bottom, float top, float zNear, float zFar, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).ortho(left,right,bottom,top,zNear,zFar,dest);
     }
 
     @Override
     public Matrix4f orthoLH(float left, float right, float bottom, float top, float zNear, float zFar, boolean zZeroToOne, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).orthoLH(left,right,bottom,top,zNear,zFar,zZeroToOne,dest);
     }
 
     @Override
     public Matrix4f orthoLH(float left, float right, float bottom, float top, float zNear, float zFar, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).orthoLH(left,right,bottom,top,zNear,zFar,dest);
     }
 
     @Override
     public Matrix4f orthoSymmetric(float width, float height, float zNear, float zFar, boolean zZeroToOne, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).orthoSymmetric(width,height,zNear,zFar,zZeroToOne,dest);
     }
 
     @Override
     public Matrix4f orthoSymmetric(float width, float height, float zNear, float zFar, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).orthoSymmetric(width,height,zNear,zFar,dest);
     }
 
     @Override
     public Matrix4f orthoSymmetricLH(float width, float height, float zNear, float zFar, boolean zZeroToOne, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).orthoSymmetricLH(width,height,zNear,zFar,zZeroToOne,dest);
     }
 
     @Override
     public Matrix4f orthoSymmetricLH(float width, float height, float zNear, float zFar, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).orthoSymmetricLH(width,height,zNear,zFar,dest);
     }
 
     @Override
     public Matrix4f ortho2D(float left, float right, float bottom, float top, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).ortho2D(left,right,bottom,top,dest);
     }
 
     @Override
     public Matrix4f ortho2DLH(float left, float right, float bottom, float top, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).ortho2DLH(left,right,bottom,top,dest);
     }
 
     @Override
     public Matrix4f lookAlong(Vector3fc dir, Vector3fc up, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).lookAlong(dir,up,dest);
     }
 
     @Override
     public Matrix4f lookAlong(float dirX, float dirY, float dirZ, float upX, float upY, float upZ, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).lookAlong(dirX,dirY,dirZ,upX,upY,upZ,dest);
     }
 
     @Override
     public Matrix4f lookAt(Vector3fc eye, Vector3fc center, Vector3fc up, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).lookAt(eye,center,up,dest);
     }
 
     @Override
     public Matrix4f lookAt(float eyeX, float eyeY, float eyeZ, float centerX, float centerY, float centerZ, float upX, float upY, float upZ, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).lookAt(eyeX,eyeY,eyeZ,centerX,centerY,centerZ,upX,upY,upZ,dest);
     }
 
     @Override
     public Matrix4f lookAtPerspective(float eyeX, float eyeY, float eyeZ, float centerX, float centerY, float centerZ, float upX, float upY, float upZ, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).lookAtPerspective(eyeX,eyeY,eyeZ,centerX,centerY,centerZ,upX,upY,upZ,dest);
     }
 
     @Override
     public Matrix4f lookAtLH(Vector3fc eye, Vector3fc center, Vector3fc up, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).lookAtLH(eye,center,up,dest);
     }
 
     @Override
     public Matrix4f lookAtLH(float eyeX, float eyeY, float eyeZ, float centerX, float centerY, float centerZ, float upX, float upY, float upZ, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).lookAtLH(eyeX,eyeY,eyeZ,centerX,centerY,centerZ,upX,upY,upZ,dest);
     }
 
     @Override
     public Matrix4f lookAtPerspectiveLH(float eyeX, float eyeY, float eyeZ, float centerX, float centerY, float centerZ, float upX, float upY, float upZ, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).lookAtPerspectiveLH(eyeX,eyeY,eyeZ,centerX,centerY,centerZ,upX,upY,upZ,dest);
     }
 
     @Override
     public Matrix4f perspective(float fovy, float aspect, float zNear, float zFar, boolean zZeroToOne, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).perspective(fovy,aspect,zNear,zFar,zZeroToOne,dest);
     }
 
     @Override
     public Matrix4f perspective(float fovy, float aspect, float zNear, float zFar, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).perspective(fovy,aspect,zNear,zFar,dest);
     }
 
     @Override
     public Matrix4f perspectiveLH(float fovy, float aspect, float zNear, float zFar, boolean zZeroToOne, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).perspectiveLH(fovy,aspect,zNear,zFar,zZeroToOne,dest);
     }
 
     @Override
     public Matrix4f perspectiveLH(float fovy, float aspect, float zNear, float zFar, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).perspectiveLH(fovy,aspect,zNear,zFar,dest);
     }
 
     @Override
     public Matrix4f frustum(float left, float right, float bottom, float top, float zNear, float zFar, boolean zZeroToOne, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).frustum(left,right,bottom,top,zNear,zFar,zZeroToOne,dest);
     }
 
     @Override
     public Matrix4f frustum(float left, float right, float bottom, float top, float zNear, float zFar, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).frustum(left,right,bottom,top,zNear,zFar,dest);
     }
 
     @Override
     public Matrix4f frustumLH(float left, float right, float bottom, float top, float zNear, float zFar, boolean zZeroToOne, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).frustumLH(left,right,bottom,top,zNear,zFar,zZeroToOne,dest);
     }
 
     @Override
     public Matrix4f frustumLH(float left, float right, float bottom, float top, float zNear, float zFar, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).frustumLH(left,right,bottom,top,zNear,zFar,dest);
     }
 
     @Override
     public Matrix4f rotate(Quaternionfc quat, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotate(quat,dest);
     }
 
     @Override
     public Matrix4f rotateAffine(Quaternionfc quat, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotateAffine(quat,dest);
     }
 
     @Override
     public Matrix4f rotateTranslation(Quaternionfc quat, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotateTranslation(quat,dest);
     }
 
     @Override
     public Matrix4f rotateAround(Quaternionfc quat, float ox, float oy, float oz, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotateAround(quat,ox,oy,oz,dest);
     }
 
     @Override
     public Matrix4f rotateLocal(Quaternionfc quat, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotateLocal(quat,dest);
     }
 
     @Override
     public Matrix4f rotateAroundLocal(Quaternionfc quat, float ox, float oy, float oz, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotateAroundLocal(quat,ox,oy,oz,dest);
     }
 
     @Override
     public Matrix4f rotate(AxisAngle4f axisAngle, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotate(axisAngle,dest);
     }
 
     @Override
     public Matrix4f rotate(float angle, Vector3fc axis, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotate(angle,axis,dest);
     }
 
     @Override
     public org.joml.Vector4f unproject(float winX, float winY, float winZ, int[] viewport, org.joml.Vector4f dest) {
-        return null;
+        return new Matrix4f(this).unproject(winX,winY,winZ,viewport,dest);
     }
 
     @Override
     public org.joml.Vector3f unproject(float winX, float winY, float winZ, int[] viewport, org.joml.Vector3f dest) {
-        return null;
+        return new Matrix4f(this).unproject(winX,winY,winZ,viewport,dest);
     }
 
     @Override
     public org.joml.Vector4f unproject(Vector3fc winCoords, int[] viewport, org.joml.Vector4f dest) {
-        return null;
+        return new Matrix4f(this).unproject(winCoords,viewport,dest);
     }
 
     @Override
     public org.joml.Vector3f unproject(Vector3fc winCoords, int[] viewport, org.joml.Vector3f dest) {
-        return null;
+        return new Matrix4f(this).unproject(winCoords,viewport,dest);
     }
 
     @Override
     public Matrix4f unprojectRay(float winX, float winY, int[] viewport, org.joml.Vector3f originDest, org.joml.Vector3f dirDest) {
-        return null;
+        return new Matrix4f(this).unprojectRay(winX,winY,viewport,originDest,dirDest);
     }
 
     @Override
     public Matrix4f unprojectRay(Vector2fc winCoords, int[] viewport, org.joml.Vector3f originDest, org.joml.Vector3f dirDest) {
-        return null;
+        return new Matrix4f(this).unprojectRay(winCoords,viewport,originDest,dirDest);
     }
 
     @Override
     public org.joml.Vector4f unprojectInv(Vector3fc winCoords, int[] viewport, org.joml.Vector4f dest) {
-        return null;
+        return new Matrix4f(this).unprojectInv(winCoords,viewport,dest);
     }
 
     @Override
     public org.joml.Vector4f unprojectInv(float winX, float winY, float winZ, int[] viewport, org.joml.Vector4f dest) {
-        return null;
+        return new Matrix4f(this).unprojectInv(winX,winY,winZ,viewport,dest);
     }
 
     @Override
     public Matrix4f unprojectInvRay(Vector2fc winCoords, int[] viewport, org.joml.Vector3f originDest, org.joml.Vector3f dirDest) {
-        return null;
+        return new Matrix4f(this).unprojectInvRay(winCoords,viewport,originDest,dirDest);
     }
 
     @Override
     public Matrix4f unprojectInvRay(float winX, float winY, int[] viewport, org.joml.Vector3f originDest, org.joml.Vector3f dirDest) {
-        return null;
+        return new Matrix4f(this).unprojectInvRay(winX,winY,viewport,originDest,dirDest);
     }
 
     @Override
     public org.joml.Vector3f unprojectInv(Vector3fc winCoords, int[] viewport, org.joml.Vector3f dest) {
-        return null;
+        return new Matrix4f(this).unprojectInv(winCoords,viewport,dest);
     }
 
     @Override
     public org.joml.Vector3f unprojectInv(float winX, float winY, float winZ, int[] viewport, org.joml.Vector3f dest) {
-        return null;
+        return new Matrix4f(this).unprojectInv(winX,winY,winZ,viewport,dest);
     }
 
     @Override
     public org.joml.Vector4f project(float x, float y, float z, int[] viewport, org.joml.Vector4f winCoordsDest) {
-        return null;
+        return new Matrix4f(this).project(x,y,z,viewport,winCoordsDest);
     }
 
     @Override
     public org.joml.Vector3f project(float x, float y, float z, int[] viewport, org.joml.Vector3f winCoordsDest) {
-        return null;
+        return new Matrix4f(this).project(x,y,z,viewport,winCoordsDest);
     }
 
     @Override
     public org.joml.Vector4f project(Vector3fc position, int[] viewport, org.joml.Vector4f winCoordsDest) {
-        return null;
+        return new Matrix4f(this).project(position,viewport,winCoordsDest);
     }
 
     @Override
     public org.joml.Vector3f project(Vector3fc position, int[] viewport, org.joml.Vector3f winCoordsDest) {
-        return null;
+        return new Matrix4f(this).project(position,viewport,winCoordsDest);
     }
 
     @Override
     public Matrix4f reflect(float a, float b, float c, float d, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).reflect(a,b,c,d,dest);
     }
 
     @Override
     public Matrix4f reflect(float nx, float ny, float nz, float px, float py, float pz, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).reflect(nx,ny,nz,px,py,pz,dest);
     }
 
     @Override
     public Matrix4f reflect(Quaternionfc orientation, Vector3fc point, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).reflect(orientation,point,dest);
     }
 
     @Override
     public Matrix4f reflect(Vector3fc normal, Vector3fc point, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).reflect(normal,point,dest);
     }
 
     @Override
     public org.joml.Vector4f getRow(int row, org.joml.Vector4f dest) throws IndexOutOfBoundsException {
-        return null;
+        return new Matrix4f(this).getRow(row,dest);
     }
 
     @Override
     public org.joml.Vector3f getRow(int row, org.joml.Vector3f dest) throws IndexOutOfBoundsException {
-        return null;
+        return new Matrix4f(this).getRow(row,dest);
     }
 
     @Override
     public org.joml.Vector4f getColumn(int column, org.joml.Vector4f dest) throws IndexOutOfBoundsException {
-        return null;
+        return new Matrix4f(this).getColumn(column,dest);
     }
 
     @Override
     public org.joml.Vector3f getColumn(int column, org.joml.Vector3f dest) throws IndexOutOfBoundsException {
-        return null;
+        return new Matrix4f(this).getColumn(column,dest);
     }
 
     @Override
     public Matrix4f normal(Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).normal(dest);
     }
 
     @Override
     public Matrix3f normal(Matrix3f dest) {
-        return null;
+        return new Matrix4f(this).normal(dest);
     }
 
     @Override
     public Matrix4f normalize3x3(Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).normalize3x3(dest);
     }
 
     @Override
     public Matrix3f normalize3x3(Matrix3f dest) {
-        return null;
+        return new Matrix4f(this).normalize3x3(dest);
     }
 
     @Override
     public org.joml.Vector4f frustumPlane(int plane, org.joml.Vector4f planeEquation) {
-        return null;
+        return new Matrix4f(this).frustumPlane(plane,planeEquation);
     }
 
     @Override
     public Planef frustumPlane(int which, Planef plane) {
-        return null;
+        return new Matrix4f(this).frustumPlane(which,plane);
     }
 
     @Override
     public org.joml.Vector3f frustumCorner(int corner, org.joml.Vector3f point) {
-        return null;
+        return new Matrix4f(this).frustumCorner(corner,point);
     }
 
     @Override
     public org.joml.Vector3f perspectiveOrigin(org.joml.Vector3f origin) {
-        return null;
+        return new Matrix4f(this).perspectiveOrigin(origin);
     }
 
     @Override
     public float perspectiveFov() {
-        return 0;
+        return new Matrix4f(this).perspectiveFov();
     }
 
     @Override
     public float perspectiveNear() {
-        return 0;
+        return new Matrix4f(this).perspectiveNear();
     }
 
     @Override
     public float perspectiveFar() {
-        return 0;
+        return new Matrix4f(this).perspectiveFar();
     }
 
     @Override
     public org.joml.Vector3f frustumRayDir(float x, float y, org.joml.Vector3f dir) {
-        return null;
+        return new Matrix4f(this).frustumRayDir(x,y,dir);
     }
 
     @Override
     public org.joml.Vector3f positiveZ(org.joml.Vector3f dir) {
-        return null;
+        return new Matrix4f(this).positiveZ(dir);
     }
 
     @Override
     public org.joml.Vector3f normalizedPositiveZ(org.joml.Vector3f dir) {
-        return null;
+        return new Matrix4f(this).normalizedPositiveZ(dir);
     }
 
     @Override
     public org.joml.Vector3f positiveX(org.joml.Vector3f dir) {
-        return null;
+        return new Matrix4f(this).positiveX(dir);
     }
 
     @Override
     public org.joml.Vector3f normalizedPositiveX(org.joml.Vector3f dir) {
-        return null;
+        return new Matrix4f(this).normalizedPositiveX(dir);
     }
 
     @Override
     public org.joml.Vector3f positiveY(org.joml.Vector3f dir) {
-        return null;
+        return new Matrix4f(this).positiveY(dir);
     }
 
     @Override
     public org.joml.Vector3f normalizedPositiveY(org.joml.Vector3f dir) {
-        return null;
+        return new Matrix4f(this).normalizedPositiveY(dir);
     }
 
     @Override
     public org.joml.Vector3f originAffine(org.joml.Vector3f origin) {
-        return null;
+        return new Matrix4f(this).originAffine(origin);
     }
 
     @Override
     public org.joml.Vector3f origin(org.joml.Vector3f origin) {
-        return null;
+        return new Matrix4f(this).origin(origin);
     }
 
     @Override
     public Matrix4f shadow(org.joml.Vector4f light, float a, float b, float c, float d, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).shadow(light,a,b,c,d,dest);
     }
 
     @Override
     public Matrix4f shadow(float lightX, float lightY, float lightZ, float lightW, float a, float b, float c, float d, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).shadow(lightX,lightY,lightZ,lightW,a,b,c,d,dest);
     }
 
     @Override
     public Matrix4f shadow(org.joml.Vector4f light, Matrix4fc planeTransform, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).shadow(light,planeTransform,dest);
     }
 
     @Override
     public Matrix4f shadow(float lightX, float lightY, float lightZ, float lightW, Matrix4fc planeTransform, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).shadow(lightX,lightY,lightZ,lightW,planeTransform,dest);
     }
 
     @Override
     public Matrix4f pick(float x, float y, float width, float height, int[] viewport, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).pick(x,y,width,height,viewport,dest);
     }
 
     @Override
@@ -1559,87 +1558,87 @@ public abstract class BaseMatrix4f  implements Matrix4fc{
 
     @Override
     public Matrix4f arcball(float radius, float centerX, float centerY, float centerZ, float angleX, float angleY, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).arcball(radius,centerX,centerY,centerZ,angleX,angleY,dest);
     }
 
     @Override
     public Matrix4f arcball(float radius, Vector3fc center, float angleX, float angleY, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).arcball(radius,center,angleX,angleY,dest);
     }
 
     @Override
     public Matrix4f frustumAabb(org.joml.Vector3f min, org.joml.Vector3f max) {
-        return null;
+        return new Matrix4f(this).frustumAabb(min,max);
     }
 
     @Override
     public Matrix4f projectedGridRange(Matrix4fc projector, float sLower, float sUpper, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).projectedGridRange(projector,sLower,sUpper,dest);
     }
 
     @Override
     public Matrix4f perspectiveFrustumSlice(float near, float far, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).perspectiveFrustumSlice(near,far,dest);
     }
 
     @Override
     public Matrix4f orthoCrop(Matrix4fc view, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).orthoCrop(view,dest);
     }
 
     @Override
     public Matrix4f transformAab(float minX, float minY, float minZ, float maxX, float maxY, float maxZ, org.joml.Vector3f outMin, org.joml.Vector3f outMax) {
-        return null;
+        return new Matrix4f(this).transformAab(minX,minY,minZ,maxX,maxY,maxZ,outMin,outMax);
     }
 
     @Override
     public Matrix4f transformAab(Vector3fc min, Vector3fc max, org.joml.Vector3f outMin, org.joml.Vector3f outMax) {
-        return null;
+        return new Matrix4f(this).transformAab(min,max,outMin,outMax);
     }
 
     @Override
     public Matrix4f lerp(Matrix4fc other, float t, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).lerp(other,t,dest);
     }
 
     @Override
     public Matrix4f rotateTowards(Vector3fc dir, Vector3fc up, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotateTowards(dir,up,dest);
     }
 
     @Override
     public Matrix4f rotateTowards(float dirX, float dirY, float dirZ, float upX, float upY, float upZ, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).rotateTowards(dirX,dirY,dirZ,upX,upY,upZ,dest);
     }
 
     @Override
     public org.joml.Vector3f getEulerAnglesZYX(org.joml.Vector3f dest) {
-        return null;
+        return new Matrix4f(this).getEulerAnglesZYX(dest);
     }
 
     @Override
     public boolean testPoint(float x, float y, float z) {
-        return false;
+        return new Matrix4f(this).testPoint(x,y,z);
     }
 
     @Override
     public boolean testSphere(float x, float y, float z, float r) {
-        return false;
+        return new Matrix4f(this).testSphere(x,y,z,r);
     }
 
     @Override
     public boolean testAab(float minX, float minY, float minZ, float maxX, float maxY, float maxZ) {
-        return false;
+        return new Matrix4f(this).testAab(minX,minY,minZ,maxX,maxY,maxZ);
     }
 
     @Override
     public Matrix4f obliqueZ(float a, float b, Matrix4f dest) {
-        return null;
+        return new Matrix4f(this).obliqueZ(a,b,dest);
     }
 
     @Override
     public boolean equals(Matrix4fc m, float delta) {
-        return false;
+        return new Matrix4f(this).equals(m,delta);
     }
 
     /**

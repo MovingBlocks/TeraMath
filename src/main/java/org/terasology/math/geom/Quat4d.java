@@ -369,7 +369,7 @@ public class Quat4d extends BaseQuat4d {
     public static Quat4d shortestArcQuat(Vector3d v0, Vector3d v1) {
         Vector3d c = new Vector3d();
         c.cross(v0, v1);
-        float d = v0.dot(v1);
+        float d = (float) v0.dot(v1);
 
         if (d < -1.0 + FLT_EPSILON) {
             // just pick any vector

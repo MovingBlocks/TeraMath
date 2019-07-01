@@ -17,6 +17,8 @@
 package org.terasology.math.geom;
 
 import com.google.common.math.DoubleMath;
+import org.joml.Vector2fc;
+import org.joml.Vector2ic;
 
 import java.math.RoundingMode;
 
@@ -50,8 +52,8 @@ public class Vector2i extends BaseVector2i {
      * Copy constructor
      * @param other The BaseVector2i to copy.
      */
-    public Vector2i(BaseVector2i other) {
-        this(other.getX(), other.getY());
+    public Vector2i(Vector2ic other) {
+        this(other.x(), other.y());
     }
 
 
@@ -68,9 +70,9 @@ public class Vector2i extends BaseVector2i {
      * Constructs the integer version of a floating-point vector by flooring it
      * @param vector The vector to copy.
      */
-    public Vector2i(BaseVector2f vector) {
-        this(DoubleMath.roundToInt(vector.getX(), RoundingMode.FLOOR),
-            DoubleMath.roundToInt(vector.getY(), RoundingMode.FLOOR));
+    public Vector2i(Vector2fc vector) {
+        this(DoubleMath.roundToInt(vector.x(), RoundingMode.FLOOR),
+            DoubleMath.roundToInt(vector.y(), RoundingMode.FLOOR));
     }
 
     /**
@@ -78,8 +80,8 @@ public class Vector2i extends BaseVector2i {
      * @param vector The vector to copy.
      * @param rm the rounding mode
      */
-    public Vector2i(BaseVector2f vector, RoundingMode rm) {
-        this(DoubleMath.roundToInt(vector.getX(), rm), DoubleMath.roundToInt(vector.getY(), rm));
+    public Vector2i(Vector2fc vector, RoundingMode rm) {
+        this(DoubleMath.roundToInt(vector.x(), rm), DoubleMath.roundToInt(vector.y(), rm));
     }
 
     /**
@@ -147,9 +149,9 @@ public class Vector2i extends BaseVector2i {
      * @param other the point to set
      * @return this
      */
-    public Vector2i set(BaseVector2i other) {
-        this.x = other.getX();
-        this.y = other.getY();
+    public Vector2i set(Vector2ic other) {
+        this.x = other.x();
+        this.y = other.y();
         return this;
     }
 
@@ -277,9 +279,9 @@ public class Vector2i extends BaseVector2i {
      * @param other the point
      * @return this
      */
-    public Vector2i add(BaseVector2i other) {
-        this.x += other.getX();
-        this.y += other.getY();
+    public Vector2i add(Vector2ic other) {
+        this.x += other.x();
+        this.y += other.y();
         return this;
     }
 
@@ -302,9 +304,9 @@ public class Vector2i extends BaseVector2i {
      * @param other the point
      * @return this
      */
-    public Vector2i sub(BaseVector2i other) {
-        this.x -= other.getX();
-        this.y -= other.getY();
+    public Vector2i sub(Vector2ic other) {
+        this.x -= other.x();
+        this.y -= other.y();
         return this;
     }
 
@@ -332,9 +334,9 @@ public class Vector2i extends BaseVector2i {
      * @param t1 the first vector
      * @param t2 the second vector
      */
-    public final void sub(BaseVector2i t1, BaseVector2i t2) {
-        this.x = t1.getX() - t2.getX();
-        this.y = t1.getY() - t2.getY();
+    public final void sub(Vector2ic t1, BaseVector2i t2) {
+        this.x = t1.x() - t2.getX();
+        this.y = t1.y() - t2.getY();
     }
 
     /**
@@ -388,9 +390,9 @@ public class Vector2i extends BaseVector2i {
      *
      * @param other
      */
-    public void min(BaseVector2i other) {
-        x = Math.min(x, other.getX());
-        y = Math.min(y, other.getY());
+    public void min(Vector2ic other) {
+        x = Math.min(x, other.x());
+        y = Math.min(y, other.y());
     }
 
     /**
@@ -398,9 +400,9 @@ public class Vector2i extends BaseVector2i {
      *
      * @param other
      */
-    public void max(BaseVector2i other) {
-        x = Math.max(x, other.getX());
-        y = Math.max(y, other.getY());
+    public void max(Vector2ic other) {
+        x = Math.max(x, other.x());
+        y = Math.max(y, other.y());
     }
 
     /**

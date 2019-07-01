@@ -78,12 +78,12 @@ public abstract class BaseVector3f implements Vector3fc{
      * @param t the interpolation value in the range [0..1]
      * @return the interpolated point
      */
-    public static Vector3f lerp(BaseVector3f a, BaseVector3f b, float t) {
+    public static Vector3f lerp(Vector3fc a, Vector3fc b, float t) {
         Preconditions.checkArgument(t >= 0 && t <= 1, "t must be in range [0..1]");
 
-        float x = a.getX() * (1 - t) + b.getX() * t; 
-        float y = a.getY() * (1 - t) + b.getY() * t; 
-        float z = a.getZ() * (1 - t) + b.getZ() * t; 
+        float x = a.x() * (1 - t) + b.x() * t;
+        float y = a.y() * (1 - t) + b.y() * t;
+        float z = a.z() * (1 - t) + b.z() * t;
         return new Vector3f(x, y, z);
     }
     /**
@@ -91,9 +91,9 @@ public abstract class BaseVector3f implements Vector3fc{
      * @param other the other vector
      * @return the dot product of this and other
      */
-    public final float dot(BaseVector3f other) {
-        return (float) (this.getX() * other.getX() + this.getY() * other.getY() + this.getZ() * other.getZ());
-    }
+//    public final float dot(Vector3fc other) {
+//        return (float) (this.x() * other.x() + this.y() * other.y() + this.z() * other.z());
+//    }
 
 
     /**
@@ -101,7 +101,7 @@ public abstract class BaseVector3f implements Vector3fc{
     * @param v other vector to project onto
     *
     */
-    public final Vector3f project( BaseVector3f v)
+    public final Vector3f project( Vector3fc v)
     {
         return new Vector3f(v).mul(this.dot(v)/ (v.lengthSquared()));
     }
@@ -118,19 +118,19 @@ public abstract class BaseVector3f implements Vector3fc{
     *   @param v1    the other vector
     *   @return   the angle in radians in the range [0,PI]
     */
-   public final float angle(BaseVector3f v1) {
-      double vDot = this.dot(v1) / (this.length() * v1.length());
-
-      if (vDot < -1.0) {
-          vDot = -1.0;
-      }
-
-      if (vDot >  1.0) {
-          vDot =  1.0;
-      }
-
-      return (float) Math.acos(vDot);
-   }
+//   public final float angle(Vector3fc v1) {
+//      double vDot = this.dot(v1) / (this.length() * v1.length());
+//
+//      if (vDot < -1.0) {
+//          vDot = -1.0;
+//      }
+//
+//      if (vDot >  1.0) {
+//          vDot =  1.0;
+//      }
+//
+//      return (float) Math.acos(vDot);
+//   }
 
     /**
      * @return the distance to the origin
@@ -143,21 +143,21 @@ public abstract class BaseVector3f implements Vector3fc{
      * @param other the other point
      * @return the distance in between
      */
-    public float distanceSquared(BaseVector3f other) {
-        float dx = other.getX() - this.getX();
-        float dy = other.getY() - this.getY();
-        float dz = other.getZ() - this.getZ();
-
-        return dx * dx + dy * dy + dz * dz;
-    }
+//    public float distanceSquared(Vector3fc other) {
+//        float dx = other.x() - this.getX();
+//        float dy = other.y() - this.getY();
+//        float dz = other.z() - this.getZ();
+//
+//        return dx * dx + dy * dy + dz * dz;
+//    }
 
     /**
      * @param other the other point
      * @return the distance in between
      */
-    public float distance(BaseVector3f other) {
-        return (float) Math.sqrt(distanceSquared(other));
-    }
+//    public float distance(Vector3fc other) {
+//        return (float) Math.sqrt(distanceSquared(other));
+//    }
 
 
     /**

@@ -81,13 +81,13 @@ public abstract class BaseVector4f implements Vector4fc{
      * @param t the interpolation value in the range [0..1]
      * @return the interpolated point
      */
-    public static Vector4f lerp(BaseVector4f a, BaseVector4f b, float t) {
+    public static Vector4f lerp(Vector4fc a, Vector4fc b, float t) {
         Preconditions.checkArgument(t >= 0 && t <= 1, "t must be in range [0..1]");
 
-        float x = a.getX() * (1 - t) + b.getX() * t; 
-        float y = a.getY() * (1 - t) + b.getY() * t; 
-        float z = a.getZ() * (1 - t) + b.getZ() * t; 
-        float w = a.getW() * (1 - t) + b.getW() * t; 
+        float x = a.x() * (1 - t) + b.x() * t;
+        float y = a.y() * (1 - t) + b.y() * t;
+        float z = a.z() * (1 - t) + b.z() * t;
+        float w = a.w() * (1 - t) + b.w() * t;
         return new Vector4f(x, y, z, w);
     }
     /**
@@ -95,9 +95,9 @@ public abstract class BaseVector4f implements Vector4fc{
      * @param other the other vector
      * @return the dot product of this and other
      */
-    public final float dot(BaseVector4f other) {
-        return (float) (this.getX() * other.getX() + this.getY() * other.getY() + this.getZ() * other.getZ() + this.getW() * other.getW());
-    }
+//    public final float dot(Vector4fc other) {
+//        return (float) (this.getX() * other.x() + this.getY() * other.y() + this.getZ() * other.z() + this.getW() * other.w());
+//    }
 
 
     /**
@@ -105,7 +105,7 @@ public abstract class BaseVector4f implements Vector4fc{
     * @param v other vector to project onto
     *
     */
-    public final Vector4f project( BaseVector4f v)
+    public final Vector4f project( Vector4fc v)
     {
         return new Vector4f(v).mul(this.dot(v)/ (v.lengthSquared()));
     }
@@ -122,19 +122,19 @@ public abstract class BaseVector4f implements Vector4fc{
     *   @param v1    the other vector
     *   @return   the angle in radians in the range [0,PI]
     */
-   public final float angle(BaseVector4f v1) {
-      double vDot = this.dot(v1) / (this.length() * v1.length());
-
-      if (vDot < -1.0) {
-          vDot = -1.0;
-      }
-
-      if (vDot >  1.0) {
-          vDot =  1.0;
-      }
-
-      return (float) Math.acos(vDot);
-   }
+//   public final float angle(Vector4fc v1) {
+//      double vDot = this.dot(v1) / (this.length() * v1.length());
+//
+//      if (vDot < -1.0) {
+//          vDot = -1.0;
+//      }
+//
+//      if (vDot >  1.0) {
+//          vDot =  1.0;
+//      }
+//
+//      return (float) Math.acos(vDot);
+//   }
 
     /**
      * @return the distance to the origin
@@ -220,27 +220,27 @@ public abstract class BaseVector4f implements Vector4fc{
 
     @Override
     public ByteBuffer get(ByteBuffer buffer) {
-        return new Vector4f(x(),y(),z(),w()).get(buffer);
+        return new Vector4f(this).get(buffer);
     }
 
     @Override
     public ByteBuffer get(int index, ByteBuffer buffer) {
-        return new Vector4f(x(),y(),z(),w()).get(index,buffer);
+        return new Vector4f(this).get(index,buffer);
     }
 
     @Override
     public FloatBuffer get(FloatBuffer buffer) {
-        return new Vector4f(x(),y(),z(),w()).get(buffer);
+        return new Vector4f(this).get(buffer);
     }
 
     @Override
     public FloatBuffer get(int index, FloatBuffer buffer) {
-        return new Vector4f(x(),y(),z(),w()).get(buffer);
+        return new Vector4f(this).get(buffer);
     }
 
     @Override
     public Vector4fc  getToAddress(long address) {
-        return new Vector4f(x(),y(),z(),w()).getToAddress(address);
+        return new Vector4f(this).getToAddress(address);
     }
 
     @Override
@@ -284,34 +284,34 @@ public abstract class BaseVector4f implements Vector4fc{
 
     @Override
     public float angle(Vector4fc v) {
-        return new org.joml.Vector4f(x(),y(),z(),w()).angle(v);
+        return new org.joml.Vector4f(this).angle(v);
     }
 
     @Override
     public org.joml.Vector4f normalize(org.joml.Vector4f dest) {
-        return new org.joml.Vector4f(x(),y(),z(),w()).normalize(dest);
+        return new org.joml.Vector4f(this).normalize(dest);
     }
 
     @Override
     public org.joml.Vector4f normalize(float length, org.joml.Vector4f dest) {
-         return new org.joml.Vector4f(x(),y(),z(),w()).normalize(length,dest);
+         return new org.joml.Vector4f(this).normalize(length,dest);
     }
 
 
     @Override
     public  float distance(Vector4fc v) {
-        return new org.joml.Vector4f(x(),y(),z(),w()).distance(v);
+        return new org.joml.Vector4f(this).distance(v);
     }
 
     @Override
     public float distance(float X, float Y, float Z, float W) {
-       return new org.joml.Vector4f(x(),y(),z(),w()).distance(X,Y,Z,W);
+       return new org.joml.Vector4f(this).distance(X,Y,Z,W);
     }
 
 
     @Override
     public org.joml.Vector4f sub(Vector4fc v, org.joml.Vector4f dest) {
-        return new org.joml.Vector4f(x(),y(),z(),w()).sub(v,dest);
+        return new org.joml.Vector4f(this).sub(v,dest);
     }
 
 
@@ -327,7 +327,7 @@ public abstract class BaseVector4f implements Vector4fc{
 
     @Override
     public org.joml.Vector4f add(Vector4fc v, org.joml.Vector4f dest) {
-       return new org.joml.Vector4f(x(),y(),z(),w()).add(v,dest);
+       return new org.joml.Vector4f(this).add(v,dest);
     }
 
     @Override
@@ -341,47 +341,47 @@ public abstract class BaseVector4f implements Vector4fc{
 
     @Override
     public org.joml.Vector4f negate(org.joml.Vector4f dest) {
-        return new org.joml.Vector4f(x(),y(),z(),w()).negate(dest);
+        return new org.joml.Vector4f(this).negate(dest);
     }
 
     @Override
     public org.joml.Vector4f lerp(Vector4fc other, float t, org.joml.Vector4f dest) {
-        return new org.joml.Vector4f(x(),y(),z(),w()).lerp(other,t,dest);
+        return new org.joml.Vector4f(this).lerp(other,t,dest);
     }
     @Override
     public org.joml.Vector4f fma(Vector4fc a, Vector4fc b, org.joml.Vector4f dest) {
-       return new org.joml.Vector4f(x(),y(),z(),w()).fma(b,dest);
+       return new org.joml.Vector4f(this).fma(b,dest);
     }
 
     @Override
     public org.joml.Vector4f fma(float a, Vector4fc b, org.joml.Vector4f dest) {
-      return new org.joml.Vector4f(x(),y(),z(),w()).fma(a,b,dest);
+      return new org.joml.Vector4f(this).fma(a,b,dest);
     }
 
     @Override
     public org.joml.Vector4f min(Vector4fc v, org.joml.Vector4f dest) {
-       return new org.joml.Vector4f(x(),y(),z(),w()).min(v,dest);
+       return new org.joml.Vector4f(this).min(v,dest);
     }
 
     @Override
     public org.joml.Vector4f max(Vector4fc v, org.joml.Vector4f dest) {
-        return new org.joml.Vector4f(x(),y(),z(),w()).max(v,dest);
+        return new org.joml.Vector4f(this).max(v,dest);
     }
 
     @Override
     public float get(int component) throws IllegalArgumentException {
-       return new org.joml.Vector4f(x(),y(),z(),w()).get(component);
+       return new org.joml.Vector4f(this).get(component);
     }
 
 
     @Override
     public org.joml.Vector4f div(Vector4fc v, org.joml.Vector4f dest) {
-        return new org.joml.Vector4f(x(),y(),z(),w()).div(v,dest);
+        return new org.joml.Vector4f(this).div(v,dest);
     }
 
     @Override
     public org.joml.Vector4f mul(Matrix4fc mat, org.joml.Vector4f dest) {
-        return new org.joml.Vector4f(x(),y(),z(),w()).mul(mat,dest);
+        return new org.joml.Vector4f(this).mul(mat,dest);
     }
 
     @Override
@@ -391,37 +391,37 @@ public abstract class BaseVector4f implements Vector4fc{
 
     @Override
     public org.joml.Vector4f mul(Matrix4x3fc mat, org.joml.Vector4f dest) {
-        return new org.joml.Vector4f(x(),y(),z(),w()).mul(mat,dest);
+        return new org.joml.Vector4f(this).mul(mat,dest);
     }
 
     @Override
     public org.joml.Vector4f mulProject(Matrix4fc mat, org.joml.Vector4f dest) {
-        return new org.joml.Vector4f(x(),y(),z(),w()).mulProject(mat,dest);
+        return new org.joml.Vector4f(this).mulProject(mat,dest);
     }
 
     @Override
     public org.joml.Vector4f rotate(Quaternionfc quat, org.joml.Vector4f dest) {
-        return new org.joml.Vector4f(x(),y(),z(),w()).rotate(quat,dest);
+        return new org.joml.Vector4f(this).rotate(quat,dest);
     }
 
     @Override
     public org.joml.Vector4f rotateAxis(float angle, float aX, float aY, float aZ, org.joml.Vector4f dest) {
-        return new org.joml.Vector4f(x(),y(),z(),w()).rotateAxis(angle,aX,aY,aZ,dest);
+        return new org.joml.Vector4f(this).rotateAxis(angle,aX,aY,aZ,dest);
     }
 
     @Override
     public org.joml.Vector4f rotateX(float angle, org.joml.Vector4f dest) {
-        return new org.joml.Vector4f(x(),y(),z(),w()).rotateX(angle,dest);
+        return new org.joml.Vector4f(this).rotateX(angle,dest);
     }
 
     @Override
     public org.joml.Vector4f rotateY(float angle, org.joml.Vector4f dest) {
-        return new org.joml.Vector4f(x(),y(),z(),w()).rotateY(angle,dest);
+        return new org.joml.Vector4f(this).rotateY(angle,dest);
     }
 
     @Override
     public org.joml.Vector4f rotateZ(float angle, org.joml.Vector4f dest) {
-        return new org.joml.Vector4f(x(),y(),z(),w()).rotateZ(angle,dest);
+        return new org.joml.Vector4f(this).rotateZ(angle,dest);
     }
 
     @Override
@@ -431,17 +431,17 @@ public abstract class BaseVector4f implements Vector4fc{
 
     @Override
     public float angleCos(Vector4fc v) {
-        return new Vector4f(x(),y(),z(),w()).angleCos(v);
+        return new Vector4f(this).angleCos(v);
     }
 
     @Override
     public org.joml.Vector4f smoothStep(Vector4fc v, float t, org.joml.Vector4f dest) {
-        return new Vector4f(x(),y(),z(),w()).smoothStep(v,t,dest);
+        return new Vector4f(this).smoothStep(v,t,dest);
     }
 
     @Override
     public org.joml.Vector4f hermite(Vector4fc t0, Vector4fc v1, Vector4fc t1, float t, org.joml.Vector4f dest) {
-        return new Vector4f(x(),y(),z(),w()).hermite(t0,v1,t1,t,dest);
+        return new Vector4f(this).hermite(t0,v1,t1,t,dest);
     }
 
 

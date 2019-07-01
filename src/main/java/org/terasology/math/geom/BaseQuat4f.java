@@ -20,9 +20,12 @@ import org.joml.AxisAngle4f;
 import org.joml.Matrix4x3d;
 import org.joml.Matrix4x3f;
 import org.joml.Quaterniond;
+import org.joml.Quaterniondc;
 import org.joml.Quaternionf;
 import org.joml.Quaternionfc;
+import org.joml.Vector3dc;
 import org.joml.Vector3fc;
+import org.joml.Vector4dc;
 import org.joml.Vector4fc;
 
 import java.nio.ByteBuffer;
@@ -222,37 +225,38 @@ public abstract class BaseQuat4f implements Quaternionfc {
 
     @Override
     public float x() {
-        return 0;
+        return getX();
     }
 
     @Override
     public float y() {
-        return 0;
+        return getY();
     }
 
     @Override
     public float z() {
-        return 0;
+        return getZ();
     }
 
     @Override
     public float w() {
-        return 0;
+        return getW();
     }
 
     @Override
     public Quaternionf normalize(Quaternionf dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).normalize(dest);
     }
 
     @Override
     public Quaternionf add(float x, float y, float z, float w, Quaternionf dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).add(x,y,z,w,dest);
     }
 
     @Override
     public Quaternionf add(Quaternionfc q2, Quaternionf dest) {
-        return null;
+
+        return new Quaternionf(x(),y(),z(),w()).add(q2,dest);
     }
 
     @Override
@@ -261,348 +265,298 @@ public abstract class BaseQuat4f implements Quaternionfc {
     }
 
     @Override
-    public org.joml.Matrix3f get(org.joml.Matrix3f dest) {
-        return null;
-    }
-
-    @Override
     public org.joml.Matrix3d get(org.joml.Matrix3d dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).get(dest);
     }
 
     @Override
-    public org.joml.Matrix4f get(org.joml.Matrix4f dest) {
-        return null;
+    public org.joml.Matrix3f get(org.joml.Matrix3f dest) {
+        return new Quaternionf(x(),y(),z(),w()).get(dest);
     }
 
     @Override
     public org.joml.Matrix4d get(org.joml.Matrix4d dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).get(dest);
     }
 
     @Override
-    public Matrix4x3f get(Matrix4x3f dest) {
-        return null;
-    }
-
-    @Override
-    public Matrix4x3d get(Matrix4x3d dest) {
-        return null;
-    }
-
-    @Override
-    public AxisAngle4f get(AxisAngle4f dest) {
-        return null;
-    }
-
-    @Override
-    public Quaterniond get(Quaterniond dest) {
-        return null;
+    public org.joml.Matrix4f get(org.joml.Matrix4f dest) {
+        return new Quaternionf(x(),y(),z(),w()).get(dest);
     }
 
     @Override
     public Quaternionf get(Quaternionf dest) {
-        return null;
-    }
-
-    @Override
-    public ByteBuffer getAsMatrix3f(ByteBuffer dest) {
-        return null;
-    }
-
-    @Override
-    public FloatBuffer getAsMatrix3f(FloatBuffer dest) {
-        return null;
-    }
-
-    @Override
-    public ByteBuffer getAsMatrix4f(ByteBuffer dest) {
-        return null;
-    }
-
-    @Override
-    public FloatBuffer getAsMatrix4f(FloatBuffer dest) {
-        return null;
-    }
-
-    @Override
-    public ByteBuffer getAsMatrix4x3f(ByteBuffer dest) {
-        return null;
-    }
-
-    @Override
-    public FloatBuffer getAsMatrix4x3f(FloatBuffer dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).get(dest);
     }
 
     @Override
     public Quaternionf mul(Quaternionfc q, Quaternionf dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).mul(q,dest);
     }
 
     @Override
     public Quaternionf mul(float qx, float qy, float qz, float qw, Quaternionf dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).mul(qx,qy,qz,qw,dest);
     }
 
     @Override
     public Quaternionf premul(Quaternionfc q, Quaternionf dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).premul(q,dest);
     }
 
     @Override
     public Quaternionf premul(float qx, float qy, float qz, float qw, Quaternionf dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).premul(qx,qy,qz,qw,dest);
     }
 
     @Override
     public org.joml.Vector3f transform(org.joml.Vector3f vec) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).transform(vec);
     }
 
     @Override
     public org.joml.Vector3f transformPositiveX(org.joml.Vector3f dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).transformPositiveX(dest);
     }
 
     @Override
     public org.joml.Vector4f transformPositiveX(org.joml.Vector4f dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).transformPositiveX(dest);
     }
 
     @Override
     public org.joml.Vector3f transformUnitPositiveX(org.joml.Vector3f dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).transformUnitPositiveX(dest);
     }
 
     @Override
     public org.joml.Vector4f transformUnitPositiveX(org.joml.Vector4f dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).transformUnitPositiveX(dest);
     }
 
     @Override
     public org.joml.Vector3f transformPositiveY(org.joml.Vector3f dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).transformPositiveY(dest);
     }
 
     @Override
     public org.joml.Vector4f transformPositiveY(org.joml.Vector4f dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).transformPositiveY(dest);
     }
 
     @Override
     public org.joml.Vector3f transformUnitPositiveY(org.joml.Vector3f dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).transformUnitPositiveY(dest);
     }
 
     @Override
     public org.joml.Vector4f transformUnitPositiveY(org.joml.Vector4f dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).transformUnitPositiveY(dest);
     }
 
     @Override
     public org.joml.Vector3f transformPositiveZ(org.joml.Vector3f dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).transformPositiveZ(dest);
     }
 
     @Override
     public org.joml.Vector4f transformPositiveZ(org.joml.Vector4f dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).transformPositiveZ(dest);
     }
 
     @Override
     public org.joml.Vector3f transformUnitPositiveZ(org.joml.Vector3f dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).transformUnitPositiveZ(dest);
     }
 
     @Override
     public org.joml.Vector4f transformUnitPositiveZ(org.joml.Vector4f dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).transformUnitPositiveZ(dest);
     }
 
     @Override
     public org.joml.Vector4f transform(org.joml.Vector4f vec) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).transform(vec);
     }
 
     @Override
     public org.joml.Vector3f transform(Vector3fc vec, org.joml.Vector3f dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).transform(vec,dest);
     }
 
     @Override
     public org.joml.Vector3f transform(float x, float y, float z, org.joml.Vector3f dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).transform(x,y,z,dest);
     }
 
     @Override
     public org.joml.Vector4f transform(Vector4fc vec, org.joml.Vector4f dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).transform(vec,dest);
     }
 
     @Override
     public org.joml.Vector4f transform(float x, float y, float z, org.joml.Vector4f dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).transform(x,y,z,dest);
     }
 
     @Override
     public Quaternionf invert(Quaternionf dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).invert(dest);
     }
 
     @Override
     public Quaternionf div(Quaternionfc b, Quaternionf dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).div(b,dest);
     }
 
     @Override
     public Quaternionf conjugate(Quaternionf dest) {
-        return null;
-    }
-
-    @Override
-    public Quaternionf rotateXYZ(float angleX, float angleY, float angleZ, Quaternionf dest) {
-        return null;
-    }
-
-    @Override
-    public Quaternionf rotateZYX(float angleZ, float angleY, float angleX, Quaternionf dest) {
-        return null;
-    }
-
-    @Override
-    public Quaternionf rotateYXZ(float angleY, float angleX, float angleZ, Quaternionf dest) {
-        return null;
-    }
-
-    @Override
-    public org.joml.Vector3f getEulerAnglesXYZ(org.joml.Vector3f eulerAngles) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).conjugate(dest);
     }
 
     @Override
     public float lengthSquared() {
-        return 0;
+        return new Quaternionf(x(),y(),z(),w()).lengthSquared();
     }
 
     @Override
     public Quaternionf slerp(Quaternionfc target, float alpha, Quaternionf dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).slerp(target,alpha,dest);
     }
 
     @Override
     public Quaternionf scale(float factor, Quaternionf dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).scale(factor,dest);
     }
 
     @Override
     public Quaternionf integrate(float dt, float vx, float vy, float vz, Quaternionf dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).integrate(dt,vx,vy,vz,dest);
     }
 
     @Override
     public Quaternionf nlerp(Quaternionfc q, float factor, Quaternionf dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).nlerp(q,factor,dest);
     }
 
     @Override
     public Quaternionf nlerpIterative(Quaternionfc q, float alpha, float dotThreshold, Quaternionf dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).nlerpIterative(q,alpha,dotThreshold,dest);
     }
 
     @Override
     public Quaternionf lookAlong(Vector3fc dir, Vector3fc up, Quaternionf dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).lookAlong(dir,up,dest);
     }
 
     @Override
     public Quaternionf lookAlong(float dirX, float dirY, float dirZ, float upX, float upY, float upZ, Quaternionf dest) {
-        return null;
-    }
-
-    @Override
-    public Quaternionf rotateTo(float fromDirX, float fromDirY, float fromDirZ, float toDirX, float toDirY, float toDirZ, Quaternionf dest) {
-        return null;
-    }
-
-    @Override
-    public Quaternionf rotateTo(Vector3fc fromDir, Vector3fc toDir, Quaternionf dest) {
-        return null;
-    }
-
-    @Override
-    public Quaternionf rotateX(float angle, Quaternionf dest) {
-        return null;
-    }
-
-    @Override
-    public Quaternionf rotateY(float angle, Quaternionf dest) {
-        return null;
-    }
-
-    @Override
-    public Quaternionf rotateZ(float angle, Quaternionf dest) {
-        return null;
-    }
-
-    @Override
-    public Quaternionf rotateLocalX(float angle, Quaternionf dest) {
-        return null;
-    }
-
-    @Override
-    public Quaternionf rotateLocalY(float angle, Quaternionf dest) {
-        return null;
-    }
-
-    @Override
-    public Quaternionf rotateLocalZ(float angle, Quaternionf dest) {
-        return null;
-    }
-
-    @Override
-    public Quaternionf rotateAxis(float angle, float axisX, float axisY, float axisZ, Quaternionf dest) {
-        return null;
-    }
-
-    @Override
-    public Quaternionf rotateAxis(float angle, Vector3fc axis, Quaternionf dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).lookAlong(dirX,dirY,dirZ,upX,upY,upZ,dest);
     }
 
     @Override
     public Quaternionf difference(Quaternionf other, Quaternionf dest) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).difference(other,dest);
+    }
+
+    @Override
+    public Quaternionf rotateTo(float fromDirX, float fromDirY, float fromDirZ, float toDirX, float toDirY, float toDirZ, Quaternionf dest) {
+        return new Quaternionf(x(),y(),z(),w()).rotateTo(fromDirX,fromDirY,fromDirZ,toDirX,toDirY,toDirZ,dest);
+    }
+
+    @Override
+    public Quaternionf rotateTo(Vector3fc fromDir, Vector3fc toDir, Quaternionf dest) {
+        return new Quaternionf(x(),y(),z(),w()).rotateTo(fromDir,toDir,dest);
+    }
+
+    @Override
+    public Quaternionf rotateX(float angle, Quaternionf dest) {
+        return new Quaternionf(x(),y(),z(),w()).rotateX(angle,dest);
+    }
+
+    @Override
+    public Quaternionf rotateY(float angle, Quaternionf dest) {
+        return new Quaternionf(x(),y(),z(),w()).rotateY(angle,dest);
+    }
+
+    @Override
+    public Quaternionf rotateZ(float angle, Quaternionf dest) {
+        return new Quaternionf(x(),y(),z(),w()).rotateZ(angle,dest);
+    }
+
+    @Override
+    public Quaternionf rotateLocalX(float angle, Quaternionf dest) {
+        return new Quaternionf(x(),y(),z(),w()).rotateLocalX(angle,dest);
+    }
+
+    @Override
+    public Quaternionf rotateLocalY(float angle, Quaternionf dest) {
+        return new Quaternionf(x(),y(),z(),w()).rotateLocalY(angle,dest);
+    }
+
+    @Override
+    public Quaternionf rotateLocalZ(float angle, Quaternionf dest) {
+        return new Quaternionf(x(),y(),z(),w()).rotateLocalZ(angle,dest);
+    }
+
+    @Override
+    public Quaternionf rotateXYZ(float angleX, float angleY, float angleZ, Quaternionf dest) {
+        return new Quaternionf(x(),y(),z(),w()).rotateXYZ(angleX,angleY,angleZ,dest);
+    }
+
+    @Override
+    public Quaternionf rotateZYX(float angleZ, float angleY, float angleX, Quaternionf dest) {
+        return new Quaternionf(x(),y(),z(),w()).rotateZYX(angleZ,angleY,angleX,dest);
+    }
+
+    @Override
+    public Quaternionf rotateYXZ(float angleY, float angleX, float angleZ, Quaternionf dest) {
+        return new Quaternionf(x(),y(),z(),w()).rotateYXZ(angleY,angleX,angleZ,dest);
+    }
+
+    @Override
+    public org.joml.Vector3f getEulerAnglesXYZ(org.joml.Vector3f eulerAngles) {
+        return new Quaternionf(x(),y(),z(),w()).getEulerAnglesXYZ(eulerAngles);
+    }
+
+    @Override
+    public Quaternionf rotateAxis(float angle, float axisX, float axisY, float axisZ, Quaternionf dest) {
+        return new Quaternionf(x(),y(),z(),w()).rotateAxis(angle,axisX,axisY,axisZ,dest);
+    }
+
+    @Override
+    public Quaternionf rotateAxis(float angle, Vector3fc axis, Quaternionf dest) {
+        return new Quaternionf(x(),y(),z(),w()).rotateAxis(angle,axis,dest);
     }
 
     @Override
     public org.joml.Vector3f positiveX(org.joml.Vector3f dir) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).positiveX(dir);
     }
 
     @Override
     public org.joml.Vector3f normalizedPositiveX(org.joml.Vector3f dir) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).normalizedPositiveX(dir);
     }
 
     @Override
     public org.joml.Vector3f positiveY(org.joml.Vector3f dir) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).positiveY(dir);
     }
 
     @Override
     public org.joml.Vector3f normalizedPositiveY(org.joml.Vector3f dir) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).normalizedPositiveY(dir);
     }
 
     @Override
     public org.joml.Vector3f positiveZ(org.joml.Vector3f dir) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).positiveZ(dir);
     }
 
     @Override
     public org.joml.Vector3f normalizedPositiveZ(org.joml.Vector3f dir) {
-        return null;
+        return new Quaternionf(x(),y(),z(),w()).normalizedPositiveZ(dir);
     }
 }
 

@@ -64,11 +64,11 @@ public abstract class BaseVector2d implements Vector2dc{
      * @param t the interpolation value in the range [0..1]
      * @return the interpolated point
      */
-    public static Vector2d lerp(BaseVector2d a, BaseVector2d b, double t) {
+    public static Vector2d lerp(Vector2dc a, Vector2dc b, double t) {
         Preconditions.checkArgument(t >= 0 && t <= 1, "t must be in range [0..1]");
 
-        double x = a.getX() * (1 - t) + b.getX() * t; 
-        double y = a.getY() * (1 - t) + b.getY() * t; 
+        double x = a.x() * (1 - t) + b.x() * t;
+        double y = a.y() * (1 - t) + b.y() * t;
         return new Vector2d(x, y);
     }
     /**
@@ -86,7 +86,7 @@ public abstract class BaseVector2d implements Vector2dc{
     * @param v other vector to project onto
     *
     */
-    public final Vector2d project( BaseVector2d v)
+    public final Vector2d project( Vector2dc v)
     {
         return new Vector2d(v).mul(this.dot(v)/ (v.lengthSquared()));
     }

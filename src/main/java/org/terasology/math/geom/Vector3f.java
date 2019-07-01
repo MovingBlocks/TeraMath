@@ -16,6 +16,8 @@
 
 package org.terasology.math.geom;
 
+import org.joml.Vector3fc;
+
 /**
  * Vector3f is the mutable implementation of BaseVector3f, for representing points or vectors in 3 dimensional space of type
  * float.
@@ -49,8 +51,8 @@ public class Vector3f extends BaseVector3f {
      * Copy constructor
      * @param other The BaseVector3f to copy.
      */
-    public Vector3f(BaseVector3f other) {
-        this(other.getX(), other.getY(), other.getZ());
+    public Vector3f(Vector3fc other) {
+        this(other.x(), other.y(), other.z());
     }
 
 

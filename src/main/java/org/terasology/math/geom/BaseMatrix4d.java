@@ -940,7 +940,7 @@ public abstract class BaseMatrix4d  implements Matrix4dc {
     }
 
     @Override
-    public org.joml.Vector4d transform(org.joml.Vector4d v){
+    public org.joml.Vector4d transform(org.joml.Vector4d v) {
         return new Matrix4d(this).transform(v);
     }
 

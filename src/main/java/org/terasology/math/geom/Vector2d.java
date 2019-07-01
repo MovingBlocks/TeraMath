@@ -16,6 +16,8 @@
 
 package org.terasology.math.geom;
 
+import org.joml.Vector2dc;
+
 /**
  * Vector2d is the mutable implementation of BaseVector2d, for representing points or vectors in 2 dimensional space of type
  * double.
@@ -46,8 +48,8 @@ public class Vector2d extends BaseVector2d {
      * Copy constructor
      * @param other The BaseVector2d to copy.
      */
-    public Vector2d(BaseVector2d other) {
-        this(other.getX(), other.getY());
+    public Vector2d(Vector2dc other) {
+        this(other.x(), other.y());
     }
 
 

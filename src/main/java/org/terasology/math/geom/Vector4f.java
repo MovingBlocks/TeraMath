@@ -16,6 +16,8 @@
 
 package org.terasology.math.geom;
 
+import org.joml.Vector4fc;
+
 /**
  * Vector4f is the mutable implementation of BaseVector4f, for representing points or vectors in 4 dimensional space of type
  * float.
@@ -52,8 +54,8 @@ public class Vector4f extends BaseVector4f {
      * Copy constructor
      * @param other The BaseVector4f to copy.
      */
-    public Vector4f(BaseVector4f other) {
-        this(other.getX(), other.getY(), other.getZ(), other.getW());
+    public Vector4f(Vector4fc other) {
+        this(other.x(), other.y(), other.z(), other.w());
     }
 
 
@@ -142,11 +144,11 @@ public class Vector4f extends BaseVector4f {
      * @param other the point to set
      * @return this
      */
-    public Vector4f set(BaseVector4f other) {
-        this.x = other.getX();
-        this.y = other.getY();
-        this.z = other.getZ();
-        this.w = other.getW();
+    public Vector4f set(Vector4fc other) {
+        this.x = other.x();
+        this.y = other.y();
+        this.z = other.z();
+        this.w = other.w();
         return this;
     }
 
@@ -395,11 +397,11 @@ public class Vector4f extends BaseVector4f {
      * @param other the point
      * @return this
      */
-    public Vector4f sub(BaseVector4f other) {
-        this.x -= other.getX();
-        this.y -= other.getY();
-        this.z -= other.getZ();
-        this.w -= other.getW();
+    public Vector4f sub(Vector4fc other) {
+        this.x -= other.x();
+        this.y -= other.y();
+        this.z -= other.z();
+        this.w -= other.w();
         return this;
     }
 
@@ -431,11 +433,11 @@ public class Vector4f extends BaseVector4f {
      * @param t1 the first vector
      * @param t2 the second vector
      */
-    public final void sub(BaseVector4f t1, BaseVector4f t2) {
-        this.x = t1.getX() - t2.getX();
-        this.y = t1.getY() - t2.getY();
-        this.z = t1.getZ() - t2.getZ();
-        this.w = t1.getW() - t2.getW();
+    public final void sub(Vector4fc t1, BaseVector4f t2) {
+        this.x = t1.x() - t2.getX();
+        this.y = t1.y() - t2.getY();
+        this.z = t1.z() - t2.getZ();
+        this.w = t1.w() - t2.getW();
     }
 
     /**
@@ -497,11 +499,11 @@ public class Vector4f extends BaseVector4f {
      *
      * @param other
      */
-    public void min(BaseVector4f other) {
-        x = Math.min(x, other.getX());
-        y = Math.min(y, other.getY());
-        z = Math.min(z, other.getZ());
-        w = Math.min(w, other.getW());
+    public void min(Vector4fc other) {
+        x = Math.min(x, other.x());
+        y = Math.min(y, other.y());
+        z = Math.min(z, other.z());
+        w = Math.min(w, other.w());
     }
 
     /**
@@ -509,11 +511,11 @@ public class Vector4f extends BaseVector4f {
      *
      * @param other
      */
-    public void max(BaseVector4f other) {
-        x = Math.max(x, other.getX());
-        y = Math.max(y, other.getY());
-        z = Math.max(z, other.getZ());
-        w = Math.max(w, other.getW());
+    public void max(Vector4fc other) {
+        x = Math.max(x, other.x());
+        y = Math.max(y, other.y());
+        z = Math.max(z, other.z());
+        w = Math.max(w, other.w());
     }
 
      /**

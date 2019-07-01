@@ -633,8 +633,8 @@ public abstract class BaseMatrix3f implements Matrix3fc {
     }
 
     @Override
-    public org.joml.Vector3f transform(org.joml.Vector3f v){
-        return  new Matrix3f(this).transform(v);
+    public org.joml.Vector3f transform(org.joml.Vector3f v) {
+        return new Matrix3f(this).transform(v);
     }
 
     @Override
@@ -648,9 +648,10 @@ public abstract class BaseMatrix3f implements Matrix3fc {
     }
 
     @Override
-    public org.joml.Vector3f transformTranspose(org.joml.Vector3f v){
-        return  new org.joml.Matrix3f(this).transformTranspose(v);
+    public org.joml.Vector3f transformTranspose(org.joml.Vector3f v) {
+        return new org.joml.Matrix3f(this).transformTranspose(v);
     }
+
     @Override
     public org.joml.Vector3f transformTranspose(Vector3fc v, org.joml.Vector3f dest) {
         return new Matrix3f(this).transformTranspose(v, dest);

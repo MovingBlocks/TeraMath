@@ -81,22 +81,22 @@ public abstract class BaseVector3d implements Vector3dc{
      * @param t the interpolation value in the range [0..1]
      * @return the interpolated point
      */
-    public static Vector3d lerp(BaseVector3d a, BaseVector3d b, double t) {
+    public static Vector3d lerp(Vector3dc a, Vector3dc b, double t) {
         Preconditions.checkArgument(t >= 0 && t <= 1, "t must be in range [0..1]");
 
-        double x = a.getX() * (1 - t) + b.getX() * t; 
-        double y = a.getY() * (1 - t) + b.getY() * t; 
-        double z = a.getZ() * (1 - t) + b.getZ() * t; 
+        double x = a.x() * (1 - t) + b.x() * t;
+        double y = a.y() * (1 - t) + b.y() * t;
+        double z = a.z() * (1 - t) + b.z() * t;
         return new Vector3d(x, y, z);
     }
-    /**
-     * Returns the dot product of this vector and vector other.
-     * @param other the other vector
-     * @return the dot product of this and other
-     */
-    public final float dot(BaseVector3d other) {
-        return (float) (this.getX() * other.getX() + this.getY() * other.getY() + this.getZ() * other.getZ());
-    }
+//    /**
+//     * Returns the dot product of this vector and vector other.
+//     * @param other the other vector
+//     * @return the dot product of this and other
+//     */
+//    public final float dot(Vector3dc other) {
+//        return (float) (this.getX() * other.getX() + this.getY() * other.getY() + this.getZ() * other.getZ());
+//    }
 
 
     /**
@@ -121,19 +121,19 @@ public abstract class BaseVector3d implements Vector3dc{
     *   @param v1    the other vector
     *   @return   the angle in radians in the range [0,PI]
     */
-   public final float angle(BaseVector3d v1) {
-      double vDot = this.dot(v1) / (this.length() * v1.length());
-
-      if (vDot < -1.0) {
-          vDot = -1.0;
-      }
-
-      if (vDot >  1.0) {
-          vDot =  1.0;
-      }
-
-      return (float) Math.acos(vDot);
-   }
+//   public final float angle(Vector3dc v1) {
+//      double vDot = this.dot(v1) / (this.length() * v1.length());
+//
+//      if (vDot < -1.0) {
+//          vDot = -1.0;
+//      }
+//
+//      if (vDot >  1.0) {
+//          vDot =  1.0;
+//      }
+//
+//      return (float) Math.acos(vDot);
+//   }
 
     /**
      * @return the distance to the origin
@@ -142,17 +142,17 @@ public abstract class BaseVector3d implements Vector3dc{
         return Math.sqrt(lengthSquared());
     }
 
-    /**
-     * @param other the other point
-     * @return the distance in between
-     */
-    public double distanceSquared(BaseVector3d other) {
-        double dx = other.getX() - this.getX();
-        double dy = other.getY() - this.getY();
-        double dz = other.getZ() - this.getZ();
-
-        return dx * dx + dy * dy + dz * dz;
-    }
+//    /**
+//     * @param other the other point
+//     * @return the distance in between
+//     */
+//    public double distanceSquared(Vector3dc other) {
+//        double dx = other.x() - this.getX();
+//        double dy = other.y() - this.getY();
+//        double dz = other.z() - this.getZ();
+//
+//        return dx * dx + dy * dy + dz * dz;
+//    }
 
     /**
      * @param other the other point
@@ -169,7 +169,7 @@ public abstract class BaseVector3d implements Vector3dc{
      * @param p2 the second point
      * @return the distance between the two points
      */
-    public static double distance(BaseVector3d p1, BaseVector3d p2) {
+    public static double distance(Vector3dc p1, Vector3dc p2) {
         return p1.distance(p2);
     }
 
@@ -181,11 +181,11 @@ public abstract class BaseVector3d implements Vector3dc{
         if (this == obj) {
             return true;
         }
-        if (obj instanceof BaseVector3d) {
-            BaseVector3d other = (BaseVector3d) obj;
-            return Double.doubleToLongBits(getX()) == Double.doubleToLongBits(other.getX())
-                && Double.doubleToLongBits(getY()) == Double.doubleToLongBits(other.getY())
-                && Double.doubleToLongBits(getZ()) == Double.doubleToLongBits(other.getZ());
+        if (obj instanceof Vector3dc) {
+            Vector3dc other = (Vector3dc) obj;
+            return Double.doubleToLongBits(getX()) == Double.doubleToLongBits(other.x())
+                && Double.doubleToLongBits(getY()) == Double.doubleToLongBits(other.y())
+                && Double.doubleToLongBits(getZ()) == Double.doubleToLongBits(other.z());
         }
         return false;
     }

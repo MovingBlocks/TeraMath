@@ -90,13 +90,13 @@ public abstract class BaseVector4d implements Vector4dc {
      * @param t the interpolation value in the range [0..1]
      * @return the interpolated point
      */
-    public static Vector4d lerp(BaseVector4d a, BaseVector4d b, double t) {
+    public static Vector4d lerp(Vector4dc a, Vector4dc b, double t) {
         Preconditions.checkArgument(t >= 0 && t <= 1, "t must be in range [0..1]");
 
-        double x = a.getX() * (1 - t) + b.getX() * t;
-        double y = a.getY() * (1 - t) + b.getY() * t;
-        double z = a.getZ() * (1 - t) + b.getZ() * t;
-        double w = a.getW() * (1 - t) + b.getW() * t;
+        double x = a.x() * (1 - t) + b.x() * t;
+        double y = a.y() * (1 - t) + b.y() * t;
+        double z = a.z() * (1 - t) + b.z() * t;
+        double w = a.w() * (1 - t) + b.w() * t;
         return new Vector4d(x, y, z, w);
     }
 
@@ -106,9 +106,9 @@ public abstract class BaseVector4d implements Vector4dc {
      * @param other the other vector
      * @return the dot product of this and other
      */
-    public final float dot(BaseVector4d other) {
-        return (float) (this.getX() * other.getX() + this.getY() * other.getY() + this.getZ() * other.getZ() + this.getW() * other.getW());
-    }
+//    public final float dot(Vector4dc other) {
+//        return (float) (this.getX() * other.getX() + this.getY() * other.getY() + this.getZ() * other.getZ() + this.getW() * other.getW());
+//    }
 
 
     /**
@@ -116,7 +116,7 @@ public abstract class BaseVector4d implements Vector4dc {
      *
      * @param v other vector to project onto
      */
-    public final Vector4d project(BaseVector4d v) {
+    public final Vector4d project(Vector4dc v) {
         return new Vector4d(v).mul(this.dot(v) / (v.lengthSquared()));
     }
 
@@ -134,19 +134,19 @@ public abstract class BaseVector4d implements Vector4dc {
      * @param v1 the other vector
      * @return the angle in radians in the range [0,PI]
      */
-    public final float angle(BaseVector4d v1) {
-        double vDot = this.dot(v1) / (this.length() * v1.length());
-
-        if (vDot < -1.0) {
-            vDot = -1.0;
-        }
-
-        if (vDot > 1.0) {
-            vDot = 1.0;
-        }
-
-        return (float) Math.acos(vDot);
-    }
+//    public final float angle(Vector4dc v1) {
+//        double vDot = this.dot(v1) / (this.length() * v1.length());
+//
+//        if (vDot < -1.0) {
+//            vDot = -1.0;
+//        }
+//
+//        if (vDot > 1.0) {
+//            vDot = 1.0;
+//        }
+//
+//        return (float) Math.acos(vDot);
+//    }
 
     /**
      * @return the distance to the origin
@@ -159,11 +159,11 @@ public abstract class BaseVector4d implements Vector4dc {
      * @param other the other point
      * @return the distance in between
      */
-    public double distanceSquared(BaseVector4d other) {
-        double dx = other.getX() - this.getX();
-        double dy = other.getY() - this.getY();
-        double dz = other.getZ() - this.getZ();
-        double dw = other.getW() - this.getW();
+    public double distanceSquared(Vector4dc other) {
+        double dx = other.x() - this.getX();
+        double dy = other.y() - this.getY();
+        double dz = other.z() - this.getZ();
+        double dw = other.w() - this.getW();
 
         return dx * dx + dy * dy + dz * dz + dw * dw;
     }
@@ -172,9 +172,9 @@ public abstract class BaseVector4d implements Vector4dc {
      * @param other the other point
      * @return the distance in between
      */
-    public double distance(BaseVector4d other) {
-        return Math.sqrt(distanceSquared(other));
-    }
+//    public double distance(Vector4dc other) {
+//        return Math.sqrt(distanceSquared(other));
+//    }
 
 
     /**
@@ -184,7 +184,7 @@ public abstract class BaseVector4d implements Vector4dc {
      * @param p2 the second point
      * @return the distance between the two points
      */
-    public static double distance(BaseVector4d p1, BaseVector4d p2) {
+    public static double distance(Vector4dc p1, Vector4dc p2) {
         return p1.distance(p2);
     }
 

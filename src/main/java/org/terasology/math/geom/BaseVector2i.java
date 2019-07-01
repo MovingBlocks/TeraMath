@@ -65,11 +65,11 @@ public abstract class BaseVector2i implements Vector2ic{
      * @param mode the rounding mode to use
      * @return the interpolated point
      */
-    public static Vector2i lerp(BaseVector2i a, BaseVector2i b, double t, RoundingMode mode) {
+    public static Vector2i lerp(Vector2ic a, Vector2ic b, double t, RoundingMode mode) {
         Preconditions.checkArgument(t >= 0 && t <= 1, "t must be in range [0..1]");
 
-        double x = a.getX() * (1 - t) + b.getX() * t; 
-        double y = a.getY() * (1 - t) + b.getY() * t; 
+        double x = a.x() * (1 - t) + b.x() * t;
+        double y = a.y() * (1 - t) + b.y() * t;
 
         return new Vector2i(
             DoubleMath.roundToInt(x, mode),
@@ -120,31 +120,31 @@ public abstract class BaseVector2i implements Vector2ic{
         return Math.sqrt(lengthSquared());
     }
 
+//    /**
+//     * @param other the other point
+//     * @return the distance in between
+//     */
+//    public int distanceSquared(Vector2ic other) {
+//        int dx = other.x() - this.getX();
+//        int dy = other.y() - this.getY();
+//
+//        return dx * dx + dy * dy;
+//    }
+
     /**
      * @param other the other point
      * @return the distance in between
      */
-    public int distanceSquared(BaseVector2i other) {
-        int dx = other.getX() - this.getX();
-        int dy = other.getY() - this.getY();
-
-        return dx * dx + dy * dy;
-    }
-
-    /**
-     * @param other the other point
-     * @return the distance in between
-     */
-    public double distance(BaseVector2i other) {
-        return Math.sqrt(distanceSquared(other));
-    }
+//    public double distance(Vector2ic other) {
+//        return Math.sqrt(distanceSquared(other));
+//    }
 
     /**
      * @param other the other point
      * @return the grid distance in between (aka 1-Norm, Minkowski or Manhattan distance)
      */
-    public int gridDistance(BaseVector2i other) {
-        return Math.abs(other.getX() - getX()) + Math.abs(other.getY() - getY());
+    public int gridDistance(Vector2ic other) {
+        return Math.abs(other.x() - getX()) + Math.abs(other.y() - getY());
     }
 
     /**
@@ -153,7 +153,7 @@ public abstract class BaseVector2i implements Vector2ic{
      * @param p2 the second point
      * @return the distance between the two points
      */
-    public static double distance(BaseVector2i p1, BaseVector2i p2) {
+    public static double distance(Vector2ic p1, Vector2ic p2) {
         return p1.distance(p2);
     }
 

@@ -16,6 +16,8 @@
 
 package org.terasology.math.geom;
 
+import org.joml.Vector2fc;
+
 /**
  * Vector2f is the mutable implementation of BaseVector2f, for representing points or vectors in 2 dimensional space of type
  * float.
@@ -46,8 +48,8 @@ public class Vector2f extends BaseVector2f {
      * Copy constructor
      * @param other The BaseVector2f to copy.
      */
-    public Vector2f(BaseVector2f other) {
-        this(other.getX(), other.getY());
+    public Vector2f(Vector2fc other) {
+        this(other.x(), other.y());
     }
 
 

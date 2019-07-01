@@ -16,6 +16,8 @@
 
 package org.terasology.math.geom;
 
+import org.joml.Vector4dc;
+
 /**
  * Vector4d is the mutable implementation of BaseVector4d, for representing points or vectors in 4 dimensional space of type
  * double.
@@ -52,8 +54,8 @@ public class Vector4d extends BaseVector4d {
      * Copy constructor
      * @param other The BaseVector4d to copy.
      */
-    public Vector4d(BaseVector4d other) {
-        this(other.getX(), other.getY(), other.getZ(), other.getW());
+    public Vector4d(Vector4dc other) {
+        this(other.x(), other.y(), other.z(), other.w());
     }
 
 

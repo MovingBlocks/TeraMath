@@ -16,6 +16,8 @@
 
 package org.terasology.math.geom;
 
+import org.joml.Vector3dc;
+
 /**
  * Vector3d is the mutable implementation of BaseVector3d, for representing points or vectors in 3 dimensional space of type
  * double.
@@ -147,10 +149,10 @@ public class Vector3d extends BaseVector3d {
      * @param other the point to set
      * @return this
      */
-    public Vector3d set(BaseVector3d other) {
-        this.x = other.getX();
-        this.y = other.getY();
-        this.z = other.getZ();
+    public Vector3d set(Vector3dc other) {
+        this.x = other.x();
+        this.y = other.y();
+        this.z = other.z();
         return this;
     }
 
@@ -323,10 +325,10 @@ public class Vector3d extends BaseVector3d {
      * @param other the point
      * @return this
      */
-    public Vector3d add(BaseVector3d other) {
-        this.x += other.getX();
-        this.y += other.getY();
-        this.z += other.getZ();
+    public Vector3d add(Vector3dc other) {
+        this.x += other.x();
+        this.y += other.y();
+        this.z += other.z();
         return this;
     }
 
@@ -351,10 +353,10 @@ public class Vector3d extends BaseVector3d {
      * @param other the point
      * @return this
      */
-    public Vector3d sub(BaseVector3d other) {
-        this.x -= other.getX();
-        this.y -= other.getY();
-        this.z -= other.getZ();
+    public Vector3d sub(Vector3dc other) {
+        this.x -= other.x();
+        this.y -= other.y();
+        this.z -= other.z();
         return this;
     }
 
@@ -384,10 +386,10 @@ public class Vector3d extends BaseVector3d {
      * @param t1 the first vector
      * @param t2 the second vector
      */
-    public final void sub(BaseVector3d t1, BaseVector3d t2) {
-        this.x = t1.getX() - t2.getX();
-        this.y = t1.getY() - t2.getY();
-        this.z = t1.getZ() - t2.getZ();
+    public final void sub(Vector3dc t1, BaseVector3d t2) {
+        this.x = t1.x() - t2.x();
+        this.y = t1.y() - t2.y();
+        this.z = t1.z() - t2.z();
     }
 
     /**
@@ -445,10 +447,10 @@ public class Vector3d extends BaseVector3d {
      *
      * @param other
      */
-    public void min(BaseVector3d other) {
-        x = Math.min(x, other.getX());
-        y = Math.min(y, other.getY());
-        z = Math.min(z, other.getZ());
+    public void min(Vector3dc other) {
+        x = Math.min(x, other.x());
+        y = Math.min(y, other.y());
+        z = Math.min(z, other.z());
     }
 
     /**
@@ -456,10 +458,10 @@ public class Vector3d extends BaseVector3d {
      *
      * @param other
      */
-    public void max(BaseVector3d other) {
-        x = Math.max(x, other.getX());
-        y = Math.max(y, other.getY());
-        z = Math.max(z, other.getZ());
+    public void max(Vector3dc other) {
+        x = Math.max(x, other.x());
+        y = Math.max(y, other.y());
+        z = Math.max(z, other.z());
     }
 
     /**
@@ -467,10 +469,10 @@ public class Vector3d extends BaseVector3d {
      * @param v1 the first vector
      * @param v2 the second vector
      */
-    public final Vector3d cross(BaseVector3d v1, BaseVector3d v2) {
-        this.x = v1.getY() * v2.getZ() - v1.getZ() * v2.getY();
-        this.y = v2.getX() * v1.getZ() - v2.getZ() * v1.getX();
-        this.z = v1.getX() * v2.getY() - v1.getY() * v2.getX();
+    public final Vector3d cross(Vector3dc v1, BaseVector3d v2) {
+        this.x = v1.y() * v2.z() - v1.z() * v2.y();
+        this.y = v2.x() * v1.z() - v2.z() * v1.x();
+        this.z = v1.x() * v2.y() - v1.y() * v2.x();
         return this;
     }
 
@@ -479,7 +481,7 @@ public class Vector3d extends BaseVector3d {
     /**
      * @return The reflection of direction against normal
      */
-    public final Vector3d reflect(Vector3d direction, Vector3d normal) {
+    public final Vector3d reflect(Vector3d direction, BaseVector3d normal) {
         set(normal);
         scale(-2.0f * direction.dot(normal));
         add(direction);
@@ -489,7 +491,7 @@ public class Vector3d extends BaseVector3d {
    /**
     * @return the portion of the diriction that is parallel to the normal
     */
-   public final Vector3d parallelComponent(Vector3d direction, Vector3d normal) {
+   public final Vector3d parallelComponent(Vector3d direction, BaseVector3d normal) {
        set(normal);
        scale(direction.dot(normal));
        return this;
@@ -498,7 +500,7 @@ public class Vector3d extends BaseVector3d {
    /**
     * @return the portion of direction that is perpendicular to normal
     */
-   public final Vector3d perpendicularComponent(Vector3d direction, Vector3d normal) {
+   public final Vector3d perpendicularComponent(Vector3d direction, BaseVector3d normal) {
        parallelComponent(direction, normal);
        scale(-1);
        add(direction);
