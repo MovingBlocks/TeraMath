@@ -85,11 +85,11 @@ public abstract class BaseVector3i implements Vector3ic{
             DoubleMath.roundToInt(z, mode));
     }
 
-//    /**
-//     * Returns the dot product of this vector and vector other.
-//     * @param other the other vector
-//     * @return the dot product of this and other
-//     */
+    /**
+     * Returns the dot product of this vector and vector other.
+     * @param other the other vector
+     * @return the dot product of this and other
+     */
     public final float dot(Vector3ic other) {
         return (float) (this.getX() * other.x() + this.getY() * other.y() + this.getZ() * other.z());
     }
@@ -128,26 +128,6 @@ public abstract class BaseVector3i implements Vector3ic{
     public double length() {
         return Math.sqrt(lengthSquared());
     }
-
-    /**
-     * @param other the other point
-     * @return the distance in between
-     */
-//    public int distanceSquared(Vector3ic other) {
-//        int dx = other.getX() - this.getX();
-//        int dy = other.getY() - this.getY();
-//        int dz = other.getZ() - this.getZ();
-//
-//        return dx * dx + dy * dy + dz * dz;
-//    }
-
-    /**
-     * @param other the other point
-     * @return the distance in between
-     */
-//    public double distance(Vector3ic other) {
-//        return Math.sqrt(distanceSquared(other));
-//    }
 
     /**
      * @param other the other point

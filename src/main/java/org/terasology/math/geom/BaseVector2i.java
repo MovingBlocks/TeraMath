@@ -119,25 +119,6 @@ public abstract class BaseVector2i implements Vector2ic{
         return Math.sqrt(lengthSquared());
     }
 
-//    /**
-//     * @param other the other point
-//     * @return the distance in between
-//     */
-//    public int distanceSquared(Vector2ic other) {
-//        int dx = other.x() - this.getX();
-//        int dy = other.y() - this.getY();
-//
-//        return dx * dx + dy * dy;
-//    }
-
-    /**
-     * @param other the other point
-     * @return the distance in between
-     */
-//    public double distance(Vector2ic other) {
-//        return Math.sqrt(distanceSquared(other));
-//    }
-
     /**
      * @param other the other point
      * @return the grid distance in between (aka 1-Norm, Minkowski or Manhattan distance)

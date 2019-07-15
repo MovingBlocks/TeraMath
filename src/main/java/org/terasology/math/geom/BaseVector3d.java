@@ -88,14 +88,6 @@ public abstract class BaseVector3d implements Vector3dc{
         double z = a.z() * (1 - t) + b.z() * t;
         return new Vector3d(x, y, z);
     }
-//    /**
-//     * Returns the dot product of this vector and vector other.
-//     * @param other the other vector
-//     * @return the dot product of this and other
-//     */
-//    public final float dot(Vector3dc other) {
-//        return (float) (this.getX() * other.getX() + this.getY() * other.getY() + this.getZ() * other.getZ());
-//    }
 
 
     /**
@@ -114,25 +106,6 @@ public abstract class BaseVector3d implements Vector3dc{
     public double lengthSquared() {
         return getX() * getX() + getY() * getY() + getZ() * getZ();
     }
-   /**
-    *   Returns the angle in radians between this vector and the vector
-    *   parameter; the return value is constrained to the range [0,PI].
-    *   @param v1    the other vector
-    *   @return   the angle in radians in the range [0,PI]
-    */
-//   public final float angle(Vector3dc v1) {
-//      double vDot = this.dot(v1) / (this.length() * v1.length());
-//
-//      if (vDot < -1.0) {
-//          vDot = -1.0;
-//      }
-//
-//      if (vDot >  1.0) {
-//          vDot =  1.0;
-//      }
-//
-//      return (float) Math.acos(vDot);
-//   }
 
     /**
      * @return the distance to the origin
@@ -140,18 +113,6 @@ public abstract class BaseVector3d implements Vector3dc{
     public double length() {
         return Math.sqrt(lengthSquared());
     }
-
-//    /**
-//     * @param other the other point
-//     * @return the distance in between
-//     */
-//    public double distanceSquared(Vector3dc other) {
-//        double dx = other.x() - this.getX();
-//        double dy = other.y() - this.getY();
-//        double dz = other.z() - this.getZ();
-//
-//        return dx * dx + dy * dy + dz * dz;
-//    }
 
     /**
      * @param other the other point

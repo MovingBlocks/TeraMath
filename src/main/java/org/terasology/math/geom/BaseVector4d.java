@@ -99,16 +99,6 @@ public abstract class BaseVector4d implements Vector4dc {
         return new Vector4d(x, y, z, w);
     }
 
-    /**
-     * Returns the dot product of this vector and vector other.
-     *
-     * @param other the other vector
-     * @return the dot product of this and other
-     */
-//    public final float dot(Vector4dc other) {
-//        return (float) (this.getX() * other.getX() + this.getY() * other.getY() + this.getZ() * other.getZ() + this.getW() * other.getW());
-//    }
-
 
     /**
      * Returns the current vector projected onto v
@@ -126,26 +116,6 @@ public abstract class BaseVector4d implements Vector4dc {
         return getX() * getX() + getY() * getY() + getZ() * getZ() + getW() * getW();
     }
 
-    /**
-     * Returns the angle in radians between this vector and the vector
-     * parameter; the return value is constrained to the range [0,PI].
-     *
-     * @param v1 the other vector
-     * @return the angle in radians in the range [0,PI]
-     */
-//    public final float angle(Vector4dc v1) {
-//        double vDot = this.dot(v1) / (this.length() * v1.length());
-//
-//        if (vDot < -1.0) {
-//            vDot = -1.0;
-//        }
-//
-//        if (vDot > 1.0) {
-//            vDot = 1.0;
-//        }
-//
-//        return (float) Math.acos(vDot);
-//    }
 
     /**
      * @return the distance to the origin

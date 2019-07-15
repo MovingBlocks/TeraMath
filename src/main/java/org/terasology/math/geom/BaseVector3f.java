@@ -85,15 +85,6 @@ public abstract class BaseVector3f implements Vector3fc{
         float z = a.z() * (1 - t) + b.z() * t;
         return new Vector3f(x, y, z);
     }
-    /**
-     * Returns the dot product of this vector and vector other.
-     * @param other the other vector
-     * @return the dot product of this and other
-     */
-//    public final float dot(Vector3fc other) {
-//        return (float) (this.x() * other.x() + this.y() * other.y() + this.z() * other.z());
-//    }
-
 
     /**
     * Returns the current vector projected onto v
@@ -111,25 +102,6 @@ public abstract class BaseVector3f implements Vector3fc{
     public float lengthSquared() {
         return getX() * getX() + getY() * getY() + getZ() * getZ();
     }
-   /**
-    *   Returns the angle in radians between this vector and the vector
-    *   parameter; the return value is constrained to the range [0,PI].
-    *   @param v1    the other vector
-    *   @return   the angle in radians in the range [0,PI]
-    */
-//   public final float angle(Vector3fc v1) {
-//      double vDot = this.dot(v1) / (this.length() * v1.length());
-//
-//      if (vDot < -1.0) {
-//          vDot = -1.0;
-//      }
-//
-//      if (vDot >  1.0) {
-//          vDot =  1.0;
-//      }
-//
-//      return (float) Math.acos(vDot);
-//   }
 
     /**
      * @return the distance to the origin
@@ -137,26 +109,6 @@ public abstract class BaseVector3f implements Vector3fc{
     public float length() {
         return (float) Math.sqrt(lengthSquared());
     }
-
-    /**
-     * @param other the other point
-     * @return the distance in between
-     */
-//    public float distanceSquared(Vector3fc other) {
-//        float dx = other.x() - this.getX();
-//        float dy = other.y() - this.getY();
-//        float dz = other.z() - this.getZ();
-//
-//        return dx * dx + dy * dy + dz * dz;
-//    }
-
-    /**
-     * @param other the other point
-     * @return the distance in between
-     */
-//    public float distance(Vector3fc other) {
-//        return (float) Math.sqrt(distanceSquared(other));
-//    }
 
 
     /**
