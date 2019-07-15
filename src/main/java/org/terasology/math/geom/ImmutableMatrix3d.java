@@ -18,7 +18,6 @@ package org.terasology.math.geom;
 
 /**
  * Defines an immutable 3x3 double matrix
- * @author auto-generated
  */
 public class ImmutableMatrix3d extends BaseMatrix3d {
 

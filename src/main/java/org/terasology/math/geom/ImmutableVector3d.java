@@ -20,7 +20,6 @@ package org.terasology.math.geom;
  * An immutable implementation of BaseVector3d, which is a point or vector in 3D space with double components.
  * This type is intended for use for constants, or any time you want a BaseVector3d that is guaranteed immutable.
  *
- * @author auto-generated
  */
 public final class ImmutableVector3d extends BaseVector3d {
 

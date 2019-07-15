@@ -23,7 +23,6 @@ import org.joml.Vector4d;
 
 /**
  * Defines an immutable 4x4 double matrix
- * @author auto-generated
  */
 public class ImmutableMatrix4d extends BaseMatrix4d {
 

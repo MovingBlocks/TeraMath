@@ -22,7 +22,6 @@ import org.joml.Vector3fc;
  * Vector3f is the mutable implementation of BaseVector3f, for representing points or vectors in 3 dimensional space of type
  * float.
  *
- * @author auto-generated
  */
 public class Vector3f extends BaseVector3f {
 

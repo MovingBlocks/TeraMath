@@ -20,7 +20,6 @@ import org.joml.Vector3f;
 
 /**
  * Defines an immutable 3x3 float matrix
- * @author auto-generated
  */
 public class ImmutableMatrix3f extends BaseMatrix3f {
 

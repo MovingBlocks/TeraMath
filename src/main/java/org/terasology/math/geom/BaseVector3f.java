@@ -32,7 +32,6 @@ import java.nio.FloatBuffer;
 
 /**
  * A vector/point in 3D space
- * @author auto-generated
  */
 public abstract class BaseVector3f implements Vector3fc{
 
@@ -263,8 +262,8 @@ public abstract class BaseVector3f implements Vector3fc{
     }
 
     @Override
-    public float distanceSquared(float X, float Y, float Z) {
-       return new org.joml.Vector3f(this).distanceSquared(X,Y,Z);
+    public float distanceSquared(float x, float y, float z) {
+       return new org.joml.Vector3f(this).distanceSquared(x,y,z);
     }
     @Override
     public float dot(Vector3fc v) {
@@ -297,8 +296,8 @@ public abstract class BaseVector3f implements Vector3fc{
     }
 
     @Override
-    public org.joml.Vector3f mul(float X, float Y, float Z, org.joml.Vector3f dest) {
-        return new org.joml.Vector3f(X,Y,Z).mul(dest);
+    public org.joml.Vector3f mul(float x, float y, float z, org.joml.Vector3f dest) {
+        return new org.joml.Vector3f(x,y,z).mul(dest);
     }
 
 
@@ -308,8 +307,8 @@ public abstract class BaseVector3f implements Vector3fc{
     }
 
     @Override
-    public float distance(float X, float Y, float Z) {
-       return new org.joml.Vector3f(this).distance(X,Y,Z);
+    public float distance(float x, float y, float z) {
+       return new org.joml.Vector3f(this).distance(x,y,z);
     }
 
 
@@ -320,10 +319,10 @@ public abstract class BaseVector3f implements Vector3fc{
 
 
     @Override
-    public org.joml.Vector3f sub(float X, float Y, float Z, org.joml.Vector3f dest) {
-        dest.x = x() - X;
-        dest.y = y() - Y;
-        dest.z = z() - Z;
+    public org.joml.Vector3f sub(float x, float y, float z, org.joml.Vector3f dest) {
+        dest.x = x() - x;
+        dest.y = y() - y;
+        dest.z = z() - z;
         return dest;
     }
 
@@ -334,10 +333,10 @@ public abstract class BaseVector3f implements Vector3fc{
     }
 
     @Override
-    public  org.joml.Vector3f add(float X, float Y, float Z,  org.joml.Vector3f dest) {
-        dest.x = x() + X;
-        dest.y = y() + Y;
-        dest.z = z() + Z;
+    public  org.joml.Vector3f add(float x, float y, float z,  org.joml.Vector3f dest) {
+        dest.x = x() + x;
+        dest.y = y() + y;
+        dest.z = z() + z;
         return dest;
     }
 

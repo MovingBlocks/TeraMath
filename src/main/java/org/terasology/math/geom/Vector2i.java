@@ -26,7 +26,6 @@ import java.math.RoundingMode;
  * Vector2i is the mutable implementation of BaseVector2i, for representing points or vectors in 2 dimensional space of type
  * int.
  *
- * @author auto-generated
  */
 public class Vector2i extends BaseVector2i {
 

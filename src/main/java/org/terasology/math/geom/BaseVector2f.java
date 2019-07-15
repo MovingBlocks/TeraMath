@@ -25,7 +25,6 @@ import java.nio.FloatBuffer;
 
 /**
  * A vector/point in 2D space
- * @author auto-generated
  */
 public abstract class BaseVector2f implements Vector2fc{
 
@@ -251,8 +250,8 @@ public abstract class BaseVector2f implements Vector2fc{
     }
 
     @Override
-    public org.joml.Vector2f mul(float X, float Y, org.joml.Vector2f dest) {
-        return new org.joml.Vector2f(X,Y).mul(dest);
+    public org.joml.Vector2f mul(float x, float y, org.joml.Vector2f dest) {
+        return new org.joml.Vector2f(x,y).mul(dest);
     }
 
 
@@ -262,8 +261,8 @@ public abstract class BaseVector2f implements Vector2fc{
     }
 
     @Override
-    public float distance(float X, float Y) {
-       return new org.joml.Vector2f(x(),y()).distance(X,Y);
+    public float distance(float x, float y) {
+       return new org.joml.Vector2f(x(),y()).distance(x,y);
     }
 
 
@@ -274,9 +273,9 @@ public abstract class BaseVector2f implements Vector2fc{
 
 
     @Override
-    public org.joml.Vector2f sub(float X, float Y, org.joml.Vector2f dest) {
-        dest.x = x() - X;
-        dest.y = y() - Y;
+    public org.joml.Vector2f sub(float x, float y, org.joml.Vector2f dest) {
+        dest.x = x() - x;
+        dest.y = y() - y;
         return dest;
     }
 
@@ -287,9 +286,9 @@ public abstract class BaseVector2f implements Vector2fc{
     }
 
     @Override
-    public  org.joml.Vector2f add(float X, float Y,  org.joml.Vector2f dest) {
-        dest.x = x() + X;
-        dest.y = y() + Y;
+    public  org.joml.Vector2f add(float x, float y,  org.joml.Vector2f dest) {
+        dest.x = x() + x;
+        dest.y = y() + y;
         return dest;
     }
 

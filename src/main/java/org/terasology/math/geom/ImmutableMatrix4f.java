@@ -18,7 +18,6 @@ package org.terasology.math.geom;
 
 /**
  * Defines an immutable 4x4 float matrix
- * @author auto-generated
  */
 public class ImmutableMatrix4f extends BaseMatrix4f {
 

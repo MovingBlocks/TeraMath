@@ -23,7 +23,6 @@ import java.util.ArrayList;
  * Represents a pool of Vector2fs, where Vector2fs can be freed into or drawn from to reduce
  * the amount of objects that have to be garbage collected.
  *
- * @author auto-generated
  */
 public class VectorPool2f implements VectorPool<Vector2f> {
     public static class Helper{

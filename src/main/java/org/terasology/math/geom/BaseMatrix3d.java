@@ -35,8 +35,7 @@ import java.nio.FloatBuffer;
 import java.util.Locale;
 
 /**
- * Defines a 3x3 double matrix 
- * @author auto-generated
+ * Defines a 3x3 double matrix
  */
 public abstract class BaseMatrix3d implements Matrix3dc {
 

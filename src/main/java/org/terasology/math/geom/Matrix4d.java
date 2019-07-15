@@ -23,7 +23,6 @@ import java.nio.DoubleBuffer;
 
 /**
  * A double precision floating point 4x4 double matrix.
- * @author auto-generated
  */
 public class Matrix4d extends BaseMatrix4d{
 

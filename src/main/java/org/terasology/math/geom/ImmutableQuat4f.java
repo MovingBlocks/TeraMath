@@ -18,7 +18,6 @@ package org.terasology.math.geom;
 
 /**
  * An immutable implementation of {@link BaseQuat4f}
- * @author auto-generated
  */
 public final class ImmutableQuat4f extends BaseQuat4f {
 

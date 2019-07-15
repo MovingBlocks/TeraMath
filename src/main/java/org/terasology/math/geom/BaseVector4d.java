@@ -30,7 +30,6 @@ import java.nio.DoubleBuffer;
 
 /**
  * A vector/point in 4D space
- * @author auto-generated
  */
 public abstract class BaseVector4d implements Vector4dc {
 

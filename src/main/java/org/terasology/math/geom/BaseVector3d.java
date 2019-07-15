@@ -35,7 +35,6 @@ import java.nio.DoubleBuffer;
 
 /**
  * A vector/point in 3D space
- * @author auto-generated
  */
 public abstract class BaseVector3d implements Vector3dc{
 

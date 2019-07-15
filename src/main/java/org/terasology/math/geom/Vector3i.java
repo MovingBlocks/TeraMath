@@ -25,7 +25,6 @@ import java.math.RoundingMode;
  * Vector3i is the mutable implementation of BaseVector3i, for representing points or vectors in 3 dimensional space of type
  * int.
  *
- * @author auto-generated
  */
 public class Vector3i extends BaseVector3i {
 

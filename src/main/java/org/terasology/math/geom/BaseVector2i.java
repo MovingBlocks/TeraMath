@@ -26,7 +26,6 @@ import java.nio.IntBuffer;
 
 /**
  * A vector/point in 2D space
- * @author auto-generated
  */
 public abstract class BaseVector2i implements Vector2ic{
 

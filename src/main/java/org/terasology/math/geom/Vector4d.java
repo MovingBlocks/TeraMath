@@ -22,7 +22,6 @@ import org.joml.Vector4dc;
  * Vector4d is the mutable implementation of BaseVector4d, for representing points or vectors in 4 dimensional space of type
  * double.
  *
- * @author auto-generated
  */
 public class Vector4d extends BaseVector4d {
 

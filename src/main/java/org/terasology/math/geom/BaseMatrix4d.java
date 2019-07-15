@@ -45,7 +45,6 @@ import java.util.Locale;
 
 /**
  * Defines a 4x4 double matrix 
- * @author auto-generated
  */
 public abstract class BaseMatrix4d  implements Matrix4dc {
 

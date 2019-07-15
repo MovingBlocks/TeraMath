@@ -22,8 +22,6 @@ import java.util.ArrayList;
 /**
  * Represents a pool of Vector3is, where Vector3is can be freed into or drawn from to reduce
  * the amount of objects that have to be garbage collected.
- *
- * @author auto-generated
  */
 public class VectorPool3i implements VectorPool<Vector3i> {
     public static class Helper{

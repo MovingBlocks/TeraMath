@@ -19,8 +19,6 @@ package org.terasology.math.geom;
 /**
  * An immutable implementation of BaseVector4f, which is a point or vector in 4D space with float components.
  * This type is intended for use for constants, or any time you want a BaseVector4f that is guaranteed immutable.
- *
- * @author auto-generated
  */
 public final class ImmutableVector4f extends BaseVector4f {
 

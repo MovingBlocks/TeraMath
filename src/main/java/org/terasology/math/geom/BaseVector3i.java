@@ -26,7 +26,6 @@ import java.nio.IntBuffer;
 
 /**
  * A vector/point in 3D space
- * @author auto-generated
  */
 public abstract class BaseVector3i implements Vector3ic{
 

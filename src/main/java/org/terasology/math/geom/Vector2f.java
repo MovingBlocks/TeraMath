@@ -21,8 +21,6 @@ import org.joml.Vector2fc;
 /**
  * Vector2f is the mutable implementation of BaseVector2f, for representing points or vectors in 2 dimensional space of type
  * float.
- *
- * @author auto-generated
  */
 public class Vector2f extends BaseVector2f {
 

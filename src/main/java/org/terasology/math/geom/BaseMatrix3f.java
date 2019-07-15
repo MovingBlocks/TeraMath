@@ -31,7 +31,6 @@ import java.util.Locale;
 
 /**
  * Defines a 3x3 float matrix 
- * @author auto-generated
  */
 public abstract class BaseMatrix3f implements Matrix3fc {
 

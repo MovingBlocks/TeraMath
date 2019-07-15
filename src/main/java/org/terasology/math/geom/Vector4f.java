@@ -21,8 +21,6 @@ import org.joml.Vector4fc;
 /**
  * Vector4f is the mutable implementation of BaseVector4f, for representing points or vectors in 4 dimensional space of type
  * float.
- *
- * @author auto-generated
  */
 public class Vector4f extends BaseVector4f {
 

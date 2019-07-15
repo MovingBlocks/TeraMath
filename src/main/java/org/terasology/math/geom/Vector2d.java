@@ -22,7 +22,6 @@ import org.joml.Vector2dc;
  * Vector2d is the mutable implementation of BaseVector2d, for representing points or vectors in 2 dimensional space of type
  * double.
  *
- * @author auto-generated
  */
 public class Vector2d extends BaseVector2d {
 

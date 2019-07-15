@@ -22,8 +22,6 @@ import java.util.ArrayList;
 /**
  * Represents a pool of Vector2ds, where Vector2ds can be freed into or drawn from to reduce
  * the amount of objects that have to be garbage collected.
- *
- * @author auto-generated
  */
 public class VectorPool2d implements VectorPool<Vector2d> {
     public static class Helper{

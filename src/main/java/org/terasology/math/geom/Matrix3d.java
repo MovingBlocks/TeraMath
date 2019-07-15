@@ -20,7 +20,6 @@ import java.nio.DoubleBuffer;
 
 /**
  * A double precision floating point 3x3 double matrix.
- * @author auto-generated
  */
 public class Matrix3d extends BaseMatrix3d {
 

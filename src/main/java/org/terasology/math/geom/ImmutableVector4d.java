@@ -19,8 +19,6 @@ package org.terasology.math.geom;
 /**
  * An immutable implementation of BaseVector4d, which is a point or vector in 4D space with double components.
  * This type is intended for use for constants, or any time you want a BaseVector4d that is guaranteed immutable.
- *
- * @author auto-generated
  */
 public final class ImmutableVector4d extends BaseVector4d {
 

@@ -20,7 +20,6 @@ import java.nio.FloatBuffer;
 
 /**
  * A float precision floating point 4x4 float matrix.
- * @author auto-generated
  */
 public class Matrix4f extends BaseMatrix4f{
 

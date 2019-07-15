@@ -27,7 +27,6 @@ import java.nio.FloatBuffer;
 
 /**
  * A vector/point in 4D space
- * @author auto-generated
  */
 public abstract class BaseVector4f implements Vector4fc{
 
@@ -304,8 +303,8 @@ public abstract class BaseVector4f implements Vector4fc{
     }
 
     @Override
-    public float distance(float X, float Y, float Z, float W) {
-       return new org.joml.Vector4f(this).distance(X,Y,Z,W);
+    public float distance(float x, float y, float z, float w) {
+       return new org.joml.Vector4f(this).distance(x,y,z,w);
     }
 
 
@@ -316,11 +315,11 @@ public abstract class BaseVector4f implements Vector4fc{
 
 
     @Override
-    public org.joml.Vector4f sub(float X, float Y, float Z, float W, org.joml.Vector4f dest) {
-        dest.x = x() - X;
-        dest.y = y() - Y;
-        dest.z = z() - Z;
-        dest.w = w() - W;
+    public org.joml.Vector4f sub(float x, float y, float z, float w, org.joml.Vector4f dest) {
+        dest.x = x() - x;
+        dest.y = y() - y;
+        dest.z = z() - z;
+        dest.w = w() - w;
         return dest;
     }
 
@@ -331,11 +330,11 @@ public abstract class BaseVector4f implements Vector4fc{
     }
 
     @Override
-    public  org.joml.Vector4f add(float X, float Y, float Z, float W,  org.joml.Vector4f dest) {
-        dest.x = x() + X;
-        dest.y = y() + Y;
-        dest.z = z() + Z;
-        dest.w = w() + W;
+    public  org.joml.Vector4f add(float x, float y, float z, float w,  org.joml.Vector4f dest) {
+        dest.x = x() + x;
+        dest.y = y() + y;
+        dest.z = z() + z;
+        dest.w = w() + w;
         return dest;
     }
 

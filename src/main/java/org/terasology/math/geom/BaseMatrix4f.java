@@ -40,7 +40,6 @@ import java.util.Locale;
 
 /**
  * Defines a 4x4 float matrix 
- * @author auto-generated
  */
 public abstract class BaseMatrix4f  implements Matrix4fc{
 

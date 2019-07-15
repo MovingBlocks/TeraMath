@@ -26,7 +26,6 @@ import java.nio.DoubleBuffer;
 
 /**
  * A vector/point in 2D space
- * @author auto-generated
  */
 public abstract class BaseVector2d implements Vector2dc{
 

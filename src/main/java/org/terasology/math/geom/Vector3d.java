@@ -22,7 +22,6 @@ import org.joml.Vector3dc;
  * Vector3d is the mutable implementation of BaseVector3d, for representing points or vectors in 3 dimensional space of type
  * double.
  *
- * @author auto-generated
  */
 public class Vector3d extends BaseVector3d {
 
