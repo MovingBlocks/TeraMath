@@ -16,11 +16,24 @@
 
 package org.terasology.math.geom;
 
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
 /**
  * @author Immortius
  * @author Martin Steiger
  */
 public class ImmutableVector3dTest extends BaseVector3dTest {
+
+    @Test
+    public void projectAgainstVector() {
+        Vector3d v = new ImmutableVector3d(1, 2, -1).project(new Vector3d(4, -3, 5));
+        assertEquals(-0.56, v.getX(), EPSILON);
+        assertEquals(0.42, v.getY(), EPSILON);
+        assertEquals(-0.7, v.getZ(), EPSILON);
+    }
+
     @Override
     protected BaseVector3d createBaseVector3d(double x, double y, double z) {
         return new ImmutableVector3d(x, y, z);
