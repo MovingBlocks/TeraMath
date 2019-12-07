@@ -16,10 +16,22 @@
 
 package org.terasology.math.geom;
 
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
 /**
  * @author Immortius
  */
 public class ImmutableVector2dTest extends BaseVector2dTest {
+
+    @Test
+    public void projectAgainstVector() {
+        Vector2d v = new ImmutableVector2d(1, 2).project(new Vector2d(4, -3));
+        assertEquals(-0.32, v.getX(), EPSILON);
+        assertEquals(0.24, v.getY(), EPSILON);
+    }
+
     @Override
     protected BaseVector2d createBaseVector2d(double x, double y) {
         return new ImmutableVector2d(x, y);

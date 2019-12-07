@@ -79,7 +79,7 @@ public class Vector3dTest extends BaseVector3dTest {
         assertSame(v, result);
         assertEquals(12.43, v.getZ(), EPSILON);
     }
-    
+
     @Test
     public void addToXComponent() {
         Vector3d result = v.setX(2.3).addX(1.4);
@@ -100,7 +100,7 @@ public class Vector3dTest extends BaseVector3dTest {
         assertSame(v, result);
         assertEquals(3.7, v.getZ(), EPSILON);
     }
-    
+
     @Test
     public void subtractFromXComponent() {
         Vector3d result = v.setX(2.3).subX(1.4);
@@ -121,7 +121,7 @@ public class Vector3dTest extends BaseVector3dTest {
         assertSame(v, result);
         assertEquals(0.9, v.getZ(), EPSILON);
     }
-    
+
     @Test
     public void multiplyXComponent() {
         Vector3d result = v.setX(1.2).mulX(2);
@@ -142,7 +142,7 @@ public class Vector3dTest extends BaseVector3dTest {
         assertSame(v, result);
         assertEquals(2.4, v.getZ(), EPSILON);
     }
-    
+
     @Test
     public void divideXComponent() {
         Vector3d result = v.setX(1.2).divX(2);
@@ -163,7 +163,15 @@ public class Vector3dTest extends BaseVector3dTest {
         assertSame(v, result);
         assertEquals(0.6, v.getZ(), EPSILON);
     }
-    
+
+    @Test
+    public void projectAgainstVector() {
+        Vector3d result = v.set(1, 2, -1).project(new Vector3d(4, -3, 5));
+        assertEquals(-0.56, result.getX(), EPSILON);
+        assertEquals(0.42, result.getY(), EPSILON);
+        assertEquals(-0.7, result.getZ(), EPSILON);
+    }
+
     @Override
     protected BaseVector3d createBaseVector3d(double x, double y, double z) {
         return new Vector3d(x, y, z);

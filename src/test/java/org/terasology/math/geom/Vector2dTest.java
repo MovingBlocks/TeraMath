@@ -129,6 +129,13 @@ public class Vector2dTest extends BaseVector2dTest {
         assertEquals(0.6, v.getY(), EPSILON);
     }
 
+    @Test
+    public void projectAgainstVector() {
+        Vector2d result = v.set(1, 2).project(new Vector2d(4, -3));
+        assertEquals(-0.32, result.getX(), EPSILON);
+        assertEquals(0.24, result.getY(), EPSILON);
+    }
+
     @Override
     protected BaseVector2d createBaseVector2d(double x, double y) {
         return new Vector2d(x, y);
