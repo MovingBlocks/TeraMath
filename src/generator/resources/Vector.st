@@ -373,6 +373,8 @@ $if(is3D)$
      * @param v2 the second vector
      */
     public final $vector/mutableType()$ cross($vector/baseType()$ v1, $vector/baseType()$ v2) {
+        if(this == v1) v1 = new $vector/mutableType()$(v1);
+        if(this == v2) v2 = new $vector/mutableType()$(v2);
         this.x = v1.getY() * v2.getZ() - v1.getZ() * v2.getY();
         this.y = v2.getX() * v1.getZ() - v2.getZ() * v1.getX();
         this.z = v1.getX() * v2.getY() - v1.getY() * v2.getX();
